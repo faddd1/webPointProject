@@ -1,0 +1,167 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+}
+
+body {
+    font-family: "Poppins" sans-serif;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.4rem 5%;
+    background-color: #2587ff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    box-shadow: 5px 5px 6px rgba(1, 1, 3, 0.5);
+}
+
+.navbar h4 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    font-style: italic;
+    text-decoration: none;
+    text-shadow: 3px 3px 6px rgba(1, 1, 3, 0.5);
+    margin-right: 50rem;
+}
+
+.login-container h2 ~ img {
+    margin-top: 40px;
+}
+nav div img {
+    width: 70px;
+}
+
+.login-container {
+    margin-top: 60px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(1, 1, 3, 0.2);
+    width: 350px;
+}
+
+.login-container img {
+    margin-left: 7.3rem;
+    padding: 0 5px;
+}
+
+.login-container h2 {
+    margin-bottom: 15px;
+    text-align: center;
+    color: #044ba2;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.login-container .hover a {
+    text-decoration: none;
+    font-style: italic;
+    color: #2587ff;
+    font-size: 15px;
+}
+
+.login-container .hover a:hover {
+    text-decoration: underline;
+    color: #044ba2;
+}
+
+.login-container a {
+    text-decoration: none;
+    margin-bottom: 2rem;
+    color: #fff;
+}
+
+.login-container a:hover {
+    text-decoration: underline;
+    color: #fff;
+}
+
+.login-container input[type="email"],
+.login-container input[type="password"] {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.7rem;
+    }
+
+    .navbar h4 {
+        margin-right: 0.5rem;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+        position: absolute;
+        justify-content: center;
+        align-items: center;
+        right: 80px;
+        top: 22px;
+    }
+
+    nav div img {
+        width: 40px;
+        margin-top: 0.1rem;
+        margin-left: 1px;
+    }
+
+    .login-container {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .login-container img {
+        margin-left: 0;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .login-container h2 {
+        font-size: 20px;
+    }
+}
+
+
+/* body {
+    background-color: #f0f2f5;
+}
+.login-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    animation: fadeIn 0.5s ease-out;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+} */
