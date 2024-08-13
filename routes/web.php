@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KategoriController;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SesiController;
@@ -17,13 +18,7 @@ use App\Http\Controllers\TeacherController;
 
 
 // KATEGORI PELANGGARAN
-Route::get('/kategoripelanggaran', function () {
-    return view('page.kategoripelanggaran',
-    [
-        'title' => 'Kategori Pelanggaran'
-    ]);
-});
-
+ 
 // LAPORAN
 Route::get('/laporan', function () {
     return view('page.laporan',
@@ -68,6 +63,11 @@ Route::group(['middleware' => 'auth', 'userAkses:admin,guru,petugas,siswa'], fun
 
     Route::get('/profile', [UserController::class, 'Profil']);
     Route::delete('/profile/store', [UserController::class, 'Profil']);
+
+    Route::get('/kategoripelanggaran', [KategoriController::class, 'index']);
+    Route::get('/kategoripelanggaran/search', [KategoriController::class, 'search']);
+    Route::get('/kategoripelanggaran/create', [KategoriController::class, 'create']);
+    Route::post('/kategoripelanggaran/store', [KategoriController::class, 'store'])->name('kategori.store');
 });
 
 Route::get('/logout', [SesiController::class, 'logout']);

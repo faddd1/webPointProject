@@ -20,7 +20,7 @@
         </nav>
         <div class="login-container">
                 <img src="https://1.bp.blogspot.com/-fhQrt5qoZVQ/Vk7JRkLvD4I/AAAAAAAAF-k/ePg_jf3sDwI/s1600/Smk-Negeri-1-Kawali-Logo.png"  alt="" width="56"> 
-                <h2>PPSS</h2>
+                <h2>PPS</h2>
                 @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
