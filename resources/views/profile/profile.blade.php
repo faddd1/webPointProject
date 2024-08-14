@@ -7,8 +7,8 @@
                 <div class="col-md-4">
                     <div class="card">
                         <img src="dist/img/user2-160x160.jpg" class="card-img-top" alt="Profile Picture">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">{{ Auth::user()->name }}</h5>
+                        <div class="card-body text-center" >
+                            <h5 class="card-title" >{{ Auth::user()->name }}</h5>
                         </div>
                         <a href="/update" class="btn btn-primary">Edit Profile</a>
                     </div>
@@ -16,7 +16,7 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Profile Information</h3>
+                            <h3 class="card-title p-1">Profile Information</h3>
                         </div>
                         <div class="card-body">
                          

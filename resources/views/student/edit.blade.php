@@ -19,14 +19,20 @@
                             <label>Kelas</label>
                             <input type="text" class="form-control" value="{{ $student->kelas }}" name="kelas" placeholder="Enter class" required>
                         </div>
-                        <div class="form-group">
-                            <label>Jenis Kelamin</label>
-                            <select class="form-control" name="jk" required>
-                                <option value="">Select gender</option>
-                                <option value="Laki-laki" {{ $student->jk == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
-                                <option value="Perempuan" {{ $student->jk == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
-                            </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Jenis Kelamin</label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="jk" id="jkLaki" value="Laki-laki" {{ $teacher->jk == 'Laki-laki' ? 'checked' : '' }} required>
+                                <label class="form-check-label" for="jkLaki">Laki-laki</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="jk" id="jkPerempuan" value="Perempuan" {{ $teacher->jk == 'Perempuan' ? 'checked' : '' }} required>
+                                <label class="form-check-label" for="jkPerempuan">Perempuan</label>
+                            </div>
                         </div>
+                    </div>
                         <div class="form-group">
                             <label>Jurusan</label>
                             <input type="text" class="form-control" value="{{ $student->jurusan }}" name="jurusan" placeholder="Enter major" required>
