@@ -133,9 +133,9 @@
                       @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'))
                       <td>
                         <div class="btn-group col-sm-5" role="group" aria-label="Basic example">
-                          <button type="button" class="btn btn-info">Edit</button>
-                          <button type="button" class="btn btn-success">Lihat</button>
-                          <button type="button" class="btn btn-danger ">Hapus</button>
+                          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-pen-to-square "></i> </button>
+                          <button type="submit" class="btn btn-success"><i class="fa-solid fa-eye"></i></button>
+                          <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i> </button>
                         </div>
                       </td>
                       @endif
@@ -148,9 +148,9 @@
                       @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'))
                       <td>
                         <div class="btn-group col-sm-5" role="group" aria-label="Basic example">
-                          <button type="button" class="btn btn-info">Edit</button>
-                          <button type="button" class="btn btn-success">Lihat</button>
-                          <button type="button" class="btn btn-danger ">Hapus</button>
+                          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-pen-to-square "></i> </button>
+                          <button type="submit" class="btn btn-success"><i class="fa-solid fa-eye"></i></button>
+                          <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i> </button>
                         </div>
                       </td>
                       @endif
@@ -163,9 +163,9 @@
                       @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'))
                       <td>
                         <div class="btn-group col-sm-5" role="group" aria-label="Basic example">
-                          <button type="button" class="btn btn-info">Edit</button>
-                          <button type="button" class="btn btn-success">Lihat</button>
-                          <button type="button" class="btn btn-danger ">Hapus</button>
+                          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-pen-to-square "></i> </button>
+                          <button type="submit" class="btn btn-success"><i class="fa-solid fa-eye"></i></button>
+                          <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i> </button>
                         </div>
                       </td>
                       @endif
@@ -178,9 +178,9 @@
                       @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'))
                       <td>
                         <div class="btn-group col-sm-5" role="group" aria-label="Basic example">
-                          <button type="button" class="btn btn-info">Edit</button>
-                          <button type="button" class="btn btn-success">Lihat</button>
-                          <button type="button" class="btn btn-danger ">Hapus</button>
+                          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-pen-to-square "></i> </button>
+                          <button type="submit" class="btn btn-success"><i class="fa-solid fa-eye"></i></button>
+                          <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i> </button>
                         </div>
                       </td>
                       @endif

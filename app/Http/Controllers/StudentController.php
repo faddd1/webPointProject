@@ -107,4 +107,13 @@ class StudentController extends Controller
         $student->delete();
         return redirect('student');
     }
+
+    public function search(Request $request){
+        if($request->has('seacrh')) {
+            $student = Student::where('nama','LIKE','%',$request->seacrh,'%')->get();
+        } else {
+            $student = Student::all();
+        }
+        return view('page.kategoripelanggaran',['student' => $student]);
+    }
 }
