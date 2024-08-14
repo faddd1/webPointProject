@@ -34,14 +34,14 @@
                     @csrf
                     <div>
                         <label for="username" class="form-label">Username :</label>
-                        <input type="text" class="form-control" value="{{ old('username') }}" name="username"  placeholder="username" required>
+                        <input type="text" class="form-control" value="{{ old('username') }}" name="username"  placeholder="username">
                         <div class="invalid-feedback">
                             Masukan Username.
                         </div>
                     </div>
                     <div>
                         <label for="password" class="form-label">Password :</label>
-                        <input type="password" class="form-control" name="password" placeholder="Password" required>
+                        <input type="password" class="form-control" name="password" placeholder="Password">
                         <div class="invalid-feedback">
                             Masukan Password. 
                         </div>
