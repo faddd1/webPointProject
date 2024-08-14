@@ -75,6 +75,9 @@ Route::group(['middleware' => 'auth', 'userAkses:admin,guru,petugas,siswa'], fun
     Route::get('/kategoripelanggaran/search', [KategoriController::class, 'search']);
     Route::get('/kategoripelanggaran/create', [KategoriController::class, 'create']);
     Route::post('/kategoripelanggaran/store', [KategoriController::class, 'store'])->name('kategori.store');
+    Route::get('/kategoripelanggaran/edit{id}', [KategoriController::class, 'edit'])->name('kategori.edit');
+    Route::get('/kategoripelanggaran/destroy{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
+    Route::put('/kategoripelanggaran/update/{id}', [KategoriController::class, 'update'])->name('kategori.update');
 });
 
 Route::get('/logout', [SesiController::class, 'logout']);

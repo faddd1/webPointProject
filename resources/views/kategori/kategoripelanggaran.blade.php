@@ -35,11 +35,17 @@
                                 <td>{{$kategori->pelanggaran}}</td>
                                 <td>{{$kategori->point}}</td>
                                 <td>{{$kategori->level}}</td>
-                                <td></td>
 
-                                <td>
-                                  
-                                </td>
+                                @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'))    
+                                <td class="d-inline">
+                                  <a href="{{ route('kategori.edit', $kategori->id) }}" class="btn btn-info "><i class="fa-solid fa-pen-to-square "></i></a>
+                                  <form action="{{ route('kategori.destroy', $kategori->id )}}" class="d-inline col-mb-2">
+                                      @csrf
+                                      @method('DELETE')
+                                      <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i> </button>
+                                  </form>
+                              </td>
+                                @endif
                             </tr>
                             @endforeach
                           </tbody>

@@ -58,15 +58,19 @@ class KategoriController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Kategori $kategori)
+    public function edit(Kategori $kategori, $id)
     {
-        //
+        $kategori = Kategori::findOrFail($id);
+        return view('kategori.edit', compact('kategori'), [
+            'title' => 'Edit Data'
+        
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Kategori $kategori)
+    public function update(Request $request, Kategori $kategori, $id)
     {
         $request -> validate ([
             'pelanggaran' => 'required|string|max:40',
@@ -74,8 +78,8 @@ class KategoriController extends Controller
             'level' => 'required|string|max:50',
             ]);
     
+            $kategori = Kategori::find($id);
             $kategori->update ([
-    
                 'pelanggaran' => $request->pelanggaran,
                 'point' => $request->point,
                 'level' => $request->level,
@@ -87,18 +91,12 @@ class KategoriController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Kategori $kategori)
+    public function destroy(Kategori $kategori, $id)
     {
-        $kategori->delete();
-        return redirect('/kategoripelanggaran');
-    }
 
-    public function search(Request $request){
-        if($request->has('seacrh')) {
-            $student = Student::where('nama','LIKE','%',$request->seacrh,'%')->get();
-        } else {
-            $student = Student::all();
-        }
-        return view('page.kategoripelanggaran',['student' => $student]);
+    $kategori = Kategori::findOrFail($id);
+    $kategori->delete();
+    return redirect('/kategoripelanggaran');
+
     }
 }
