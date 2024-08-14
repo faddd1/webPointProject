@@ -10,7 +10,9 @@
                             <button type="button" class="btn btn-info">Siswa</button>
                             <button type="button" class="btn btn-success">Guru</button>
                             <button type="button" class="btn btn-danger ">Petugas</button>
-                          </div>
+
+                        </div>  
+
 
                         <div class="card-tools">
                             <a href="{{ url('tambah/user') }}" class="btn btn-primary">Tambah</a>
@@ -33,7 +35,7 @@
 
                                     @foreach( $data as $no=>$data)
                                         
-                                   
+                                
                                     <tr>
                                         <td>{{ $no+1 }}</td>
                                         <td>{{ $data->name }}</td>
