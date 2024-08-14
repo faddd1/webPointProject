@@ -1,10 +1,12 @@
 <x-layout>
     <x-slot:title>{{ $title }}</x-slot:title>
+  <div class="container-fluid">
+    <div class="col-12">
       <div class="row">
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title text-bold">DATA GURU SMKN 1 kAWALI</h3> 
+                <h3 class="card-title text-bold">DATA GURU SMKN 1 KAWALI</h3> 
                 <div class="card-tools">
                   <a href="{{ url('teacher/create') }}" class="btn btn-primary">Tambah Data</a>
                 </div>
@@ -16,7 +18,7 @@
                   <thead>
                     <tr>
                       <th>No</th>
-                      <th>Nip</th>
+                      <th>NIP</th>
                       <th>Nama Guru</th>
                       <th>Jabatan</th>
                       <th>Jenis Kelamin</th>
@@ -37,12 +39,12 @@
                       @if (auth()->user()->role == 'admin')
                       <td>
                         <a href="{{ route('teacher.edit', $teacher->id) }}" class="btn btn-primary">
-                          <i class="fa-solid fa-pen-to-square "></i>    Edit
+                          <i class="fa-solid fa-pen-to-square "></i>
                         </a>
                         <form action="{{ route('teacher.destroy', $teacher->id)}}" method="POST" class="d-inline">
                           @csrf
                           @method('DELETE')
-                          <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Hapus</button>
+                          <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
                       </form>
                       </td>
                       @endif
@@ -57,6 +59,8 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
   
   
   </x-layout>

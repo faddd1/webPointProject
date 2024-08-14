@@ -10,7 +10,9 @@
                             <button type="button" class="btn btn-info">Siswa</button>
                             <button type="button" class="btn btn-success">Guru</button>
                             <button type="button" class="btn btn-danger ">Petugas</button>
-                        </div>
+
+                        </div>  
+
 
                         <div class="card-tools">
                             <a href="{{ url('tambah/user') }}" class="btn btn-primary">Tambah</a>
@@ -41,11 +43,11 @@
                                         <td>{{ $data->plain_password }}</td>
                                         <td>{{ $data->role }}</td>
                                         <td class="d-inline">
-                                            <a href="{{ route('tambah.edit', $data->id) }}" class="btn btn-info">Edit</a>
+                                            <a href="{{ route('tambah.edit', $data->id) }}" class="btn btn-info"><i class="fa-solid fa-pen-to-square "></i></a>
                                             <form action="{{ route('tambah.destroy', $data->id )}}" class="d-inline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button class="btn btn-danger">Hapus</button>
+                                                <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i> </button>
                                             </form>
                                         </td>
                                     </tr>

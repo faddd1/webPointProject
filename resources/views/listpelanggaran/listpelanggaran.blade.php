@@ -6,6 +6,7 @@
                 <div class="col-12">
                     <div class="card">
                             <div class="card-header">
+
                                 <div class="card-item d-flex flex-wrap">
                                     <select class="card-item form-control col-md-2 col-6 mb-2 mr-2" name="jk">
                                         <option>PILIH KELAS</option>

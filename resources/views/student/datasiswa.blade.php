@@ -1,5 +1,7 @@
 <x-layout>
   <x-slot:title>{{ $title }}</x-slot:title>
+<div class="container">
+  <div class="container-fluid">
     <div class="row">
         <div class="col-12">
           <div class="card">
@@ -22,8 +24,8 @@
                     <th>Nis</th>
                     <th>Nama Siswa</th>
                     <th>kelas</th>
-                    <th>Jenis Kelamin</th>
                     <th class="col-2">Jurusan</th>
+                    <th>Jenis Kelamin</th>
                     @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'))             
                     <th>Action</th>
                     @endif
@@ -44,12 +46,12 @@
                     @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'))    
                     <td>
                       <a href="{{ route('student.edit', $student->id) }}" class="btn btn-primary">
-                        <i class="fa-solid fa-pen-to-square "></i>Edit
+                        <i class="fa-solid fa-pen-to-square "></i>
                       </a>
                       <form action="{{ route('student.destroy', $student->id)}}" method="POST" class="d-inline">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Hapus</button>
+                        <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i> </button>
                     </form>
                     </td>
                     @endif
@@ -62,6 +64,8 @@
           </div>
           <!-- /.card -->
         </div>
+    </div>
+  </div>
       </div>
     </div>
 
