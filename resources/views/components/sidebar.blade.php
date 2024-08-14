@@ -107,7 +107,7 @@
           
           @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'))
           <li class="nav-item has-treeview">
-            <a href="laporan" class="nav-link">
+            <a href="/laporan" class="nav-link">
               <p>
                 Laporan
               </p>
@@ -119,7 +119,7 @@
           <li class="nav-item has-treeview">
             <a href="{{ url('/tambah') }}" class="nav-link">
               <p>
-                Tambah Akun Siswa da Guru
+                Tambah Akun
               </p>
             </a>
           </li>
