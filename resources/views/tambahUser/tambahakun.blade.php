@@ -43,8 +43,8 @@
                                         <td>{{ $data->plain_password }}</td>
                                         <td>{{ $data->role }}</td>
                                         <td class="d-inline">
-                                            <a href="{{ route('tambah.edit', $data->id) }}" class="btn btn-info"><i class="fa-solid fa-pen-to-square "></i></a>
-                                            <form action="{{ route('tambah.destroy', $data->id )}}" class="d-inline">
+                                            <a href="{{ route('tambah.edit', $data->id) }}" class="btn btn-info "><i class="fa-solid fa-pen-to-square "></i></a>
+                                            <form action="{{ route('tambah.destroy', $data->id )}}" class="d-inline col-mb-2">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i> </button>

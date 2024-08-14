@@ -21,9 +21,16 @@ use App\Http\Controllers\TeacherController;
  
 // LAPORAN
 Route::get('/laporan', function () {
-    return view('page.laporan',
+    return view('laporan.laporan',
     [
         'title' => 'Laporan'
+    ]);
+});
+
+Route::get('/riwayat', function () {
+    return view('laporan.riwayat',
+    [
+        'title' => 'Riwayat Laporan'
     ]);
 });
 

@@ -117,6 +117,16 @@
 
           @if (auth()->user()->role == 'admin')
           <li class="nav-item has-treeview">
+            <a href="{{ url('/riwayat') }}" class="nav-link">
+              <p>
+                Riwayat Laporan
+              </p>
+            </a>
+          </li>
+        @endif
+
+          @if (auth()->user()->role == 'admin')
+          <li class="nav-item has-treeview">
             <a href="{{ url('/tambah') }}" class="nav-link">
               <p>
                 Tambah Akun

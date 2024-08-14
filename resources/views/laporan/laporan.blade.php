@@ -1,7 +1,25 @@
 <x-layout>
     <x-slot:title>{{ $title }}</x-slot:title>
-  
-    <section class="container">
+    <div class="container">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            
+                        </div>
+                        <div class="card-body">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    {{-- <section class="container">
         <div class="container-fluid">
                   <!-- Form Pelaporan Pelanggaran -->
                   <div id="reportForm" class="d-none">
@@ -28,5 +46,6 @@
               </div>
         </div>
     </section>
+    --}}
   </x-layout>
   
