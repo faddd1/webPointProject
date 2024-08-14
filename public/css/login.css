@@ -22,7 +22,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 0.4rem 5%;
-    background-color: #fff;
+    background-color: #2587ff;
     position: fixed;
     top: 0;
     left: 0;
@@ -116,7 +116,7 @@ nav div img {
         position: absolute;
         justify-content: center;
         align-items: center;
-        right: 80px;
+        right: 100px;
         top: 22px;
     }
 

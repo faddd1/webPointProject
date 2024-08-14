@@ -16,10 +16,10 @@ class DummyUserSeeder extends Seeder
         $userData = [
             [
 
-             'name'=> 'AdminFad',
-             'username'=> '222310229',
-             'role' => 'admin',
-             'password' => bcrypt('12345678')
+                'name'=> 'AdminFad',
+                'username'=> '222310229',
+                'role' => 'admin',
+                'password' => bcrypt('12345678')
 
             ],
             [
