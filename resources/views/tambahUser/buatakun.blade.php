@@ -12,12 +12,19 @@
                         <form action="{{ route('tambah.store') }}" method="POST">
                             @csrf
                             <div class="mb-3">
-                                <label for="nama" class="form-label">Nama :</label>
-                                <input type="text" id="nama" name="nama" class="form-control">
+                                <label for="name" class="form-label">Nama :</label>
+                                <input type="text" id="nama" name="name" class="form-control">
                             </div>
                             <div class="mb-3">
                                 <label for="username" class="form-label">Username :</label>
                                 <input type="text" id="username" name="username" class="form-control">
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                             @foreach ($errors->all() as $error)
+                                                <p>{{ $error }}</p>
+                                            @endforeach
+                                     </div>
+                                @endif
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password :</label>

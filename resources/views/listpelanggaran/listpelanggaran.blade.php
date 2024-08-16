@@ -49,7 +49,9 @@
                                             <th>Kelas</th>
                                             <th>Jurusan</th>
                                             <th>Jumlah Point</th>
+                                            @if (auth()->user()->role == 'admin')
                                             <th>Action</th>
+                                            @endif
                                         </tr>
                                     </thead>
                                     <tbody>

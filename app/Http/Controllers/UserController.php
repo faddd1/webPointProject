@@ -27,10 +27,13 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'username' => 'required',
+            'username' => 'required|unique:users',
             'password' => 'required',
             'role' => 'required',
             'plain_password'
+        ], [
+
+            'username.unique' => 'Username sudah digunakan, silakan pilih yang lain.',
         ]);
     
         User::create([
@@ -58,10 +61,12 @@ class UserController extends Controller
 
         $request->validate([
             'name' => 'required',
-            'username' => 'required',
+            'username' => 'required|unique:users',
             'password' => 'required',
             'role' => 'required',
             'plain_password'
+        ], [
+            'username.unique' => 'Username sudah digunakan, silakan pilih yang lain.',
         ]);
         $data = User::find($id);
         $data->update([
@@ -72,6 +77,8 @@ class UserController extends Controller
             'password' => Hash::make($request['password']),
             'plain_password' => $request['password'],
         ]);
+
+        
 
         return redirect('/tambah');
 

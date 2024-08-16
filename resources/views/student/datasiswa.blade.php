@@ -26,7 +26,7 @@
                     <th>kelas</th>
                     <th class="col-2">Jurusan</th>
                     <th>Jenis Kelamin</th>
-                    @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'))             
+                    @if (auth()->check() && (auth()->user()->role == 'admin'))             
                     <th>Action</th>
                     @endif
                   </tr>
@@ -43,7 +43,7 @@
                     <td>{{ $student->kelas }}</td>
                     <td>{{ $student->jurusan }}</td>
                     <td>{{ $student->jk }}</td>
-                    @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'))    
+                    @if (auth()->check() && (auth()->user()->role == 'admin'))    
                     <td>
                       <a href="{{ route('student.edit', $student->id) }}" class="btn btn-primary">
                         <i class="fa-solid fa-pen-to-square "></i>

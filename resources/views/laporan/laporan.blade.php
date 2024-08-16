@@ -6,7 +6,11 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            
+                            <div class="btn-group col-sm-5" role="group" aria-label="Basic example">
+                                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-pen-to-square "></i> </button>
+                                <button type="submit" class="btn btn-success"><i class="fa-solid fa-eye"></i></button>
+                                <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i> </button>
+                              </div>
                         </div>
                         <div class="card-body">
 
@@ -16,36 +20,5 @@
             </div>
         </div>
     </div>
-
-
-
-    {{-- <section class="container">
-        <div class="container-fluid">
-                  <!-- Form Pelaporan Pelanggaran -->
-                  <div id="reportForm" class="d-none">
-                      <h3 class="mb-4">Detail Pelanggaran</h3>
-                      <div class="mb-3">
-                          <label for="selectedStudent" class="form-label">Siswa:</label>
-                          <input type="text" class="form-control" id="selectedStudent" readonly>
-                      </div>
-                      <div class="mb-3">
-                          <label for="violation" class="form-label">Pilih Pelanggaran:</label>
-                          <select class="form-select" id="violation">
-                              <option selected>Pilih pelanggaran...</option>
-                              <option value="Terlambat">Terlambat - 5 poin</option>
-                              <option value="Tidak memakai seragam">Tidak memakai seragam - 10 poin</option>
-                              <option value="Membawa barang terlarang">Membawa barang terlarang - 20 poin</option>
-                              <option value="Bolos">Bolos - 15 poin</option>
-                              <!-- Tambahkan pelanggaran lainnya sesuai kebutuhan -->
-                          </select>
-                      </div>
-                      
-                      <!-- Tombol Kirim Laporan -->
-                      <button class="btn btn-primary" id="submitReport">Kirim Laporan</button>
-                  </div>
-              </div>
-        </div>
-    </section>
-    --}}
   </x-layout>
   

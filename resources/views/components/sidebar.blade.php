@@ -24,13 +24,21 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview">
-            <a href="/dashboard" class="nav-link">
+            <a href=" @if(auth()->user()->role == 'admin')
+                          /dashboard/admin
+                      @elseif(auth()->user()->role == 'guru')
+                          /dashboard/guru
+                      @elseif(auth()->user()->role == 'petugas')
+                          /dashboard/petugas
+                      @elseif(auth()->user()->role == 'siswa')
+                          /dashboard/siswa
+                      @endif" class="nav-link">
               <p>
                 Dashboard
               </p>
             </a>
           </li>
-          @if (auth()->check() && (auth()->user()->role == 'admin'))
+          @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru' || auth()->user()->role == 'petugas'))
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               {{-- <i class="nav-icon fas fa-copy"></i> --}}
@@ -56,7 +64,7 @@
           </li>
           @endif
 
-          @if (auth()->check() && (auth()->user()->role == 'siswa' || auth()->user()->role == 'petugas' || auth()->user()->role == 'guru'))
+          @if (auth()->check() && (auth()->user()->role == 'siswa'))
           <li class="nav-item has-treeview">
             <a href="/listpelanggaran" class="nav-link">
               <p>
@@ -66,7 +74,7 @@
           </li>
           @endif
 
-          @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'))
+          @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru' ))
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <p>
@@ -93,19 +101,8 @@
             </ul>
           </li>
           @endif
-
-
-          @if (auth()->check() && (auth()->user()->role == 'petugas' || auth()->user()->role == 'siswa'))
-          <li class="nav-item has-treeview">
-            <a href="{{ url('student') }}" class="nav-link">
-              <p>
-                Data Siswa
-              </p>
-            </a>
-          </li>
-            @endif
           
-          @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'))
+          @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru' || auth()->user()->role == 'petugas'))
           <li class="nav-item has-treeview">
             <a href="/laporan" class="nav-link">
               <p>

@@ -8,7 +8,9 @@
               <div class="card-header">
                 <h3 class="card-title text-bold">DATA GURU SMKN 1 KAWALI</h3> 
                 <div class="card-tools">
+                  @if (auth()->user()->role == 'admin')
                   <a href="{{ url('teacher/create') }}" class="btn btn-primary">Tambah Data</a>
+                  @endif
                 </div>
               </div>
   
@@ -22,7 +24,9 @@
                       <th>Nama Guru</th>
                       <th>Jabatan</th>
                       <th>Jenis Kelamin</th>
-                      <th>Action</th>
+                      @if (auth()->user()->role == 'admin')
+                       <th>Action</th>
+                      @endif
                     </tr>
                   </thead>
                   <tbody>

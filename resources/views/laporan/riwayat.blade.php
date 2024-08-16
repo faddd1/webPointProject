@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="card">
+                    <div class="card ">
                         <div class="card-header">
                             <form action="#" class="form-inline" method="GET">
                                 <div class="card-item d-flex">
@@ -15,7 +15,7 @@
                               </form>
                         </div>
 
-                        <div class="card-body">
+                        <div class="card-body bg-info">
                            
                             <div class="row">
                                 <div class="col-12">

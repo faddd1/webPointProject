@@ -7,7 +7,9 @@
               <div class="card">
                 <div class="card-header">
                   <div class="card-tools">
-                    <a href="{{ url('/kategoripelanggaran/create') }}" class="btn btn-primary">Tambah Data</a>
+                    @if (auth()->check() && (auth()->user()->role == 'admin') ) 
+                     <a href="{{ url('/kategoripelanggaran/create') }}" class="btn btn-primary">Tambah Data</a>
+                    @endif
                   </div>
                   <form action="/kategoripelanggaran/seacrh" class="form-inline" method="GET">
                     <div class="card-item d-flex">
@@ -25,7 +27,10 @@
                                 <th>Nama Pelanggaran</th>
                                 <th>Point</th>
                                 <th>Level</th>
+                                
+                              @if (auth()->check() && (auth()->user()->role == 'admin'))
                                 <th>Action</th>
+                              @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -35,8 +40,8 @@
                                 <td>{{$kategori->pelanggaran}}</td>
                                 <td>{{$kategori->point}}</td>
                                 <td>{{$kategori->level}}</td>
-
-                                @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'))    
+                              
+                              @if (auth()->check() && (auth()->user()->role == 'admin') )  
                                 <td class="d-inline">
                                   <a href="{{ route('kategori.edit', $kategori->id) }}" class="btn btn-info "><i class="fa-solid fa-pen-to-square "></i></a>
                                   <form action="{{ route('kategori.destroy', $kategori->id )}}" class="d-inline col-mb-2">
@@ -44,8 +49,8 @@
                                       @method('DELETE')
                                       <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i> </button>
                                   </form>
-                              </td>
-                                @endif
+                                </td>
+                              @endif
                             </tr>
                             @endforeach
                           </tbody>

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Middleware;
 
 use Closure;
@@ -13,12 +12,24 @@ class UserAkses
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, $role): Response
+    public function handle(Request $request, Closure $next, ...$role): Response
     {
-        if(auth()->user()->role == $role){
+        if (in_array(auth()->user()->role, $role)) {
             return $next($request);
         }
-            return redirect('/');
+        switch (auth()->user()->role) {
+            case 'admin':
+                return redirect('/dashboard/admin');
+            case 'guru':
+                return redirect('/dashboard/guru');
+            case 'petugas':
+                return redirect('/dashboard/petugas');
+            case 'siswa':
+                return redirect('/dashboard/siswa');
+            default:
+                return redirect('/');
+        }
     }
-
 }
+
+?>

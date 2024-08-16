@@ -19,7 +19,7 @@
           <!-- /.info-box -->
         </div>
        </div>
-      @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'))
+      @if (auth()->check() && (auth()->user()->role == 'admin'))
         <!-- Small boxes (Stat box) -->
         <div class="row">
           <div class="col-lg-12 d-flex flex-wrap">
