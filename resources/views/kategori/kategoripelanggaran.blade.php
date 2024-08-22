@@ -44,7 +44,7 @@
                               @if (auth()->check() && (auth()->user()->role == 'admin') )  
                                 <td class="d-inline">
                                   <a href="{{ route('kategori.edit', $kategori->id) }}" class="btn btn-info "><i class="fa-solid fa-pen-to-square "></i></a>
-                                  <form action="{{ route('kategori.destroy', $kategori->id )}}" class="d-inline col-mb-2">
+                                  <form action="{{ route('kategori.destroy', $kategori->id )}}" class="d-inline col-mb-2" method="POST">
                                       @csrf
                                       @method('DELETE')
                                       <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i> </button>

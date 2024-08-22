@@ -46,11 +46,7 @@ Route::group(['middleware' => 'auth', 'userAkses:admin,guru,petugas,siswa'], fun
             Route::resource('student', StudentController::class);
             Route::resource('teacher', TeacherController::class);
 
-             // Kategori Pelanggaran Routes
-            Route::get('/kategoripelanggaran', [KategoriController::class, 'index']);
-            Route::get('/kategoripelanggaran/search', [KategoriController::class, 'search']);
-            Route::get('/kategoripelanggaran/create', [KategoriController::class, 'create']);
-            Route::post('/kategoripelanggaran/store', [KategoriController::class, 'store'])->name('kategori.store');
+           
 
             // Laporan
             Route::get('/laporan', function () {
@@ -73,6 +69,18 @@ Route::group(['middleware' => 'auth', 'userAkses:admin,guru,petugas,siswa'], fun
         Route::post('tambah/store', [UserController::class, 'store'])->name('tambah.store');
         Route::put('tambah/update{id}', [UserController::class, 'update'])->name('tambah.update');
         Route::get('tambah/destroy{id}', [UserController::class, 'destroy'])->name('tambah.destroy');
+
+          // Kategori Pelanggaran Routes
+          Route::get('/kategoripelanggaran', [KategoriController::class, 'index']);
+          Route::get('/kategoripelanggaran/search', [KategoriController::class, 'search']);
+          Route::get('/kategoripelanggaran/create', [KategoriController::class, 'create']);
+          Route::post('/kategoripelanggaran/store', [KategoriController::class, 'store'])->name('kategori.store');
+          Route::get('/kategoripelanggaran/edit{id}', [KategoriController::class, 'edit'])->name('kategori.edit');
+          Route::put('/kategoripelanggaran/update{id}', [KategoriController::class, 'update'])->name('kategori.update');
+          Route::delete('/kategoripelanggaran/destroy/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
+
+
+
 
         
         Route::get('/riwayat', function () {
