@@ -99,4 +99,17 @@ class KategoriController extends Controller
     return redirect('/kategoripelanggaran');
 
     }
+
+
+
+    public function search(Request $request)
+    {
+        $query = $request->input('search');
+        $kategori = Kategori::where('pelanggaran', 'LIKE', "%{$query}%")
+            ->orWhere('level', 'LIKE', "%{$query}%")
+            ->orWhere('point', 'LIKE', "%{$query}%")
+            ->get();
+        
+        return view('kategori.kategoripelanggaran', ['kategori' => $kategori, 'title' => 'Kategori Pelanggaran']);
+    }
 }

@@ -7,16 +7,17 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\ListPelanggaranController;
 
 // --------------------- PAGE ROUTES ------------------------ //
 
 
 // List Pelanggaran
-Route::get('/listpelanggaran', function () {
-    return view('listpelanggaran.listpelanggaran', [
-        'title' => 'List Pelanggaran'
-    ]);
-});
+
+
+Route::get('/listpelanggaran', [ListPelanggaranController::class, 'index']);
+Route::post('/listpelanggaran/store', [ListPelanggaranController::class, 'store'])->name('listpelanggaran.store');
+
 
 // --------------------- AUTHENTICATION ---------------------- //
 
@@ -48,8 +49,11 @@ Route::group(['middleware' => 'auth', 'userAkses:admin,guru,petugas,siswa'], fun
 
              // Kategori Pelanggaran Routes
             Route::get('/kategoripelanggaran', [KategoriController::class, 'index']);
-            Route::get('/kategoripelanggaran/search', [KategoriController::class, 'search']);
+            Route::get('/kategoripelanggaran/search', [KategoriController::class, 'search'])->name('kategori.search');
             Route::get('/kategoripelanggaran/create', [KategoriController::class, 'create']);
+            Route::get('kategori/{id}/edit', [KategoriController::class, 'edit'])->name('kategori.edit');
+            Route::delete('kategori/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
+            Route::put('kategori/{id}', [KategoriController::class, 'update'])->name('kategori.update');
             Route::post('/kategoripelanggaran/store', [KategoriController::class, 'store'])->name('kategori.store');
 
             // Laporan
