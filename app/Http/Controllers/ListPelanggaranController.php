@@ -51,4 +51,21 @@ class ListPelanggaranController extends Controller
     return redirect('/listpelanggaran')->with('success', 'Data berhasil ditambahkan!');
     }
 
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $pelanggaran = Pelanggaran::where('nis', 'LIKE', "%{$search}%")
+            ->orWhere('nama', 'LIKE', "%{$search}%")
+            ->orWhere('jk', 'LIKE', "%{$search}%")
+            ->orWhere('kelas', 'LIKE', "%{$search}%")
+            ->orWhere('point', 'LIKE', "%{$search}%")
+            ->orWhere('pelapor', 'LIKE', "%{$search}%")
+            ->orWhere('tanggal', 'LIKE', "%{$search}%")
+            ->orWhere('jenis', 'LIKE', "%{$search}%")
+            ->get();
+        
+        return view('listpelanggaran.listpelanggaran', ['pelanggaran' => $pelanggaran, 'title' => 'List Pelanggaran']);
+    
+    }
+
 }

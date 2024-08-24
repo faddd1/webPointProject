@@ -17,6 +17,7 @@ use App\Http\Controllers\ListPelanggaranController;
 
 Route::get('/listpelanggaran', [ListPelanggaranController::class, 'index']);
 Route::post('/listpelanggaran/store', [ListPelanggaranController::class, 'store'])->name('listpelanggaran.store');
+Route::get('/listpelanggaran/search', [ListpelanggaranController::class, 'search'])->name('listpelanggaran.search');
 
 
 // --------------------- AUTHENTICATION ---------------------- //
@@ -47,7 +48,7 @@ Route::group(['middleware' => 'auth', 'userAkses:admin,guru,petugas,siswa'], fun
             Route::resource('student', StudentController::class);
             Route::resource('teacher', TeacherController::class);
 
-<<<<<<< HEAD
+
              // Kategori Pelanggaran Routes
             Route::get('/kategoripelanggaran', [KategoriController::class, 'index']);
             Route::get('/kategoripelanggaran/search', [KategoriController::class, 'search'])->name('kategori.search');
@@ -56,9 +57,9 @@ Route::group(['middleware' => 'auth', 'userAkses:admin,guru,petugas,siswa'], fun
             Route::delete('kategori/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
             Route::put('kategori/{id}', [KategoriController::class, 'update'])->name('kategori.update');
             Route::post('/kategoripelanggaran/store', [KategoriController::class, 'store'])->name('kategori.store');
-=======
+
            
->>>>>>> 577160028047c2343787418314fa6b37e17ee4fb
+
 
             // Laporan
             Route::get('/laporan', function () {

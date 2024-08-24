@@ -6,16 +6,19 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            @if (auth()->check() && (auth()->user()->role == 'admin') )
+                            {{-- @if (auth()->check() && (auth()->user()->role == 'admin') )
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambahDataModal">
                                     Tambah Data
                                 </button>
-                            @endif
+                            @endif --}}
+                            <form action="/listpelanggaran/search" class="form-inline" method="GET">
+                                <div class="card-item d-flex">
+                                    <input type="search" class="form-control col-md-11 col-14 mb-14 mr-2" name="search" placeholder="Cari" value="{{ request()->input('search') }}" id="search-input">
+                                    <button type="submit" class="btn btn-primary mb-2">Cari</button>
+                                </div>
+                            </form>
 
-                            <div class="card-item d-flex flex-wrap">
-                                <!-- Filter options here -->
-                                <button type="submit" class="btn btn-primary mb-2">Cari</button>
-                            </div>
+                           
                         </div>
                         
                         <div class="card-body">
@@ -25,18 +28,19 @@
                                 </div>
                             @endif
                             <div class="table-responsive">
-                                <table class="table table-striped">
+                            <div class="table table-striped">
+                             <table class="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th>NIS</th>
-                                            <th>Nama</th>
-                                            <th>Jenis Kelamin</th>
-                                            <th>Kelas</th>
-                                            <th>Jenis Pelanggaran</th>
+                                            <th style="text-align: center; vertical-align: middle;">No</th>
+                                            <th style="text-align: center; vertical-align: middle;">NIS</th>
+                                            <th style="text-align: center; vertical-align: middle;">Nama</th>
+                                            <th style="text-align: center; vertical-align: middle;">Jenis Kelamin</th>
+                                            <th style="text-align: center; vertical-align: middle;">Kelas</th>
+                                            <th style="text-align: center; vertical-align: middle;">Jenis Pelanggaran</th>
                                             
                                             @if (auth()->user()->role == 'admin')
-                                                <th>Action</th>
+                                                <th style="text-align: center; vertical-align: middle;">Action</th>
                                             @endif
                                         </tr>
                                     </thead>
@@ -44,13 +48,13 @@
             @foreach ($pelanggaran as $no => $pelanggaran)
 
                                             <tr>
-                                                <td>{{ $no+1 }}</td>
-                                                <td>{{ $pelanggaran->nis }}</td>
-                                                <td>{{ $pelanggaran->nama }}</td>
-                                                <td>{{ $pelanggaran->jk }}</td>
-                                                <td>{{ $pelanggaran->kelas }}</td>
-                                                <td>{{ $pelanggaran->jenis }}</td>
-                                               <td>
+                                                <td style="text-align: center; vertical-align: middle;">{{ $no+1 }}</td>
+                                                <td style="text-align: center; vertical-align: middle;">{{ $pelanggaran->nis }}</td>
+                                                <td style="text-align: center; vertical-align: middle;">{{ $pelanggaran->nama }}</td>
+                                                <td style="text-align: center; vertical-align: middle;">{{ $pelanggaran->jk }}</td>
+                                                <td style="text-align: center; vertical-align: middle;">{{ $pelanggaran->kelas }}</td>
+                                                <td style="text-align: center; vertical-align: middle;">{{ $pelanggaran->jenis }}</td>
+                                               <td style="text-align: center; vertical-align: middle;">
                                                 <button data-id="{{ $pelanggaran->id }}" data-target="#showDataModal" data-toggle="modal" class="btn btn-info btn-show">Show</button>
 
                                                </td>
@@ -59,6 +63,7 @@
                                             @endforeach
                                     </tbody>
                                 </table>
+                                </div> 
                             </div>
                         </div>
                     </div>
@@ -172,6 +177,13 @@ $(document).ready(function() {
     });
 });
 </script>
+<script>
+    document.getElementById('search-input').addEventListener('input', function() {
+      if (this.value === '') {
+        window.location.href = "{{ url('/listpelanggaran') }}"; // Kembali ke data semula
+      }
+    });
+  </script>
 
     
 </x-layout>

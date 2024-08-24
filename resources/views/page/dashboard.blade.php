@@ -21,9 +21,10 @@
        </div>
       @if (auth()->check() && (auth()->user()->role == 'admin'))
         <!-- Small boxes (Stat box) -->
+        
         <div class="row">
-          <div class="col-lg-12 d-flex flex-wrap">
-            <div class="small-box bg-info" style="margin-right: 15px; margin-bottom: 15px; flex: 1;">
+          <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+            <div class="small-box bg-info">
               <div class="inner">
                 <h3>150</h3>
                 <p>Jumlah Siswa</p>
@@ -33,8 +34,10 @@
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
+          </div>
         
-            <div class="small-box bg-success" style="margin-right: 15px; margin-bottom: 15px; flex: 1;">
+          <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+            <div class="small-box bg-success">
               <div class="inner">
                 <h3>53</h3>
                 <p>Jumlah Guru</p>
@@ -44,8 +47,10 @@
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
+          </div>
         
-            <div class="small-box bg-warning" style="margin-right: 15px; margin-bottom: 15px; flex: 1;">
+          <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+            <div class="small-box bg-warning">
               <div class="inner">
                 <h3>44</h3>
                 <p>Jumlah Pelanggaran</p>
@@ -55,8 +60,10 @@
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
+          </div>
         
-            <div class="small-box bg-danger" style="margin-bottom: 15px; flex: 1;">
+          <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+            <div class="small-box bg-danger">
               <div class="inner">
                 <h3>65</h3>
                 <p>Jumlah User</p>
@@ -68,6 +75,7 @@
             </div>
           </div>
         </div>
+        
         
         
         
@@ -83,20 +91,20 @@
               <h3 class="card-title">Top Pelanggaran</h3>
             </div>
             <!-- /.card-header -->
-            <div class="table-responsive mt-4 mb-4">
+            <div class="table table-striped">
               <table class="table table-bordered">
                 <thead>
                   <tr>
-                    <th>No</th>
-                    <th>Nama Pelanggaran</th>
-                    <th>Total Pelanggaran</th>
+                    <th  style="text-align: center; vertical-align: middle;">No</th>
+                    <th  style="text-align: center; vertical-align: middle;">Nama Pelanggaran</th>
+                    <th  style="text-align: center; vertical-align: middle;">Total Pelanggaran</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>1.</td>
-                    <td>Tawuran</td>
-                    <td>50</td>
+                    <td style="text-align: center; vertical-align: middle;">1.</td>
+                    <td style="text-align: center; vertical-align: middle;">Tawuran</td>
+                    <td style="text-align: center; vertical-align: middle;">50</td>
                   </tr>
                 </tbody>
               </table>
@@ -114,22 +122,23 @@
             <!-- /.card-header -->
             <div class="card-body p-0">
               <div class="table-responsive mt-4 mb-4">
-                <table class="table table-striped">
+                <div class="table table-striped">
+                <table class="table table-bordered">
                   <thead>
                     <tr>
-                      <th style="width: 10px">No</th>
-                      <th>Nama</th>
-                      <th>Jumlah Poin</th>
+                      <th style="width: 10px; vertical-align: middle;">No</th>
+                      <th  style="text-align: center; vertical-align: middle;">Nama</th>
+                      <th  style="text-align: center; vertical-align: middle;">Jumlah Poin</th>
                       @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'))
-                      <th>Action</th>
+                      <th  style="text-align: center; vertical-align: middle;">Action</th>
                       @endif
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>1.</td>
-                      <td>Alif Miftah Fauzan</td>
-                      <td>100</td>
+                      <td style="text-align: center; vertical-align: middle;">1.</td>
+                      <td style="text-align: center; vertical-align: middle;">Alif Miftah Fauzan</td>
+                      <td style="text-align: center; vertical-align: middle;">100</td>
                       @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'))
                       <td>
                         <div class="btn-group col-sm-5" role="group" aria-label="Basic example">
@@ -142,9 +151,9 @@
                     </tr>
 
                     <tr>
-                      <td>2.</td>
-                      <td>Fadli Alam Akbar</td>
-                      <td>100</td>
+                      <td style="text-align: center; vertical-align: middle;">2.</td>
+                      <td style="text-align: center; vertical-align: middle;">Fadli Alam Akbar</td>
+                      <td style="text-align: center; vertical-align: middle;">100</td>
                       @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'))
                       <td>
                         <div class="btn-group col-sm-5" role="group" aria-label="Basic example">
@@ -157,9 +166,9 @@
                     </tr>
 
                     <tr>
-                      <td>3.</td>
-                      <td>Kafiyan</td>
-                      <td>200</td>
+                      <td style="text-align: center; vertical-align: middle;">3.</td>
+                      <td style="text-align: center; vertical-align: middle;">Kafiyan</td>
+                      <td style="text-align: center; vertical-align: middle;">200</td>
                       @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'))
                       <td>
                         <div class="btn-group col-sm-5" role="group" aria-label="Basic example">
@@ -172,9 +181,9 @@
                     </tr>
 
                     <tr>
-                      <td>4.</td>
-                      <td>Usep</td>
-                      <td>50</td>
+                      <td style="text-align: center; vertical-align: middle;">4.</td>
+                      <td style="text-align: center; vertical-align: middle;">Usep</td>
+                      <td style="text-align: center; vertical-align: middle;">50</td>
                       @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'))
                       <td>
                         <div class="btn-group col-sm-5" role="group" aria-label="Basic example">
@@ -187,6 +196,7 @@
                     </tr>
                   </tbody>
                 </table>
+               </div>
               </div>
               <!-- /.card-body -->
             </div>
