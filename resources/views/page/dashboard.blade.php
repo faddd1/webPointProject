@@ -26,7 +26,7 @@
           <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
+                <h3>{{ $totalSiswa }}</h3>
                 <p>Jumlah Siswa</p>
               </div>
               <div class="icon">
@@ -39,7 +39,7 @@
           <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53</h3>
+                <h3>{{ $totalGuru }}</h3>
                 <p>Jumlah Guru</p>
               </div>
               <div class="icon">
@@ -52,7 +52,7 @@
           <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <h3>{{ $totalPelanggaran }}</h3>
                 <p>Jumlah Pelanggaran</p>
               </div>
               <div class="icon">
@@ -65,7 +65,7 @@
           <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>65</h3>
+                <h3>{{ $totalUser }}</h3>
                 <p>Jumlah User</p>
               </div>
               <div class="icon">
@@ -101,11 +101,14 @@
                   </tr>
                 </thead>
                 <tbody>
+                  @foreach($topPelanggaran as $index => $item)
                   <tr>
-                    <td style="text-align: center; vertical-align: middle;">1.</td>
-                    <td style="text-align: center; vertical-align: middle;">Tawuran</td>
-                    <td style="text-align: center; vertical-align: middle;">50</td>
+                    <td style="text-align: center; vertical-align: middle;">{{ $index + 1 }}</td>
+                    <td style="text-align: center; vertical-align: middle;">{{ $item->pelanggaran }}</td>
+                    <td style="text-align: center; vertical-align: middle;">{{ $item->total }}</td>
                   </tr>
+                @endforeach
+
                 </tbody>
               </table>
             </div>

@@ -1,4 +1,4 @@
-<x-layout>
+w <x-layout>
     <x-slot:title>{{ $title }}</x-slot:title>
     <section class="conteiner">
         <div class="container-fluid">
