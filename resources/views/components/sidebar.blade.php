@@ -135,7 +135,7 @@
           <li class="nav-item has-treeview">
             <a href="/logout" class="nav-link">
               <p>
-                Log Out
+                <i class="fas fa-right-from-bracket"></i> Logout
               </p>
             </a>
             

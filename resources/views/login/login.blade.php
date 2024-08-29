@@ -8,19 +8,38 @@
     <link rel="preconnect" href="{{ asset('https://fonts.googleapis.com') }}">
     <link rel="preconnect" href="{{ asset('https://fonts.gstatic.com') }}" crossorigin>
     <link href="{{ asset('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css') }}">
     <link href="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css') }}" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">  
     </head>
     <body>
-        <nav class="navbar">
+        <header id="header" class="header d-flex align-items-center fixed-top">
+            <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+    
+            <a href="#" class="logo d-flex align-items-center">
+                <!-- Uncomment the line below if you also wish to use an image logo -->
+                <div class="mb-4">
+                    <img src="assets/img/lala.png" alt="">
+                </div>
+                <a href="#" class="btn btn-outline-primary btn-sm"><i class="fas fa-arrow-left"></i> Kembali</a>
+                {{-- <h1 class="sitename">Bootslander</h1> --}}
+            </a>
+        </div>
+    </header>
+        {{-- <nav class="navbar">
             <div class="navbar-logo">
-                <img src="https://1.bp.blogspot.com/-fhQrt5qoZVQ/Vk7JRkLvD4I/AAAAAAAAF-k/ePg_jf3sDwI/s1600/Smk-Negeri-1-Kawali-Logo.png"  alt=""> 
+                <img src="aseets/img/lala.png"  alt=""> 
             </div>       
-            <h4>SMKN 1 KAWALI</h4>
-        </nav>
-        <div class="login-container">
-                <img src="https://1.bp.blogspot.com/-fhQrt5qoZVQ/Vk7JRkLvD4I/AAAAAAAAF-k/ePg_jf3sDwI/s1600/Smk-Negeri-1-Kawali-Logo.png"  alt="" width="56"> 
-                <h2>PPS</h2>
+        </nav> --}}
+        <div class="login-container mb-4">
+            <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-center">
+    
+                <a href="#" class="logo d-flex align-items-center">
+                    <div class="mt-3 mb-3">
+                        <img src="assets/img/lala.png" alt="">
+                    </div>
+                </a>
+            </div>
                 @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -34,14 +53,14 @@
                     @csrf
                     <div>
                         <label for="username" class="form-label">Username :</label>
-                        <input type="text" class="form-control" value="{{ old('username') }}" name="username"  placeholder="username">
+                        <input type="text" class="form-control" value="{{ old('username') }}" name="username"  placeholder="username" required>
                         <div class="invalid-feedback">
                             Masukan Username.
                         </div>
                     </div>
                     <div>
                         <label for="password" class="form-label">Password :</label>
-                        <input type="password" class="form-control" name="password" placeholder="Password">
+                        <input type="password" class="form-control" name="password" placeholder="Password" required>
                         <div class="invalid-feedback">
                             Masukan Password. 
                         </div>

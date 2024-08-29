@@ -20,10 +20,10 @@
                                 <input type="text" id="username" name="username" class="form-control">
                                 @if ($errors->any())
                                     <div class="alert alert-danger">
-                                             @foreach ($errors->all() as $error)
+                                            @foreach ($errors->all() as $error)
                                                 <p>{{ $error }}</p>
                                             @endforeach
-                                     </div>
+                                    </div>
                                 @endif
                             </div>
                             <div class="mb-3">
