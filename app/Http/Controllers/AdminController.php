@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
     // Halaman admin, hanya untuk role admin
-    function admin()
+    public function admin()
     {
         $totalSiswa = Student::count();
         $totalGuru = Teacher::count();
@@ -25,9 +25,9 @@ class AdminController extends Controller
             ->take(5)
             ->get();
 
-            $topSiswa = Pelanggaran::select('nama', 'point')
-            ->orderBy('point', 'desc')
-            ->groupBy('nama', 'point')
+        $topSiswa = Pelanggaran::select('nama', Pelanggaran::raw('SUM(point) as total_point'))
+            ->orderBy('total_point', 'desc')
+            ->groupBy('nama')
             ->take(5)
             ->get();
 
@@ -41,7 +41,7 @@ class AdminController extends Controller
     }
 
     // Halaman guru, hanya untuk role guru
-    function guru()
+    public function guru()
     {
         if (Auth::user()->role != 'guru') {
             return redirect('/home')->with('error', 'Anda tidak memiliki akses ke halaman ini.');
@@ -53,7 +53,7 @@ class AdminController extends Controller
     }
 
     // Halaman petugas, hanya untuk role petugas
-    function petugas()
+    public function petugas()
     {
         if (Auth::user()->role != 'petugas') {
             return redirect('/home')->with('error', 'Anda tidak memiliki akses ke halaman ini.');
@@ -65,7 +65,7 @@ class AdminController extends Controller
     }
 
     // Halaman siswa, hanya untuk role siswa
-    function siswa()
+    public function siswa()
     {
         if (Auth::user()->role != 'siswa') {
             return redirect('/home')->with('error', 'Anda tidak memiliki akses ke halaman ini.');
@@ -77,4 +77,4 @@ class AdminController extends Controller
     }
 }
 
-?>
+

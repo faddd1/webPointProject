@@ -142,7 +142,7 @@
                               <tr>
                                   <td style="text-align: center; vertical-align: middle;">{{ $index + 1 }}</td>
                                   <td style="text-align: center; vertical-align: middle;">{{ $siswa->nama }}</td>
-                                  <td style="text-align: center; vertical-align: middle;">{{ $siswa->point }}</td>
+                                  <td style="text-align: center; vertical-align: middle;">{{ $siswa->total_point }}</td>
                                   @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'))
                                   <td style="text-align: center; vertical-align: middle;">
                                       <div class="btn-group" role="group" aria-label="Basic example">
