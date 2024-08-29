@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\ListPelanggaranController;
+use App\Http\Models\Pelanggaran;
 
 // --------------------- PAGE ROUTES ------------------------ //
 
@@ -16,8 +17,9 @@ use App\Http\Controllers\ListPelanggaranController;
 
 
 Route::get('/listpelanggaran', [ListPelanggaranController::class, 'index']);
-Route::post('/listpelanggaran/store', [ListPelanggaranController::class, 'store'])->name('listpelanggaran.store');
+Route::post('/listpelanggaran', [ListPelanggaranController::class, 'store'])->name('listpelanggaran.store');
 Route::get('/listpelanggaran/search', [ListpelanggaranController::class, 'search'])->name('listpelanggaran.search');
+
 
 
 // --------------------- AUTHENTICATION ---------------------- //

@@ -10,15 +10,15 @@
             <div class="modal-body">
                 
                 <div id="dataDetail"><div>
-                    <p><strong>NIS:</strong> {{ $pelanggaran->nis }}</p>
-                    <p><strong>Nama:</strong> {{ $pelanggaran->nama }}</p>
-                    <p><strong>Jenis Kelamin:</strong> {{ $pelanggaran->jk }}</p>
-                    <p><strong>Kelas:</strong> {{ $pelanggaran->kelas }}</p>
-                    <p><strong>Jenis Pelanggaran:</strong> {{ $pelanggaran->jenis }}</p>
-                    <p><strong>Point:</strong> {{ $pelanggaran->point }}</p>
-                    <p><strong>Pelapor:</strong> {{ $pelanggaran->pelapor }}</p>
-                    <p><strong>Tanggal:</strong> {{ $pelanggaran->tanggal }}</p>
-                    <p><strong>Bukti:</strong> <a href="{{ asset('storage/' . $pelanggaran->bukti) }}" target="_blank">Lihat Bukti</a></p>
+                    <p><strong>NIS:</strong> {{ $p->nis }}</p>
+                    <p><strong>Nama:</strong> {{ $p->nama }}</p>
+                    <p><strong>Jenis Kelamin:</strong> {{ $p->jk }}</p>
+                    <p><strong>Kelas:</strong> {{ $p->kelas }}</p>
+                    <p><strong>Jenis Pelanggaran:</strong> {{ $p->jenis }}</p>
+                    <p><strong>Point:</strong> {{ $p->point }}</p>
+                    <p><strong>Pelapor:</strong> {{ $p->pelapor }}</p>
+                    <p><strong>Tanggal:</strong> {{ $p->tanggal }}</p>
+                    <p><strong>Bukti:</strong> <a href="{{ asset('storage/' . $p->bukti) }}" target="_blank">Lihat Bukti</a></p>
 </div>
 </div>
             </div>

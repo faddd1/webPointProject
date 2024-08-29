@@ -15,8 +15,8 @@ class ListPelanggaranController extends Controller
         ]);
     }
 
-    public function store(Request $request, Pelanggaran $pelanggaran)
-   {
+    public function store(Request $request)
+{
     $request->validate([
         'nis' => 'required|string|max:20',
         'nama' => 'required|string|max:100',
@@ -29,27 +29,32 @@ class ListPelanggaranController extends Controller
         'bukti' => 'nullable|mimes:jpg,jpeg,png,pdf|max:2048',
     ]);
 
-    $pelanggaran = new Pelanggaran();
-    $pelanggaran->nis = $request->nis;
-    $pelanggaran->nama = $request->nama;
-    $pelanggaran->jk = $request->jk;
-    $pelanggaran->kelas = $request->kelas;
-    $pelanggaran->point = $request->point;
-    $pelanggaran->pelapor = $request->pelapor;
-    $pelanggaran->jenis = $request->jenis;
-    $pelanggaran->tanggal = $request->tanggal;
+    Pelanggaran::create([
+    
+        'nis' => $request->nis,
+        'nama' => $request->nama,
+        'jk' => $request->jk,
+        'kelas' => $request->kelas,
+        'point' => $request->point,
+        'pelapor' => $request->pelapor,
+        'jenis' => $request->jenis,
+        'tanggal' => $request->tanggal,
+        'bukti' => $request->bukti,
+       ]);
+       return redirect('/listpelanggaran');
 
     if ($request->hasFile('bukti')) {
         $file = $request->file('bukti');
         $filename = time() . '.' . $file->getClientOriginalExtension();
-        $file->storeAs('public/bukti', $filename);
+        $path = $file->storeAs('public/bukti', $filename);
         $pelanggaran->bukti = $filename;
+
     }
 
     $pelanggaran->save();
 
     return redirect('/listpelanggaran')->with('success', 'Data berhasil ditambahkan!');
-    }
+}
 
     public function search(Request $request)
     {

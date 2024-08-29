@@ -104,7 +104,7 @@
                   @foreach($topPelanggaran as $index => $item)
                   <tr>
                     <td style="text-align: center; vertical-align: middle;">{{ $index + 1 }}</td>
-                    <td style="text-align: center; vertical-align: middle;">{{ $item->pelanggaran }}</td>
+                    <td style="text-align: center; vertical-align: middle;">{{ $item->jenis }}</td>
                     <td style="text-align: center; vertical-align: middle;">{{ $item->total }}</td>
                   </tr>
                 @endforeach
@@ -125,82 +125,41 @@
             <!-- /.card-header -->
             <div class="card-body p-0">
               <div class="table-responsive mt-4 mb-4">
-                <div class="table table-striped">
-                <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th style="width: 10px; vertical-align: middle;">No</th>
-                      <th  style="text-align: center; vertical-align: middle;">Nama</th>
-                      <th  style="text-align: center; vertical-align: middle;">Jumlah Poin</th>
-                      @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'))
-                      <th  style="text-align: center; vertical-align: middle;">Action</th>
-                      @endif
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td style="text-align: center; vertical-align: middle;">1.</td>
-                      <td style="text-align: center; vertical-align: middle;">Alif Miftah Fauzan</td>
-                      <td style="text-align: center; vertical-align: middle;">100</td>
-                      @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'))
-                      <td>
-                        <div class="btn-group col-sm-5" role="group" aria-label="Basic example">
-                          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-pen-to-square "></i> </button>
-                          <button type="submit" class="btn btn-success"><i class="fa-solid fa-eye"></i></button>
-                          <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i> </button>
-                        </div>
-                      </td>
-                      @endif
-                    </tr>
-
-                    <tr>
-                      <td style="text-align: center; vertical-align: middle;">2.</td>
-                      <td style="text-align: center; vertical-align: middle;">Fadli Alam Akbar</td>
-                      <td style="text-align: center; vertical-align: middle;">100</td>
-                      @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'))
-                      <td>
-                        <div class="btn-group col-sm-5" role="group" aria-label="Basic example">
-                          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-pen-to-square "></i> </button>
-                          <button type="submit" class="btn btn-success"><i class="fa-solid fa-eye"></i></button>
-                          <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i> </button>
-                        </div>
-                      </td>
-                      @endif
-                    </tr>
-
-                    <tr>
-                      <td style="text-align: center; vertical-align: middle;">3.</td>
-                      <td style="text-align: center; vertical-align: middle;">Kafiyan</td>
-                      <td style="text-align: center; vertical-align: middle;">200</td>
-                      @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'))
-                      <td>
-                        <div class="btn-group col-sm-5" role="group" aria-label="Basic example">
-                          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-pen-to-square "></i> </button>
-                          <button type="submit" class="btn btn-success"><i class="fa-solid fa-eye"></i></button>
-                          <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i> </button>
-                        </div>
-                      </td>
-                      @endif
-                    </tr>
-
-                    <tr>
-                      <td style="text-align: center; vertical-align: middle;">4.</td>
-                      <td style="text-align: center; vertical-align: middle;">Usep</td>
-                      <td style="text-align: center; vertical-align: middle;">50</td>
-                      @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'))
-                      <td>
-                        <div class="btn-group col-sm-5" role="group" aria-label="Basic example">
-                          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-pen-to-square "></i> </button>
-                          <button type="submit" class="btn btn-success"><i class="fa-solid fa-eye"></i></button>
-                          <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i> </button>
-                        </div>
-                      </td>
-                      @endif
-                    </tr>
-                  </tbody>
-                </table>
-               </div>
+                  <div class="table table-striped">
+                      <table class="table table-bordered">
+                          <thead>
+                              <tr>
+                                  <th style="width: 10px; vertical-align: middle;">No</th>
+                                  <th style="text-align: center; vertical-align: middle;">Nama</th>
+                                  <th style="text-align: center; vertical-align: middle;">Jumlah Poin</th>
+                                  @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'))
+                                  <th style="text-align: center; vertical-align: middle;">Action</th>
+                                  @endif
+                              </tr>
+                          </thead>
+                          <tbody>
+                              @foreach($topSiswa as $index => $siswa)
+                              <tr>
+                                  <td style="text-align: center; vertical-align: middle;">{{ $index + 1 }}</td>
+                                  <td style="text-align: center; vertical-align: middle;">{{ $siswa->nama }}</td>
+                                  <td style="text-align: center; vertical-align: middle;">{{ $siswa->point }}</td>
+                                  @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'))
+                                  <td style="text-align: center; vertical-align: middle;">
+                                      <div class="btn-group" role="group" aria-label="Basic example">
+                                          <button type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></button>
+                                          <button type="button" class="btn btn-success"><i class="fa-solid fa-eye"></i></button>
+                                          <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                                      </div>
+                                  </td>
+                                  @endif
+                              </tr>
+                              @endforeach
+                          </tbody>
+                      </table>
+                  </div>
               </div>
+          </div>
+          
               <!-- /.card-body -->
             </div>
           </div>

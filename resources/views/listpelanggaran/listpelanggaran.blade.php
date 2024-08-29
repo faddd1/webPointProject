@@ -6,11 +6,6 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            @if (auth()->check() && (auth()->user()->role == 'admin') )
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambahDataModal">
-                                    Tambah Data
-                                </button>
-                            @endif
                             <form action="/listpelanggaran/search" class="form-inline" method="GET">
                                 <div class="card-item d-flex">
                                     <input type="search" class="form-control col-md-11 col-14 mb-14 mr-2" name="search" placeholder="Cari" value="{{ request()->input('search') }}" id="search-input">
@@ -55,7 +50,7 @@
                                                 <td style="text-align: center; vertical-align: middle;">{{ $p->kelas }}</td>
                                                 <td style="text-align: center; vertical-align: middle;">{{ $p->jenis }}</td>
                                                <td style="text-align: center; vertical-align: middle;">
-                                                <button data-id="{{ $pelanggaran->id }}" data-target="#showDataModal" data-toggle="modal" class="btn btn-info btn-show">Show</button>
+                                                <button data-id="{{ $p->id }}" data-target="#showDataModal" data-toggle="modal" class="btn btn-info btn-show">Show</button>
                                                 @include('listpelanggaran.modal_edit')
                                                </td>
                                             </tr>
@@ -73,58 +68,40 @@
     </div>
 
     <!-- Modal Tambah Data -->
-    <div class="modal fade" id="tambahDataModal" tabindex="-1" role="dialog" aria-labelledby="tambahDataModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <div class="modal fade" id="tambahDataModal" tabindex="-1" aria-labelledby="tambahDataModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="tambahDataModalLabel">Tambah Data Pelanggaran</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('listpelanggaran.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('listpelanggaran.store') }}" method="POST">
                         @csrf
-                        <div class="form-group">
-                            <label for="nis">NIS</label>
+                        <div class="mb-3">
+                            <label for="nis" class="form-label">NIS</label>
                             <input type="text" class="form-control" id="nis" name="nis" required>
                         </div>
-                        <div class="form-group">
-                            <label for="nama">Nama</label>
+                        <div class="mb-3">
+                            <label for="nama" class="form-label">Nama</label>
                             <input type="text" class="form-control" id="nama" name="nama" required>
                         </div>
-                        <div class="form-group">
-                            <label for="jk">Jenis Kelamin</label>
-                            <input type="text" class="form-control" id="jk" name="jk" required>
+                        <div class="mb-3">
+                            <label for="jk" class="form-label">Jenis Kelamin</label>
+                            <select class="form-select" id="jk" name="jk" required>
+                                <option value="Laki-laki">Laki-laki</option>
+                                <option value="Perempuan">Perempuan</option>
+                            </select>
                         </div>
-                        <div class="form-group">
-                            <label for="kelas">Kelas</label>
+                        <div class="mb-3">
+                            <label for="kelas" class="form-label">Kelas</label>
                             <input type="text" class="form-control" id="kelas" name="kelas" required>
                         </div>
-                        <div class="form-group">
-                            <label for="jenis">Jenis Pelanggaran</label>
+                        <div class="mb-3">
+                            <label for="jenis" class="form-label">Jenis Pelanggaran</label>
                             <input type="text" class="form-control" id="jenis" name="jenis" required>
                         </div>
-                        <div class="form-group">
-                            <label for="point">Point</label>
-                            <input type="number" class="form-control" id="point" name="point" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="pelapor">Pelapor</label>
-                            <input type="text" class="form-control" id="pelapor" name="pelapor" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="tanggal">Tanggal</label>
-                            <input type="date" class="form-control" id="tanggal" name="tanggal" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="bukti">Bukti (Foto/PDF)</label>
-                            <input type="file" class="form-control-file" id="bukti" name="bukti">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Simpan Data</button>
-                        </div>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
                     </form>
                 </div>
             </div>
@@ -134,6 +111,8 @@
    
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
 $(document).ready(function() {
     $('.btn-show').on('click', function() {

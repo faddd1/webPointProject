@@ -25,13 +25,19 @@ class AdminController extends Controller
             ->take(5)
             ->get();
 
+            $topSiswa = Pelanggaran::select('nama', 'point')
+            ->orderBy('point', 'desc')
+            ->groupBy('nama', 'point')
+            ->take(5)
+            ->get();
+
         if (Auth::user()->role != 'admin') {
             return redirect('/home')->with('error', 'Anda tidak memiliki akses ke halaman ini.');
         }
 
         return view('page.dashboard', [
             'title' => 'Dashboard'
-        ], compact('totalSiswa', 'totalGuru', 'totalPelanggaran', 'totalUser', 'topPelanggaran'));
+        ], compact('totalSiswa', 'totalGuru', 'totalPelanggaran', 'totalUser', 'topPelanggaran', 'topSiswa'));
     }
 
     // Halaman guru, hanya untuk role guru
