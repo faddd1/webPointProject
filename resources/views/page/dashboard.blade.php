@@ -124,7 +124,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body p-0">
-              <div class="table-responsive mt-4 mb-4">
+              <div class="table-responsive mb-3">
                   <div class="table table-striped">
                       <table class="table table-bordered">
                           <thead>

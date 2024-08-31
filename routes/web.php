@@ -8,18 +8,11 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\KategoriController;
-use App\Http\Controllers\ListPelanggaranController;
-use App\Http\Models\Pelanggaran;
 
 // --------------------- PAGE ROUTES ------------------------ //
 
 
 // List Pelanggaran
-
-
-Route::get('/listpelanggaran', [ListPelanggaranController::class, 'index']);
-Route::post('/listpelanggaran', [ListPelanggaranController::class, 'store'])->name('listpelanggaran.store');
-Route::get('/listpelanggaran/search', [ListpelanggaranController::class, 'search'])->name('listpelanggaran.search');
 
 
 
@@ -73,16 +66,7 @@ Route::group(['middleware' => 'auth', 'userAkses:admin,guru,petugas,siswa'], fun
 
 
             Route::get('/listpelanggaran', [StudentController::class, 'index'])->name('listpelanggaran.index');
-
-
-
-
-            
-         
-            
     
-
-            
 
     });
 
