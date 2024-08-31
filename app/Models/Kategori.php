@@ -16,4 +16,9 @@ class Kategori extends Model
         'point',
         'level',
     ];
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
+    }
 }

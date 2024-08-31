@@ -85,7 +85,7 @@
             
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ url('student') }}" class="nav-link">
+                <a href="{{ url('datasiswa') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data Siswa</p>
                 </a>
@@ -110,6 +110,14 @@
               </p>
             </a>
             </li>
+
+            <li class="nav-item has-treeview">
+              <a href="/laporan/review" class="nav-link">
+                <p>
+                  Riview Laporan
+                </p>
+              </a>
+              </li>
           @endif
 
           @if (auth()->user()->role == 'admin')

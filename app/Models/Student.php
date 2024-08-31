@@ -16,6 +16,7 @@ class Student extends Model
         'nama',
         'kelas',
         'jurusan',
-        'jk'
+        'jk',
+        'point'
     ];
 }

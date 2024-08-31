@@ -9,12 +9,39 @@ class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * 
+     * 
+     * 
      */
-    public function index()
+
+     public function index(Request $request)
+     {
+         $kelas = $request->input('kelas');
+         $jurusan = $request->input('jurusan');
+     
+         $query = Student::query();
+     
+         if ($kelas) {
+             $query->where('kelas', $kelas);
+         }
+     
+         if ($jurusan) {
+             $query->where('jurusan', $jurusan);
+         }
+     
+         $students = $query->get();
+     
+         return view('listpelanggaran.listpelanggaran', [
+             'title' => 'Daftar Siswa',
+             'students' => $students // pastikan variabel ini dikirimkan ke view
+         ]);
+     }
+     
+    public function indexdata()
     {
-        $student = Student::get();
+        $studentItem = Student::all();
         return view('student.datasiswa', [
-            'student' => $student,
+            'studentItem' => $studentItem,
             'title' => 'Data Siswa'
         ]);
     }
@@ -51,13 +78,13 @@ class StudentController extends Controller
 
        ]);
 
-       return redirect('student');
+       return redirect('datasiswa');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Student $student)
+    public function show(Student $studentItem)
     {
 
     }
@@ -65,9 +92,10 @@ class StudentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Student $student)
+    public function edit(Student $studentItem, $id)
     {
-        return view('student.edit', compact('student'), [
+        $studentItem = Student::findOrFail($id);
+        return view('student.edit', compact('studentItem'), [
             'title' => 'Edit Data'
         
         ]);
@@ -76,7 +104,7 @@ class StudentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Student $student)
+    public function update(Request $request, Student $studentItem, $id)
     {
         $request -> validate ([
         'nis' => 'required|string|max:40',
@@ -86,7 +114,8 @@ class StudentController extends Controller
         'jk' => 'required|string|max:50',
         ]);
 
-        $student->update ([
+        $studentItem = Student::find($id);
+        $studentItem->update ([
 
             'nis' => $request->nis,
             'nama' => $request->nama,
@@ -96,24 +125,29 @@ class StudentController extends Controller
     
         ]);
 
-        return redirect('student');
+        return redirect('datasiswa');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Student $student)
+    public function destroy(Student $studentItem, $id)
     {
-        $student->delete();
-        return redirect('student');
+        $studentItem = Student::findOrFail($id);
+        $studentItem->delete();
+        return redirect('datasiswa');
     }
 
-    public function search(Request $request){
-        if($request->has('seacrh')) {
-            $student = Student::where('nama','LIKE','%',$request->seacrh,'%')->get();
-        } else {
-            $student = Student::all();
-        }
-        return view('page.kategoripelanggaran',['student' => $student]);
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+    
+        // Cari siswa berdasarkan nama atau NIS
+        $students = Student::where('nama', 'LIKE', "%{$query}%")
+                           ->orWhere('nis', 'LIKE', "%{$query}%")
+                           ->get();
+    
+        return response()->json($students);
     }
+
 }

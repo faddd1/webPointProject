@@ -4,7 +4,7 @@
         <div class="container-fluid">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ route('student.store') }}" method="POST">
+                        <form action="{{ route('datasiswa.store') }}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label>NIS</label>
