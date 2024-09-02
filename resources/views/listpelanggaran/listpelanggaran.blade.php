@@ -6,18 +6,16 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <form action="{{ route('listpelanggaran.index')}}" class="form-inline" method="GET">
-                                {{-- <div class="card-item d-flex">
-                                    <input type="search" class="form-control col-md-11 col-14 mb-14 mr-2" name="search" placeholder="Cari" value="{{ request()->input('search') }}" id="search-input">                            <form method="GET" action="{{ route('listpelanggaran.index') }}"> --}}
+                            <form method="GET" action="{{ route('listpelanggaran.index') }}">
                                 <div class="card-item d-flex flex-wrap">
-                                    <select class="card-item form-control col-md-5 col-9 mb-6 mr-2" name="kelas">
+                                    <select class="card-item form-control col-md-2 col-6 mb-2 mr-2" name="kelas">
                                         <option>PILIH KELAS</option>
                                         <option value="10" {{ request('kelas') == '10' ? 'selected' : '' }}>10</option>
                                         <option value="11" {{ request('kelas') == '11' ? 'selected' : '' }}>11</option>
                                         <option value="12" {{ request('kelas') == '12' ? 'selected' : '' }}>12</option>
                                     </select>
 
-                                    <select class="card-item form-control col-md-6 col-6 mb-2 mr-2" name="jurusan">
+                                    <select class="card-item form-control col-md-2 col-6 mb-2 mr-2" name="jurusan">
                                         <option>PILIH JURUSAN</option>
                                         <option value="TKR 1" {{ request('jurusan') == 'TKR 1' ? 'selected' : '' }}>TKR 1</option>
                                         <option value="TKR 2" {{ request('jurusan') == 'TKR 2' ? 'selected' : '' }}>TKR 2</option>
@@ -37,6 +35,7 @@
                                         <option value="SK 1" {{ request('jurusan') == 'SK 1' ? 'selected' : '' }}>SK 1</option>
                                         <option value="SK 2" {{ request('jurusan') == 'SK 2' ? 'selected' : '' }}>SK 2</option>
                                     </select>
+
                                     <button type="submit" class="btn btn-primary mb-2 ml-2">Cari</button>
                                 </div>
                             </form>

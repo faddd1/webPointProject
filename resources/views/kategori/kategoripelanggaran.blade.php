@@ -8,7 +8,7 @@
               <div class="card-header">
                 <div class="card-tools">
                   @if (auth()->check() && (auth()->user()->role == 'admin') ) 
-                   <a href="{{ url('/kategoripelanggaran/create') }}" class="btn btn-primary" id="tambahDataBtn">Tambah Data</a>
+                   <a href="{{ url('/kategoripelanggaran/create') }}" class="btn btn-primary">Tambah Data</a>
                   @endif
                 </div>
                 <form action="/kategoripelanggaran/search" class="form-inline" method="GET">

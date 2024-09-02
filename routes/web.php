@@ -19,13 +19,16 @@ use App\Http\Controllers\KategoriController;
 // --------------------- AUTHENTICATION ---------------------- //
 
 // Guest Middleware: Hanya bisa diakses oleh pengguna yang belum login
-Route::middleware(['guest'])->group(function() {
+// Route::middleware(['guest'])->group(function() {
     Route::get('/', [SesiController::class, 'index'])->name('login');
     Route::post('/', [SesiController::class, 'login']);
-});
+// });
 
 // Auth Middleware: Hanya bisa diakses oleh pengguna yang sudah login
 Route::group(['middleware' => 'auth', 'userAkses:admin,guru,petugas,siswa'], function() {
+
+
+});
     
     // Logout
     Route::get('/logout', [SesiController::class, 'logout']);
@@ -42,8 +45,6 @@ Route::group(['middleware' => 'auth', 'userAkses:admin,guru,petugas,siswa'], fun
     Route::middleware(['auth', 'userAkses:admin,guru,petugas'])->group(function() {
 
             Route::resource('teacher', TeacherController::class);
-
-
              // Kategori Pelanggaran Routes
             Route::get('/kategoripelanggaran', [KategoriController::class, 'index']);
             Route::get('/kategoripelanggaran/search', [KategoriController::class, 'searchkategori'])->name('pelanggaran.search');
@@ -52,9 +53,6 @@ Route::group(['middleware' => 'auth', 'userAkses:admin,guru,petugas,siswa'], fun
             Route::delete('kategori/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
             Route::put('kategori/{id}', [KategoriController::class, 'update'])->name('kategori.update');
             Route::post('/kategoripelanggaran/store', [KategoriController::class, 'store'])->name('kategori.store');
-
-           
-
 
             Route::get('/datasiswa', [StudentController::class, 'indexdata'])->name('datasiswa');
             Route::get('/datasiswa/create', [StudentController::class, 'create'])->name('datasiswa/create');
@@ -66,6 +64,13 @@ Route::group(['middleware' => 'auth', 'userAkses:admin,guru,petugas,siswa'], fun
 
 
             Route::get('/listpelanggaran', [StudentController::class, 'index'])->name('listpelanggaran.index');
+
+
+              
+        // Laporan
+        Route::post('/lapor', [LaporanController::class, 'store'])->name('lapor.store');
+        Route::get('/laporan', [LaporanController::class, 'index']);
+           
     
 
     });
@@ -95,10 +100,7 @@ Route::group(['middleware' => 'auth', 'userAkses:admin,guru,petugas,siswa'], fun
 
 
 
-        
-        // Laporan
-        Route::post('/lapor', [LaporanController::class, 'store'])->name('lapor.store');
-        Route::get('/laporan', [LaporanController::class, 'index']);
+      
     });
     
     // Profile Routes
@@ -106,9 +108,9 @@ Route::group(['middleware' => 'auth', 'userAkses:admin,guru,petugas,siswa'], fun
     Route::delete('/profile/store', [UserController::class, 'Profil']);
 
    
-});
 
-// Redirect to dashboard after login
-Route::get('/home', function(){
-    return redirect('/dashboard');
-});
+
+// // Redirect to dashboard after login
+// Route::get('/home', function(){
+//     return redirect('/dashboard');
+// });

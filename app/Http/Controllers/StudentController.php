@@ -78,7 +78,7 @@ class StudentController extends Controller
 
        ]);
 
-       return redirect('datasiswa');
+       return redirect('datasiswa')->with('success', 'berrhasil mengedit menambahkan data');;
     }
 
     /**
@@ -125,7 +125,7 @@ class StudentController extends Controller
     
         ]);
 
-        return redirect('datasiswa');
+        return redirect()->route('datasiswa');
     }
 
     /**

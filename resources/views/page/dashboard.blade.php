@@ -101,13 +101,13 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach($topPelanggaran as $index => $item)
+                  {{-- @foreach($topPelanggaran as $index => $item)
                   <tr>
                     <td style="text-align: center; vertical-align: middle;">{{ $index + 1 }}</td>
                     <td style="text-align: center; vertical-align: middle;">{{ $item->jenis }}</td>
                     <td style="text-align: center; vertical-align: middle;">{{ $item->total }}</td>
                   </tr>
-                @endforeach
+                @endforeach --}}
 
                 </tbody>
               </table>
@@ -138,7 +138,7 @@
                               </tr>
                           </thead>
                           <tbody>
-                              @foreach($topSiswa as $index => $siswa)
+                              {{-- @foreach($topSiswa as $index => $siswa)
                               <tr>
                                   <td style="text-align: center; vertical-align: middle;">{{ $index + 1 }}</td>
                                   <td style="text-align: center; vertical-align: middle;">{{ $siswa->nama }}</td>
@@ -153,7 +153,7 @@
                                   </td>
                                   @endif
                               </tr>
-                              @endforeach
+                              @endforeach --}}
                           </tbody>
                       </table>
                   </div>

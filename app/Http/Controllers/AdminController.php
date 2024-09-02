@@ -19,25 +19,13 @@ class AdminController extends Controller
         $totalPelanggaran = Kategori::where('pelanggaran', '!=', null)->count();
         $totalUser = User::count();
 
-        $topPelanggaran = Pelanggaran::select('jenis', Pelanggaran::raw('count(*) as total'))
-            ->groupBy('jenis')
-            ->orderBy('total', 'desc')
-            ->take(5)
-            ->get();
-
-        $topSiswa = Pelanggaran::select('nama', Pelanggaran::raw('SUM(point) as total_point'))
-            ->orderBy('total_point', 'desc')
-            ->groupBy('nama')
-            ->take(5)
-            ->get();
-
         if (Auth::user()->role != 'admin') {
             return redirect('/home')->with('error', 'Anda tidak memiliki akses ke halaman ini.');
         }
 
         return view('page.dashboard', [
             'title' => 'Dashboard'
-        ], compact('totalSiswa', 'totalGuru', 'totalPelanggaran', 'totalUser', 'topPelanggaran', 'topSiswa'));
+        ], compact('totalSiswa', 'totalGuru', 'totalPelanggaran', 'totalUser'));
     }
 
     // Halaman guru, hanya untuk role guru
