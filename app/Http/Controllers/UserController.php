@@ -45,7 +45,8 @@ class UserController extends Controller
             'plain_password' => $request['password'],
         ]);
 
-        return redirect('/tambah');
+        // return redirect('/tambah');
+        return redirect()->back()->with('success', 'Data berhasil ditambahkan!');
     }
 
     public function edit(User $data, $id){
@@ -80,7 +81,7 @@ class UserController extends Controller
 
         
 
-        return redirect('/tambah');
+        return redirect('tambah')->with('success', 'Data berhasil diubah');
 
     }
     

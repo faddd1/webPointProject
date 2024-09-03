@@ -21,47 +21,49 @@
                         </div>
 
                         <!-- /.card-header -->
-                        <div class="card-body table-responsive p-0">
-                            <table class="table table-hover text-nowrap">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Nis</th>
-                                        <th>Nama Siswa</th>
-                                        <th>Kelas</th>
-                                        <th class="col-2">Jurusan</th>
-                                        <th>Jenis Kelamin</th>
-                                        @if (auth()->check() && (auth()->user()->role == 'admin'))
-                                        <th>Action</th>
-                                        @endif
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($studentItem as $no => $student)
-                                    <tr>
-                                        <td>{{ $no + 1 }}</td>
-                                        <td>{{ $student->nis }}</td>
-                                        <td>{{ $student->nama }}</td>
-                                        <td>{{ $student->kelas }}</td>
-                                        <td>{{ $student->jurusan }}</td>
-                                        <td>{{ $student->jk }}</td>
-                                        @if (auth()->check() && (auth()->user()->role == 'admin'))
-                                        <td>
-                                            <button class="btn btn-primary editBtn" data-id="{{ $student->id }}">
-                                                <i class="fa-solid fa-pen-to-square"></i>
-                                            </button>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th style="text-align: center; vertical-align: middle;">No</th>
+                                            <th style="text-align: center; vertical-align: middle;">Nis</th>
+                                            <th style="text-align: center; vertical-align: middle;">Nama Siswa</th>
+                                            <th style="text-align: center; vertical-align: middle;">Kelas</th>
+                                            <th class="col-2" style="text-align: center; vertical-align: middle;">Jurusan</th>
+                                            <th style="text-align: center; vertical-align: middle;">Jenis Kelamin</th>
+                                            @if (auth()->check() && (auth()->user()->role == 'admin'))
+                                            <th style="text-align: center; vertical-align: middle;">Action</th>
+                                            @endif
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($studentItem as $no => $student)
+                                        <tr>
+                                            <td style="text-align: center; vertical-align: middle;">{{ $no + 1 }}</td>
+                                            <td style="text-align: center; vertical-align: middle;">{{ $student->nis }}</td>
+                                            <td style="text-align: center; vertical-align: middle;">{{ $student->nama }}</td>
+                                            <td style="text-align: center; vertical-align: middle;">{{ $student->kelas }}</td>
+                                            <td style="text-align: center; vertical-align: middle;">{{ $student->jurusan }}</td>
+                                            <td style="text-align: center; vertical-align: middle;">{{ $student->jk }}</td>
+                                            @if (auth()->check() && (auth()->user()->role == 'admin'))
+                                            <td style="text-align: center; vertical-align: middle;">
+                                                <button class="btn btn-primary editBtn" data-id="{{ $student->id }}">
+                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                </button>
 
-                                            <form action="{{ route('datasiswa.destroy', $student->id) }}" class="d-inline deleteForm" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-                                            </form>
-                                        </td>
-                                        @endif
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                                <form action="{{ route('datasiswa.destroy', $student->id) }}" class="d-inline deleteForm" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                                                </form>
+                                            </td>
+                                            @endif
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -100,17 +102,17 @@
             // Show modal for adding data
             document.getElementById('tambahDataBtn').addEventListener('click', function () {
             event.preventDefault(); // Prevent the default link behavior
-          Swal.fire({
-              title: 'Tambah Data',
-              text: "Apakah Anda yakin ingin menambah data baru?",
-              icon: 'question',
-              showCancelButton: true,
-              confirmButtonColor: '#3085d6',
-              cancelButtonColor: '#d33',
-              confirmButtonText: 'Ya, Tambah!',
-              cancelButtonText: 'Batal'
-          }).then((result) => {
-              if (result.isConfirmed) {
+            Swal.fire({
+                title: 'Tambah Data',
+                text: "Apakah Anda yakin ingin menambah data baru?",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Tambah!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
                 fetch('/datasiswa/create') // Adjust to the correct route that returns the form
                 .then(response => response.text())
                 .then(html => {
@@ -119,8 +121,8 @@
                     new bootstrap.Modal(document.getElementById('dataModal')).show();
                 })
                 .catch(error => console.error('Error loading create form:', error));
-              }
-          });
+                }
+            });
 
         });
 

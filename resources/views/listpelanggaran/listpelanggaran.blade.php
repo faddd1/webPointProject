@@ -51,30 +51,30 @@
                             </form>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-striped">
+                                <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Nis</th>
-                                            <th>Nama</th>
-                                            <th>Kelas</th>
-                                            <th>Jurusan</th>
-                                            <th>Jenis Kelamin</th>
-                                            <th>Point</th>
-                                            <th>Action</th>
+                                            <th style="text-align: center; vertical-align: middle;">No</th>
+                                            <th style="text-align: center; vertical-align: middle;">Nis</th>
+                                            <th style="text-align: center; vertical-align: middle;">Nama</th>
+                                            <th style="text-align: center; vertical-align: middle;">Kelas</th>
+                                            <th style="text-align: center; vertical-align: middle;">Jurusan</th>
+                                            <th style="text-align: center; vertical-align: middle;">Jenis Kelamin</th>
+                                            <th style="text-align: center; vertical-align: middle;">Point</th>
+                                            <th style="text-align: center; vertical-align: middle;">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($students as $no => $studentlist)
                                             <tr>
-                                                <td>{{ $no+1 }}</td>
-                                                <td>{{ $studentlist->nis }}</td>
-                                                <td>{{ $studentlist->nama }}</td>
-                                                <td>{{ $studentlist->kelas }}</td>
-                                                <td>{{ $studentlist->jurusan }}</td>
-                                                <td>{{ $studentlist->jk }}</td>
-                                                <td>{{ $studentlist->point }}</td>
-                                               <td>
+                                                <td style="text-align: center; vertical-align: middle;">{{ $no+1 }}</td>
+                                                <td style="text-align: center; vertical-align: middle;">{{ $studentlist->nis }}</td>
+                                                <td style="text-align: center; vertical-align: middle;">{{ $studentlist->nama }}</td>
+                                                <td style="text-align: center; vertical-align: middle;">{{ $studentlist->kelas }}</td>
+                                                <td style="text-align: center; vertical-align: middle;">{{ $studentlist->jurusan }}</td>
+                                                <td style="text-align: center; vertical-align: middle;">{{ $studentlist->jk }}</td>
+                                                <td style="text-align: center; vertical-align: middle;">{{ $studentlist->point }}</td>
+                                               <td style="text-align: center; vertical-align: middle;">
                                                 <button data-id="" data-target="#showDataModal" data-toggle="modal" class="btn btn-info btn-show">Show</button>
                                     
                                                </td>
