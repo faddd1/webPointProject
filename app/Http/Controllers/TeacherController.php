@@ -51,7 +51,8 @@ class TeacherController extends Controller
 
         ]);
 
-        return redirect('teacher');
+       return redirect()->back()->with('success', 'Data berhasil ditambahkan!');
+        
     }
 
     /**
@@ -65,8 +66,9 @@ class TeacherController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Teacher $teacher)
+    public function edit(Teacher $teacher, $id)
     {
+        $teacher = Teacher::findOrFail($id);
         return view ('teacher.edit', compact('teacher'), [
             'title' => 'Edit Data Guru'
         ]);
@@ -75,7 +77,7 @@ class TeacherController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Teacher $teacher)
+    public function update(Request $request, Teacher $teacher , $id)
     {
         $request -> validate([
             'nip'=> 'required',
@@ -84,7 +86,7 @@ class TeacherController extends Controller
             'jk' => 'required'
 
         ]);
-
+        $teacher = Teacher::find($id);
         $teacher->update([
             'nip' => $request->nip,
             'namaguru' => $request->namaguru,
@@ -99,8 +101,9 @@ class TeacherController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Teacher $teacher)
+    public function destroy(Teacher $teacher, $id)
     {
+        $teacher = Teacher::findOrFail($id);
         $teacher->delete();
         return redirect('teacher');
 

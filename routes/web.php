@@ -44,7 +44,12 @@ Route::group(['middleware' => 'auth', 'userAkses:admin,guru,petugas,siswa'], fun
 
     Route::middleware(['auth', 'userAkses:admin,guru,petugas'])->group(function() {
 
-            Route::resource('teacher', TeacherController::class);
+            Route::get('/teacher', [TeacherController::class, 'index'])->name('data.guru');
+            Route::get('/teacher/create', [TeacherController::class, 'create'])->name('create.guru');
+            Route::post('/teacher/store', [TeacherController::class, 'store'])->name('store.guru');
+            Route::get('/teacher/edit/{id}', [TeacherController::class, 'edit'])->name('edit.guru');
+            Route::put('/teacher/update/{id}', [TeacherController::class, 'update'])->name('update.guru');
+            Route::delete('/teacher/destroy/{id}', [TeacherController::class, 'destroy'])->name('destroy.guru');
              // Kategori Pelanggaran Routes
             Route::get('/kategoripelanggaran', [KategoriController::class, 'index']);
             Route::get('/kategoripelanggaran/search', [KategoriController::class, 'searchkategori'])->name('pelanggaran.search');

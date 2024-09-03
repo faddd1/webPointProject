@@ -78,7 +78,7 @@ class StudentController extends Controller
 
        ]);
 
-       return redirect('datasiswa')->with('success', 'berrhasil mengedit menambahkan data');;
+       return redirect()->back()->with('success', 'Data berhasil ditambahkan!');
     }
 
     /**
