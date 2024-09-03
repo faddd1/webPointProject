@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Laporan;
 use App\Models\Student;
 use App\Models\Kategori;
-use App\Models\Laporan;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class LaporanController extends Controller
 {
     public function index()
     {
+        $report = laporan::all();
         return view('laporan.laporan', [
+            'report' => $report,
             'title' => 'Laporan'
         ]);
     }
@@ -37,6 +40,7 @@ class LaporanController extends Controller
             $report->pelanggaran = $request->pelanggaran;
             $report->point = $request->point;
             $report->tanggal = $request->tanggal;
+            $report->pelapor_id = Auth::id();
 
             if ($request->hasFile('bukti')) {
                 $file = $request->file('bukti');
@@ -106,5 +110,11 @@ class LaporanController extends Controller
         Log::info('Status sesudah: ' . $report->status);
 
         return redirect()->route('laporan.review')->with('success', 'Laporan telah ditolak.');
+    }
+
+    public function show($id){
+        $report = Laporan::with('siswa')->findOrFail($id);
+
+        return view ('laporan.showlaporan', compact('report'));
     }
 }

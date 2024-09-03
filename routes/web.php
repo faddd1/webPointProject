@@ -102,6 +102,7 @@ Route::group(['middleware' => 'auth', 'userAkses:admin,guru,petugas,siswa'], fun
           Route::get('/laporan/review', [LaporanController::class, 'showPendingReports'])->name('laporan.review');
           Route::put('/laporan/approve/{id}', [LaporanController::class, 'approveReport'])->name('laporan.approve');
           Route::post('/laporan/not-approve/{id}', [LaporanController::class, 'notApproveReport'])->name('laporan.notApprove');
+        Route::get('/laporan/show/{id}', [LaporanController::class, 'show'])->name('laporan.show');
 
 
 

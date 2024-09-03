@@ -31,4 +31,9 @@ class Laporan extends Model
     {
         return $this->belongsTo(kategori::class, 'pelanggaran', 'pelanggaran');
     }
+
+    public function pelapor()
+    {
+        return $this->belongsTo(User::class, 'pelapor_id');
+    }
 }

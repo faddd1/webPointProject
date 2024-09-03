@@ -19,7 +19,7 @@
           <!-- /.info-box -->
         </div>
        </div>
-      @if (auth()->check() && (auth()->user()->role == 'admin'))
+      @if ( (auth()->user()->role == 'admin'))
         <!-- Small boxes (Stat box) -->
         
         <div class="row">

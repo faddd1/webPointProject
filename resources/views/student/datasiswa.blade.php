@@ -179,48 +179,5 @@
         });
     </script>
 
-    {{-- <script>
-      // Alert for "Tambah Data" button
-      document.getElementById('tambahDataBtn').addEventListener('click', function(event) {
-          event.preventDefault(); // Prevent the default link behavior
-          Swal.fire({
-              title: 'Tambah Data',
-              text: "Apakah Anda yakin ingin menambah data baru?",
-              icon: 'question',
-              showCancelButton: true,
-              confirmButtonColor: '#3085d6',
-              cancelButtonColor: '#d33',
-              confirmButtonText: 'Ya, Tambah!',
-              cancelButtonText: 'Batal'
-          }).then((result) => {
-              if (result.isConfirmed) {
-                  window.location.href = "{{ url('teacher/create') }}";
-              }
-          });
-      });
-
-      // Alert for "Edit" button
-      document.querySelectorAll('.editBtn').forEach(button => {
-          button.addEventListener('click', function(event) {
-              event.preventDefault(); // Prevent the default link behavior
-              const teacherId = this.getAttribute('data-id');
-              Swal.fire({
-                  title: 'Edit Data',
-                  text: "Apakah Anda yakin ingin mengedit data ini?",
-                  icon: 'info',
-                  showCancelButton: true,
-                  confirmButtonColor: '#3085d6',
-                  cancelButtonColor: '#d33',
-                  confirmButtonText: 'Ya, Edit!',
-                  cancelButtonText: 'Batal'
-              }).then((result) => {
-                  if (result.isConfirmed) {
-                      window.location.href = `/teacher/${teacherId}/edit`;
-                  }
-              });
-          });
-      });
-
-    
-  </script> --}}
+   
 </x-layout>

@@ -18,6 +18,7 @@ class StudentController extends Controller
      {
          $kelas = $request->input('kelas');
          $jurusan = $request->input('jurusan');
+         $nama = $request->input('nama');
      
          $query = Student::query();
      
@@ -27,6 +28,11 @@ class StudentController extends Controller
      
          if ($jurusan) {
              $query->where('jurusan', $jurusan);
+         }
+
+         if ($nama) {
+            $query->where('nama', $nama);
+
          }
      
          $students = $query->get();

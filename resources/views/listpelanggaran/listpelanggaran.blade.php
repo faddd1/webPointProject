@@ -8,6 +8,9 @@
                         <div class="card-header">
                             <form method="GET" action="{{ route('listpelanggaran.index') }}">
                                 <div class="card-item d-flex flex-wrap">
+                                    
+                                       
+                                    
                                     <select class="card-item form-control col-md-2 col-6 mb-2 mr-2" name="kelas">
                                         <option>PILIH KELAS</option>
                                         <option value="10" {{ request('kelas') == '10' ? 'selected' : '' }}>10</option>
@@ -36,11 +39,16 @@
                                         <option value="SK 2" {{ request('jurusan') == 'SK 2' ? 'selected' : '' }}>SK 2</option>
                                     </select>
 
-                                    <button type="submit" class="btn btn-primary mb-2 ml-2">Cari</button>
+                                    <button type="submit" class="btn btn-primary mb-2 mr-2">Cari</button>
+
                                 </div>
-                            </form>
+                            
                         </div>
-                        
+                            <div class="card-item d-flex">
+                                <input type="search" class="form-control col-md-11 col-14 mb-14 mr-2 mt-3 ml-3" placeholder="Cari Nama Siswa" name="nama"  value="{{ request()->input('nama') }}">
+                                <button type="submit" class="btn btn-primary mb-2 mt-3">Cari</button>
+                            </div>
+                            </form>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-striped">

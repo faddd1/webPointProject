@@ -7,8 +7,8 @@
             <div class="card">
               <div class="card-header">
                 <div class="card-tools">
-                  @if (auth()->check() && (auth()->user()->role == 'admin') ) 
-                   <a href="{{ url('/kategoripelanggaran/create') }}" class="btn btn-primary">Tambah Data</a>
+                  @if ( (auth()->user()->role == 'admin') ) 
+                   <button class="btn btn-primary" id="tambahDataBtn">Tambah Data</button>
                   @endif
                 </div>
                 <form action="/kategoripelanggaran/search" class="form-inline" method="GET">
@@ -44,7 +44,7 @@
                             
                             @if (auth()->check() && (auth()->user()->role == 'admin') )  
                               <td style="text-align: center; vertical-align: middle;" class="d-inline">
-                                <a href="{{ route('kategori.edit', $kategori->id) }}" class="btn btn-info editBtn" data-id="{{ $kategori->id }}"><i class="fa-solid fa-pen-to-square "></i></a>
+                                <button class="btn btn-info editBtn" data-id="{{ $kategori->id }}"><i class="fa-solid fa-pen-to-square "></i></button>
                                 <form action="{{ route('kategori.destroy', $kategori->id )}}" class="d-inline col-mb-2 deleteForm" method="POST">
                                     @csrf
                                     @method('DELETE')
@@ -66,8 +66,55 @@
     </div>
   </div>
   
-  <!-- JavaScript untuk menghapus pencarian dan kembali ke data awal -->
-  <script>
+  <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="dataModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="dataModalLabel">Tambah Data Pelanggaran</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span> <!-- Or use an icon -->
+                </button>
+                
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Content will be loaded here via JavaScript -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+      // Show modal for adding data
+      document.getElementById('tambahDataBtn').addEventListener('click', function () {
+          fetch('/kategoripelanggaran/create') // Adjust to the correct route that returns the form
+              .then(response => response.text())
+              .then(html => {
+                  document.getElementById('modalBody').innerHTML = html; // Load create form
+                  document.getElementById('dataModalLabel').innerText = 'Tambah Data Pelanggaran'
+                  new bootstrap.Modal(document.getElementById('dataModal')).show();
+              })
+              .catch(error => console.error('Error loading create form:', error));
+      });
+
+      // Show modal for editing data
+      document.querySelectorAll('.editBtn').forEach(button => {
+          button.addEventListener('click', function () {
+              const studentId = this.getAttribute('data-id');
+              fetch(`/kategoripelanggaran/edit${studentId}`) // Fetch the edit form for the specific student
+                  .then(response => response.text())
+                  .then(html => {
+                      document.getElementById('modalBody').innerHTML = html; // Load edit form
+                      document.getElementById('dataModalLabel').innerText = 'Edit Data Pelanggaran';
+                      new bootstrap.Modal(document.getElementById('dataModal')).show();
+                  })
+                  .catch(error => console.error('Error loading edit form:', error));
+          });
+      });
+  });
+</script>
+  
+  {{-- <script>
     document.getElementById('search-input').addEventListener('input', function() {
       if (this.value === '') {
         window.location.href = "{{ url('/kategoripelanggaran') }}"; // Kembali ke data semula
@@ -135,5 +182,5 @@
               });
           });
       });
-  </script>
+  </script> --}}
 </x-layout>
