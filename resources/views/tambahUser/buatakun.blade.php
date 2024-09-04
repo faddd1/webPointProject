@@ -5,8 +5,8 @@
         <input type="text" id="name" name="name" class="form-control">
     </div>
     <div class="mb-3">
-        <label for="username" class="form-label">Username :</label>
-        <input type="text" id="username" name="username" class="form-control">
+        <label for="nis" class="form-label">Username :</label>
+        <input type="text" id="nis" name="nis" class="form-control">
         @if ($errors->any())
             <div class="alert alert-danger">
                     @foreach ($errors->all() as $error)

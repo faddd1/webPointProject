@@ -52,8 +52,8 @@
                 <form class="was-validated" action="" method="POST">
                     @csrf
                     <div>
-                        <label for="username" class="form-label">Username :</label>
-                        <input type="text" class="form-control" value="{{ old('username') }}" name="username"  placeholder="username" required>
+                        <label for="nis" class="form-label">Username :</label>
+                        <input type="text" class="form-control" value="{{ old('nis') }}" name="nis"  placeholder="username" required>
                         <div class="invalid-feedback">
                             Masukan Username.
                         </div>

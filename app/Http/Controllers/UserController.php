@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function index(){
 
-        $data = User::get();
+        $data = User::with('siswa')->get();
         return view ('tambahUser.tambahakun', [
             'data' => $data,
             'title' => 'Tambah Akun'
@@ -27,20 +27,19 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'username' => 'required|unique:users',
+            'nis' => 'required|unique:users,nis,',
             'password' => 'required',
             'role' => 'required',
             'plain_password'
         ], [
 
-            'username.unique' => 'Username sudah digunakan, silakan pilih yang lain.',
+            'nis.unique' => 'Username sudah digunakan, silakan pilih yang lain.',
         ]);
     
         User::create([
             'name' => $request->name,
-            'username' => $request->username,
+            'nis' => $request->nis,
             'role' => $request->role,
-            'password' => $request->password,
             'password' => Hash::make($request['password']),
             'plain_password' => $request['password'],
         ]);
@@ -58,37 +57,34 @@ class UserController extends Controller
         ]);
     }
 
-    public function update(Request $request, User $data, $id){
-
+    public function update(Request $request, $id)
+    {
         $request->validate([
             'name' => 'required',
-            'username' => 'required|unique:users',
+            'nis' => 'required|unique:users,nis,' . $id,
             'password' => 'required',
-            'role' => 'required',
-            'plain_password'
+            'role' => 'required'
         ], [
-            'username.unique' => 'Username sudah digunakan, silakan pilih yang lain.',
+            'nis.unique' => 'NIS sudah digunakan, silakan pilih yang lain.',
         ]);
+    
         $data = User::find($id);
         $data->update([
             'name' => $request->name,
-            'username' => $request->username,
+            'nis' => $request->nis,
             'role' => $request->role,
-            'password' => $request->password,
-            'password' => Hash::make($request['password']),
-            'plain_password' => $request['password'],
+            'password' => Hash::make($request->password),
+            'plain_password' => $request->password,
         ]);
-
-        
-
-        return redirect('tambah')->with('success', 'Data berhasil diubah');
-
-    }
     
+        return redirect('tambah')->with('success', 'Data berhasil diubah');
+    }
+
+
     public function profil(){
-        $datas = User::get();
+        $data = User::with('siswa')->get();
        return view('profile.profile', [
-        'datas' => $datas,
+        'data' => $data,
         'title' => 'Profile'
        ]);
     }

@@ -101,7 +101,8 @@
       document.querySelectorAll('.editBtn').forEach(button => {
           button.addEventListener('click', function () {
               const studentId = this.getAttribute('data-id');
-              fetch(`/kategoripelanggaran/edit${studentId}`) // Fetch the edit form for the specific student
+              fetch(`/kategoripelanggaran/edit${studentId}`)
+               // Fetch the edit form for the specific student
                   .then(response => response.text())
                   .then(html => {
                       document.getElementById('modalBody').innerHTML = html; // Load edit form

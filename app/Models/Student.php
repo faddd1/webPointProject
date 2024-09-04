@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\Laporan;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Student extends Model
 {
@@ -19,4 +21,12 @@ class Student extends Model
         'jk',
         'point'
     ];
+
+    public function user(){
+        return $this->hasOne(User::class);
+    }
+
+    public function laporan(){
+        return $this->hasOne(Laporan::class);
+    }
 }

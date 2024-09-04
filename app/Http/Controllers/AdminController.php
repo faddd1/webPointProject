@@ -56,10 +56,11 @@ class AdminController extends Controller
     public function siswa()
     {
         if (Auth::user()->role != 'siswa') {
-            return redirect('/home')->with('error', 'Anda tidak memiliki akses ke halaman ini.');
+            return redirect('/homepage')->with('error', 'Anda tidak memiliki akses ke halaman ini.');
         }
 
-        return view('page.dashboard', [
+        $pelanggaran = Student::with('laporan')->findOrFail($id);
+        return view('page.dashboard', compact('pelanggaran'), [
             'title' => 'Dashboard'
         ]);
     }

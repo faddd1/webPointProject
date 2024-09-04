@@ -44,7 +44,7 @@
                                     <tr>
                                         <td style="text-align: center; vertical-align: middle;">{{ $no+1 }}</td>
                                         <td style="text-align: center; vertical-align: middle;">{{ $data->name }}</td>
-                                        <td style="text-align: center; vertical-align: middle;">{{ $data->username }}</td>
+                                        <td style="text-align: center; vertical-align: middle;">{{ $data->nis }}</td>
                                         <td style="text-align: center; vertical-align: middle;">{{ $data->plain_password }}</td>
                                         <td style="text-align: center; vertical-align: middle;">{{ $data->role }}</td>
                                         <td style="text-align: center; vertical-align: middle;">

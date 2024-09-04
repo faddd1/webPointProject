@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -8,26 +7,28 @@ use Illuminate\Support\Facades\Auth;
 class SesiController extends Controller
 {
     public function index(){
+        // Menampilkan halaman login
         return view('login.login');
     }
 
     public function login(Request $request){
         $request->validate([
-            'username' => 'required',
+            'nis' => 'required',
             'password' => 'required'
         ],[
-            'username.required' => 'Username Wajib di Isi',
+            'nis.required' => 'NIS Wajib di Isi',
             'password.required' => 'Password Wajib di Isi'
         ]);
 
         $infoLogin = [
-            'username' => $request->username,
+            'nis' => $request->nis,
             'password' => $request->password,
         ];
 
         if(Auth::attempt($infoLogin)){
             $role = Auth::user()->role;
 
+            // Redirect sesuai role
             switch($role) {
                 case 'admin':
                     return redirect('dashboard/admin');
@@ -48,6 +49,6 @@ class SesiController extends Controller
 
     public function logout(){
         Auth::logout();
-        return redirect('/');
+        return redirect('/'); // Setelah logout, kembali ke homepage
     }
 }

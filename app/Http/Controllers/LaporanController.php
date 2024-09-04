@@ -117,4 +117,6 @@ class LaporanController extends Controller
 
         return view ('laporan.showlaporan', compact('report'));
     }
+
 }
+

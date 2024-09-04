@@ -73,7 +73,7 @@
                                                         <form action="{{ route('laporan.notApprove', $report->id) }}" method="POST" style="display: inline;">
                                                             @csrf
                                                             @method('POST')
-                                                            <button type="submit" class="btn btn-danger"><i class="fa-solid fa-circle-minus"></i></button>
+                                                            <button type="submit" class="btn btn-danger"><i class="fa-solid fa-circle-minus "></i></button>
                                                         </form>
 
                                                         <button class="btn btn-success showBtn" data-id="{{ $report->id }}"><i class="fa-solid fa-eye"></i></button>
@@ -126,6 +126,26 @@
                         .catch(error => console.error('Error loading edit form:', error));
                 });
             });
+
+            document.querySelectorAll('.deleteForm').forEach(form => {
+                    form.addEventListener('submit', function(event) {
+                        event.preventDefault(); // Prevent the form from submitting
+                        Swal.fire({
+                            title: 'Hapus Data',
+                            text: "Apakah Anda yakin ingin menghapus data ini?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Ya, Hapus!',
+                            cancelButtonText: 'Batal'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                form.submit(); // Submit the form
+                            }
+                        });
+                    });
+                });
         });
     </script>
     <!-- Bootstrap JS and Popper.js -->
