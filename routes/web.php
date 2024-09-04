@@ -8,6 +8,7 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\PetugasController;
 
 // --------------------- PAGE ROUTES ------------------------ //
 
@@ -60,7 +61,7 @@ Route::group(['middleware' => 'auth', 'userAkses:admin,guru,petugas,siswa'], fun
             Route::post('/kategoripelanggaran/store', [KategoriController::class, 'store'])->name('kategori.store');
 
             Route::get('/datasiswa', [StudentController::class, 'indexdata'])->name('datasiswa');
-            Route::get('/datasiswa/create', [StudentController::class, 'create'])->name('datasiswa/create');
+            Route::get('/datasiswa/create', [StudentController::class, 'create'])->name('datasiswa.create');
             Route::post('/datasiswa/store', [StudentController::class, 'store'])->name('datasiswa.store');
             Route::get('/datasiswa/edit/{id}', [StudentController::class, 'edit'])->name('datasiswa.edit');
             Route::put('/datasiswa/update/{id}', [StudentController::class, 'update'])->name('datasiswa.update');
@@ -70,8 +71,14 @@ Route::group(['middleware' => 'auth', 'userAkses:admin,guru,petugas,siswa'], fun
 
             Route::get('/listpelanggaran', [StudentController::class, 'index'])->name('listpelanggaran.index');
 
+            //datapetugas
+            Route::get('/datapetugas',[PetugasController::class, 'tampil'])->name('petugas.tampil');
+            Route::get('/datapetugas/tambah',[PetugasController::class, 'tambah'])->name('petugas.create');
+            Route::post('/datapetugas/submit',[PetugasController::class, 'submit'])->name('petugas.submit');
+            Route::get('/datapetugas/edit/{id}',[PetugasController::class, 'edit'])->name('petugas.edit');
+            Route::post('/datapetugas/update{id}',[PetugasController::class, 'update'])->name('petugas.update');
+            Route::post('/datapetugas/delete{id}',[PetugasController::class, 'delete'])->name('petugas.delete');
 
-              
         // Laporan
         Route::post('/lapor', [LaporanController::class, 'store'])->name('lapor.store');
         Route::get('/laporan', [LaporanController::class, 'index']);

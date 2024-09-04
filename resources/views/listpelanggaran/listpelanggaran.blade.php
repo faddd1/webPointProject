@@ -75,7 +75,7 @@
                                                 <td style="text-align: center; vertical-align: middle;">{{ $studentlist->jk }}</td>
                                                 <td style="text-align: center; vertical-align: middle;">{{ $studentlist->point }}</td>
                                                <td style="text-align: center; vertical-align: middle;">
-                                                <button data-id="" data-target="#showDataModal" data-toggle="modal" class="btn btn-info btn-show">Show</button>
+                                                <button data-id="" data-target="#showDataModal" data-toggle="modal" class="btn btn-info btn-show"><i class="fa-solid fa-eye"></i></button>
                                     
                                                </td>
 

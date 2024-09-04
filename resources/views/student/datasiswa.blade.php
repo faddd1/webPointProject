@@ -12,10 +12,10 @@
                     @endif
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title text-bold">DATA SISWA SMKN 1 KAWALI</h3>
+                            <h3 class="card-title text-bold" style="margin-top: 7px;">Data Siswa</h3>
                             @if (auth()->user()->role == 'admin')
                             <div class="card-tools">
-                                <button class="btn btn-primary" id="tambahDataBtn">Tambah Data</button>
+                                <button class="btn btn-primary" id="tambahDataBtn"><i class="fa-solid fa-circle-plus"></i> Tambah Data</button>
                             </div>
                             @endif
                         </div>

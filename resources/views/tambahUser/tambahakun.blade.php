@@ -19,9 +19,8 @@
 
                         </div>  
 
-
                         <div class="card-tools">
-                            <button class="btn btn-primary" id="tambahDataBtn">Tambah Akun</button>
+                            <button class="btn btn-primary btn-md" id="tambahDataBtn"><i class="fa-solid fa-user-plus"></i> Tambah Akun</button>
                         </div>
                     </div>
                     <div class="card-body">

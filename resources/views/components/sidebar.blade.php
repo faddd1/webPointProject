@@ -99,6 +99,14 @@
                 </a>
               </li>
             </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ url('datapetugas') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Data Petugas</p>
+                </a>
+              </li>
+            </ul>
           </li>
           @endif
           
