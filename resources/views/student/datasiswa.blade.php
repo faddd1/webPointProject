@@ -12,13 +12,51 @@
                     @endif
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title text-bold" style="margin-top: 7px;">Data Siswa</h3>
                             @if (auth()->user()->role == 'admin')
                             <div class="card-tools">
                                 <button class="btn btn-primary" id="tambahDataBtn"><i class="fa-solid fa-circle-plus"></i> Tambah Data</button>
                             </div>
                             @endif
-                        </div>
+                       
+                        <form method="GET" action="{{ route('student.searchSiswa') }}">
+                            <div class="card-item d-flex flex-wrap">
+                                <input type="text" class="card-item form-control col-md-2 col-6 mb-2 mr-2" name="nama" placeholder="Nama Siswa" value="{{ request('nama') }}">
+                                <select class="card-item form-control col-md-2 col-6 mb-2 mr-2" name="kelas">
+                                    <option>PILIH KELAS</option>
+                                    <option value="10" {{ request('kelas') == '10' ? 'selected' : '' }}>10</option>
+                                    <option value="11" {{ request('kelas') == '11' ? 'selected' : '' }}>11</option>
+                                    <option value="12" {{ request('kelas') == '12' ? 'selected' : '' }}>12</option>
+                                </select>
+                        
+                                <select class="card-item form-control col-md-2 col-6 mb-2 mr-2" name="jurusan">
+                                    <option>PILIH JURUSAN</option>
+                                    <option value="TKR 1" {{ request('jurusan') == 'TKR 1' ? 'selected' : '' }}>TKR 1</option>
+                                    <option value="TKR 2" {{ request('jurusan') == 'TKR 2' ? 'selected' : '' }}>TKR 2</option>
+                                    <option value="TKR 3" {{ request('jurusan') == 'TKR 3' ? 'selected' : '' }}>TKR 3</option>
+                                    <option value="TKJ 1" {{ request('jurusan') == 'TKJ 1' ? 'selected' : '' }}>TKJ 1</option>
+                                    <option value="TKJ 2" {{ request('jurusan') == 'TKJ 2' ? 'selected' : '' }}>TKJ 2</option>
+                                    <option value="TKJ 3" {{ request('jurusan') == 'TKJ 3' ? 'selected' : '' }}>TKJ 3</option>
+                                    <option value="PPLG 1" {{ request('jurusan') == 'PPLG 1' ? 'selected' : '' }}>PPLG 1</option>
+                                    <option value="PPLG 2" {{ request('jurusan') == 'PPLG 2' ? 'selected' : '' }}>PPLG 2</option>
+                                    <option value="PPLG 3" {{ request('jurusan') == 'PPLG 3' ? 'selected' : '' }}>PPLG 3</option>
+                                    <option value="MPLB 1" {{ request('jurusan') == 'MPLB 1' ? 'selected' : '' }}>MPLB 1</option>
+                                    <option value="MPLB 2" {{ request('jurusan') == 'MPLB 2' ? 'selected' : '' }}>MPLB 2</option>
+                                    <option value="DPIB 1" {{ request('jurusan') == 'DPIB 1' ? 'selected' : '' }}>DPIB 1</option>
+                                    <option value="DPIB 2" {{ request('jurusan') == 'DPIB 2' ? 'selected' : '' }}>DPIB 2</option>
+                                    <option value="AK 1" {{ request('jurusan') == 'AK 1' ? 'selected' : '' }}>AK 1</option>
+                                    <option value="AK 2" {{ request('jurusan') == 'AK 2' ? 'selected' : '' }}>AK 2</option>
+                                    <option value="SP 1" {{ request('jurusan') == 'SP 1' ? 'selected' : '' }}>SP 1</option>
+                                    <option value="SP 2" {{ request('jurusan') == 'SP 2' ? 'selected' : '' }}>SP 2 </option>
+                                    <!-- Opsi lainnya... -->
+                                </select>
+                        
+                                <button type="submit" class="btn btn-primary mb-2 mr-2">Cari</button>
+                        
+                                <!-- Tambahkan tombol "Clear" -->
+                                <a href="{{ route('student.searchSiswa') }}" class="btn btn-danger mb-2">Clear</a>
+                            </div>
+                        </form>
+                    </div>
 
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -74,7 +112,7 @@
     </div>
 
     <!-- Modal for Add/Edit -->
-    <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="dataModalLabel" aria-hidden="true">
+    <div class="modal fade" id="dat aModal" tabindex="-1" aria-labelledby="dataModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

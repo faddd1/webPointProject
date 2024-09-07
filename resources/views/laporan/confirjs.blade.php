@@ -20,7 +20,7 @@
             searchUrl = '{{ route("siswa.search") }}';
         } else if (type === 'pelanggaran') {
             placeholderText = 'Jenis Pelanggaran';
-            searchUrl = '{{ route("kategori.search") }}';
+            searchUrl = '{{ route("pelanggaran.search") }}';
         }
 
         Swal.fire({

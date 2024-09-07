@@ -33,6 +33,10 @@ class AdminController extends Controller
 
     if (Auth::user()->role != 'admin') {
         return redirect('/home')->with('error', 'Anda tidak memiliki akses ke halaman ini.');
+
+        return view('page.dashboard', [
+            'title' => 'Beranda'
+        ], compact('totalSiswa', 'totalGuru', 'totalPelanggaran', 'totalUser'));
     }
 
     return view('page.dashboard', [
@@ -51,7 +55,7 @@ class AdminController extends Controller
         }
 
         return view('page.dashboard', [
-            'title' => 'Dashboard'
+            'title' => 'Beranda'
         ]);
     }
 
@@ -63,12 +67,13 @@ class AdminController extends Controller
         }
 
         return view('page.dashboard', [
-            'title' => 'Dashboard'
+            'title' => 'Beranda'
         ]);
     }
 
     // Halaman siswa, hanya untuk role siswa
-    public function siswas()
+    public function siswa()
+
     {
         if (Auth::user()->role != 'siswa') {
             return redirect('/home')->with('error', 'Anda tidak memiliki akses ke halaman ini.');

@@ -16,32 +16,39 @@ class StudentController extends Controller
 
      public function index(Request $request)
      {
+         // Ambil parameter dari request
+         $nama = $request->input('nama');
          $kelas = $request->input('kelas');
          $jurusan = $request->input('jurusan');
-         $nama = $request->input('nama');
      
+         // Buat query untuk mendapatkan data siswa
          $query = Student::query();
      
+         // Jika ada filter berdasarkan nama
+         if ($nama) {
+             $query->where('nama', 'like', '%' . $nama . '%');
+         }
+     
+         // Jika ada filter berdasarkan kelas
          if ($kelas) {
              $query->where('kelas', $kelas);
          }
      
+         // Jika ada filter berdasarkan jurusan
          if ($jurusan) {
              $query->where('jurusan', $jurusan);
          }
-
-         if ($nama) {
-            $query->where('nama', $nama);
-
-         }
      
+         // Jalankan query dan dapatkan data siswa
          $students = $query->get();
      
+         // Kembalikan view dengan data siswa
          return view('listpelanggaran.listpelanggaran', [
-             'title' => 'Daftar Siswa',
-             'students' => $students // pastikan variabel ini dikirimkan ke view
+             'title' => 'List Pelanggaran Siswa',
+             'students' => $students
          ]);
      }
+     
      
     public function indexdata()
     {
@@ -90,10 +97,15 @@ class StudentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Student $studentItem)
+    public function show($id)
     {
-
+        // Misalnya kamu mendapatkan data berdasarkan ID siswa
+        $studentlist = Student::with('laporan')->findOrFail($id);  // pastikan menggunakan model yang benar
+        return view('listpelanggaran.showlist', compact('studentlist'));
+        
     }
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -156,4 +168,40 @@ class StudentController extends Controller
         return response()->json($students);
     }
 
+    public function searchSiswa(Request $request)
+     {
+         // Ambil parameter dari request
+         $nama = $request->input('nama');
+         $kelas = $request->input('kelas');
+         $jurusan = $request->input('jurusan');
+     
+         // Buat query untuk mendapatkan data siswa
+         $query = Student::query();
+     
+         // Jika ada filter berdasarkan nama
+         if ($nama) {
+             $query->where('nama', 'like', '%' . $nama . '%');
+         }
+     
+         // Jika ada filter berdasarkan kelas
+         if ($kelas) {
+             $query->where('kelas', $kelas);
+         }
+     
+         // Jika ada filter berdasarkan jurusan
+         if ($jurusan) {
+             $query->where('jurusan', $jurusan);
+         }
+     
+         // Jalankan query dan dapatkan data siswa
+         $studentItem = $query->get();
+     
+         // Kembalikan view dengan data siswa
+         return view('student.datasiswa', [
+             'title' => 'Data Siswa',
+             'studentItem' => $studentItem
+         ]);
+     }
+
+    
 }

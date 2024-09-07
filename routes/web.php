@@ -10,6 +10,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PetugasController;
+use App\Models\Student;
 
 // --------------------- PAGE ROUTES ------------------------ //
 
@@ -36,7 +37,7 @@ Route::group(['middleware' => ['auth', 'userAkses:admin,guru,petugas,siswa']], f
     Route::get('dashboard/admin', [AdminController::class, 'admin'])->middleware('userAkses:admin');
     Route::get('dashboard/guru', [AdminController::class, 'guru'])->middleware('userAkses:guru');
     Route::get('dashboard/petugas', [AdminController::class, 'petugas'])->middleware('userAkses:petugas');
-    Route::get('dashboard/siswa', [AdminController::class, 'siswas'])->middleware('userAkses:siswa')->name('dashboard.siswa');
+    Route::get('dashboard/siswa', [AdminController::class, 'siswa'])->middleware('userAkses:siswa')->name('dashboard.siswa');
 });
 
 Route::middleware(['auth', 'userAkses:admin,guru,petugas'])->group(function () {
@@ -47,6 +48,8 @@ Route::middleware(['auth', 'userAkses:admin,guru,petugas'])->group(function () {
     // List Pelanggaran Routes
     Route::get('/listpelanggaran', [StudentController::class, 'index'])->name('listpelanggaran.index');
     Route::get('/datasiswa/search', [StudentController::class, 'search'])->name('siswa.search');
+    Route::get('/student/searchSiswa', [StudentController::class, 'searchSiswa'])->name('student.searchSiswa');
+    Route::get('/listpelanggaran/show/{id}', [StudentController::class, 'show'])->name('listpelanggaran.show');
 
     // Laporan Routes
     Route::post('/lapor', [LaporanController::class, 'store'])->name('lapor.store');

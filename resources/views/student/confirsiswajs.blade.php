@@ -17,10 +17,10 @@
                 cancelButtonText: 'Batal'
             }).then((result) => {
                 if (result.isConfirmed) {
-                fetch('/datasiswa/create') // Adjust to the correct route that returns the form
+                fetch('/datasiswa/create') 
                 .then(response => response.text())
                 .then(html => {
-                    document.getElementById('modalBody').innerHTML = html; // Load create form
+                    document.getElementById('modalBody').innerHTML = html;
                     document.getElementById('dataModalLabel').innerText = 'Tambah Data Siswa';
                     new bootstrap.Modal(document.getElementById('dataModal')).show();
                 })

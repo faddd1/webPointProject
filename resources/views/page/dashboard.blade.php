@@ -6,9 +6,8 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12 col-sm-20 col-md-200">
-          
-  
-            @if (auth()->user()->role == 'admin')
+        
+            @if (auth()->user()->role == 'siswa')
               <div class="info-box">
                 <div class="info-box-content">
                   <span class="info-box-text">Note!!</span>
@@ -35,10 +34,6 @@
                 </div>
               </div>
             @endif --}}
-        
-
-
-            <!-- /.info-box-content -->
           </div>
           <!-- /.info-box -->
         </div>
@@ -56,7 +51,7 @@
               <div class="icon">
                 <i class="fa-solid fa-users"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="/datasiswa" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
         
@@ -69,7 +64,7 @@
               <div class="icon">
                 <i class="fa-solid fa-users"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="/teacher" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
         
@@ -82,7 +77,7 @@
               <div class="icon">
                 <i class="fa-solid fa-triangle-exclamation"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="/kategoripelanggaran" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
         
@@ -95,7 +90,7 @@
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="/tambah" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
         </div>
