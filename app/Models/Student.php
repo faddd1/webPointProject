@@ -26,7 +26,8 @@ class Student extends Model
         return $this->hasOne(User::class);
     }
 
-    public function laporan(){
-        return $this->hasOne(Laporan::class);
+    public function laporan()
+    {
+        return $this->hasMany(Laporan::class, 'nis', 'nis');
     }
 }

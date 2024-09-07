@@ -31,6 +31,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Student::class, 'nis', 'nis');
     }
+
+    public function laporan(){
+        return $this->hasOne(Laporan::class);
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

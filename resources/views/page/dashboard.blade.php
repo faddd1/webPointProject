@@ -6,14 +6,38 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12 col-sm-20 col-md-200">
-          <div class="info-box">
+          
   
-            <div class="info-box-content">
-              <span class="info-box-text">Note!!</span>
-              <span class="info-box-number">
-                
-              </span>
-            </div>
+            @if (auth()->user()->role == 'admin')
+              <div class="info-box">
+                <div class="info-box-content">
+                  <span class="info-box-text">Note!!</span>
+                  <span class="info-box-number">
+                    
+                  </span>
+
+                </div>
+            @endif
+
+
+            {{-- @if (auth()->user()->role == 'siswa')
+            <div class="info-box">
+                <div class="info-box-content">
+                    @if($report)
+                        <span class="info-box-text">
+                            Anda telah melakukan pelanggaran "{{ $report->pelanggaran }}" !!
+                        </span>
+                    @else
+                        <span class="info-box-text">
+                            Anda tidak melakukan pelanggaran apapun.
+                        </span>
+                    @endif
+                </div>
+              </div>
+            @endif --}}
+        
+
+
             <!-- /.info-box-content -->
           </div>
           <!-- /.info-box -->
@@ -84,7 +108,7 @@
       @endif
 
       <!-- Main row with two tables -->
-      <div class="row">
+      {{-- <div class="row">
         <div class="col-md-6">
           <div class="card">
             <div class="card-header">
@@ -101,23 +125,23 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {{-- @foreach($topPelanggaran as $index => $item)
+                {{-- @foreach($topPelanggaran as $index => $item)
                   <tr>
                     <td style="text-align: center; vertical-align: middle;">{{ $index + 1 }}</td>
-                    <td style="text-align: center; vertical-align: middle;">{{ $item->jenis }}</td>
-                    <td style="text-align: center; vertical-align: middle;">{{ $item->total }}</td>
+                    <td style="text-align: center; vertical-align: middle;">{{ $item->pelanggaran }}</td>
+                    <td style="text-align: center; vertical-align: middle;">{{ $item->point }}</td>
                   </tr>
-                @endforeach --}}
+                {{-- @endforeach 
 
                 </tbody>
               </table>
             </div>
             <!-- /.card-body -->
           </div>
-        </div>
+        </div> --}}
         <!-- /.col -->
 
-        <div class="col-md-6">
+        {{-- <div class="col-md-6">
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">Top Siswa Pelaku Pelanggaran</h3>
@@ -138,11 +162,11 @@
                               </tr>
                           </thead>
                           <tbody>
-                              {{-- @foreach($topSiswa as $index => $siswa)
+                               @foreach($topSiswa as $index => $siswa)
                               <tr>
                                   <td style="text-align: center; vertical-align: middle;">{{ $index + 1 }}</td>
                                   <td style="text-align: center; vertical-align: middle;">{{ $siswa->nama }}</td>
-                                  <td style="text-align: center; vertical-align: middle;">{{ $siswa->total_point }}</td>
+                                  <td style="text-align: center; vertical-align: middle;">{{ $siswa->point }}</td>
                                   @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'))
                                   <td style="text-align: center; vertical-align: middle;">
                                       <div class="btn-group" role="group" aria-label="Basic example">
@@ -153,7 +177,7 @@
                                   </td>
                                   @endif
                               </tr>
-                              @endforeach --}}
+                              @endforeach 
                           </tbody>
                       </table>
                   </div>
@@ -163,9 +187,9 @@
               <!-- /.card-body -->
             </div>
           </div>
-        </div>
+        </div> --}}
         <!-- /.col -->
-      </div>
+      </div> 
       <!-- /.row (main row) -->
     </div><!-- /.container-fluid -->
   </section>

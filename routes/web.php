@@ -16,7 +16,7 @@ use App\Http\Controllers\PetugasController;
 // --------------------- AUTHENTICATION ---------------------- //
 
 // Guest Middleware: Hanya bisa diakses oleh pengguna yang belum login
-Route::get('/', [HomeController::class, 'home'])->middleware('auth');
+Route::get('/', [HomeController::class, 'home']);
 
 
 // Rute Autentikasi
@@ -36,7 +36,7 @@ Route::group(['middleware' => ['auth', 'userAkses:admin,guru,petugas,siswa']], f
     Route::get('dashboard/admin', [AdminController::class, 'admin'])->middleware('userAkses:admin');
     Route::get('dashboard/guru', [AdminController::class, 'guru'])->middleware('userAkses:guru');
     Route::get('dashboard/petugas', [AdminController::class, 'petugas'])->middleware('userAkses:petugas');
-    Route::get('dashboard/siswa', [AdminController::class, 'siswa'])->middleware('userAkses:siswa');
+    Route::get('dashboard/siswa', [AdminController::class, 'siswas'])->middleware('userAkses:siswa')->name('dashboard.siswa');
 });
 
 Route::middleware(['auth', 'userAkses:admin,guru,petugas'])->group(function () {
@@ -59,6 +59,7 @@ Route::middleware(['auth', 'userAkses:admin,guru,petugas'])->group(function () {
 Route::middleware(['auth', 'userAkses:admin,guru'])->group(function () {
     // Teacher Routes
     Route::get('/teacher', [TeacherController::class, 'index'])->name('dataguru');
+    Route::get('/teacher/search', [TeacherController::class, 'search'])->name('teacher.search');
 
     // Student Data Routes
     Route::get('/datasiswa', [StudentController::class, 'indexdata'])->name('datasiswa');
@@ -74,6 +75,7 @@ Route::middleware(['auth', 'userAkses:admin'])->group(function () {
     Route::get('tambah/destroy{id}', [UserController::class, 'destroy'])->name('tambah.destroy');
 
     // Laporan Review Routes
+    Route::get('/dashboard', [LaporanController::class, 'getNotifications'])->name('dashboard');
     Route::get('/laporan/review', [LaporanController::class, 'showPendingReports'])->name('laporan.review');
     Route::put('/laporan/approve/{id}', [LaporanController::class, 'approveReport'])->name('laporan.approve');
     Route::post('/laporan/not-approve/{id}', [LaporanController::class, 'notApproveReport'])->name('laporan.notApprove');
@@ -95,10 +97,11 @@ Route::middleware(['auth', 'userAkses:admin'])->group(function () {
 
     // Kategori Pelanggaran Management Routes
     Route::get('/kategoripelanggaran/create', [KategoriController::class, 'create']);
-    Route::get('kategori/{id}/edit', [KategoriController::class, 'edit'])->name('kategori.edit');
+    Route::get('kategori/edit/{id}', [KategoriController::class, 'edit'])->name('kategori.edit');
     Route::delete('kategori/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
     Route::put('kategori/{id}', [KategoriController::class, 'update'])->name('kategori.update');
     Route::post('/kategoripelanggaran/store', [KategoriController::class, 'store'])->name('kategori.store');
+    Route::get('/kategoripelanggaran/search', [KategoriController::class, 'search'])->name('kategori.search');
 
     // Petugas Management Routes
     Route::get('/datapetugas/tambah', [PetugasController::class, 'tambah'])->name('petugas.create');
@@ -106,4 +109,5 @@ Route::middleware(['auth', 'userAkses:admin'])->group(function () {
     Route::get('/datapetugas/edit/{id}', [PetugasController::class, 'edit'])->name('petugas.edit');
     Route::post('/datapetugas/update{id}', [PetugasController::class, 'update'])->name('petugas.update');
     Route::post('/datapetugas/delete{id}', [PetugasController::class, 'delete'])->name('petugas.delete');
+    Route::get('/datapetugas/search', [PetugasController::class, 'search'])->name('petugas.search');
 });

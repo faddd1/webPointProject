@@ -13,7 +13,9 @@ class LaporanController extends Controller
 {
     public function index()
     {
-        $report = laporan::all();
+        // Ambil laporan berdasarkan NIS siswa yang sedang login
+        $report = Laporan::where('nis', Auth::user()->nis)->get();
+
         return view('laporan.laporan', [
             'report' => $report,
             'title' => 'Laporan'
@@ -118,5 +120,23 @@ class LaporanController extends Controller
         return view ('laporan.showlaporan', compact('report'));
     }
 
+    public function getNotifications()
+    {
+        // Ambil NIS siswa yang sedang login
+        $nis = Auth::user()->nis;
+    
+        // Ambil laporan pelanggaran dalam 24 jam terakhir
+        $notifications = Laporan::where('nis', $nis)
+                                ->where('created_at', '>=', now()->subDay())
+                                ->get();
+    
+        // Hitung jumlah notifikasi
+        $count = $notifications->count();
+
+        $title = 'Dashboard Siswa';
+    
+        // Kirim variabel ke view
+        return view('components.navbar', compact('notifications', 'count'));
+    }
 }
 

@@ -108,4 +108,20 @@ class TeacherController extends Controller
         return redirect('teacher');
 
     }
+
+    public function search(Request $request)
+    {
+        $searchTerm = $request->input('search');
+        
+        // Mencari kategori berdasarkan nama pelanggaran, point, atau level
+        $teacher = Teacher::where('nip', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('namaguru', 'LIKE', "%{$searchTerm}")
+                    ->orWhere('jabatan', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('jk', 'LIKE', "%{$searchTerm}%")
+                    ->get();
+        
+        return view('teacher.dataguru', compact('teacher'), [
+            'title'=>'Search Data Guru'
+        ]);
+    }
 }

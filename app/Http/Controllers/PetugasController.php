@@ -57,4 +57,22 @@ class PetugasController extends Controller
 
         return redirect()->route('petugas.tampil');
     }
+
+    public function search(Request $request)
+    {
+        $searchTerm = $request->input('search');
+        
+        // Mencari kategori berdasarkan nama pelanggaran, point, atau level
+        $petugas = Petugas::where('nis', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('namaP', 'LIKE', "%{$searchTerm}")
+                    ->orWhere('kelas', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('jurusan', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('namao', 'LIKE', "%{$searchTerm}%")
+                    ->get();
+         
+        return view('petugas.petug', compact('petugas'), [
+            'title'=>'Search Data Petugas'
+        ]);
+    }
+
 }

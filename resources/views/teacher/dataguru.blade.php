@@ -12,12 +12,17 @@
                     @endif
                   <div class="card">
                       <div class="card-header">
-                          <h3 class="card-title text-bold" style="margin-top: 7px;">Data Guru</h3> 
                           <div class="card-tools">
                               @if (auth()->user()->role == 'admin')
                               <button class="btn btn-primary btn-md" id="tambahDataBtn"><i class="fa-solid fa-circle-plus"></i> Tambah Data</button>
                               @endif
                           </div>
+                          <form action="/teacher/search" class="form-inline" method="GET">
+                            <div class="card-item d-flex">
+                                <input type="search" class="form-control col-md-11 col-14 mb-14 mr-2" name="search" placeholder="Cari" value="{{ request()->input('search') }}" id="search-input">
+                                <button type="submit" class="btn btn-primary mb-2">Cari</button>
+                            </div>
+                        </form>
                       </div>
 
                       <!-- /.card-header -->
@@ -90,4 +95,14 @@
     </div>
  </div> 
 @include('teacher.confirgurujs')
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   <!-- Scripts for handling modal actions -->
+  <script>
+    document.getElementById('search-input').addEventListener('input', function() {
+      if (this.value === '') {
+        window.location.href = "{{ url('/teacher') }}"; // Kembali ke data semula
+      }
+    });
+</script>
 </x-layout>

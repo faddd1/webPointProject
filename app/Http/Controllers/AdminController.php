@@ -6,6 +6,7 @@ use App\Models\Pelanggaran;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\User;
+use App\Models\Laporan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,20 +14,34 @@ class AdminController extends Controller
 {
     // Halaman admin, hanya untuk role admin
     public function admin()
-    {
-        $totalSiswa = Student::count();
-        $totalGuru = Teacher::count();
-        $totalPelanggaran = Kategori::where('pelanggaran', '!=', null)->count();
-        $totalUser = User::count();
+{
+    $totalSiswa = Student::count();
+    $totalGuru = Teacher::count();
+    $totalPelanggaran = Kategori::where('pelanggaran', '!=', null)->count();
+    $totalUser = User::count();
 
-        if (Auth::user()->role != 'admin') {
-            return redirect('/home')->with('error', 'Anda tidak memiliki akses ke halaman ini.');
-        }
+    // // Query Top Siswa berdasarkan jumlah pelanggaran terbanyak
+    // $topSiswa = Student::withCount('laporan')
+    // ->orderBy('laporan_count', 'desc') // Urutkan berdasarkan jumlah laporan terbanyak
+    // ->take(5) // Batasi 5 siswa teratas
+    // ->get();
 
-        return view('page.dashboard', [
-            'title' => 'Dashboard'
-        ], compact('totalSiswa', 'totalGuru', 'totalPelanggaran', 'totalUser'));
+    // // Query Top Pelanggaran berdasarkan poin tertinggi
+    // $topPelanggaran = Kategori::orderBy('point', 'desc') // Urutkan berdasarkan poin tertinggi
+    // ->take(5) // Batasi 5 pelanggaran teratas
+    // ->get();
+
+    if (Auth::user()->role != 'admin') {
+        return redirect('/home')->with('error', 'Anda tidak memiliki akses ke halaman ini.');
     }
+
+    return view('page.dashboard', [
+        'title' => 'Dashboard',
+
+
+    ], compact('totalGuru','totalPelanggaran','totalUser','totalSiswa'));
+}
+
 
     // Halaman guru, hanya untuk role guru
     public function guru()
@@ -53,17 +68,20 @@ class AdminController extends Controller
     }
 
     // Halaman siswa, hanya untuk role siswa
-    public function siswa()
+    public function siswas()
     {
         if (Auth::user()->role != 'siswa') {
-            return redirect('/homepage')->with('error', 'Anda tidak memiliki akses ke halaman ini.');
+            return redirect('/home')->with('error', 'Anda tidak memiliki akses ke halaman ini.');
         }
-
-        $pelanggaran = Student::with('laporan')->findOrFail($id);
-        return view('page.dashboard', compact('pelanggaran'), [
-            'title' => 'Dashboard'
+    
+        // Ambil data notifikasi dari LaporanController
+        // return app(LaporanController::class)->getNotifications();
+        return view('page.dashboard', [
+            'title' => 'Dashboard',
+            'count' => 0
         ]);
     }
+
 }
 
 
