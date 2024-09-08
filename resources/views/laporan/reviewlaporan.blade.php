@@ -23,7 +23,7 @@
                             @else
                                 <!-- Membuat tabel responsif -->
                                 <div class="table-responsive">
-                                    <table class="table table-bordered">
+                                    <table class="table table-bordered btn-sm">
                                         <thead>
                                             <tr>
                                                 <th class="text-center align-middle">No</th>
@@ -67,16 +67,16 @@
                                                         <form action="{{ route('laporan.approve', $report->id) }}" method="POST" style="display: inline;">
                                                             @csrf
                                                             @method('PUT')
-                                                            <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i></button>
+                                                            <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-check"></i></button>
                                                         </form>
 
                                                         <form action="{{ route('laporan.notApprove', $report->id) }}" method="POST" style="display: inline;">
                                                             @csrf
                                                             @method('POST')
-                                                            <button type="submit" class="btn btn-danger"><i class="fa-solid fa-circle-minus "></i></button>
+                                                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-circle-minus "></i></button>
                                                         </form>
 
-                                                        <button class="btn btn-success showBtn" data-id="{{ $report->id }}"><i class="fa-solid fa-eye"></i></button>
+                                                        <button class="btn btn-success btn-sm showBtn" data-id="{{ $report->id }}"><i class="fa-solid fa-eye"></i></button>
                                                     </td>
                                                 </tr>
                                             @endforeach

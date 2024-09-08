@@ -14,7 +14,7 @@
                         <div class="card-header">
                             <div class="card-tools">
                                 @if (auth()->user()->role == 'admin')
-                                <button class="btn btn-primary btn-md" id="tambahDataBtn"><i class="fa-solid fa-circle-plus"></i> Tambah Data</button>
+                                <button class="btn btn-primary btn-sm" style="margin-top: 3px;" id="tambahDataBtn"><i class="fa-solid fa-circle-plus"></i> Add</button>
                                 @endif
                             </div>
                             <form action="/datapetugas/search" class="form-inline" method="GET">
@@ -28,7 +28,7 @@
                         <!-- /.card-header -->
                         <div class="card-body">
                           <div class="table-responsive">
-                              <table class="table table-hover table-bordered">
+                              <table class="table table-hover table-bordered table-sm">
                                   <thead>
                                       <tr>
                                           <th style="text-align: center; vertical-align: middle;">No</th>
@@ -46,7 +46,9 @@
                                   <tbody>
                                       @foreach ($petugas as $no => $petugasd)
                                       <tr>
-                                          <td style="text-align: center; vertical-align: middle;">{{ $no+1 }}</td>
+                                        <td style="text-align: center; vertical-align: middle;">
+                                            {{ ($petugas->currentPage() - 1) * $petugas->perPage() + $loop->iteration }}
+                                        </td>
                                           <td style="text-align: center; vertical-align: middle;">{{ $petugasd->nis }}</td>
                                           <td style="text-align: center; vertical-align: middle;">{{ $petugasd->namaP }}</td>
                                           <td style="text-align: center; vertical-align: middle;">{{ $petugasd->kelas }}</td>
@@ -54,14 +56,14 @@
                                           <td style="text-align: center; vertical-align: middle;">{{ $petugasd->jurusan }}</td>
                                           <td style="text-align: center; vertical-align: middle;">{{ $petugasd->namao }}</td>
                                           @if (auth()->user()->role == 'admin')
-                                          <td style="text-align: center; vertical-align: middle;">
-                                              <button class="btn btn-primary editBtn" data-id="{{ $petugasd->id }}">
+                                          <td style="text-align: center; vertical-align: middle; ">
+                                              <button class="btn btn-sm btn-primary editBtn" data-id="{{ $petugasd->id }}">
                                                   <i class="fa-solid fa-pen-to-square"></i>
                                               </button>
                                               <form action="{{ route('petugas.delete', $petugasd->id) }}" method="POST" class="d-inline deleteForm">
                                                   @csrf
                                                   
-                                                  <button type="submit" class="btn btn-danger deleteBtn">
+                                                  <button type="submit" class="btn btn-sm btn-danger deleteBtn">
                                                       <i class="fa-solid fa-trash"></i>
                                                   </button>
                                               </form>
@@ -71,6 +73,11 @@
                                       @endforeach
                                   </tbody>
                               </table>
+                              <div class="d-flex">
+                                <div class="ml-auto">
+                                    {{ $petugas->links('pagination::bootstrap-4') }}
+                                </div>
+                            </div>
                           </div>
                         </div>
                         <!-- /.card-body -->

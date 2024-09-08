@@ -8,7 +8,7 @@
                     <div class="card">
                         <img src="dist/img/user2-160x160.jpg" class="card-img-top" alt="Profile Picture">
                         <div class="card-body text-center" >
-                            <h3 class="card-title" >{{ Auth::user()->name }}</h3>
+                            <h3 class="card-title" >{{ Auth::user()->name}}</h3>
                         </div>
                         {{-- <a href="/update" class="btn btn-primary">Edit Profile</a> --}}
                     </div>

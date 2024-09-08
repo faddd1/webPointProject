@@ -1,17 +1,16 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\SesiController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\PetugasController;
+use App\Http\Controllers\SesiController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
-use App\Http\Controllers\KategoriController;
-use App\Http\Controllers\PetugasController;
-use App\Models\Student;
-
+use App\Http\Controllers\UserController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 // --------------------- PAGE ROUTES ------------------------ //
 
 // --------------------- AUTHENTICATION ---------------------- //
@@ -43,7 +42,11 @@ Route::group(['middleware' => ['auth', 'userAkses:admin,guru,petugas,siswa']], f
 Route::middleware(['auth', 'userAkses:admin,guru,petugas'])->group(function () {
     // Kategori Pelanggaran Routes
     Route::get('/kategoripelanggaran', [KategoriController::class, 'index']);
-    Route::get('/kategoripelanggaran/search', [KategoriController::class, 'searchkategori'])->name('pelanggaran.search');
+    Route::get('/kategoripelanggaran/search', [KategoriController::class, 'search'])->name('kategori.search');
+    Route::get('/kategoripelanggaran/search/kategori', [KategoriController::class, 'searchkategori'])->name('pelanggaran.search');
+
+
+
 
     // List Pelanggaran Routes
     Route::get('/listpelanggaran', [StudentController::class, 'index'])->name('listpelanggaran.index');
@@ -113,4 +116,8 @@ Route::middleware(['auth', 'userAkses:admin'])->group(function () {
     Route::post('/datapetugas/update{id}', [PetugasController::class, 'update'])->name('petugas.update');
     Route::post('/datapetugas/delete{id}', [PetugasController::class, 'delete'])->name('petugas.delete');
     Route::get('/datapetugas/search', [PetugasController::class, 'search'])->name('petugas.search');
+});
+
+Route::middleware(['auth', 'userAkses:siswa'])->group(function () {
+    Route::get('/listpelanggaran/siswa',[UserController::class, 'listsiswa'])->name('listsiswa');
 });

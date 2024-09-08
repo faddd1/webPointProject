@@ -73,7 +73,11 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="ml-auto">
+                            {{ $pelList->links('pagination::bootstrap-4') }}
+                        </div>
                     </div>
+                   
                 @endif
             </div>
         </div>

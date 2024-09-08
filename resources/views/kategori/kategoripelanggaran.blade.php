@@ -11,7 +11,7 @@
                    <button class="btn btn-primary" id="tambahDataBtn">Tambah Data</button>
                   @endif
                 </div>
-                <form action="/kategoripelanggaran/search" class="form-inline" method="GET">
+                <form action="/kategoripelanggaran/search/kategori" class="form-inline" method="GET">
                   <div class="card-item d-flex">
                       <input type="search" class="form-control col-md-11 col-14 mb-14 mr-2" name="search" placeholder="Cari" value="{{ request()->input('search') }}" id="search-input">
                       <button type="submit" class="btn btn-primary mb-2">Cari</button>
@@ -20,8 +20,7 @@
               </div>
               <div class="card-body">
                 <div class="table-responsive">
-                  <div class="table table-striped">
-                  <table class="table table-bordered">
+                  <table class="table table-bordered table-hover table-sm">
                       <thead>
                           <tr>
                               <th style="text-align: center; vertical-align: middle;">No</th>
@@ -44,11 +43,11 @@
                             
                             @if (auth()->check() && (auth()->user()->role == 'admin') )  
                               <td style="text-align: center; vertical-align: middle;">
-                                <button class="btn btn-info editBtn" data-id="{{ $kategori->id }}"><i class="fa-solid fa-pen-to-square "></i></button>
+                                <button class="btn btn-sm btn-primary editBtn" data-id="{{ $kategori->id }}"><i class="fa-solid fa-pen-to-square "></i></button>
                                 <form action="{{ route('kategori.destroy', $kategori->id )}}" class="d-inline col-mb-2 deleteForm" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i> </button>
+                                    <button type="submit" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i> </button>
                                 </form>
                               </td>
                             @endif
@@ -57,7 +56,7 @@
                         </tbody>
                        
                   </table>
-                </div>  
+                 
               </div>
               </div>
             </div>

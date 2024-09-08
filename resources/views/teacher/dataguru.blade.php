@@ -14,7 +14,7 @@
                       <div class="card-header">
                           <div class="card-tools">
                               @if (auth()->user()->role == 'admin')
-                              <button class="btn btn-primary btn-md" id="tambahDataBtn"><i class="fa-solid fa-circle-plus"></i> Tambah Data</button>
+                              <button class="btn btn-primary btn-sm" style="margin-top: 3px;" id="tambahDataBtn"><i class="fa-solid fa-circle-plus"></i> Add</button>
                               @endif
                           </div>
                           <form action="/teacher/search" class="form-inline" method="GET">
@@ -28,7 +28,7 @@
                       <!-- /.card-header -->
                       <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-hover table-bordered">
+                            <table class="table table-hover table-bordered table-sm">
                                 <thead>
                                     <tr>
                                         <th style="text-align: center; vertical-align: middle;">No</th>
@@ -42,22 +42,24 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($teacher as $no => $teacher)
+                                    @foreach ($teacher as  $teachers)
                                     <tr>
-                                        <td style="text-align: center; vertical-align: middle;">{{ $no+1 }}</td>
-                                        <td style="text-align: center; vertical-align: middle;">{{ $teacher->nip }}</td>
-                                        <td style="text-align: center; vertical-align: middle;">{{ $teacher->namaguru }}</td>
-                                        <td style="text-align: center; vertical-align: middle;">{{ $teacher->jabatan }}</td>
-                                        <td style="text-align: center; vertical-align: middle;">{{ $teacher->jk }}</td>
+                                        <td style="text-align: center; vertical-align: middle;">
+                                            {{ ($teacher->currentPage() - 1) * $teacher->perPage() + $loop->iteration }}
+                                        </td>
+                                        <td style="text-align: center; vertical-align: middle;">{{ $teachers->nip }}</td>
+                                        <td style="text-align: center; vertical-align: middle;">{{ $teachers->namaguru }}</td>
+                                        <td style="text-align: center; vertical-align: middle;">{{ $teachers->jabatan }}</td>
+                                        <td style="text-align: center; vertical-align: middle;">{{ $teachers->jk }}</td>
                                         @if (auth()->user()->role == 'admin')
                                         <td style="text-align: center; vertical-align: middle;">
-                                            <button class="btn btn-primary editBtn" data-id="{{ $teacher->id }}">
+                                            <button class="btn btn-primary editBtn btn-sm" data-id="{{ $teachers->id }}">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </button>
-                                            <form action="{{ route('destroy.guru', $teacher->id) }}" method="POST" class="d-inline deleteForm">
+                                            <form action="{{ route('destroy.guru', $teachers->id) }}" method="POST" class="d-inline deleteForm">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger deleteBtn">
+                                                <button type="submit" class="btn btn-danger btn-sm deleteBtn">
                                                     <i class="fa-solid fa-trash"></i>
                                                 </button>
                                             </form>
@@ -67,6 +69,11 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            <div class="d-flex">
+                                <div class="ml-auto">
+                                    {{ $teacher->links('pagination::bootstrap-4') }}
+                                </div>
+                            </div>
                         </div>
                       </div>
                       <!-- /.card-body -->

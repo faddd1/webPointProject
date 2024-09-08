@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Laporan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -10,7 +11,8 @@ class UserController extends Controller
 {
     public function index(){
 
-        $data = User::with('siswa')->get();
+        $data = User::with('siswa')->paginate(5);
+        // $currentPage = $data->currentPage();
         return view ('tambahUser.tambahakun', [
             'data' => $data,
             'title' => 'Tambah Akun'
@@ -103,4 +105,13 @@ class UserController extends Controller
         $data->delete();
         return redirect('/tambah');
     }
+
+    public function listsiswa(){
+        $laporans = Laporan::with(['pelapor', 'siswa'])->paginate(3);
+        return view('listpelanggaran.listpelanggaransiswa', [
+            'laporans' => $laporans,
+            'title' => 'List Pelanggaran Siswa'
+        ]);
+    }
+    
 }

@@ -48,13 +48,6 @@
         <!-- /.content-wrapper -->
         
         <!-- Main Footer -->
-        <footer class="main-footer">
-            <strong>&copy; 2024 - 2025 <a href="http://adminlte.io">Smkn 1 Kawali</a>.</strong>
-            All rights reserved.
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 3.0.5
-            </div>
-        </footer>
         
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
@@ -63,6 +56,13 @@
         <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
+    <footer class="main-footer">
+        <strong>&copy; 2024 - 2025 <a href="http://adminlte.io">Smkn 1 Kawali</a>.</strong>
+        All rights reserved.
+        <div class="float-right d-none d-sm-inline-block">
+            <b>Version</b> 3.0.5
+        </div>
+    </footer>
     
     <!-- Scripts -->
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>

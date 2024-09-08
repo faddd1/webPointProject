@@ -14,14 +14,14 @@
                         <div class="card-header">
                             @if (auth()->user()->role == 'admin')
                             <div class="card-tools">
-                                <button class="btn btn-primary" id="tambahDataBtn"><i class="fa-solid fa-circle-plus"></i> Tambah Data</button>
+                                <button class="btn btn-sm btn-primary" style="margin-top: 10px;" id="tambahDataBtn"><i class="fa-solid fa-circle-plus"></i> Add</button>
                             </div>
                             @endif
                        
                         <form method="GET" action="{{ route('student.searchSiswa') }}">
-                            <div class="card-item d-flex flex-wrap">
+                            <div class="card-item d-flex flex-wrap mt-2">
                                 <input type="text" class="card-item form-control col-md-2 col-6 mb-2 mr-2" name="nama" placeholder="Nama Siswa" value="{{ request('nama') }}">
-                                <select class="card-item form-control col-md-2 col-6 mb-2 mr-2" name="kelas">
+                                <select class="card-item form-control col-md-2 col-6 mb-2 mr-2" name="kelas" style="max-width: 120px;">
                                     <option>PILIH KELAS</option>
                                     <option value="10" {{ request('kelas') == '10' ? 'selected' : '' }}>10</option>
                                     <option value="11" {{ request('kelas') == '11' ? 'selected' : '' }}>11</option>
@@ -61,7 +61,7 @@
                         <!-- /.card-header -->
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-hover table-bordered">
+                                <table class="table table-hover table-bordered table-sm" id="studentTable">
                                     <thead>
                                         <tr>
                                             <th style="text-align: center; vertical-align: middle;">No</th>
@@ -76,9 +76,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($studentItem as $no => $student)
+                                        @foreach ($studentItem as $student)
                                         <tr>
-                                            <td style="text-align: center; vertical-align: middle;">{{ $no + 1 }}</td>
+                                            <td style="text-align: center; vertical-align: middle;">
+                                                {{ ($studentItem->currentPage() - 1) * $studentItem->perPage() + $loop->iteration }}
+                                            </td>
                                             <td style="text-align: center; vertical-align: middle;">{{ $student->nis }}</td>
                                             <td style="text-align: center; vertical-align: middle;">{{ $student->nama }}</td>
                                             <td style="text-align: center; vertical-align: middle;">{{ $student->kelas }}</td>
@@ -86,14 +88,14 @@
                                             <td style="text-align: center; vertical-align: middle;">{{ $student->jk }}</td>
                                             @if (auth()->check() && (auth()->user()->role == 'admin'))
                                             <td style="text-align: center; vertical-align: middle;">
-                                                <button class="btn btn-primary editBtn" data-id="{{ $student->id }}">
+                                                <button class="btn btn-primary btn-sm editBtn" data-id="{{ $student->id }}">
                                                     <i class="fa-solid fa-pen-to-square"></i>
                                                 </button>
 
                                                 <form action="{{ route('datasiswa.destroy', $student->id) }}" class="d-inline deleteForm" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
                                                 </form>
                                             </td>
                                             @endif
@@ -101,6 +103,11 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                <div class="d-flex">
+                                    <div class="ml-auto">
+                                        {{ $studentItem->links('pagination::bootstrap-4') }}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -112,15 +119,12 @@
     </div>
 
     <!-- Modal for Add/Edit -->
-    <div class="modal fade" id="dat aModal" tabindex="-1" aria-labelledby="dataModalLabel" aria-hidden="true">
+    <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="dataModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="dataModalLabel">Tambah Data Siswa</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span> <!-- Or use an icon -->
-                    </button>
-                    
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="modalBody">
                     <!-- Content will be loaded here via JavaScript -->
@@ -128,5 +132,8 @@
             </div>
         </div>
     </div>
-        @include('student.confirsiswajs')
+
+
+
+    @include('student.confirsiswajs')
 </x-layout>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
+use PHPUnit\Framework\MockObject\Builder\Stub;
 
 class StudentController extends Controller
 {
@@ -13,6 +14,10 @@ class StudentController extends Controller
      * 
      * 
      */
+    
+
+
+
 
      public function index(Request $request)
      {
@@ -41,8 +46,6 @@ class StudentController extends Controller
      
          // Jalankan query dan dapatkan data siswa
          $students = $query->get();
-     
-         // Kembalikan view dengan data siswa
          return view('listpelanggaran.listpelanggaran', [
              'title' => 'List Pelanggaran Siswa',
              'students' => $students
@@ -52,7 +55,7 @@ class StudentController extends Controller
      
     public function indexdata()
     {
-        $studentItem = Student::all();
+        $studentItem = Student::paginate(5);
         return view('student.datasiswa', [
             'studentItem' => $studentItem,
             'title' => 'Data Siswa'
@@ -194,9 +197,8 @@ class StudentController extends Controller
          }
      
          // Jalankan query dan dapatkan data siswa
-         $studentItem = $query->get();
-     
-         // Kembalikan view dengan data siswa
+         $studentItem = $query->paginate(5);
+
          return view('student.datasiswa', [
              'title' => 'Data Siswa',
              'studentItem' => $studentItem

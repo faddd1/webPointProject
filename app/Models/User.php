@@ -33,7 +33,8 @@ class User extends Authenticatable
     }
 
     public function laporan(){
-        return $this->hasOne(Laporan::class);
+
+        return $this->hasMany(Laporan::class, 'nis', 'nis', 'pelapor_id');
     }
     /**
      * The attributes that should be hidden for serialization.

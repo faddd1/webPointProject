@@ -34,7 +34,7 @@
         
         // Ambil laporan pelanggaran dalam 24 jam terakhir
         $notifications = \App\Models\Laporan::where('nis', $nis)
-                                ->where('created_at', '>=', now()->subDay())                
+                                // ->where('created_at', '>=', now()->subDay())                
                                 ->get();
 
         // Hitung jumlah notifikasi

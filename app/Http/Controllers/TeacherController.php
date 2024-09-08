@@ -13,7 +13,7 @@ class TeacherController extends Controller
     public function index()
 
     {
-        $teacher = Teacher::get();
+        $teacher = Teacher::paginate(5);
         return view('teacher.dataguru', [
             'teacher' => $teacher,
             'title' => 'Data Guru'
@@ -118,7 +118,7 @@ class TeacherController extends Controller
                     ->orWhere('namaguru', 'LIKE', "%{$searchTerm}")
                     ->orWhere('jabatan', 'LIKE', "%{$searchTerm}%")
                     ->orWhere('jk', 'LIKE', "%{$searchTerm}%")
-                    ->get();
+                    ->paginate(5);
         
         return view('teacher.dataguru', compact('teacher'), [
             'title'=>'Search Data Guru'

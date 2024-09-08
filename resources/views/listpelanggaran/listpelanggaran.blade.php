@@ -49,31 +49,31 @@
 
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-hover">
+                                <table class="table table-bordered table-hover table-sm">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Nis</th>
-                                            <th>Nama</th>
-                                            <th>Kelas</th>
-                                            <th>Jurusan</th>
-                                            <th>Jenis Kelamin</th>
-                                            <th>Point</th>
-                                            <th>Action</th>
+                                            <th style="text-align: center; vertical-align: middle;">No</th>
+                                            <th style="text-align: center; vertical-align: middle;">Nis</th>
+                                            <th style="text-align: center; vertical-align: middle;">Nama</th>
+                                            <th style="text-align: center; vertical-align: middle;">Kelas</th>
+                                            <th style="text-align: center; vertical-align: middle;">Jurusan</th>
+                                            <th style="text-align: center; vertical-align: middle;">Jenis Kelamin</th>
+                                            <th style="text-align: center; vertical-align: middle;">Point</th>
+                                            <th style="text-align: center; vertical-align: middle;">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($students as $no => $studentlist)
                                             <tr>
-                                                <td>{{ $no+1 }}</td>
-                                                <td>{{ $studentlist->nis }}</td>
-                                                <td>{{ $studentlist->nama }}</td>
-                                                <td>{{ $studentlist->kelas }}</td>
-                                                <td>{{ $studentlist->jurusan }}</td>
-                                                <td>{{ $studentlist->jk }}</td>
-                                                <td>{{ $studentlist->point }}</td>
-                                                <td>
-                                                    <button class="btn btn-success showBtn" data-id="{{ $studentlist->id }}"><i class="fa-solid fa-eye"></i></button>
+                                                <td style="text-align: center; vertical-align: middle;">{{ $no+1 }}</td>
+                                                <td style="text-align: center; vertical-align: middle;">{{ $studentlist->nis }}</td>
+                                                <td style="text-align: center; vertical-align: middle;">{{ $studentlist->nama }}</td>
+                                                <td style="text-align: center; vertical-align: middle;">{{ $studentlist->kelas }}</td>
+                                                <td style="text-align: center; vertical-align: middle;">{{ $studentlist->jurusan }}</td>
+                                                <td style="text-align: center; vertical-align: middle;">{{ $studentlist->jk }}</td>
+                                                <td style="text-align: center; vertical-align: middle;">{{ $studentlist->point }}</td>
+                                                <td style="text-align: center; vertical-align: middle;">
+                                                    <button class="btn btn-sm btn-success showBtn" data-id="{{ $studentlist->id }}"><i class="fa-solid fa-eye"></i></button>
                                                 </td>
                                             </tr>
                                         @endforeach
