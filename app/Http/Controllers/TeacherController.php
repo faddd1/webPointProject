@@ -36,7 +36,7 @@ class TeacherController extends Controller
     public function store(Request $request)
     {
         $request -> validate([
-            'nip'=> 'required',
+            'nis'=> 'required',
             'namaguru' => 'required',
             'jabatan' => 'required',
             'jk' => 'required'
@@ -44,7 +44,7 @@ class TeacherController extends Controller
         ]);
 
         Teacher::create([
-            'nip' => $request->nip,
+            'nis' => $request->nis,
             'namaguru' => $request->namaguru,
             'jabatan' => $request->jabatan,
             'jk' => $request->jk
@@ -80,7 +80,7 @@ class TeacherController extends Controller
     public function update(Request $request, Teacher $teacher , $id)
     {
         $request -> validate([
-            'nip'=> 'required',
+            'nis'=> 'required',
             'namaguru' => 'required',
             'jabatan' => 'required',
             'jk' => 'required'
@@ -88,7 +88,7 @@ class TeacherController extends Controller
         ]);
         $teacher = Teacher::find($id);
         $teacher->update([
-            'nip' => $request->nip,
+            'nis' => $request->nis,
             'namaguru' => $request->namaguru,
             'jabatan' => $request->jabatan,
             'jk' => $request->jk
@@ -114,7 +114,7 @@ class TeacherController extends Controller
         $searchTerm = $request->input('search');
         
         // Mencari kategori berdasarkan nama pelanggaran, point, atau level
-        $teacher = Teacher::where('nip', 'LIKE', "%{$searchTerm}%")
+        $teacher = Teacher::where('nis', 'LIKE', "%{$searchTerm}%")
                     ->orWhere('namaguru', 'LIKE', "%{$searchTerm}")
                     ->orWhere('jabatan', 'LIKE', "%{$searchTerm}%")
                     ->orWhere('jk', 'LIKE', "%{$searchTerm}%")

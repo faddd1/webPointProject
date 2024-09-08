@@ -15,8 +15,14 @@ use Illuminate\Support\Facades\Route;
 
 // --------------------- AUTHENTICATION ---------------------- //
 
-// Guest Middleware: Hanya bisa diakses oleh pengguna yang belum login
-Route::get('/', [HomeController::class, 'home']);
+// Guest Middleware: Hanya bisa diakses oleh pengguna yang belum login', [HomeController::class, 'home']);
+
+Route::get('/', [HomeController::class, 'homepage'])->name('home');
+Route::middleware(['auth'])->group(function () {
+   
+    Route::get('home', [HomeController::class, 'home'])->name('home');
+});
+
 
 
 // Rute Autentikasi
@@ -82,9 +88,9 @@ Route::middleware(['auth', 'userAkses:admin'])->group(function () {
 
     // Laporan Review Routes
     Route::get('/dashboard', [LaporanController::class, 'getNotifications'])->name('dashboard');
-    Route::get('/laporan/review', [LaporanController::class, 'showPendingReports'])->name('laporan.review');
-    Route::put('/laporan/approve/{id}', [LaporanController::class, 'approveReport'])->name('laporan.approve');
-    Route::post('/laporan/not-approve/{id}', [LaporanController::class, 'notApproveReport'])->name('laporan.notApprove');
+    Route::get('/laporan/review', [LaporanController::class, 'showlaporan'])->name('laporan.review');
+    Route::put('/laporan/approve/{id}', [LaporanController::class, 'terimalaporan'])->name('laporan.approve');
+    Route::post('/laporan/not-approve/{id}', [LaporanController::class, 'tolaklaporan'])->name('laporan.notApprove');
     Route::get('/laporan/show/{id}', [LaporanController::class, 'show'])->name('laporan.show');
 
     // Teacher Management Routes

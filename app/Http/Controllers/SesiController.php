@@ -31,13 +31,13 @@ class SesiController extends Controller
             // Redirect sesuai role
             switch($role) {
                 case 'admin':
-                    return redirect('dashboard/admin');
+                    return redirect('dashboard/admin')->with('success', 'Anda Berhasil Login ke Admin');
                 case 'guru':
-                    return redirect('dashboard/guru');
+                    return redirect('dashboard/guru')->with('success', 'Anda Berhasil Login ke Guru');
                 case 'petugas':
-                    return redirect('dashboard/petugas');
+                    return redirect('dashboard/petugas')->with('success', 'Anda Berhasil Login ke petugas');
                 case 'siswa':
-                    return redirect('dashboard/siswa');
+                    return redirect('dashboard/siswa')->with('success', 'Anda Berhasil Login ke Siswa');
                 default:
                     Auth::logout();
                     return redirect()->back()->withErrors('Role tidak ditemukan.');
@@ -49,6 +49,6 @@ class SesiController extends Controller
 
     public function logout(){
         Auth::logout();
-        return redirect('/'); // Setelah logout, kembali ke homepage
+        return redirect('/');
     }
 }

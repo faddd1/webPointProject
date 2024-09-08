@@ -21,7 +21,7 @@
                 <div class="mb-4">
                     <img src="assets/img/lala.png" alt="">
                 </div>
-                <a href="#" class="btn btn-outline-primary btn-sm"><i class="fas fa-arrow-left"></i> Kembali</a>
+                <a href="{{ url('/') }}" class="btn btn-outline-primary btn-sm"><i class="fas fa-arrow-left"></i> Kembali</a>
                 {{-- <h1 class="sitename">Bootslander</h1> --}}
             </a>
         </div>

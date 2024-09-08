@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Laporan;
 use App\Models\User;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -82,15 +83,16 @@ class UserController extends Controller
         return redirect('tambah')->with('success', 'Data berhasil diubah');
     }
 
-
-    public function profil(){
-        $data = User::with('siswa')->get();
-       return view('profile.profile', [
-        'data' => $data,
-        'title' => 'Profile'
-       ]);
+    public function profil() {
+        $data = User::with(['siswa', 'petugas', 'guru'])->where('nis', auth()->user()->nis)->first();
+    
+        return view('profile.profile', [
+            'data' => $data,
+            'title' => 'Profile'
+        ]);
     }
-
+    
+    
     public function storee(Request $request){
 
         $request->validate([
@@ -103,15 +105,15 @@ class UserController extends Controller
 
         $data = User::findOrFail($id);
         $data->delete();
-        return redirect('/tambah');
+        return redirect('/tambah')->with('success', 'Datasiswa Berhasil di Hapus');
     }
 
-    public function listsiswa(){
-        $laporans = Laporan::with(['pelapor', 'siswa'])->paginate(3);
-        return view('listpelanggaran.listpelanggaransiswa', [
-            'laporans' => $laporans,
-            'title' => 'List Pelanggaran Siswa'
-        ]);
+        public function listsiswa(){
+            $laporans = Laporan::with(['pelapor', 'siswa'])->paginate(5);
+            return view('listpelanggaran.listpelanggaransiswa', compact('laporans'), [
+                'title' => 'List Pelanggaran Siswa'
+            ]);
+        }
+        
     }
     
-}

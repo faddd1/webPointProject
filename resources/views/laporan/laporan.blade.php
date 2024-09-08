@@ -1,7 +1,46 @@
 <x-layout>
     <x-slot:title>{{ $title }}</x-slot:title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <div class="container mt-3">
+        @if (session('success'))
+            <script>
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                    });
+                    Toast.fire({
+                    icon: "success",
+                    title: " {{ session('success') }}"
+                    });
+            </script>
+        @elseif(session('error'))
+        <script>
+            const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                    });
+                    Toast.fire({
+                    icon: "error",
+                    title: " {{ session('error')}}"
+                    });
+        </script>
+        @endif
         <div class="card shadow-lg border-0">
+           
             <div class="card-header bg-gradient-primary text-white d-flex justify-content-between align-items-center">
                
                 <div>
@@ -64,6 +103,38 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            document.getElementById('.laporForm').addEventListener('click', function () {
+            event.preventDefault(); // Prevent the default link behavior
+            Swal.fire({
+                title: 'Tambah Data',
+                text: "Apakah Anda yakin ingin menambah data baru?",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Tambah!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                fetch('/laporan') // Adjust to the correct route that returns the form
+                .then(response=> response.text())
+                .then(html => {
+                    document.getElementById('modalBody').innerHTML = html; // Load create form
+                    document.getElementById('dataModalLabel').innerText = 'Tambah Data Siswa';
+                    new bootstrap.Modal(document.getElementById('dataModal')).show();
+                })
+                .catch(error => console.error('Error loading create form:', error));
+                }
+            });
+
+            });
+
+        });
+
+    </script>
     @include('laporan.confirjs')
 </x-layout>
 

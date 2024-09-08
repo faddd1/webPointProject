@@ -2,7 +2,7 @@
     @csrf
     <div class="form-group">
         <label>NIP</label>
-        <input type="text" class="form-control" name="nip" placeholder="KETIK NIP" required>
+        <input type="text" class="form-control" name="nis" placeholder="KETIK NIP" required>
     </div>
     <div class="form-group">
         <label>NAMA GURU</label>

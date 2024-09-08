@@ -1,3 +1,4 @@
+
 <x-layout>
     <x-slot:title>{{ $title }}</x-slot:title>
     <div class="container">
@@ -5,10 +6,13 @@
             <div class="row">
                 <div class="col-12">
                     @if (session('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ session('success') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
+                    <script>
+                      Swal.fire({
+                        title: "SUCCESS",
+                        text: "{{ session('success') }}",
+                        icon: "success"
+                        });
+                    </script>
                     @endif
                     <div class="card">
                         <div class="card-header">

@@ -57,23 +57,26 @@
                 <li><a href="#gallery">Galeri</a></li>
                 <li><a href="#team">Tim</a></li>
                 <li><a href="#contact">Kontak</a></li>
-                <li> @if($role == 'admin')
-                        <a href="/dashboard/admin" class="active">Dashboard</a>
-                    @elseif($role == 'guru')
-                        <a href="/dashboard/guru" class="active">Dashboard</a>
-                    @elseif($role == 'petugas')
-                        <a href="/dashboard/petugas" class="active">Dashboard</a>
-                    @elseif($role == 'siswa')
-                        <a href="/dashboard/siswa" class="active">Dashboard</a>
-                    @endif
+            @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'  || auth()->user()->role == 'siswa'  || auth()->user()->role == 'petugas'))
+                <li>  
+                    <a href=" 
+                        @if(auth()->user()->role == 'admin')
+                            /dashboard/admin
+                        @elseif(auth()->user()->role == 'guru')
+                            /dashboard/guru
+                        @elseif(auth()->user()->role == 'petugas')
+                            /dashboard/petugas
+                        @elseif(auth()->user()->role == 'siswa')
+                            /dashboard/siswa
+                        @endif" class="active">
+                       
+                        Dashboard
+                    </a>
                 </li>
+            
+            @endif
 
-
-                      @guest
-                      <li class="nav-item">
-                          <a class="nav-link" href="{{ route('login') }}">Login</a>
-                      </li>
-                  @else
+                 
                       @if(auth()->check())
                           @php
                               $user = auth()->user();
@@ -92,8 +95,7 @@
                                   </li>
                               </ul>
                           </li>
-                      @endif
-                  @endguest                  
+                      @endif                 
             </ul>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>

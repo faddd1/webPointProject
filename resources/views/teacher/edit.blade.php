@@ -3,7 +3,7 @@
     @method('PUT')
     <div class="form-group">
         <label>NIP</label>
-        <input type="text" class="form-control" name="nip" value="{{ $teacher->nip }}" placeholder="KETIK NIP" required>
+        <input type="text" class="form-control" name="nis" value="{{ $teacher->nis }}" placeholder="KETIK NIP" required>
     </div>
     <div class="form-group">
         <label>NAMA GURU</label>

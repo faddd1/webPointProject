@@ -13,7 +13,6 @@ class LaporanController extends Controller
 {
     public function index()
     {
-        // Ambil laporan berdasarkan NIS siswa yang sedang login
         $report = Laporan::where('nis', Auth::user()->nis)->get();
 
         return view('laporan.laporan', [
@@ -51,7 +50,6 @@ class LaporanController extends Controller
                 $report->bukti = $filename;
             }
 
-            // Set status to pending directly
             $report->status = 'pending';
             $report->save();
 
@@ -63,13 +61,13 @@ class LaporanController extends Controller
         }
     }
 
-    public function showPendingReports()
+    public function showlaporan()
     {
         $reports = Laporan::where('status', 'pending')->get();
         return view('laporan.reviewlaporan', compact('reports'), ['title' => 'Review Laporan']);
     }
 
-    public function approveReport($id)
+    public function terimalaporan($id)
     {
         $report = Laporan::find($id);
 
@@ -77,11 +75,9 @@ class LaporanController extends Controller
             return redirect()->route('laporan.review')->with('error', 'Laporan tidak ditemukan.');
         }
 
-        // Set status laporan menjadi 'approved'
-        $report->status = 'approved';
+        $report->status = 'Diterima';
         $report->save();
 
-        // Tambahkan poin pelanggaran ke siswa
         $siswa = Student::where('nis', $report->nis)->first();
         $pelanggaran = Kategori::where('pelanggaran', $report->pelanggaran)->first();
 
@@ -93,7 +89,7 @@ class LaporanController extends Controller
         return redirect()->route('laporan.review')->with('success', 'Laporan berhasil disetujui.');
     }
 
-    public function notApproveReport($id)
+    public function tolaklaporan($id)
     {
         $report = Laporan::find($id);
 
@@ -101,14 +97,11 @@ class LaporanController extends Controller
             return redirect()->route('laporan.review')->with('error', 'Laporan tidak ditemukan.');
         }
 
-        // Log status sebelum perubahan
         Log::info('Status sebelum: ' . $report->status);
 
-        // Set status laporan menjadi 'not approved'
-        $report->status = 'not approved';
+        $report->status = 'Laporan Tidak Valid';
         $report->save();
 
-        // Log status setelah perubahan
         Log::info('Status sesudah: ' . $report->status);
 
         return redirect()->route('laporan.review')->with('success', 'Laporan telah ditolak.');
@@ -122,20 +115,20 @@ class LaporanController extends Controller
 
     public function getNotifications()
     {
-        // Ambil NIS siswa yang sedang login
+    
         $nis = Auth::user()->nis;
     
-        // Ambil laporan pelanggaran dalam 24 jam terakhir
+
         $notifications = Laporan::where('nis', $nis)
                                 ->where('created_at', '>=', now()->subDay())
                                 ->get();
     
-        // Hitung jumlah notifikasi
+        
         $count = $notifications->count();
 
         $title = 'Dashboard Siswa';
     
-        // Kirim variabel ke view
+       
         return view('components.navbar', compact('notifications', 'count'));
     }
 }

@@ -7,16 +7,13 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    public function home()
-    {
-        if (Auth::check()) {
-            $role = Auth::user()->role;
-            return view('page.hompage', compact('role'));
-        } else {
-            // Redirect atau tangani jika pengguna tidak terautentikasi
-            return redirect()->route('login')->with('error', 'You need to login first.');
-        }
+    public function home(){
+        return view('page.home.home');
     }
 
-    
+    public function homepage(){
+        return view('page.home.hompage');
+    }
 }
+           
+        

@@ -78,12 +78,10 @@ class AdminController extends Controller
         if (Auth::user()->role != 'siswa') {
             return redirect('/home')->with('error', 'Anda tidak memiliki akses ke halaman ini.');
         }
-        // Ambil data notifikasi dari LaporanController
-        // return app(LaporanController::class)->getNotifications();
+        
         return view('page.dashboard', [
             'title' => 'Dashboard',
-            'count' => 0
-
+            'count' => 0,
         ]);
     }
 
