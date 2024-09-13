@@ -74,6 +74,7 @@
                                                 <td style="text-align: center; vertical-align: middle;">{{ $studentlist->point }}</td>
                                                 <td style="text-align: center; vertical-align: middle;">
                                                     <button class="btn btn-sm btn-success showBtn" data-id="{{ $studentlist->id }}"><i class="fa-solid fa-eye"></i></button>
+                                                    <button class="btn btn-sm btn-secondary"><i class="fa-duotone fa-solid fa-file-excel fa-bounce" style="--fa-primary-color: #065b24; --fa-primary-opacity: 1; --fa-secondary-color: #2f3c32; --fa-secondary-opacity: 0.3;"></i></button>
                                                 </td>
                                             </tr>
                                         @endforeach

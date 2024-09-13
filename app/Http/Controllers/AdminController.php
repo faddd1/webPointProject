@@ -7,6 +7,7 @@ use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\User;
 use App\Models\Laporan;
+use App\Models\Petugas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,6 +18,7 @@ class AdminController extends Controller
 {
     $totalSiswa = Student::count();
     $totalGuru = Teacher::count();
+    $totalPetugas = Petugas::count();
     $totalPelanggaran = Kategori::where('pelanggaran', '!=', null)->count();
     $totalUser = User::count();
 
@@ -36,14 +38,14 @@ class AdminController extends Controller
 
         return view('page.dashboard', [
             'title' => 'Beranda'
-        ], compact('totalSiswa', 'totalGuru', 'totalPelanggaran', 'totalUser'));
+        ], compact('totalSiswa', 'totalGuru', 'totalPelanggaran', 'totalUser', 'totalPetugas'));
     }
 
     return view('page.dashboard', [
         'title' => 'Dashboard',
 
 
-    ], compact('totalGuru','totalPelanggaran','totalUser','totalSiswa'));
+    ], compact('totalGuru','totalPelanggaran','totalUser','totalSiswa','totalPetugas'));
 }
 
 

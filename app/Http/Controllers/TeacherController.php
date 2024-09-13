@@ -95,7 +95,7 @@ class TeacherController extends Controller
 
         ]);
 
-        return redirect('teacher');
+        return redirect('teacher')->with('success', 'Data berhasil diubah!');
     }
 
     /**
@@ -105,7 +105,7 @@ class TeacherController extends Controller
     {
         $teacher = Teacher::findOrFail($id);
         $teacher->delete();
-        return redirect('teacher');
+        return redirect('teacher')->with('success', 'Data berhasil dihapus!');
 
     }
 

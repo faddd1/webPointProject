@@ -12,9 +12,9 @@
         <label>Level</label>
         <select class="form-control" name="level" required>
             <option value="">Pilih Level</option>
-            <option value="ringan">Ringan</option>
-            <option value="sedang">Sedang</option>
-            <option value="berat">Berat</option>
+            <option value="Ringan">Ringan</option>
+            <option value="Sedang">Sedang</option>
+            <option value="Berat">Berat</option>
         </select>
     </div>
     <button type="submit" class="btn btn-primary btn-block">Tambah</button>

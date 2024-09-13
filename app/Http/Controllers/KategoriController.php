@@ -44,7 +44,7 @@ class KategoriController extends Controller
             'point' => $request->point,
             'level' => $request->level,
            ]);
-           return redirect('/kategoripelanggaran');
+           return redirect()->back()->with('success', 'Data berhasil ditambahkan!');
     }
 
     /**
@@ -85,7 +85,7 @@ class KategoriController extends Controller
                 'level' => $request->level,
             ]);
     
-            return redirect('/kategoripelanggaran');
+            return redirect('/kategoripelanggaran')->with('success', 'Data berhasil diubah!');
     }
 
     /**
@@ -96,7 +96,7 @@ class KategoriController extends Controller
 
     $kategori = Kategori::findOrFail($id);
     $kategori->delete();
-    return redirect('/kategoripelanggaran');
+    return redirect('/kategoripelanggaran')->with('success', 'Data berhasil dihapus!');
 
     }
 

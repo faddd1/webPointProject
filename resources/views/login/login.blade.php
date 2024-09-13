@@ -40,34 +40,42 @@
                     </div>
                 </a>
             </div>
-                @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $errors)
-                            <li>{{ $errors }}</li>
-                        @endforeach
-                    </ul>
-                </div>    
-                @endif
+            @if(session('error'))
+            <script>
+                const Toast = Swal.mixin({
+                        toast: true,
+                        position: "top-end",
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.onmouseenter = Swal.stopTimer;
+                            toast.onmouseleave = Swal.resumeTimer;
+                        }
+                        });
+                        Toast.fire({
+                        icon: "error",
+                        title: " {{ session('error')}}"
+                        });
+            </script>
+            @endif
                 <form class="was-validated" action="" method="POST">
                     @csrf
-                    <div>
-                        <label for="nis" class="form-label">Username :</label>
-                        <input type="text" class="form-control" value="{{ old('nis') }}" name="nis"  placeholder="username" required>
-                        <div class="invalid-feedback">
-                            Masukan Username.
+                        <div>
+                            
+                            <label for="nis" class="form-label">NIP/NIS :</label>
+                            <input type="text" class="form-control" value="{{ old('nis') }}" name="nis"  placeholder="Nip atau Nis" required>
+                            <div class="invalid-feedback">
+                                Masukan Nip atau Nis.
+                            </div>
                         </div>
-                    </div>
                     <div>
                         <label for="password" class="form-label">Password :</label>
                         <input type="password" class="form-control" name="password" placeholder="Password" required>
                         <div class="invalid-feedback">
                             Masukan Password. 
                         </div>
-                        <div class="hover p-1 ">
-                            <a href="#">Lupa Passwoard?</a>
-                        </div>
-                        <div class="d-grid gap-2">
+                        <div class="d-grid gap-2" style="margin-top: 1rem;">
                             <button class="btn btn-primary" type="submit">Login</button>
                         </div>
                     </div>

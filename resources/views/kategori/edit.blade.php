@@ -13,9 +13,9 @@
         <label>Level</label>
         <select class="form-control" name="level" required>
             <option value="">Pilih Level</option>
-            <option value="ringan" {{ $kategori->level == 'Ringan' ? 'selected' : ''}}>Ringan</option>
-            <option value="sedang" {{ $kategori->level == 'Sedang' ? 'selected' : ''}}>Sedang</option>
-            <option value="berat" {{ $kategori->level == 'Berat' ? 'selected' : ''}}>Berat</option> 
+            <option value="Ringan" {{ $kategori->level == 'Ringan' ? 'selected' : ''}}>Ringan</option>
+            <option value="Sedang" {{ $kategori->level == 'Sedang' ? 'selected' : ''}}>Sedang</option>
+            <option value="Berat" {{ $kategori->level == 'Berat' ? 'selected' : ''}}>Berat</option> 
         </select>
     </div>
     <button type="submit" class="btn btn-primary btn-block">Update</button>

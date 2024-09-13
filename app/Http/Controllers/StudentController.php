@@ -146,7 +146,7 @@ class StudentController extends Controller
     
         ]);
 
-        return redirect()->route('datasiswa');
+        return redirect()->route('datasiswa')->with('success', 'Data berhasil diubah!');
     }
 
     /**
@@ -156,7 +156,7 @@ class StudentController extends Controller
     {
         $studentItem = Student::findOrFail($id);
         $studentItem->delete();
-        return redirect('datasiswa');
+        return redirect('datasiswa')->with('success', 'Data berhasil dihapus!');
     }
 
     public function search(Request $request)

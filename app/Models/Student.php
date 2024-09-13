@@ -31,11 +31,6 @@ class Student extends Model
         return $this->hasMany(Laporan::class, 'pelapor_id', );
     }
 
-
-    public function laporans() {
-        return $this->hasMany(Laporan::class, 'student_id'); // Ensure this matches the foreign key in `laporans` table
-    }
-
     public function pelanggaran()
     {
         return $this->hasMany(Laporan::class, 'nis', 'nis');

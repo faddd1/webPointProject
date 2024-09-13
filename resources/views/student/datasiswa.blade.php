@@ -18,7 +18,7 @@
                         <div class="card-header">
                             @if (auth()->user()->role == 'admin')
                             <div class="card-tools">
-                                <button class="btn btn-sm btn-primary" style="margin-top: 10px;" id="tambahDataBtn"><i class="fa-solid fa-circle-plus"></i> Add</button>
+                                <button id="tambahDataBtn" class="btn btn-sm btn-primary" style="margin-top: 10px;"><i class="fa-solid fa-circle-plus"></i> Add</button>
                             </div>
                             @endif
                        

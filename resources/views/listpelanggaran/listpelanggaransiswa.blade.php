@@ -91,7 +91,7 @@
                             @foreach ($laporans as $index => $laporan)
                                 <tr>
                                     <td style="text-align: center; vertical-align: middle;">{{ $index + 1 }}</td>
-                                    <td style="text-align: center; vertical-align: middle;">{{ $laporan->name ?? 'tidak diketahui' }}</td>
+                                    <td style="text-align: center; vertical-align: middle;">{{ $laporan->pelapor->name ?? 'tidak diketahui' }}</td>
                                     <td style="text-align: center; vertical-align: middle;">{{ $laporan->pelanggaran }}</td>
                                     <td style="text-align: center; vertical-align: middle;">{{ $laporan->point }}</td>
                                     <td style="text-align: center; vertical-align: middle;">

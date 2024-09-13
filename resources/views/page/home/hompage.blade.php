@@ -42,7 +42,7 @@
     <header id="header" class="header d-flex align-items-center fixed-top">
         <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-        <a href="#" class="logo d-flex align-items-center">
+        <a  class="logo d-flex align-items-center">
             <!-- Uncomment the line below if you also wish to use an image logo -->
             <div class="mb-4">
                 <img src="{{ asset('assets/img/lala.png') }}" alt="">
@@ -56,11 +56,11 @@
                 <li><a href="#about">Tentang</a></li>
                 <li><a href="#contact">Kontak</a></li>
 
-                      @guest
-                      <li class="nav-item">
-                          <a class="nav-link" href="{{ route('login') }}">Login</a>
-                      </li>
-                  @endguest                  
+                @guest
+                <li class="nav-item">
+                    <a class="btn btn-primary text-white" style="padding: 8px 20px;" href="{{ route('login') }}">Login</a>
+                </li>
+            @endguest                
             </ul>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
@@ -76,7 +76,7 @@
 
             <div class="container">
             <div class="row gy-4 justify-content-between">
-            <div class="col-lg-4  order-lg-last hero-img" data-aos="zoom-out" data-aos-delay="100">
+            <div class="col-lg-4  order-lg-last hero-img" style="margin-top: 60px;" data-aos="zoom-out" data-aos-delay="100">
                     <img src="{{ asset('assets/img/apawe.png') }}" class="img-fluid animated" alt="">
             </div>
 
@@ -164,24 +164,24 @@
                 <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
                 <i class="bi bi-geo-alt flex-shrink-0"></i>
                 <div>
-                    <h3>Address</h3>
-                    <p>A108 Adam Street, New York, NY 535022</p>
+                    <h3>Alamat</h3>
+                    <p>Jalan. Talagasari No. 35 Kawalimukti Kawali Ciamis 46253</p>
                 </div>
                 </div><!-- End Info Item -->
 
                 <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
                 <i class="bi bi-telephone flex-shrink-0"></i>
                 <div>
-                    <h3>Call Us</h3>
-                    <p>+1 5589 55488 55</p>
+                    <h3>Telephone</h3>
+                    <p>(0265) 791727</p>
                 </div>
                 </div><!-- End Info Item -->
 
                 <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
                 <i class="bi bi-envelope flex-shrink-0"></i>
                 <div>
-                    <h3>Email Us</h3>
-                    <p>info@example.com</p>
+                    <h3>Email</h3>
+                    <p>smkn1kawali@gmail.com</p>
                 </div>
                 </div><!-- End Info Item -->
 
@@ -212,7 +212,7 @@
                     <div class="error-message"></div>
                     <div class="sent-message">Your message has been sent. Thank you!</div>
 
-                    <button type="submit">Send Message</button>
+                    <button type="submit">Kirim Pesan</button>
                     </div>
 
                 </div>

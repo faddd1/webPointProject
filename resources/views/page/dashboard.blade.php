@@ -65,7 +65,7 @@
         
         <div class="row">
           <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
-            <div class="small-box bg-info">
+            <div class="small-box" style="background: #4dacff; color:#fff;">
               <div class="inner">
                 <h3>{{ $totalSiswa }}</h3>
                 <p>Jumlah Siswa</p>
@@ -78,7 +78,7 @@
           </div>
         
           <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
-            <div class="small-box bg-success">
+            <div class="small-box" style="background: #f9df6e; color:#fff;">
               <div class="inner">
                 <h3>{{ $totalGuru }}</h3>
                 <p>Jumlah Guru</p>
@@ -89,30 +89,30 @@
               <a href="/teacher" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-        
+
           <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3>{{ $totalPelanggaran }}</h3>
-                <p>Jumlah Pelanggaran</p>
-              </div>
-              <div class="icon">
-                <i class="fa-solid fa-triangle-exclamation"></i>
-              </div>
-              <a href="/kategoripelanggaran" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-        
-          <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
-            <div class="small-box bg-danger">
+            <div class="small-box" style="background: #3ecf69; color:#fff;">
               <div class="inner">
                 <h3>{{ $totalUser }}</h3>
                 <p>Jumlah User</p>
               </div>
               <div class="icon">
-                <i class="ion ion-person-add"></i>
+                <i class="fa-solid fa-users"></i>
               </div>
               <a href="/tambah" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+        
+          <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+            <div class="small-box" style="background: #f04a4a; color:#fff;">
+              <div class="inner">
+                <h3>{{ $totalPetugas }}</h3>
+                <p>Jumlah Petugas</p>
+              </div>
+              <div class="icon">
+                <i class="fa-solid fa-users"></i>
+              </div>
+              <a href="/datapetugas" class="small-box-footer">Info lebih lanjut <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
         </div>

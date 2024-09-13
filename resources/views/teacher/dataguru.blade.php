@@ -5,11 +5,14 @@
           <div class="row">
               <div class="col-12">
                 @if (session('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ session('success') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                    @endif
+                <script>
+                  Swal.fire({
+                    title: "SUCCESS",
+                    text: "{{ session('success') }}",
+                    icon: "success"
+                    });
+                </script>
+                @endif
                   <div class="card">
                       <div class="card-header">
                           <div class="card-tools">
@@ -47,7 +50,7 @@
                                         <td style="text-align: center; vertical-align: middle;">
                                             {{ ($teacher->currentPage() - 1) * $teacher->perPage() + $loop->iteration }}
                                         </td>
-                                        <td style="text-align: center; vertical-align: middle;">{{ $teachers->nip }}</td>
+                                        <td style="text-align: center; vertical-align: middle;">{{ $teachers->nis }}</td>
                                         <td style="text-align: center; vertical-align: middle;">{{ $teachers->namaguru }}</td>
                                         <td style="text-align: center; vertical-align: middle;">{{ $teachers->jabatan }}</td>
                                         <td style="text-align: center; vertical-align: middle;">{{ $teachers->jk }}</td>

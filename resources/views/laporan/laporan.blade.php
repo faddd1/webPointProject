@@ -45,7 +45,7 @@
                
                 <div>
                     <button class="btn btn-outline-light me-2" onclick="showSearchAlert('siswa')">
-                        <i class="fas fa-user-search"></i> Cari Siswa
+                        <i class="fas fa-user"></i> Cari Siswa
                     </button>
                     <button class="btn btn-outline-light" onclick="showSearchAlert('pelanggaran')">
                         <i class="fas fa-search"></i> Cari Pelanggaran

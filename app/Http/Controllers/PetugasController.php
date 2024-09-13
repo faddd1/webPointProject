@@ -28,7 +28,7 @@ class PetugasController extends Controller
         $petugas->namao = $request->nama_orga;
         $petugas->save();
 
-        return redirect()->route('petugas.tampil');
+        return redirect()->route('petugas.tampil')->with('success', 'Data berhasil ditambahkan!');
 
     }
 
@@ -44,18 +44,19 @@ class PetugasController extends Controller
         $petugas->nis = $request->nis;
         $petugas->namap = $request->nama_petugas;
         $petugas->kelas = $request->kelas;
+        $petugas->jk = $request->jk;
         $petugas->jurusan = $request->jurusan;
         $petugas->namao = $request->nama_orga;
         $petugas->update();
 
-        return redirect()->route('petugas.tampil');
+        return redirect()->route('petugas.tampil')->with('success', 'Data berhasil diubah!');
 
     }
     public function delete($id){
         $petugas = Petugas::find($id);
         $petugas->delete();
 
-        return redirect()->route('petugas.tampil');
+        return redirect()->route('petugas.tampil')->with('success', 'Data berhasil dihapus!');
     }
 
     public function search(Request $request)
