@@ -48,7 +48,7 @@ Route::group(['middleware' => ['auth', 'userAkses:admin,guru,petugas,siswa']], f
 Route::middleware(['auth', 'userAkses:admin,guru,petugas'])->group(function () {
     // Kategori Pelanggaran Routes
     Route::get('/kategoripelanggaran', [KategoriController::class, 'index']);
-    Route::get('/kategoripelanggaran/search', [KategoriController::class, 'search'])->name('kategori.search');
+    // Route::get('/kategoripelanggaran/search', [KategoriController::class, 'searchkategori'])->name('kategori.search');
     Route::get('/kategoripelanggaran/search/kategori', [KategoriController::class, 'searchkategori'])->name('pelanggaran.search');
 
 
@@ -76,6 +76,8 @@ Route::middleware(['auth', 'userAkses:admin,guru'])->group(function () {
 
     // Student Data Routes
     Route::get('/datasiswa', [StudentController::class, 'indexdata'])->name('datasiswa');
+    Route::get('/datasiswa/show/{id}', [StudentController::class, 'showsiswa'])->name('datasiswa.show');
+
 });
 
 Route::middleware(['auth', 'userAkses:admin'])->group(function () {
@@ -107,6 +109,7 @@ Route::middleware(['auth', 'userAkses:admin'])->group(function () {
     Route::get('/datasiswa/edit/{id}', [StudentController::class, 'edit'])->name('datasiswa.edit');
     Route::put('/datasiswa/update/{id}', [StudentController::class, 'update'])->name('datasiswa.update');
     Route::delete('/datasiswa/destroy/{id}', [StudentController::class, 'destroy'])->name('datasiswa.destroy');
+    
 
     // Kategori Pelanggaran Management Routes
     Route::get('/kategoripelanggaran/create', [KategoriController::class, 'create']);

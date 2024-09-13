@@ -28,7 +28,7 @@ class Student extends Model
     }
 
     public function laporan(){
-        return $this->hasMany(Laporan::class, 'pelapor_id', 'id' );
+        return $this->hasMany(Laporan::class, 'pelapor_id', 'nis', 'nis' );
     }
 
     public function pelanggaran()

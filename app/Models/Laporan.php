@@ -19,7 +19,6 @@ class Laporan extends Model
         'status'
     ];
 
-
     public function siswa()
     {
         return $this->belongsTo(Student::class, 'nis', 'nis');
@@ -34,5 +33,4 @@ class Laporan extends Model
     {
         return $this->belongsTo(User::class, 'pelapor_id');
     }
-    
 }

@@ -100,27 +100,27 @@ class KategoriController extends Controller
 
     }
 
-
-     public function search(Request $request)
-    {
-        $query = $request->input('query');
-        $results = Kategori::where('pelanggaran', 'like', "%$query%")->get();
-        return response()->json($results);
-    }
-
     public function searchkategori(Request $request)
     {
-        $searchTerm = $request->input('search');
-        
-        // Mencari kategori berdasarkan nama pelanggaran, point, atau level
-        $kategori = Kategori::where('pelanggaran', 'LIKE', "%{$searchTerm}%")
-                    ->orWhere('point', 'LIKE', "%{$searchTerm}")
-                    ->orWhere('level', 'LIKE', "%{$searchTerm}%")
-                    ->get();
-        
-        return view('kategori.kategoripelanggaran', compact('kategori'), [
-            'title'=>'Search Data'
-        ]);
+        $query = $request->get('query');
+        $pelanggaran = Kategori::where('pelanggaran', 'LIKE', "%{$query}%")->get();
+    
+        return response()->json($pelanggaran);
     }
+
+    // public function search(Request $request)
+    // {
+    //     $searchTerm = $request->input('search');
+        
+    //     // Mencari kategori berdasarkan nama pelanggaran, point, atau level
+    //     $kategori = Kategori::where('pelanggaran', 'LIKE', "%{$searchTerm}%")
+    //                 ->orWhere('point', 'LIKE', "%{$searchTerm}")
+    //                 ->orWhere('level', 'LIKE', "%{$searchTerm}%")
+    //                 ->get();
+        
+    //     return view('kategori.kategoripelanggaran', compact('kategori'), [
+    //         'title'=>'Search Data'
+    //     ]);
+    // }
 
 }

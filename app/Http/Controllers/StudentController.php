@@ -78,13 +78,22 @@ class StudentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    // public function show($id)
+    // {
+    //     // Misalnya kamu mendapatkan data berdasarkan ID siswa
+    //     $studentlist = Student::with('laporan')->findOrFail($id);
+    //     return view('listpelanggaran.showlist', compact('studentlist'));
+        
+    // }
+
+    public function showsiswa($id)
     {
         // Misalnya kamu mendapatkan data berdasarkan ID siswa
-        $studentlist = Student::with('laporan')->findOrFail($id);
-        return view('listpelanggaran.showlist', compact('studentlist'));
+        $studentlist = Student::with('pelanggaran')->findOrFail($id);  // pastikan menggunakan model yang benar
+        return view('student.showsiswa', compact('studentlist'));
         
     }
+
     public function edit(Student $studentItem, $id)
     {
         $studentItem = Student::findOrFail($id);

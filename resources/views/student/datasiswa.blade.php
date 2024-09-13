@@ -74,9 +74,9 @@
                                             <th style="text-align: center; vertical-align: middle;">Kelas</th>
                                             <th class="col-2" style="text-align: center; vertical-align: middle;">Jurusan</th>
                                             <th style="text-align: center; vertical-align: middle;">Jenis Kelamin</th>
-                                            @if (auth()->check() && (auth()->user()->role == 'admin'))
+                                            {{-- @if (auth()->check() && (auth()->user()->role == 'admin')) --}}
                                             <th style="text-align: center; vertical-align: middle;">Action</th>
-                                            @endif
+                                            {{-- @endif --}}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -90,8 +90,11 @@
                                             <td style="text-align: center; vertical-align: middle;">{{ $student->kelas }}</td>
                                             <td style="text-align: center; vertical-align: middle;">{{ $student->jurusan }}</td>
                                             <td style="text-align: center; vertical-align: middle;">{{ $student->jk }}</td>
-                                            @if (auth()->check() && (auth()->user()->role == 'admin'))
+                                            
                                             <td style="text-align: center; vertical-align: middle;">
+                                                <button class="btn btn-sm btn-success showBtn" data-id="{{ $student->id }}"><i class="fa-solid fa-eye"></i></button>
+                                                @if (auth()->check() && (auth()->user()->role == 'admin'))
+
                                                 <button class="btn btn-primary btn-sm editBtn" data-id="{{ $student->id }}">
                                                     <i class="fa-solid fa-pen-to-square"></i>
                                                 </button>
