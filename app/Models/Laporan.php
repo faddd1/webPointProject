@@ -19,14 +19,12 @@ class Laporan extends Model
         'status'
     ];
 
-    // Jika Anda memiliki relasi dengan model lain, bisa didefinisikan di sini
-    // Contoh: Relasi dengan model Siswa
-    public function siswa() {
-        return $this->belongsTo(Student::class, 'nis', 'nis'); // Use the correct foreign key column name
+
+    public function siswa()
+    {
+        return $this->belongsTo(Student::class, 'nis', 'nis');
     }
 
-
-    // Contoh: Relasi dengan model Pelanggaran
     public function pelanggaranDetail()
     {
         return $this->belongsTo(kategori::class, 'pelanggaran', 'pelanggaran');

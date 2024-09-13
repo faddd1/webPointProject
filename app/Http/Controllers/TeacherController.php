@@ -107,7 +107,7 @@ class TeacherController extends Controller
         $teacher->delete();
         return redirect('teacher')->with('success', 'Data berhasil dihapus!');
 
-    }
+    } 
 
     public function search(Request $request)
     {

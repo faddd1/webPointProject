@@ -21,7 +21,6 @@ class Kategori extends Model
     {
         return $this->belongsTo(Student::class);
     }
-
     public function laporan()
     {
         return $this->hasMany(Laporan::class, 'kategori_id', 'id');

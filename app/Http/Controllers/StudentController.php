@@ -3,76 +3,54 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use App\Models\Laporan;
 use Illuminate\Http\Request;
 use PHPUnit\Framework\MockObject\Builder\Stub;
 
 class StudentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * 
-     * 
-     * 
-     */
+
+    public function index(Request $request)
+    {
+
+        $searchTerm = $request->input('search');
+        
+        // Ambil data laporan yang diurutkan berdasarkan waktu penambahan terbaru
+        $students = Laporan::with('siswa', 'pelapor')->where('pelapor_id', 'LIKE', "%{$searchTerm}%")
+        ->orWhere('nama', 'LIKE', "%{$searchTerm}%")
+        ->orWhere('pelanggaran', 'LIKE', "%{$searchTerm}%")
+        ->orWhere('point', 'LIKE', "%{$searchTerm}%")
+        ->orWhere('tanggal', 'LIKE', "%{$searchTerm}%")
+        ->orderBy('created_at', 'desc')
+        ->paginate(10);
+                    // Urutkan berdasarkan waktu penambahan terbaru
+    
+        return view('listpelanggaran.listpelanggaran', [
+            'title' => 'List Pelanggaran Siswa',
+            'students' => $students,
+        ]);
+    }
     
 
 
-
-
-     public function index(Request $request)
-     {
-         // Ambil parameter dari request
-         $nama = $request->input('nama');
-         $kelas = $request->input('kelas');
-         $jurusan = $request->input('jurusan');
-     
-         // Buat query untuk mendapatkan data siswa
-         $query = Student::query();
-     
-         // Jika ada filter berdasarkan nama
-         if ($nama) {
-             $query->where('nama', 'like', '%' . $nama . '%');
-         }
-     
-         // Jika ada filter berdasarkan kelas
-         if ($kelas) {
-             $query->where('kelas', $kelas);
-         }
-     
-         // Jika ada filter berdasarkan jurusan
-         if ($jurusan) {
-             $query->where('jurusan', $jurusan);
-         }
-     
-         // Jalankan query dan dapatkan data siswa
-         $students = $query->get();
-         return view('listpelanggaran.listpelanggaran', [
-             'title' => 'List Pelanggaran Siswa',
-             'students' => $students
-         ]);
-     }
+    
      
      
     public function indexdata()
     {
-        $studentItem = Student::paginate(5);
+        $studentItem = Student::paginate(3);
         return view('student.datasiswa', [
             'studentItem' => $studentItem,
             'title' => 'Data Siswa'
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         return view('student.create', ['title' => 'Tambah Data Siswa']);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
        $request -> validate ([
@@ -103,28 +81,18 @@ class StudentController extends Controller
     public function show($id)
     {
         // Misalnya kamu mendapatkan data berdasarkan ID siswa
-        $studentlist = Student::with('laporan')->findOrFail($id);  // pastikan menggunakan model yang benar
+        $studentlist = Student::with('laporan')->findOrFail($id);
         return view('listpelanggaran.showlist', compact('studentlist'));
         
     }
-
-
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Student $studentItem, $id)
     {
         $studentItem = Student::findOrFail($id);
         return view('student.edit', compact('studentItem'), [
             'title' => 'Edit Data'
-        
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Student $studentItem, $id)
     {
         $request -> validate ([
@@ -149,9 +117,7 @@ class StudentController extends Controller
         return redirect()->route('datasiswa')->with('success', 'Data berhasil diubah!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(Student $studentItem, $id)
     {
         $studentItem = Student::findOrFail($id);
@@ -163,15 +129,17 @@ class StudentController extends Controller
     {
         $query = $request->input('query');
     
-        // Cari siswa berdasarkan nama atau NIS
+        // search siswa brdasarkn nis
         $students = Student::where('nama', 'LIKE', "%{$query}%")
                            ->orWhere('nis', 'LIKE', "%{$query}%")
                            ->get();
     
         return response()->json($students);
-    }
+     }
 
-    public function searchSiswa(Request $request)
+
+
+     public function searchSiswa(Request $request)
      {
          // Ambil parameter dari request
          $nama = $request->input('nama');
@@ -204,6 +172,19 @@ class StudentController extends Controller
              'studentItem' => $studentItem
          ]);
      }
+
+     public function listDestroy($id)
+{
+    // Cari data pelanggaran berdasarkan id
+    $pelanggaran = Laporan::findOrFail($id);
+
+    // Hapus data pelanggaran
+    $pelanggaran->delete();
+
+    // Redirect kembali ke halaman list pelanggaran dengan pesan sukses
+    return redirect()->back()->with('success', 'Pelanggaran berhasil dihapus!');
+}
+
 
     
 }

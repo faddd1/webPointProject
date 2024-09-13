@@ -15,38 +15,22 @@ class AdminController extends Controller
 {
     // Halaman admin, hanya untuk role admin
     public function admin()
-{
-    $totalSiswa = Student::count();
-    $totalGuru = Teacher::count();
-    $totalPetugas = Petugas::count();
-    $totalPelanggaran = Kategori::where('pelanggaran', '!=', null)->count();
-    $totalUser = User::count();
+    {
+            $totalSiswa = Student::count();
+            $totalGuru = Teacher::count();
+            $totalPetugas = Petugas::count();
+            $totalPelanggaran = Kategori::where('pelanggaran', '!=', null)->count();
+            $totalUser = User::count();
 
-    // // Query Top Siswa berdasarkan jumlah pelanggaran terbanyak
-    // $topSiswa = Student::withCount('laporan')
-    // ->orderBy('laporan_count', 'desc') // Urutkan berdasarkan jumlah laporan terbanyak
-    // ->take(5) // Batasi 5 siswa teratas
-    // ->get();
+            if (Auth::user()->role != 'admin') {
+                return redirect('/home')->with('error', 'Anda tidak memiliki akses ke halaman ini.');
+                    }
 
-    // // Query Top Pelanggaran berdasarkan poin tertinggi
-    // $topPelanggaran = Kategori::orderBy('point', 'desc') // Urutkan berdasarkan poin tertinggi
-    // ->take(5) // Batasi 5 pelanggaran teratas
-    // ->get();
+                return view('page.dashboard', [
+                    'title' => 'Beranda'
+                ], compact('totalSiswa', 'totalGuru', 'totalPelanggaran', 'totalUser', 'totalPetugas'));
 
-    if (Auth::user()->role != 'admin') {
-        return redirect('/home')->with('error', 'Anda tidak memiliki akses ke halaman ini.');
-
-        return view('page.dashboard', [
-            'title' => 'Beranda'
-        ], compact('totalSiswa', 'totalGuru', 'totalPelanggaran', 'totalUser', 'totalPetugas'));
-    }
-
-    return view('page.dashboard', [
-        'title' => 'Dashboard',
-
-
-    ], compact('totalGuru','totalPelanggaran','totalUser','totalSiswa','totalPetugas'));
-}
+     }
 
 
     // Halaman guru, hanya untuk role guru

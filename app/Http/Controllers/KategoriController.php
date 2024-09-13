@@ -101,12 +101,12 @@ class KategoriController extends Controller
     }
 
 
-            public function search(Request $request)
-        {
-            $query = $request->input('query');
-            $results = Kategori::where('pelanggaran', 'like', "%$query%")->get();
-            return response()->json($results);
-        }
+     public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $results = Kategori::where('pelanggaran', 'like', "%$query%")->get();
+        return response()->json($results);
+    }
 
     public function searchkategori(Request $request)
     {

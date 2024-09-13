@@ -6,80 +6,84 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <form method="GET" action="{{ route('listpelanggaran.index') }}">
-                                <div class="card-item d-flex flex-wrap">
-                                    <input type="text" class="card-item form-control col-md-2 col-6 mb-2 mr-2" name="nama" placeholder="Nama Siswa" value="{{ request('nama') }}">
-                                    <select class="card-item form-control col-md-2 col-6 mb-2 mr-2" name="kelas">
-                                        <option>PILIH KELAS</option>
-                                        <option value="10" {{ request('kelas') == '10' ? 'selected' : '' }}>10</option>
-                                        <option value="11" {{ request('kelas') == '11' ? 'selected' : '' }}>11</option>
-                                        <option value="12" {{ request('kelas') == '12' ? 'selected' : '' }}>12</option>
-                                    </select>
-                            
-                                    <select class="card-item form-control col-md-2 col-6 mb-2 mr-2" name="jurusan">
-                                        <option>PILIH JURUSAN</option>
-                                        <option value="TKR 1" {{ request('jurusan') == 'TKR 1' ? 'selected' : '' }}>TKR 1</option>
-                                        <option value="TKR 2" {{ request('jurusan') == 'TKR 2' ? 'selected' : '' }}>TKR 2</option>
-                                        <option value="TKR 3" {{ request('jurusan') == 'TKR 3' ? 'selected' : '' }}>TKR 3</option>
-                                        <option value="TKJ 1" {{ request('jurusan') == 'TKJ 1' ? 'selected' : '' }}>TKJ 1</option>
-                                        <option value="TKJ 2" {{ request('jurusan') == 'TKJ 2' ? 'selected' : '' }}>TKJ 2</option>
-                                        <option value="TKJ 3" {{ request('jurusan') == 'TKJ 3' ? 'selected' : '' }}>TKJ 3</option>
-                                        <option value="PPLG 1" {{ request('jurusan') == 'PPLG 1' ? 'selected' : '' }}>PPLG 1</option>
-                                        <option value="PPLG 2" {{ request('jurusan') == 'PPLG 2' ? 'selected' : '' }}>PPLG 2</option>
-                                        <option value="PPLG 3" {{ request('jurusan') == 'PPLG 3' ? 'selected' : '' }}>PPLG 3</option>
-                                        <option value="MPLB 1" {{ request('jurusan') == 'MPLB 1' ? 'selected' : '' }}>MPLB 1</option>
-                                        <option value="MPLB 2" {{ request('jurusan') == 'MPLB 2' ? 'selected' : '' }}>MPLB 2</option>
-                                        <option value="DPIB 1" {{ request('jurusan') == 'DPIB 1' ? 'selected' : '' }}>DPIB 1</option>
-                                        <option value="DPIB 2" {{ request('jurusan') == 'DPIB 2' ? 'selected' : '' }}>DPIB 2</option>
-                                        <option value="AK 1" {{ request('jurusan') == 'AK 1' ? 'selected' : '' }}>AK 1</option>
-                                        <option value="AK 2" {{ request('jurusan') == 'AK 2' ? 'selected' : '' }}>AK 2</option>
-                                        <option value="SP 1" {{ request('jurusan') == 'SP 1' ? 'selected' : '' }}>SP 1</option>
-                                        <option value="SP 2" {{ request('jurusan') == 'SP 2' ? 'selected' : '' }}>SP 2 </option>
-                                        <!-- Opsi lainnya... -->
-                                    </select>
-                            
-                                    <button type="submit" class="btn btn-primary mb-2 mr-2">Cari</button>
-                            
-                                    <!-- Tambahkan tombol "Clear" -->
-                                    <a href="{{ route('listpelanggaran.index') }}" class="btn btn-danger mb-2">Clear</a>
+                            <form action="{{ route('listpelanggaran.index')}}" class="form-inline" method="GET">
+                                <div class="card-item d-flex">
+                                    <input type="search" class="form-control col-md-11 col-14 mb-14 mr-2" name="search" placeholder="Cari" value="{{ request()->input('search') }}" id="search-input">
+                                    <button type="submit" class="btn btn-primary mb-2">Cari</button>
                                 </div>
                             </form>
                             
                         </div>
 
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover table-sm">
-                                    <thead>
+                        <div class="table-responsive">
+                            <table class="table table-bordered btn-sm">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center align-middle">No</th>
+                                        <th class="text-center align-middle">Nama Pelapor</th>
+                                        <th class="text-center align-middle">Nama</th>
+                                        <th class="text-center align-middle">Nama Pelanggaran</th>
+                                        <th class="text-center align-middle">Jumlah Point</th>
+                                        <th class="text-center align-middle">Tanggal</th>
+                                        <th class="text-center align-middle">Bukti</th>
+                                        <th class="text-center align-middle">Status</th>
+                                        <th class="text-center align-middle">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($students as $no => $student)
                                         <tr>
-                                            <th style="text-align: center; vertical-align: middle;">No</th>
-                                            <th style="text-align: center; vertical-align: middle;">Nis</th>
-                                            <th style="text-align: center; vertical-align: middle;">Nama</th>
-                                            <th style="text-align: center; vertical-align: middle;">Kelas</th>
-                                            <th style="text-align: center; vertical-align: middle;">Jurusan</th>
-                                            <th style="text-align: center; vertical-align: middle;">Jenis Kelamin</th>
-                                            <th style="text-align: center; vertical-align: middle;">Point</th>
-                                            <th style="text-align: center; vertical-align: middle;">Action</th>
+                                            <td class="text-center align-middle">{{ $no + 1 }}</td>
+                                            <td class="text-center align-middle">{{ $student->pelapor->name ?? 'tidak diketahui' }}</td>
+                                            <td class="text-center align-middle">{{ $student->nama }}</td>
+                                            <td class="text-center align-middle">{{ $student->pelanggaran }}</td>
+                                            <td class="text-center align-middle">{{ $student->point }}</td>
+                                            <td class="text-center align-middle">{{ $student->tanggal }}</td>
+                                            <td class="text-center align-middle">
+                                                @if ($student->bukti)
+                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal-{{ $student->id }}">
+                                                        <img src="{{ asset('uploads/' . $student->bukti) }}" alt="Bukti {{ $student->nama }}" class="img-thumbnail" style="width: 50px; height: 50px; cursor: pointer;">
+                                                    </a>
+                                
+                                                    <!-- Bootstrap Modal -->
+                                                    <div class="modal fade" id="imageModal-{{ $student->id }}" tabindex="-1" aria-labelledby="imageModalLabel-{{ $student->id }}" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-body">
+                                                                    <img src="{{ asset('uploads/' . $student->bukti) }}" alt="Bukti {{ $student->nama }}" class="img-fluid">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                            </td>
+                                            <td class="text-center align-middle">
+                                                {{-- Kolom Status --}}
+                                                @if ($student->status == 'Diterima')
+                                                    <span class="badge" style="background: rgb(50, 202, 50); color:#000;">Laporan Diterima</span>
+                                                @elseif ($student->status == 'Laporan Tidak Valid')
+                                                    <span class="badge" style="background: rgb(255, 80, 80); color:#000;">Laporan Ditolak</span>
+                                                @else
+                                                    <span class="badge" style="background: #fffb07; color:#000;">Menunggu Verifikasi</span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <form action="{{ route('listpelanggaran.destroy', $student->id )}}" class="d-inline col-mb-2 deleteForm" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i> </button>
+                                                </form>
+                                            </td>
+
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($students as $no => $studentlist)
-                                            <tr>
-                                                <td style="text-align: center; vertical-align: middle;">{{ $no+1 }}</td>
-                                                <td style="text-align: center; vertical-align: middle;">{{ $studentlist->nis }}</td>
-                                                <td style="text-align: center; vertical-align: middle;">{{ $studentlist->nama }}</td>
-                                                <td style="text-align: center; vertical-align: middle;">{{ $studentlist->kelas }}</td>
-                                                <td style="text-align: center; vertical-align: middle;">{{ $studentlist->jurusan }}</td>
-                                                <td style="text-align: center; vertical-align: middle;">{{ $studentlist->jk }}</td>
-                                                <td style="text-align: center; vertical-align: middle;">{{ $studentlist->point }}</td>
-                                                <td style="text-align: center; vertical-align: middle;">
-                                                    <button class="btn btn-sm btn-success showBtn" data-id="{{ $studentlist->id }}"><i class="fa-solid fa-eye"></i></button>
-                                                    <button class="btn btn-sm btn-secondary"><i class="fa-duotone fa-solid fa-file-excel fa-bounce" style="--fa-primary-color: #065b24; --fa-primary-opacity: 1; --fa-secondary-color: #2f3c32; --fa-secondary-opacity: 0.3;"></i></button>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+
+                                    @endforeach
+                                </tbody>                                
+                            </table>
+                            <div class="d-flex">
+                                <div class="ml-auto">
+                                    {{ $students->links('pagination::bootstrap-4') }}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -102,6 +106,11 @@
     </div>
 
     <script>
+        document.getElementById('search-input').addEventListener('input', function() {
+      if (this.value === '') {
+        window.location.href = "{{ url('/listpelanggaran') }}"; // Kembali ke data semula
+      }
+    });
         document.addEventListener('DOMContentLoaded', function () {
             document.querySelectorAll('.showBtn').forEach(button => {
                 button.addEventListener('click', function () {

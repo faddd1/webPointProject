@@ -59,6 +59,7 @@ Route::middleware(['auth', 'userAkses:admin,guru,petugas'])->group(function () {
     Route::get('/datasiswa/search', [StudentController::class, 'search'])->name('siswa.search');
     Route::get('/student/searchSiswa', [StudentController::class, 'searchSiswa'])->name('student.searchSiswa');
     Route::get('/listpelanggaran/show/{id}', [StudentController::class, 'show'])->name('listpelanggaran.show');
+    Route::delete('/listpelanggaran/{id}}', [StudentController::class, 'listDestroy'])->name('listpelanggaran.destroy');
 
     // Laporan Routes
     Route::post('/lapor', [LaporanController::class, 'store'])->name('lapor.store');
@@ -114,6 +115,7 @@ Route::middleware(['auth', 'userAkses:admin'])->group(function () {
     Route::put('kategori/{id}', [KategoriController::class, 'update'])->name('kategori.update');
     Route::post('/kategoripelanggaran/store', [KategoriController::class, 'store'])->name('kategori.store');
     Route::get('/kategoripelanggaran/search', [KategoriController::class, 'search'])->name('kategori.search');
+
 
     // Petugas Management Routes
     Route::get('/datapetugas/tambah', [PetugasController::class, 'tambah'])->name('petugas.create');

@@ -63,7 +63,9 @@ class LaporanController extends Controller
 
     public function showlaporan()
     {
-        $reports = Laporan::where('status', 'pending')->get();
+        $reports = Laporan::where('status', 'pending')
+        ->orderBy('created_at', 'desc') 
+        ->get();
         return view('laporan.reviewlaporan', compact('reports'), ['title' => 'Review Laporan']);
     }
 
@@ -97,15 +99,23 @@ class LaporanController extends Controller
             return redirect()->route('laporan.review')->with('error', 'Laporan tidak ditemukan.');
         }
 
-        Log::info('Status sebelum: ' . $report->status);
-
+        // Ubah status laporan menjadi 'Laporan Tidak Valid'
         $report->status = 'Laporan Tidak Valid';
         $report->save();
 
-        Log::info('Status sesudah: ' . $report->status);
+        // Ambil data siswa dan pelanggaran
+        $siswa = Student::where('nis', $report->nis)->first();
+        $pelanggaran = Kategori::where('pelanggaran', $report->pelanggaran)->first();
 
-        return redirect()->route('laporan.review')->with('success', 'Laporan telah ditolak.');
+        if ($siswa && $pelanggaran) {
+            // Update data pelanggaran walaupun laporan ditolak
+            $siswa->point += $pelanggaran->point;
+            $siswa->save();
+        }
+
+        return redirect()->route('laporan.review')->with('success', 'Laporan telah ditolak dan dimasukkan ke daftar pelanggaran.');
     }
+
 
     public function show($id){
         $report = Laporan::with('siswa')->findOrFail($id);

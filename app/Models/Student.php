@@ -24,11 +24,11 @@ class Student extends Model
     ];
 
     public function user() { 
-        return $this->hasOne(User::class, 'nis', 'nis', 'name');
+        return $this->hasOne(User::class, 'nis', 'nis');
     }
 
     public function laporan(){
-        return $this->hasMany(Laporan::class, 'pelapor_id', );
+        return $this->hasMany(Laporan::class, 'pelapor_id', 'id' );
     }
 
     public function pelanggaran()

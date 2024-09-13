@@ -70,6 +70,37 @@
     </div>
   </li>
   </ul>
+  <script>
+     document.addEventListener('DOMContentLoaded', function () {
+      const logoutBtn = document.getElementById('logoutButton');
+
+      if (logoutBtn) {
+          console.log('Logout button found');
+          logoutBtn.addEventListener('click', function(event) {
+              event.preventDefault(); 
+              console.log('Logout button clicked');
+
+              Swal.fire({
+                  title: 'Keluar',
+                  text: "Apakah Anda yakin ingin keluar?",
+                  icon: 'question',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Ya, Keluar!',
+                  cancelButtonText: 'Batal'
+              }).then((result) => {
+                  if (result.isConfirmed) {
+                      console.log('Logout confirmed');
+                      window.location.href = "{{ url('/logout') }}";
+                  }
+              });
+          });
+      } else {
+          console.error('Logout button not found');
+      }
+  });
+  </script>
 </nav>
 
 <!-- SweetAlert2 Script -->
