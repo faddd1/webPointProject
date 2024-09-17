@@ -98,7 +98,7 @@
 
                     @guest
                     <li class="nav-item">
-                        <a class="btn btn-primary text-white" style="padding: 5px 15px;" href="{{ route('login') }}">Login</a>
+                        <a class="btn btn-primary text-white" style="padding: 8px 20px;" href="{{ route('login') }}">Login</a>
                     </li>
                   @endguest                
             </ul>
@@ -454,12 +454,12 @@
                     <div class="error-message"></div>
                     <div class="sent-message">Your message has been sent. Thank you!</div>
 
-                    <button type="submit">Send Message</button>
+                    <button type="submit">Kirim Pesan</button>
                     </div>
 
                 </div>
                 </form>
-            </div>
+            </div><!-- End Contact Form -->
 
             </div>
 
