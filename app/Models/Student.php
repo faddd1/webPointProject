@@ -39,6 +39,8 @@ class Student extends Model
     public function petugas() {
         return $this->hasOne(Petugas::class, 'nis', 'nis');
     }
+
+    
     
 
 }

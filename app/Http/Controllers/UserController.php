@@ -13,7 +13,7 @@ class UserController extends Controller
     public function index(){
 
         $data = User::with('siswa')->paginate(5);
-        // $currentPage = $data->currentPage();
+       
         return view ('tambahUser.tambahakun', [
             'data' => $data,
             'title' => 'Tambah Akun'
@@ -47,7 +47,7 @@ class UserController extends Controller
             'plain_password' => $request['password'],
         ]);
 
-        // return redirect('/tambah');
+       
         return redirect()->back()->with('success', 'Data berhasil ditambahkan!');
     }
 
@@ -109,7 +109,7 @@ class UserController extends Controller
     }
 
         public function listsiswa(){
-            $laporans = Laporan::with(['pelapor', 'siswa'])->paginate(5);
+            $laporans = Laporan::with(['pelapor', 'siswa'])->where('nis', auth()->user()->nis)->paginate(4);
             return view('listpelanggaran.listpelanggaransiswa', compact('laporans'), [
                 'title' => 'List Pelanggaran Siswa'
             ]);

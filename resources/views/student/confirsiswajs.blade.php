@@ -1,22 +1,14 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<!-- Scripts for handling modal actions -->
 <script>
     
     document.addEventListener('DOMContentLoaded', function () {
-    // Show modal for adding data
     document.getElementById('tambahDataBtn').addEventListener('click', function (event) {
-        event.preventDefault(); // Prevent the default link behavior
-        
-        // Fetch form langsung tanpa konfirmasi
+        event.preventDefault(); 
         fetch('/datasiswa/create')
         .then(response => response.text())
         .then(html => {
-            // Load content to modal body
             document.getElementById('modalBody').innerHTML = html;
-            // Change modal title
             document.getElementById('dataModalLabel').innerText = 'Tambah Data Siswa';
-            // Show modal
             const dataModal = new bootstrap.Modal(document.getElementById('dataModal'));
             dataModal.show();
         })
@@ -40,17 +32,12 @@
 
         document.querySelectorAll('.editBtn').forEach(button => {
             button.addEventListener('click', function () {
-                const studentId = this.getAttribute('data-id'); // Get student ID from button
-                
-                // Fetch the edit form for the specific student
+                const studentId = this.getAttribute('data-id');
                 fetch(`/datasiswa/edit/${studentId}`)
                 .then(response => response.text())
                 .then(html => {
-                    // Load the form into the modal body
                     document.getElementById('modalBody').innerHTML = html;
-                    // Set the modal title
                     document.getElementById('dataModalLabel').innerText = 'Edit Data Siswa';
-                    // Show the modal
                     const dataModal = new bootstrap.Modal(document.getElementById('dataModal'));
                     dataModal.show();
                 })
@@ -58,13 +45,32 @@
             });
         });
         
-        // Alert for "Delete" button
         document.querySelectorAll('.deleteForm').forEach(form => {
             form.addEventListener('submit', function(event) {
                 event.preventDefault();
                 Swal.fire({
                     title: 'Hapus Data',
                     text: "Apakah Anda yakin ingin menghapus data ini?",
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, Hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+
+        document.querySelectorAll('.deletePoint').forEach(form => {
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                Swal.fire({
+                    title: 'Hapus Point',
+                    text: "Apakah Anda yakin ingin menghapus seluruh point siswa??",
                     icon: 'question',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',

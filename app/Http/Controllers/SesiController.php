@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 class SesiController extends Controller
 {
     public function index(){
-        // Menampilkan halaman login
+       
         return view('login.login');
     }
 
@@ -28,7 +28,7 @@ class SesiController extends Controller
         if(Auth::attempt($infoLogin)){
             $role = Auth::user()->role;
 
-            // Redirect sesuai role
+           
             switch($role) {
                 case 'admin':
                     return redirect('dashboard/admin')->with('success', 'Anda Berhasil Login ke Admin');

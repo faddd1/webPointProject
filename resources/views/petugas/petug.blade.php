@@ -28,7 +28,7 @@
                             </form>
                         </div>
   
-                        <!-- /.card-header -->
+                        
                         <div class="card-body">
                           <div class="table-responsive">
                               <table class="table table-hover table-bordered table-sm">
@@ -82,138 +82,62 @@
                                 </div>
                             </div>
                           </div>
-                        </div>
-                        <!-- /.card-body -->
+                        </div> 
                     </div>
-                    <!-- /.card -->
                 </div>
             </div>
         </div>
     </div>
 
 
-    <!-- Modal for Add/Edit -->
+
     <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="dataModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="dataModalLabel">Tambah Data Petugas</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span> <!-- Or use an icon -->
+                        <span aria-hidden="true">&times;</span> 
                     </button>
                     
                 </div>
                 <div class="modal-body" id="modalBody">
-                    <!-- Content will be loaded here via JavaScript -->
                 </div>
             </div>
         </div> 
     </div>
 
 
-    <!-- SweetAlert and JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
-      <!-- Scripts for handling modal actions -->
      <script>
        document.getElementById('search-input').addEventListener('input', function() {
          if (this.value === '') {
-           window.location.href = "{{ url('/datapetugas') }}"; // Kembali ke data semula
+           window.location.href = "{{ url('/datapetugas') }}"; 
          }
        });
    
         document.addEventListener('DOMContentLoaded', function () {
-            // Show modal for adding data
-            // document.getElementById('tambahDataBtn').addEventListener('click', function () {
-            // event.preventDefault(); // Prevent the default link behavior
-            // Swal.fire({
-            //     title: 'Tambah Data',
-            //     text: "Apakah Anda yakin ingin menambah data baru?",
-            //     icon: 'question',
-            //     showCancelButton: true,
-            //     confirmButtonColor: '#3085d6',
-            //     cancelButtonColor: '#d33',
-            //     confirmButtonText: 'Ya, Tambah!',
-            //     cancelButtonText: 'Batal'
-            // }).then((result) => {
-            //     if (result.isConfirmed) {
-            //     fetch('/datapetugas/tambah') // Adjust to the correct route that returns the form
-            //     .then(response => response.text())
-            //     .then(html => {
-            //         document.getElementById('modalBody').innerHTML = html; // Load create form
-            //         document.getElementById('dataModalLabel').innerText = 'Tambah Data Petugas';
-            //         new bootstrap.Modal(document.getElementById('dataModal')).show();
-            //     })
-            //     .catch(error => console.error('Error loading create form:', error));
-            //     }
-            //     });
 
-            // });
-
-              // Show modal for adding data
             document.getElementById('tambahDataBtn').addEventListener('click', function (event) {
-                event.preventDefault(); // Prevent the default link behavior
-                
-                // Fetch form langsung tanpa konfirmasi
+                event.preventDefault();
                 fetch('/datapetugas/tambah')
                 .then(response => response.text())
                 .then(html => {
-                    // Load content to modal body
                     document.getElementById('modalBody').innerHTML = html;
-                    // Change modal title
                     document.getElementById('dataModalLabel').innerText = 'Tambah Data Petugas';
-                    // Show modal
                     const dataModal = new bootstrap.Modal(document.getElementById('dataModal'));
                     dataModal.show();
                 })
                 .catch(error => console.error('Error loading create form:', error));
             });
-
-
-
-
-            // Show modal for editing data
-            // document.querySelectorAll('.editBtn').forEach(button => {
-            //     button.addEventListener('click', function () {
-            //         const petugasId = this.getAttribute('data-id');
-            //         Swal.fire({
-            //             title: 'Edit Data',
-            //             text: "Apakah Anda yakin ingin mengedit data ini?",
-            //             icon: 'info',
-            //             showCancelButton: true,
-            //             confirmButtonColor: '#3085d6',
-            //             cancelButtonColor: '#d33',
-            //             confirmButtonText: 'Ya, Edit!',
-            //             cancelButtonText: 'Batal'
-            //         }).then((result) => {
-            //             if (result.isConfirmed) {
-            //                 fetch(`/datapetugas/edit/${petugasId}`) // Fetch the edit form for the specific student
-            //                 .then(response => response.text())
-            //                 .then(html => {
-            //                     document.getElementById('modalBody').innerHTML = html; // Load edit form
-            //                     document.getElementById('dataModalLabel').innerText = 'Edit Data Petugas';
-            //                     new bootstrap.Modal(document.getElementById('dataModal')).show();
-            //                 })
-            //                 .catch(error => console.error('Error loading edit form:', error));
-            //                 }
-            //         });
-                    
-            //     });
-            // });
-
             document.querySelectorAll('.editBtn').forEach(button => {
             button.addEventListener('click', function () {
-                const petugasId = this.getAttribute('data-id'); // Get student ID from button
-                
-                // Fetch the edit form for the specific student
+                const petugasId = this.getAttribute('data-id'); 
                 fetch(`/datapetugas/edit/${petugasId}`)
                 .then(response => response.text())
                 .then(html => {
-                    // Load the form into the modal body
                     document.getElementById('modalBody').innerHTML = html;
-                    // Set the modal title
                     document.getElementById('dataModalLabel').innerText = 'Edit Data Petugas';
-                    // Show the modal
                     const dataModal = new bootstrap.Modal(document.getElementById('dataModal'));
                     dataModal.show();
                 })
@@ -221,11 +145,9 @@
                 });
             });
 
-
-                 // Alert for "Delete" button
                 document.querySelectorAll('.deleteForm').forEach(form => {
                     form.addEventListener('submit', function(event) {
-                        event.preventDefault(); // Prevent the form from submitting
+                        event.preventDefault();
                         Swal.fire({
                             title: 'Hapus Data',
                             text: "Apakah Anda yakin ingin menghapus data ini?",
@@ -237,7 +159,7 @@
                             cancelButtonText: 'Batal'
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                form.submit(); // Submit the form
+                                form.submit(); 
                             }
                         });
                     });

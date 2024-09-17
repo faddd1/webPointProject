@@ -45,7 +45,7 @@
                                                         <img src="{{ asset('uploads/' . $student->bukti) }}" alt="Bukti {{ $student->nama }}" class="img-thumbnail" style="width: 50px; height: 50px; cursor: pointer;">
                                                     </a>
                                 
-                                                    <!-- Bootstrap Modal -->
+                                                   
                                                     <div class="modal fade" id="imageModal-{{ $student->id }}" tabindex="-1" aria-labelledby="imageModalLabel-{{ $student->id }}" aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered">
                                                             <div class="modal-content">
@@ -58,7 +58,7 @@
                                                 @endif
                                             </td>
                                             <td class="text-center align-middle">
-                                                {{-- Kolom Status --}}
+                                               
                                                 @if ($student->status == 'Diterima')
                                                     <span class="badge" style="background: rgb(50, 202, 50); color:#000;">Laporan Diterima</span>
                                                 @elseif ($student->status == 'Laporan Tidak Valid')
@@ -92,7 +92,7 @@
         </div>
     </div>
 
-    <!-- Modal untuk menampilkan data siswa -->
+   
     <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="dataModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -108,7 +108,7 @@
     <script>
         document.getElementById('search-input').addEventListener('input', function() {
       if (this.value === '') {
-        window.location.href = "{{ url('/listpelanggaran') }}"; // Kembali ke data semula
+        window.location.href = "{{ url('/listpelanggaran') }}";
       }
     });
         document.addEventListener('DOMContentLoaded', function () {
@@ -133,7 +133,7 @@ $(document).ready(function() {
     $('.btn-show').on('click', function() {
         var id = $(this).data('id');
         $.ajax({
-            url: '/pelanggaran/' + id, // Sesuaikan dengan rute yang akan digunakan untuk mengambil data
+            url: '/pelanggaran/' + id, 
             method: 'GET',
             success: function(response) {
                 $('#dataDetail').html(response);
@@ -148,7 +148,7 @@ $(document).ready(function() {
 <script>
     document.getElementById('search-input').addEventListener('input', function() {
       if (this.value === '') {
-        window.location.href = "{{ url('/listpelanggaran') }}"; // Kembali ke data semula
+        window.location.href = "{{ url('/listpelanggaran') }}"; 
       }
     });
   </script>

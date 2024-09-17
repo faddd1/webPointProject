@@ -142,4 +142,3 @@ class LaporanController extends Controller
         return view('components.navbar', compact('notifications', 'count'));
     }
 }
-

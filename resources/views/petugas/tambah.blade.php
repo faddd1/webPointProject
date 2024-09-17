@@ -1,4 +1,4 @@
-<!-- create.blade.php -->
+
 <form action="{{ route('petugas.submit') }}" method="POST"  id="uploadForm">
     @csrf
     <div class="form-group">

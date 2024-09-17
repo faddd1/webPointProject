@@ -70,6 +70,7 @@
                 @endif
             </div>
         </div>
+    </div>
 
     <div class="card">
         <div class="card-body">
@@ -99,7 +100,7 @@
                                             <img src="{{ asset('uploads/' . $laporan->bukti) }}" alt="Bukti {{ $laporan->nama }}" class="img-thumbnail" style="width: 50px; height: 50px; cursor: pointer;">
                                         </a>
 
-                                        <!-- Modal -->
+                                       
                                         <div class="modal fade" id="imageModal-{{ $laporan->id }}" tabindex="-1" aria-labelledby="imageModalLabel-{{ $laporan->id }}" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">

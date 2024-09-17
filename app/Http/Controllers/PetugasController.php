@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Petugas;
 use Illuminate\Http\Request;
 
@@ -54,6 +55,10 @@ class PetugasController extends Controller
     }
     public function delete($id){
         $petugas = Petugas::find($id);
+        $user = User::where('nis', $petugas->nis)->first();
+        if ($user) {
+            $user->delete();
+        }
         $petugas->delete();
 
         return redirect()->route('petugas.tampil')->with('success', 'Data berhasil dihapus!');
@@ -63,7 +68,6 @@ class PetugasController extends Controller
     {
         $searchTerm = $request->input('search');
         
-        // Mencari kategori berdasarkan nama pelanggaran, point, atau level
         $petugas = Petugas::where('nis', 'LIKE', "%{$searchTerm}%")
                     ->orWhere('namaP', 'LIKE', "%{$searchTerm}")
                     ->orWhere('kelas', 'LIKE', "%{$searchTerm}%")

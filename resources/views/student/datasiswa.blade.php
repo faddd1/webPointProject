@@ -6,20 +6,42 @@
             <div class="row">
                 <div class="col-12">
                     @if (session('success'))
-                    <script>
-                      Swal.fire({
-                        title: "SUCCESS",
-                        text: "{{ session('success') }}",
-                        icon: "success"
-                        });
-                    </script>
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function() {
+                                Swal.fire({
+                                    title: "SUCCESS",
+                                    text: "{{ session('success') }}",
+                                    icon: "success"
+                                });
+                            });
+                        </script>
                     @endif
+                    
+                    @if (session('success'))
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function() {
+                                Swal.fire({
+                                    title: "ERROR",
+                                    text: "{{ session('success') }}",
+                                    icon: "error"
+                                });
+                            });
+                        </script>
+                    @endif
+                    
                     <div class="card">
                         <div class="card-header">
                             @if (auth()->user()->role == 'admin')
                             <div class="card-tools">
                                 <button id="tambahDataBtn" class="btn btn-sm btn-primary" style="margin-top: 10px;"><i class="fa-solid fa-circle-plus"></i> Add</button>
+                                <form action="{{ route('hapus.point') }}" class="d-inline" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm mt-2"><i class="fa-solid fa-trash"></i></button>
+                                </form>
                             </div>
+
+                           
                             @endif
                        
                         <form method="GET" action="{{ route('student.searchSiswa') }}">
@@ -51,18 +73,18 @@
                                     <option value="AK 2" {{ request('jurusan') == 'AK 2' ? 'selected' : '' }}>AK 2</option>
                                     <option value="SP 1" {{ request('jurusan') == 'SP 1' ? 'selected' : '' }}>SP 1</option>
                                     <option value="SP 2" {{ request('jurusan') == 'SP 2' ? 'selected' : '' }}>SP 2 </option>
-                                    <!-- Opsi lainnya... -->
+                                 
                                 </select>
                         
                                 <button type="submit" class="btn btn-primary mb-2 mr-2">Cari</button>
                         
-                                <!-- Tambahkan tombol "Clear" -->
+                              
                                 <a href="{{ route('student.searchSiswa') }}" class="btn btn-danger mb-2">Clear</a>
                             </div>
                         </form>
                     </div>
 
-                        <!-- /.card-header -->
+                       
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-hover table-bordered table-sm" id="studentTable">
@@ -74,9 +96,7 @@
                                             <th style="text-align: center; vertical-align: middle;">Kelas</th>
                                             <th class="col-2" style="text-align: center; vertical-align: middle;">Jurusan</th>
                                             <th style="text-align: center; vertical-align: middle;">Jenis Kelamin</th>
-                                            {{-- @if (auth()->check() && (auth()->user()->role == 'admin')) --}}
                                             <th style="text-align: center; vertical-align: middle;">Action</th>
-                                            {{-- @endif --}}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -117,15 +137,15 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- /.card-body -->
+                       
                     </div>
-                    <!-- /.card -->
+                  
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal for Add/Edit -->
+   
     <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="dataModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -134,7 +154,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="modalBody">
-                    <!-- Content will be loaded here via JavaScript -->
+                  
                 </div>
             </div>
         </div>

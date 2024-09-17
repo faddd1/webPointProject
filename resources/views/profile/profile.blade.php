@@ -18,14 +18,13 @@
                         </div>
                         <div class="card-body">
                             <ul class="list-group list-group-flush">
-                                <!-- Cek jika $data dan $data->user ada -->
                                 @if(auth()->check() && (auth()->user()->role == 'admin'))
                                     <li class="list-group-item"><strong>Nis:</strong> {{ Auth::user()->nis }}</li>
                                     <li class="list-group-item"><strong>Nama:</strong> {{ Auth::user()->name ?? 'tidak diketahui' }}</li>
                                 @endif
 
                                 @if(auth()->check() && (auth()->user()->role == 'petugas'))
-                                {{-- <li class="list-group-item"><strong>Nis:</strong> {{ Auth::user()->petugas->nis ?? 'tidak diketahui' }}</li> --}}
+
                                 <li class="list-group-item"><strong>Nama:</strong> {{ Auth::user()->nis ?? 'tidak diketahui' }}</li>
                                 <li class="list-group-item"><strong>Kelas:</strong>  {{ Auth::user()->petugas->kelas ?? 'tidak diketahui' }} </li>
                                 <li class="list-group-item"><strong>Jurusan:</strong> {{ Auth::user()->petugas->jurusan ?? 'tidak diketahui' }} </li>

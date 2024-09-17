@@ -17,20 +17,15 @@
             <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
     
             <a href="#" class="logo d-flex align-items-center">
-                <!-- Uncomment the line below if you also wish to use an image logo -->
                 <div class="mb-4">
                     <img src="assets/img/lala.png" alt="">
                 </div>
                 <a href="{{ url('/') }}" class="btn btn-outline-primary btn-sm"><i class="fas fa-arrow-left"></i> Kembali</a>
-                {{-- <h1 class="sitename">Bootslander</h1> --}}
+               
             </a>
         </div>
     </header>
-        {{-- <nav class="navbar">
-            <div class="navbar-logo">
-                <img src="aseets/img/lala.png"  alt=""> 
-            </div>       
-        </nav> --}}
+       
         <div class="login-container mb-4">
             <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-center">
     
@@ -85,53 +80,3 @@
     </body>
 </html>
 
-
-
-{{-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-
-</head>
-<body>
-    <div class="container d-flex justify-content-center align-items-center vh-100">
-        <div class="login-form">
-            <h2 class="text-center">Login</h2>
-            @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-            <form action="" method="POST">
-                @csrf
-                <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" value="{{ old('username') }}" name="username">
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" name="password">
-                </div>
-                <button type="submit" class="btn btn-primary w-100">Login</button>
-            </form>
-        </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-    const loginForm = document.querySelector('.login-form');
-    loginForm.classList.add('animate__animated', 'animate__fadeIn');
-    });
-
-    </script>
-</body>
-</html> --}}

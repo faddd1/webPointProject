@@ -28,7 +28,6 @@
                         </form>
                       </div>
 
-                      <!-- /.card-header -->
                       <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-hover table-bordered table-sm">
@@ -79,27 +78,23 @@
                             </div>
                         </div>
                       </div>
-                      <!-- /.card-body -->
                   </div>
-                  <!-- /.card -->
               </div>
           </div>
       </div>
   </div>
 
-  <!-- Modal for Add/Edit -->
   <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="dataModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="dataModalLabel">Tambah Data Siswa</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span> <!-- Or use an icon -->
+                    <span aria-hidden="true">&times;</span> 
                 </button>
                 
             </div>
             <div class="modal-body" id="modalBody">
-                <!-- Content will be loaded here via JavaScript -->
             </div>
         </div>
     </div>
@@ -107,11 +102,11 @@
 @include('teacher.confirgurujs')
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-   <!-- Scripts for handling modal actions -->
+ 
   <script>
     document.getElementById('search-input').addEventListener('input', function() {
       if (this.value === '') {
-        window.location.href = "{{ url('/teacher') }}"; // Kembali ke data semula
+        window.location.href = "{{ url('/teacher') }}";
       }
     });
 </script>

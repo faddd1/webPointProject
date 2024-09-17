@@ -1,12 +1,11 @@
 <style>
     .table-responsive {
         overflow-x: auto;
-        -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
-        width: 100%;
+        -webkit-overflow-scrolling: touch;
     }
 
     table {
-        min-width: 600px; /* Adjust this based on your content */
+        min-width: 600px; 
     }
 
 </style>
@@ -28,7 +27,7 @@
             html: generateSearchHtml(type),
             showCancelButton: true,
             confirmButtonText: 'Cari',
-            showLoaderOnConfirm: false, // Disable automatic loader
+            showLoaderOnConfirm: false, 
             preConfirm: () => {
                 const searchValue = document.getElementById('search-input').value;
                 const jurusan = document.getElementById('jurusan-select') ? document.getElementById('jurusan-select').value : '';
@@ -39,7 +38,7 @@
                     return false;
                 }
 
-                Swal.showLoading(); // Show loading manually
+                Swal.showLoading(); 
                 return fetch(`${searchUrl}?query=${searchValue}&jurusan=${jurusan}&kelas=${kelas}`, {
                     headers: {
                         'Accept': 'application/json'
@@ -49,21 +48,21 @@
                     if (!response.ok) {
                         throw new Error('Jaringan bermasalah atau URL tidak ditemukan');
                     }
-                    return response.json(); // Parse as JSON
+                    return response.json(); 
                 })
                 .then(data => {
                     if (data.length === 0) {
                         Swal.showValidationMessage(`Tidak ada ${placeholderText} yang ditemukan`);
                         return false;
                     }
-                    return { htmlContent: generateTableHtml(type, data) }; // Generate HTML content
+                    return { htmlContent: generateTableHtml(type, data) }; 
                 })
                 .catch(error => {
                     Swal.showValidationMessage(`Request gagal: ${error.message}`);
                     return false;
                 })
                 .finally(() => {
-                    Swal.hideLoading(); // Hide loading after request completes
+                    Swal.hideLoading();
                 });
             },
             allowOutsideClick: () => !Swal.isLoading()
@@ -71,12 +70,12 @@
             if (result.isConfirmed && result.value.htmlContent) {
                 Swal.fire({
                     title: `Pilih ${type === 'siswa' ? 'Siswa' : 'Pelanggaran'}`,
-                    html: result.value.htmlContent, // Show the table HTML
+                    html: result.value.htmlContent, 
                     showConfirmButton: false,
                     width: '80%',
                 });
 
-                // Add event listener for confirmation button
+              
                 document.getElementById('confirm-selection-btn').addEventListener('click', function() {
                     let selectedCheckboxes = document.querySelectorAll(type === 'siswa' ? '.pilih-siswa-checkbox:checked' : '.pilih-pelanggaran-checkbox:checked');
                     if (selectedCheckboxes.length > 0) {
@@ -105,7 +104,7 @@
         });
     }
 
-    // Function to generate the HTML for the search dialog
+   
     function generateSearchHtml(type) {
         let html = `
             <div class="form-group">
@@ -153,7 +152,7 @@
         return html;
     }
 
-    // Function to generate table HTML based on type and data
+
     function generateTableHtml(type, dataItems) {
         let tableHtml = '';
 
@@ -225,7 +224,6 @@
 </script>
 
 
- <!-- JavaScript for Searching and Populating Data -->
  <script src="{{ asset('https://code.jquery.com/jquery-3.6.0.min.js') }}"></script>
  <script src="{{ asset('https://cdn.jsdelivr.net/npm/sweetalert2@11') }}"></script>
- <script src="{{ asset('https://kit.fontawesome.com/a076d05399.js') }}" crossorigin="anonymous"></script>
+ 

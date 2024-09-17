@@ -12,18 +12,8 @@ use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 // --------------------- PAGE ROUTES ------------------------ //
-
-// --------------------- AUTHENTICATION ---------------------- //
-
-// Guest Middleware: Hanya bisa diakses oleh pengguna yang belum login', [HomeController::class, 'home']);
-
-Route::get('/', [HomeController::class, 'homepage'])->name('home');
-Route::middleware(['auth'])->group(function () {
    
-    Route::get('home', [HomeController::class, 'home'])->name('home');
-});
-
-
+Route::get('/', [HomeController::class, 'home'])->name('home');
 
 // Rute Autentikasi
 Route::get('/login', [SesiController::class, 'index'])->name('login');
@@ -48,23 +38,17 @@ Route::group(['middleware' => ['auth', 'userAkses:admin,guru,petugas,siswa']], f
 Route::middleware(['auth', 'userAkses:admin,guru,petugas'])->group(function () {
     // Kategori Pelanggaran Routes
     Route::get('/kategoripelanggaran', [KategoriController::class, 'index']);
-    // Route::get('/kategoripelanggaran/search', [KategoriController::class, 'searchkategori'])->name('kategori.search');
     Route::get('/kategoripelanggaran/search/kategori', [KategoriController::class, 'searchkategori'])->name('pelanggaran.search');
-
-
-
-
+    Route::get('/kategoripelanggaran/search', [KategoriController::class, 'search']);
     // List Pelanggaran Routes
     Route::get('/listpelanggaran', [StudentController::class, 'index'])->name('listpelanggaran.index');
     Route::get('/datasiswa/search', [StudentController::class, 'search'])->name('siswa.search');
     Route::get('/student/searchSiswa', [StudentController::class, 'searchSiswa'])->name('student.searchSiswa');
     Route::get('/listpelanggaran/show/{id}', [StudentController::class, 'show'])->name('listpelanggaran.show');
     Route::delete('/listpelanggaran/{id}}', [StudentController::class, 'listDestroy'])->name('listpelanggaran.destroy');
-
     // Laporan Routes
     Route::post('/lapor', [LaporanController::class, 'store'])->name('lapor.store');
     Route::get('/laporan', [LaporanController::class, 'index']);
-
     // Datapetugas Routes
     Route::get('/datapetugas', [PetugasController::class, 'tampil'])->name('petugas.tampil');
 });
@@ -73,7 +57,6 @@ Route::middleware(['auth', 'userAkses:admin,guru'])->group(function () {
     // Teacher Routes
     Route::get('/teacher', [TeacherController::class, 'index'])->name('dataguru');
     Route::get('/teacher/search', [TeacherController::class, 'search'])->name('teacher.search');
-
     // Student Data Routes
     Route::get('/datasiswa', [StudentController::class, 'indexdata'])->name('datasiswa');
     Route::get('/datasiswa/show/{id}', [StudentController::class, 'showsiswa'])->name('datasiswa.show');
@@ -88,29 +71,25 @@ Route::middleware(['auth', 'userAkses:admin'])->group(function () {
     Route::post('tambah/store', [UserController::class, 'store'])->name('tambah.store');
     Route::put('tambah/update{id}', [UserController::class, 'update'])->name('tambah.update');
     Route::get('tambah/destroy{id}', [UserController::class, 'destroy'])->name('tambah.destroy');
-
     // Laporan Review Routes
     Route::get('/dashboard', [LaporanController::class, 'getNotifications'])->name('dashboard');
     Route::get('/laporan/review', [LaporanController::class, 'showlaporan'])->name('laporan.review');
     Route::put('/laporan/approve/{id}', [LaporanController::class, 'terimalaporan'])->name('laporan.approve');
     Route::post('/laporan/not-approve/{id}', [LaporanController::class, 'tolaklaporan'])->name('laporan.notApprove');
     Route::get('/laporan/show/{id}', [LaporanController::class, 'show'])->name('laporan.show');
-
     // Teacher Management Routes
     Route::get('/teacher/create', [TeacherController::class, 'create'])->name('create.guru');
     Route::post('/teacher/store', [TeacherController::class, 'store'])->name('store.guru');
     Route::get('/teacher/edit/{id}', [TeacherController::class, 'edit'])->name('edit.guru');
     Route::put('/teacher/update/{id}', [TeacherController::class, 'update'])->name('update.guru');
     Route::delete('/teacher/destroy/{id}', [TeacherController::class, 'destroy'])->name('destroy.guru');
-
     // Student Management Routes
     Route::get('/datasiswa/create', [StudentController::class, 'create'])->name('datasiswa.create');
     Route::post('/datasiswa/store', [StudentController::class, 'store'])->name('datasiswa.store');
     Route::get('/datasiswa/edit/{id}', [StudentController::class, 'edit'])->name('datasiswa.edit');
     Route::put('/datasiswa/update/{id}', [StudentController::class, 'update'])->name('datasiswa.update');
     Route::delete('/datasiswa/destroy/{id}', [StudentController::class, 'destroy'])->name('datasiswa.destroy');
-    
-
+    Route::delete('/datasiswa/hapus/point', [StudentController::class, 'hapusPoint'])->name('hapus.point');
     // Kategori Pelanggaran Management Routes
     Route::get('/kategoripelanggaran/create', [KategoriController::class, 'create']);
     Route::get('kategori/edit/{id}', [KategoriController::class, 'edit'])->name('kategori.edit');
@@ -118,8 +97,6 @@ Route::middleware(['auth', 'userAkses:admin'])->group(function () {
     Route::put('kategori/{id}', [KategoriController::class, 'update'])->name('kategori.update');
     Route::post('/kategoripelanggaran/store', [KategoriController::class, 'store'])->name('kategori.store');
     Route::get('/kategoripelanggaran/search', [KategoriController::class, 'search'])->name('kategori.search');
-
-
     // Petugas Management Routes
     Route::get('/datapetugas/tambah', [PetugasController::class, 'tambah'])->name('petugas.create');
     Route::post('/datapetugas/submit', [PetugasController::class, 'submit'])->name('petugas.submit');

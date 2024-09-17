@@ -84,20 +84,17 @@
             </div>
         </div>
     </div>
-
-<!--add dan edit-->
     <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="dataModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header text-center">
                     <h5 class="modal-title" id="dataModalLabel"></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span> <!-- Or use an icon -->
+                        <span aria-hidden="true">&times;</span> 
                     </button>
                     
                 </div>
                 <div class="modal-body" id="modalBody">
-                    <!-- Content will be loaded here via JavaScript -->
                 </div>
             </div>
         </div>

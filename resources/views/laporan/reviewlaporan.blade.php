@@ -35,7 +35,7 @@
                             @if($reports->isEmpty())
                                 <p class="text-center">Tidak ada laporan yang menunggu verifikasi.</p>
                             @else
-                                <!-- Membuat tabel responsif -->
+                             
                                 <div class="table-responsive">
                                     <table class="table table-bordered btn-sm">
                                         <thead>
@@ -65,7 +65,7 @@
                                                                 <img src="{{ asset('uploads/' . $report->bukti) }}" alt="Bukti {{ $report->nama }}" class="img-thumbnail" style="width: 50px; height: 50px; cursor: pointer;">
                                                             </a>
 
-                                                            <!-- Bootstrap Modal -->
+                                                           
                                                             <div class="modal fade" id="imageModal-{{ $report->id }}" tabindex="-1" aria-labelledby="imageModalLabel-{{ $report->id }}" aria-hidden="true">
                                                                 <div class="modal-dialog modal-dialog-centered">
                                                                     <div class="modal-content">
@@ -96,7 +96,7 @@
                                             @endforeach
                                         </tbody>
                                     </table>
-                                </div> <!-- Akhir dari div.table-responsive -->
+                                </div>
                             @endif
                         </div>
                     </div>
@@ -105,7 +105,7 @@
         </div>
     </div>
 
-    {{-- Show Laporan --}}
+  
     
     <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="dataModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -113,12 +113,12 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="dataModalLabel">Tambah Data Siswa</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span> <!-- Or use an icon -->
+                        <span aria-hidden="true">&times;</span>
                     </button>
                     
                 </div>
                 <div class="modal-body" id="modalBody">
-                    <!-- Content will be loaded here via JavaScript -->
+                   
                 </div>
             </div>
         </div>
@@ -130,10 +130,10 @@
         document.querySelectorAll('.showBtn').forEach(button => {
                 button.addEventListener('click', function () {
                     const reportId = this.getAttribute('data-id');
-                    fetch(`/laporan/show/${reportId}`) // Fetch the edit form for the specific student
+                    fetch(`/laporan/show/${reportId}`) 
                         .then(response => response.text())
                         .then(html => {
-                            document.getElementById('modalBody').innerHTML = html; // Load edit form
+                            document.getElementById('modalBody').innerHTML = html; 
                             document.getElementById('dataModalLabel').innerText = 'Detail Data Siswa';
                             new bootstrap.Modal(document.getElementById('dataModal')).show();
                         })
@@ -143,7 +143,7 @@
 
             document.querySelectorAll('.deleteForm').forEach(form => {
                     form.addEventListener('submit', function(event) {
-                        event.preventDefault(); // Prevent the form from submitting
+                        event.preventDefault();
                         Swal.fire({
                             title: 'Hapus Data',
                             text: "Apakah Anda yakin ingin menghapus data ini?",
@@ -155,13 +155,13 @@
                             cancelButtonText: 'Batal'
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                form.submit(); // Submit the form
+                                form.submit(); 
                             }
                         });
                     });
                 });
         });
     </script>
-    <!-- Bootstrap JS and Popper.js -->
+   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </x-layout>

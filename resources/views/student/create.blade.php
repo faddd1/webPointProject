@@ -1,4 +1,4 @@
-<!-- create.blade.php -->
+
 <form action="{{ route('datasiswa.store') }}" method="POST"  id="uploadForm">
     @csrf
     <div class="form-group">

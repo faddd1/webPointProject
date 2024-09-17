@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 class TeacherController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+  
     public function index()
 
     {
@@ -20,9 +19,7 @@ class TeacherController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+   
     public function create()
     {
         return view ('teacher.create', [
@@ -30,9 +27,7 @@ class TeacherController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+   
     public function store(Request $request)
     {
         $request -> validate([
@@ -55,17 +50,13 @@ class TeacherController extends Controller
         
     }
 
-    /**
-     * Display the specified resource.
-     */
+   
     public function show(Teacher $teacher)
     {
-        //
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+   
     public function edit(Teacher $teacher, $id)
     {
         $teacher = Teacher::findOrFail($id);
@@ -74,9 +65,7 @@ class TeacherController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+   
     public function update(Request $request, Teacher $teacher , $id)
     {
         $request -> validate([
@@ -98,13 +87,20 @@ class TeacherController extends Controller
         return redirect('teacher')->with('success', 'Data berhasil diubah!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+   
     public function destroy(Teacher $teacher, $id)
     {
         $teacher = Teacher::findOrFail($id);
+
+        $user = User::where('nis', $teacher->nis)->first();
+
+        if ($user) {
+            $user->delete();
+        }
+
         $teacher->delete();
+
+
         return redirect('teacher')->with('success', 'Data berhasil dihapus!');
 
     } 
@@ -113,7 +109,7 @@ class TeacherController extends Controller
     {
         $searchTerm = $request->input('search');
         
-        // Mencari kategori berdasarkan nama pelanggaran, point, atau level
+       
         $teacher = Teacher::where('nis', 'LIKE', "%{$searchTerm}%")
                     ->orWhere('namaguru', 'LIKE', "%{$searchTerm}")
                     ->orWhere('jabatan', 'LIKE', "%{$searchTerm}%")

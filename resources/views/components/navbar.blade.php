@@ -1,14 +1,14 @@
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-  <!-- Left navbar links -->
+ 
   <ul class="navbar-nav">
       <li class="nav-item">
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
   </ul>
 
-  <!-- Right navbar links -->
+ 
   <ul class="navbar-nav ml-auto">
-      <!-- Notifications Dropdown Menu -->
+     
     @if (auth()->user()->role == 'admin')
     <li class="nav-item dropdown">
       <a class="nav-link" data-toggle="dropdown" href="#">
@@ -32,12 +32,12 @@
     @php
         $nis = Auth::user()->nis;
         
-        // Ambil laporan pelanggaran dalam 24 jam terakhir
+       
         $notifications = \App\Models\Laporan::where('nis', $nis)
-                                // ->where('created_at', '>=', now()->subDay())                
+                
                                 ->get();
 
-        // Hitung jumlah notifikasi
+       
         $count = $notifications->count();
     @endphp
 
@@ -62,7 +62,7 @@
 
   <li class="nav-item dropdown">
     <a class="nav-link" data-toggle="dropdown" href="#" role="button">
-        <i class="fa-solid fa-user"></i>  {{ Auth::user()->name }}
+        <i class="fa-solid fa-user"></i>  {{ Auth::user()->name ?? 'Tidak diketahui' }}
     </a>
     <div class="dropdown-menu dropdown-menu-right">
         <a href="/profile" class="dropdown-item">Profile</a>
@@ -103,7 +103,7 @@
   </script>
 </nav>
 
-<!-- SweetAlert2 Script -->
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>

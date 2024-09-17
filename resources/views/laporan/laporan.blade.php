@@ -103,38 +103,6 @@
             </div>
         </div>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-
-            document.getElementById('.laporForm').addEventListener('click', function () {
-            event.preventDefault(); // Prevent the default link behavior
-            Swal.fire({
-                title: 'Tambah Data',
-                text: "Apakah Anda yakin ingin menambah data baru?",
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Ya, Tambah!',
-                cancelButtonText: 'Batal'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                fetch('/laporan') // Adjust to the correct route that returns the form
-                .then(response=> response.text())
-                .then(html => {
-                    document.getElementById('modalBody').innerHTML = html; // Load create form
-                    document.getElementById('dataModalLabel').innerText = 'Tambah Data Siswa';
-                    new bootstrap.Modal(document.getElementById('dataModal')).show();
-                })
-                .catch(error => console.error('Error loading create form:', error));
-                }
-            });
-
-            });
-
-        });
-
-    </script>
     @include('laporan.confirjs')
 </x-layout>
 
