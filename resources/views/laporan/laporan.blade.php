@@ -1,7 +1,7 @@
 <x-layout>
     <x-slot:title>{{ $title }}</x-slot:title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <div class="container mt-3">
+    <div class="container">
         @if (session('success'))
             <script>
                 const Toast = Swal.mixin({
@@ -41,7 +41,7 @@
         @endif
         <div class="card shadow-lg border-0">
            
-            <div class="card-header bg-gradient-primary text-white d-flex justify-content-between align-items-center">
+            <div class="card-header text-white d-flex justify-content-between align-items-center" style="background-color: #4D869C;">
                
                 <div>
                     <button class="btn btn-outline-light me-2" onclick="showSearchAlert('siswa')">
@@ -96,8 +96,8 @@
                         <label for="tanggal" class="form-label">Tanggal :</label>
                         <input type="date" id="tanggal-input" name="tanggal" class="form-control">
                     </div>
-                    <button type="submit" class="btn btn-primary w-100 laporForm">
-                        <i class="fas fa-paper-plane"></i> Selesai
+                    <button type="submit" class="btn w-100 laporForm" style="background-color: #4D869C;">
+                        <i class="fas fa-paper-plane" style="color: #fff;"></i> <span style="color: #fff;">Selesai</span>
                     </button>
                 </form>
             </div>

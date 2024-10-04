@@ -55,7 +55,6 @@
                 <li><a href="#hero" class="active">Beranda</a></li>
                 <li><a href="#about">Tentang</a></li>
                 @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'  || auth()->user()->role == 'siswa'  || auth()->user()->role == 'petugas'))
-                    <li><a href="#gallery">Galeri</a></li>
                     <li><a href="#team">Tim</a></li>
                 @endif
                 <li><a href="#contact">Kontak</a></li>
@@ -98,7 +97,7 @@
 
                     @guest
                     <li class="nav-item">
-                        <a class="btn btn-primary text-white" style="padding: 8px 20px;" href="{{ route('login') }}">Login</a>
+                        <a class="btn text-white" style="padding: 8px 20px; background-color: #4D869C;" href="{{ route('login') }}">Login</a>
                     </li>
                   @endguest                
             </ul>
@@ -142,7 +141,7 @@
             </div>
             <div class="content">
                 
-                <h2>Tentang</h2>
+                <h2 style="color: #104e67">Tentang</h2>
                 <h3>PPS </h3>
                 <h2></h2>
             </div>
@@ -155,7 +154,7 @@
                 <div class="col-md-15" data-aos="fade-up" data-aos-delay="200">
                     <div class="icon-box">
                         <i class="bi bi-card-checklist"></i>
-                    <h3>Pencatatan Pelanggaran</h3>
+                    <h3 style="color: #104e67">Pencatatan Pelanggaran</h3>
                     <p>Guru dapat dengan mudah memasukkan pelanggaran yang dilakukan oleh siswa, seperti tidak mengerjakan  tugas atau melanggar aturan sekolah lainnya</p>
                     </div>
                 </div>
@@ -163,7 +162,7 @@
                 <div class="col-md-15" data-aos="fade-up" data-aos-delay="300">
                     <div class="icon-box">
                         <i class="fa-solid fa-user-pen"></i>
-                    <h3>Perhitungan Point</h3>
+                    <h3 style="color: #104e67">Perhitungan Point</h3>
                     <p>Setiap pelanggaran akan dikonversi menjadi poin tertentu. jika poin pelanggaran siswa melebihi batas yang telah di tentukan, tentukan maka tindakan disipliner akan diambil seperti teguran, peringatan, atau skorsing. </p>
                     </div>
                 </div> 
@@ -171,7 +170,7 @@
                 <div class="col-md-15" data-aos="fade-up" data-aos-delay="400">
                     <div class="icon-box">
                         <i class="fa-solid fa-file-lines"></i>
-                    <h3>Rekapitulasi dan Laporan</h3>
+                    <h3 style="color: #104e67">Rekapitulasi dan Laporan</h3>
                     <p>Website ini menyediakan laporan lengkap tentang riwayat pelanggaran siswa. Laporan ini dapat diakses oleh guru agar mereka bisa memantau perkembangan perilaku siswa.</p>
                     </div>
                 </div> 
@@ -185,90 +184,6 @@
         </section>
 
        
-        <section id="gallery" class="gallery section">
-
-       
-        <div class="container section-title" data-aos="fade-up">
-            <h2>Galleri</h2>
-            <div class="fs-4"><span>Kenangan pembuat</span> <span class="description-title">Website</span></div>
-        </div>
-
-        <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-            <div class="row g-0">
-
-            <div class="col-lg-3 col-md-4">
-                <div class="gallery-item">
-                <a href="assets/img/gallery/gallery-1.jpg" class="glightbox" data-gallery="images-gallery">
-                    <img src="assets/img/gallery/gallery-1.jpg" alt="" class="img-fluid">
-                </a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4">
-                <div class="gallery-item">
-                <a href="assets/img/gallery/gallery-2.jpg" class="glightbox" data-gallery="images-gallery">
-                    <img src="assets/img/gallery/gallery-2.jpg" alt="" class="img-fluid">
-                </a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4">
-                <div class="gallery-item">
-                <a href="assets/img/gallery/gallery-3.jpg" class="glightbox" data-gallery="images-gallery">
-                    <img src="assets/img/gallery/gallery-3.jpg" alt="" class="img-fluid">
-                </a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4">
-                <div class="gallery-item">
-                <a href="assets/img/gallery/gallery-4.jpg" class="glightbox" data-gallery="images-gallery">
-                    <img src="assets/img/gallery/gallery-4.jpg" alt="" class="img-fluid">
-                </a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4">
-                <div class="gallery-item">
-                <a href="assets/img/gallery/gallery-5.jpg" class="glightbox" data-gallery="images-gallery">
-                    <img src="assets/img/gallery/gallery-5.jpg" alt="" class="img-fluid">
-                </a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4">
-                <div class="gallery-item">
-                <a href="assets/img/gallery/gallery-6.jpg" class="glightbox" data-gallery="images-gallery">
-                    <img src="assets/img/gallery/gallery-6.jpg" alt="" class="img-fluid">
-                </a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4">
-                <div class="gallery-item">
-                <a href="assets/img/gallery/gallery-7.jpg" class="glightbox" data-gallery="images-gallery">
-                    <img src="assets/img/gallery/gallery-7.jpg" alt="" class="img-fluid">
-                </a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4">
-                <div class="gallery-item">
-                <a href="{{ asset('assets/img/gallery/gallery-8.jpg') }}" class="glightbox" data-gallery="images-gallery">
-                    <img src="{{ asset('assets/img/gallery/gallery-8.jpg') }}" alt="" class="img-fluid">
-                </a>
-                </div>
-            </div>
-
-            </div>
-
-        </div>
-
-        </section>
-
-
-       
         <section id="team" class="team section">
 
        
@@ -276,7 +191,7 @@
                 <img src="{{ asset('assets/img/lala.png') }}" alt="" width="200" height="200" >
             </div>
         <div class="container1 section-title py-4" data-aos="fade-up">
-            <div class="fs-4 py-4"><span>Tim Pembuatan</span>
+            <div class="fs-4 py-4"><span style="color: #104e67">Tim Pembuatan</span>
             <h3>PPS</h3>
             </div>
         </div>
@@ -285,15 +200,67 @@
 
             <div class="row gy-5 py-4">
 
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
                 <div class="member">
-                <div class="pic"><img src="{{ asset('assets/img/team/team-1.jpg') }}" class="img-fluid" alt=""></div>
+                    <a href="https://faddd1.github.io/Website-Cv/">
+                        <div class="pic"><img src="{{ asset('assets/img/team/team-3.jpg') }}" class="img-fluid" alt=""></div>
+                    </a>
                 <div class="member-info">
-                    <h4>Ade Ridwan</h4>
-                    <span>Pembimbing Insitut</span>
+                    <h4 style="color: #104e67">Fadli Alam Akbar</h4>
+                    <span style="color: #104e67">Ketua Tim</span>
                     <div class="social">
-                    <a href=""><i class="bi bi-twitter-x"></i></a>
-                    <a href=""><i class="bi bi-facebook"></i></a>
+                    <a href="https://github.com/faddd1"><i class="bi bi-github"></i></a>
+                    <a href="https://www.instagram.com/fadd._?igsh=MTgwOGEzZXp2c2lhOA=="><i class="bi bi-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/fadlialam-akbar-625544318?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="member">
+                    <a href="">
+                        <div class="pic"><img src="{{ asset('assets/img/team/team-3.jpg') }}" class="img-fluid" alt=""></div>
+                    </a>
+                <div class="member-info">
+                    <h4 style="color: #104e67">Ade Farhan Gunawan</h4>
+                    <span style="color: #104e67">Projek Manager</span>
+                    <div class="social">
+                    <a href=""><i class="bi bi-github"></i></a>
+                    <a href=""><i class="bi bi-instagram"></i></a>
+                    <a href=""><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="member">
+                    <a href="">
+                        <div class="pic"><img src="{{ asset('assets/img/team/team-3.jpg') }}" class="img-fluid" alt=""></div>
+                    </a>
+                <div class="member-info">
+                    <h4 style="color: #104e67">Irma Nuryani</h4>
+                    <span style="color: #104e67">Anggota Tim</span>
+                    <div class="social">
+                    <a href=""><i class="bi bi-github"></i></a>
+                    <a href=""><i class="bi bi-instagram"></i></a>
+                    <a href=""><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="member">
+                    <a href="">
+                        <div class="pic"><img src="{{ asset('assets/img/team/team-3.jpg') }}" class="img-fluid" alt=""></div>
+                    </a>
+                <div class="member-info">
+                    <h4 style="color: #104e67">Malva Riski Nur Aulia</h4>
+                    <span style="color: #104e67">Anggota Tim</span>
+                    <div class="social">
+                    <a href=""><i class="bi bi-github"></i></a>
                     <a href=""><i class="bi bi-instagram"></i></a>
                     <a href=""><i class="bi bi-linkedin"></i></a>
                     </div>
@@ -302,77 +269,19 @@
             </div>
 
             <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                <div class="member">
-                <div class="pic"><img src="{{ asset('assets/img/team/team-2.jpg') }}" class="img-fluid" alt=""></div>
-                <div class="member-info">
-                    <h4>Fadli Alam Akbar</h4>
-                    <span>Ketua Tim</span>
-                    <div class="social">
-                    <a href=""><i class="bi bi-twitter-x"></i></a>
-                    <a href=""><i class="bi bi-facebook"></i></a>
-                    <a href=""><i class="bi bi-instagram"></i></a>
-                    <a href=""><i class="bi bi-linkedin"></i></a>
-                    </div>
-                </div>
-                </div>
+
             </div>
 
             <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
                 <div class="member">
-                <div class="pic"><img src="{{ asset('assets/img/team/team-3.jpg') }}" class="img-fluid" alt=""></div>
+                <a href="">
+                    <div class="pic"><img src="{{ asset('assets/img/team/team-3.jpg') }}" class="img-fluid" alt=""></div>
+                </a>
                 <div class="member-info">
-                    <h4>Ade Farhan Gunawan</h4>
-                    <span>Projek Manager</span>
+                    <h4 style="color: #104e67">Rahma Fauziah</h4>
+                    <span style="color: #104e67">Anggota Tim</span>
                     <div class="social">
-                    <a href=""><i class="bi bi-twitter-x"></i></a>
-                    <a href=""><i class="bi bi-facebook"></i></a>
-                    <a href=""><i class="bi bi-instagram"></i></a>
-                    <a href=""><i class="bi bi-linkedin"></i></a>
-                    </div>
-                </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                <div class="member">
-                <div class="pic"><img src="{{ asset('assets/img/team/team-3.jpg') }}" class="img-fluid" alt=""></div>
-                <div class="member-info">
-                    <h4>Irma Nuryani</h4>
-                    <span>Anggota Tim</span>
-                    <div class="social">
-                    <a href=""><i class="bi bi-twitter-x"></i></a>
-                    <a href=""><i class="bi bi-facebook"></i></a>
-                    <a href=""><i class="bi bi-instagram"></i></a>
-                    <a href=""><i class="bi bi-linkedin"></i></a>
-                    </div>
-                </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                <div class="member">
-                <div class="pic"><img src="{{ asset('assets/img/team/team-3.jpg"') }}" class="img-fluid" alt=""></div>
-                <div class="member-info">
-                    <h4>Malva Riski Nur Aulia</h4>
-                    <span>Anggota Tim</span>
-                    <div class="social">
-                    <a href=""><i class="bi bi-twitter-x"></i></a>
-                    <a href=""><i class="bi bi-facebook"></i></a>
-                    <a href=""><i class="bi bi-instagram"></i></a>
-                    <a href=""><i class="bi bi-linkedin"></i></a>
-                    </div>
-                </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                <div class="member">
-                <div class="pic"><img src="{{ asset('assets/img/team/team-3.jpg') }}" class="img-fluid" alt=""></div>
-                <div class="member-info">
-                    <h4>Rahma Fauziah</h4>
-                    <span>Anggota Tim</span>
-                    <div class="social">
-                    <a href=""><i class="bi bi-twitter-x"></i></a>
-                    <a href=""><i class="bi bi-facebook"></i></a>
+                    <a href=""><i class="bi bi-github"></i></a>
                     <a href=""><i class="bi bi-instagram"></i></a>
                     <a href=""><i class="bi bi-linkedin"></i></a>
                     </div>
@@ -394,8 +303,8 @@
 
       
         <div class="container section-title" data-aos="fade-up">
-            <h2>Kontak</h2>
-            <div><span>Hubungi</span> <span class="description-title">Kami</span></div>
+            <h2 style="color: #104e67">Kontak</h2>
+            <div><span style="color: #104e67">Hubungi</span> <span class="description-title" style="color: #104e67">Kami</span></div>
         </div>
 
         <div class="container" data-aos="fade" data-aos-delay="100">
@@ -406,7 +315,7 @@
                 <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
                 <i class="bi bi-geo-alt flex-shrink-0"></i>
                 <div>
-                    <h3>Address</h3>
+                    <h3 style="color: #104e67">Address</h3>
                     <p>A108 Adam Street, New York, NY 535022</p>
                 </div>
                 </div>
@@ -414,7 +323,7 @@
                 <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
                 <i class="bi bi-telephone flex-shrink-0"></i>
                 <div>
-                    <h3>Call Us</h3>
+                    <h3 style="color: #104e67">Call Us</h3>
                     <p>+1 5589 55488 55</p>
                 </div>
                 </div>
@@ -422,7 +331,7 @@
                 <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
                 <i class="bi bi-envelope flex-shrink-0"></i>
                 <div>
-                    <h3>Email Us</h3>
+                    <h3 style="color: #104e67">Email Us</h3>
                     <p>info@example.com</p>
                 </div>
                 </div>

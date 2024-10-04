@@ -25,8 +25,9 @@
   --default-color1: #040677; /* Color for headings, subheadings and title throughout the website */
   --default-color2 : #87CEEB; /* Color for headings, subheadings and title throughout the website */
   --default-color3 : #008080; /* Color for headings, subheadings and title throughout the website */
+  --default-color4 : #4D869C; /* Color for headings, subheadings and title throughout the website */
   --accent-color1 : #040677;
-  --accent-color2 : #dcd909;
+  --accent-color2 : #ffe600;
   --accent-color: #87CEEB; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --accent-color0: #1acc8d; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
@@ -93,7 +94,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: var(--heading-color);
+  color: var(--default-color4);
   font-family: var(--heading-font);
 }
 
@@ -249,7 +250,7 @@ h6 {
     height: 2px;
     bottom: -6px;
     left: 0;
-    background-color: var(--nav-hover);
+    background-color: var(--default-color4);
     visibility: hidden;
     width: 0px;
     transition: all 0.3s ease-in-out 0s;
@@ -658,7 +659,7 @@ h6 {
   right: 15px;
   bottom: 15px;
   z-index: 99999;
-  background-color: var(--accent-color1);
+  background-color: var( --default-color4);
   width: 40px;
   height: 40px;
   border-radius: 4px;
@@ -975,7 +976,7 @@ section,
   font-weight: 700;
   line-height: 19px;
   padding: 10px 20px;
-  background: color-mix(in srgb, var(--accent-color2), transparent 95%);
+  background: color-mix(in srgb, var(--accent-color2), transparent 80%);
   color: var(--accent-color2);
   border-radius: 7px;
   display: inline-block;
@@ -1331,7 +1332,7 @@ section,
   font-weight: 700;
   line-height: 19px;
   padding: 10px 20px;
-  background: color-mix(in srgb, var(--accent-color2), transparent 95%);
+  background: color-mix(in srgb, var(--accent-color2), transparent 80%);
   color: var(--accent-color2);
   border-radius: 7px;
   display: inline-block;

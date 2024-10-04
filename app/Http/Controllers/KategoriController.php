@@ -10,8 +10,9 @@ class KategoriController extends Controller
    
     public function index()
     {
-        $kategori = Kategori::get();
-        return view('kategori.kategoripelanggaran', ['kategori' => $kategori, 'title' => 'Kategori Pelanggaran']);
+        // $datakategori = Kategori::paginate(5);
+        $kategoris = Kategori::paginate(10);
+        return view('kategori.kategoripelanggaran', ['kategoris' => $kategoris, 'title' => 'Kategori Pelanggaran']);
     }
     
    
@@ -42,10 +43,10 @@ class KategoriController extends Controller
     }
 
    
-    public function edit(Kategori $kategori, $id)
+    public function edit(Kategori $kategoris, $id)
     {
-        $kategori = Kategori::findOrFail($id);
-        return view('kategori.edit', compact('kategori'), ['title' => 'Edit Data']);
+        $kategoris = Kategori::findOrFail($id);
+        return view('kategori.edit', compact('kategoris'), ['title' => 'Edit Data']);
     }
 
   
@@ -59,8 +60,8 @@ class KategoriController extends Controller
         ]);
     
        
-        $kategori = Kategori::find($id);
-        $kategori->update([
+        $kategoris = Kategori::find($id);
+        $kategoris->update([
             'pelanggaran' => $request->pelanggaran,
             'point' => $request->point,
             'level' => $request->level,
@@ -71,10 +72,10 @@ class KategoriController extends Controller
     }
 
    
-    public function destroy(Kategori $kategori, $id)
+    public function destroy(Kategori $kategoris, $id)
     {
-        $kategori = Kategori::findOrFail($id);
-        $kategori->delete();
+        $kategoris = Kategori::findOrFail($id);
+        $kategoris->delete();
         return redirect('/kategoripelanggaran')->with('success', 'Data berhasil dihapus!');
     }
 
@@ -93,11 +94,11 @@ class KategoriController extends Controller
         $searchTerm = $request->input('search');
         
       
-        $kategori = Kategori::where('pelanggaran', 'LIKE', "%{$searchTerm}%")
+        $kategoris = Kategori::where('pelanggaran', 'LIKE', "%{$searchTerm}%")
                     ->orWhere('point', 'LIKE', "%{$searchTerm}%")
                     ->orWhere('level', 'LIKE', "%{$searchTerm}%")
-                    ->get();
+                    ->paginate(4);
         
-        return view('kategori.kategoripelanggaran', compact('kategori'), ['title' => 'Search Data']);
+        return view('kategori.kategoripelanggaran', compact('kategoris'), ['title' => 'Kategori Pelanggaran']);
     }
 }

@@ -38,7 +38,7 @@ class StudentController extends Controller
      
     public function indexdata()
     {
-        $studentItem = Student::paginate(3);
+        $studentItem = Student::paginate(10);
         return view('student.datasiswa', [
             'studentItem' => $studentItem,
             'title' => 'Data Siswa'
@@ -186,7 +186,7 @@ class StudentController extends Controller
          }
      
         
-         $studentItem = $query->paginate(5);
+         $studentItem = $query->paginate(10);
 
          return view('student.datasiswa', [
              'title' => 'Data Siswa',

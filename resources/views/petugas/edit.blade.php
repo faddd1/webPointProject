@@ -1,4 +1,12 @@
-
+<style>
+    .btn-primary-custom {
+    background-color: #245c70;
+    color: #fff;
+}
+    .btn-primary-custom:hover{
+    color: #fff;
+}
+</style>
 <form action="{{ route('petugas.update', $petugas->id) }}" method="POST"  id="uploadForm">
     @csrf
     <div class="form-group">
@@ -62,5 +70,5 @@
           <option value="PKS" {{ $petugas->namao == 'PKS' ? 'selected' : '' }}>PKS</option>
         </select>
     </div>
-    <button type="submit" class="btn btn-primary btn-block">Tambah</button>
+    <button type="submit" class="btn btn-primary-custom btn-block">Tambah</button>
 </form>

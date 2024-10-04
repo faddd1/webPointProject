@@ -1,4 +1,12 @@
-
+<style>
+    .btn-primary-custom {
+    background-color: #245c70;
+    color: #fff;
+}
+    .btn-primary-custom:hover{
+    color: #fff;
+}
+</style>
 <form action="{{ route('datasiswa.update', $studentItem->id) }}" method="POST">
     @csrf
     @method('PUT')
@@ -54,5 +62,5 @@
             <option value="SK 2" {{ $studentItem->jurusan == 'SK 2' ? 'selected' : '' }}>SK 2</option>
         </select>
     </div>
-    <button type="submit" class="btn btn-primary btn-block">Update</button>
+    <button type="submit" class="btn btn-block btn-primary-custom">Update</button>
 </form>

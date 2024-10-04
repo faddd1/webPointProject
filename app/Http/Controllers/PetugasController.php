@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 class PetugasController extends Controller
 {
     public function tampil(){
-        $petugas = Petugas::paginate(5);
+        $petugas = Petugas::paginate(10);
         return view('petugas.petug',compact('petugas'),[
-            'title' => 'Daftar Petugas'
+            'title' => 'Data Petugas'
         ]);
     }
 
@@ -75,7 +75,7 @@ class PetugasController extends Controller
                     ->orWhere('namao', 'LIKE', "%{$searchTerm}%")
                     ->paginate();
         return view('petugas.petug', compact('petugas'), [
-            'title'=>'Search Data Petugas'
+            'title'=>'Data Petugas'
 
         ]);
     }

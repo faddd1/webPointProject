@@ -32,7 +32,7 @@
                             </a>
                         @endif
                     @else
-                        <span class="text-danger">Tidak Bisa Menampikan Poin</span>
+                        <span class="text-danger">Tidak Bisa Menampilkan Poin</span>
                     @endif
                 </div>
             </div>

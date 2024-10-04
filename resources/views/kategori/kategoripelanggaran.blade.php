@@ -17,57 +17,151 @@
             <div class="card-header">
               <div class="card-tools">
                 @if (auth()->user()->role == 'admin')
-                  <button class="btn btn-sm btn-primary" id="tambahDataBtn" style="margin-top: 5px;">
-                    <i class="fa-solid fa-circle-plus"></i> Add
+                  <button class="btn btn-sm" style="background-color:#245c70; color:#ffff; margin-top: 5px; margin-right: 10px;" id="tambahDataBtn">
+                     <i class="fa-solid fa-circle-plus"></i> <span class="d-none d-sm-inline">Add</span>
                   </button>
                 @endif
               </div>
               <form action="/kategoripelanggaran/search" class="form-inline" method="GET">
                 <div class="card-item d-flex">
-                  <input type="search" class="form-control col-md-11 col-14 mb-14 mr-2" name="search" placeholder="Cari" value="{{ request()->input('search') }}" id="search-input">
-                  <button type="submit" class="btn btn-primary mb-2">Cari</button>
+                    <div class="input-group">
+                        <input type="search" class="form-control" name="search" placeholder="Cari" value="{{ request()->input('search') }}" id="search-input">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn" style="background-color: #266278; color: #fff;">
+                                <i class="fa-solid fa-magnifying-glass"></i> <!-- Search icon -->
+                            </button>
+                        </div>
+                    </div>
                 </div>
-              </form>
+            </form>
+            
+            <style>
+                .input-group {
+                    width: 100%; /* Full width */
+                    max-width: 200px; /* Set a maximum width for a compact look */
+                }
+
+                .input-group .form-control {
+                    border-radius: 0.25rem 0 0 0.25rem; /* Rounded corners on the left */
+                    flex: 1; /* Allow input to take up available space */
+                    height: 30px; /* Set a smaller height for the input field */
+                    font-size: 0.875rem; /* Smaller font size */
+                }
+
+                .input-group .btn {
+                    border-radius: 0 0.25rem 0.25rem 0; /* Rounded corners on the right */
+                    background-color: #266278; /* Same button color */
+                    color: #fff; /* Button text color */
+                    height: 30px; /* Match the height of the input field */
+                    padding: 0 10px; /* Smaller padding for a more compact button */
+                }
+
+                /* Adjust styles for mobile devices */
+                @media (max-width: 576px) {
+                    .input-group {
+                        flex-direction: row; /* Ensure items are in a row */
+                        max-width: 180px; /* Set a smaller max width for mobile */
+                    }
+                }
+
+                .action-buttons {
+                      display: flex;
+                      justify-content: center;
+                      gap: 5px;
+                  }
+
+                
+                  @media (max-width: 576px) {
+                      .action-buttons {
+                          flex-direction: row; 
+                      }
+                  }
+
+                  .btn-danger:hover {
+                    transition: transform 0.3s ease;
+                    transform: translateY(-5px);
+                  }
+
+                  .btn-primary:hover {
+                    transition: transform 0.3s ease;
+                    transform: translateY(-5px);
+                  }
+            </style>
+          
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered table-hover table-sm">
+                <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                   <thead>
-                    <tr>
-                      <th style="text-align: center; vertical-align: middle;">No</th>
-                      <th style="text-align: center; vertical-align: middle;">Nama Pelanggaran</th>
-                      <th style="text-align: center; vertical-align: middle;">Point</th>
-                      <th style="text-align: center; vertical-align: middle;">Level</th>
+                    <tr style="background-color: #4D869C; color:#ffff;">
+                      <td style="text-align: center; vertical-align: middle;" class="py-2">No</td>
+                      <td style="text-align: center; vertical-align: middle;">Nama Pelanggaran</td>
+                      <td style="text-align: center; vertical-align: middle;">Point</td>
+                      <td style="text-align: center; vertical-align: middle;">Level</td>
                       @if (auth()->check() && auth()->user()->role == 'admin')
-                        <th style="text-align: center; vertical-align: middle;">Action</th>
+                        <td style="text-align: center; vertical-align: middle;">Action</td>
                       @endif
                     </tr>
                   </thead>
+                  
                   <tbody>
-                    @foreach ($kategori as $no => $kategori)
-                      <tr>
-                        <td style="text-align: center; vertical-align: middle;">{{$no+1}}</td>
-                        <td style="text-align: center; vertical-align: middle;">{{$kategori->pelanggaran}}</td>
-                        <td style="text-align: center; vertical-align: middle;">{{$kategori->point}}</td>
-                        <td style="text-align: center; vertical-align: middle;">{{$kategori->level}}</td>
-                        @if (auth()->check() && auth()->user()->role == 'admin')
-                          <td style="text-align: center; vertical-align: middle;">
-                            <button class="btn btn-sm btn-primary editBtn" data-id="{{ $kategori->id }}">
-                              <i class="fa-solid fa-pen-to-square"></i>
-                            </button>
-                            <form action="{{ route('kategori.destroy', $kategori->id )}}" class="d-inline col-mb-2 deleteForm" method="POST">
-                              @csrf
-                              @method('DELETE')
-                              <button type="submit" class="btn btn-sm btn-danger">
-                                <i class="fa-solid fa-trash"></i>
-                              </button>
-                            </form>
-                          </td>
-                        @endif
-                      </tr>
-                    @endforeach
-                  </tbody>
+                    @if ($kategoris->isEmpty())
+                    <tr>
+                      <td colspan="6" style="text-align: center;">Tidak ada data yang ditemukan</td>
+                    </tr>
+                    @else
+                        @foreach ($kategoris as $no => $kategori)
+                            <tr>
+                                <td style="text-align: center; vertical-align: middle;">{{$no+1}}</td>
+                                <td style="text-align: center; vertical-align: middle;">{{$kategori->pelanggaran}}</td>
+                                <td style="text-align: center; vertical-align: middle;">{{$kategori->point}}</td>
+                                <td style="text-align: center; vertical-align: middle;">{{$kategori->level}}</td>
+                                @if (auth()->check() && auth()->user()->role == 'admin')
+                                <td style="text-align: center; vertical-align: middle;">
+                                  <div class="action-buttons text-center align-middle">
+                                      <button class="btn btn-sm btn-primary editBtn" data-id="{{ $kategori->id }}">
+                                          <i class="fa-solid fa-pen-to-square"></i>
+                                      </button>
+                                      <form action="{{ route('kategori.destroy', $kategori->id )}}" class="d-inline col-mb-2 deleteForm" method="POST">
+                                          @csrf
+                                          @method('DELETE')
+                                          <button type="submit" class="btn btn-sm btn-danger">
+                                              <i class="fa-solid fa-trash"></i>
+                                          </button>
+                                      </form>
+                                  </div>
+                              </td>
+                                @endif
+                            </tr>
+                        @endforeach
+                    @endif
+                </tbody>
                 </table>
+
+                <div class="d-flex">
+                  <div class="ml-auto">
+                      <style>
+                          .pagination .page-link {
+                              color: #245c70; /* Warna abu-abu */
+                              background-color: #f8f9fa; /* Warna latar belakang */
+                              border-color: #dee2e6; /* Warna border */
+                          }
+              
+                          .pagination .page-link:hover {
+                              color:#245c70; /* Warna abu-abu yang lebih gelap saat hover */
+                              background-color: #e9ecef; /* Latar belakang sedikit lebih gelap */
+                              border-color: #dee2e6;
+                          }
+              
+                          .pagination .active .page-link {
+                              color: white; /* Warna teks saat aktif */
+                              background-color: #245c70; /* Warna abu-abu saat aktif */
+                              border-color: #245c70;
+                          }
+                      </style>
+                       {{ $kategoris->links('pagination::bootstrap-4') }}
+                  </div>
+                </div>
               </div>
             </div>
           </div>

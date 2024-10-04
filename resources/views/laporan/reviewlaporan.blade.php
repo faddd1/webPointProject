@@ -25,10 +25,37 @@
                          </script>
                     @endif
 
+                    <style>
+                        .btn-primary:hover {
+                            transform: translateY(-5px);
+                        }
+
+                        .btn-danger:hover {
+                            transform: translateY(-5px);
+                        }
+
+                        .btn-success:hover {
+                            transform: translateY(-5px);
+                        }
+                        
+                        .action-buttons {
+                            display: flex;
+                            justify-content: center;
+                            gap: 5px;
+                        }
+
+                        
+                        @media (max-width: 576px) {
+                            .action-buttons {
+                                flex-direction: row; 
+                            }
+                        }
+                    </style>
+
                     <div class="card">
                         <div class="card-header">
-                            <h3>Laporan Menunggu Review</h3>
-                            <h4 class="text-md py-2">Tanggal <span class="text-bold">{{ \Carbon\Carbon::now()->format('j F Y') }}</span></h4>
+                            {{-- <h3>Laporan Menunggu Review</h3> --}}
+                            <h4 class="text-md mt-2">Tanggal <span class="text-bold">{{ \Carbon\Carbon::now()->format('j F Y') }}</span></h4>
                         </div>
 
                         <div class="card-body">
@@ -37,17 +64,17 @@
                             @else
                              
                                 <div class="table-responsive">
-                                    <table class="table table-bordered btn-sm">
+                                    <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 15px; border-radius: 5px 5px 0 0; overflow: hidden;">
                                         <thead>
-                                            <tr>
-                                                <th class="text-center align-middle">No</th>
-                                                <th class="text-center align-middle">Nama Pelapor</th>
-                                                <th class="text-center align-middle">Nama</th>
-                                                <th class="text-center align-middle">Nama Pelanggaran</th>
-                                                <th class="text-center align-middle">Jumlah Point</th>
-                                                <th class="text-center align-middle">Tanggal</th>
-                                                <th class="text-center align-middle">Bukti</th>
-                                                <th class="text-center align-middle">Status</th>
+                                            <tr style="background-color: #4D869C; color:#ffff;">
+                                                <td class="text-center align-middle" class="py-2">No</td>
+                                                <td class="text-center align-middle">Nama Pelapor</td>
+                                                <td class="text-center align-middle">Nama</td>
+                                                <td class="text-center align-middle">Nama Pelanggaran</td>
+                                                <td class="text-center align-middle">Jumlah Point</td>
+                                                <td class="text-center align-middle">Tanggal</td>
+                                                <td class="text-center align-middle">Bukti</td>
+                                                <td class="text-center align-middle">Status</td>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -78,19 +105,21 @@
                                                         @endif
                                                     </td>
                                                     <td class="text-center align-middle">
-                                                        <form action="{{ route('laporan.approve', $report->id) }}" method="POST" style="display: inline;">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-check"></i></button>
-                                                        </form>
+                                                        <div class="action-buttons">
+                                                            <form action="{{ route('laporan.approve', $report->id) }}" method="POST" style="display: inline;">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-check"></i></button>
+                                                            </form>
 
-                                                        <form action="{{ route('laporan.notApprove', $report->id) }}" method="POST" style="display: inline;">
-                                                            @csrf
-                                                            @method('POST')
-                                                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-circle-minus "></i></button>
-                                                        </form>
+                                                            <form action="{{ route('laporan.notApprove', $report->id) }}" method="POST" style="display: inline;">
+                                                                @csrf
+                                                                @method('POST')
+                                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-circle-minus "></i></button>
+                                                            </form>
 
-                                                        <button class="btn btn-success btn-sm showBtn" data-id="{{ $report->id }}"><i class="fa-solid fa-eye"></i></button>
+                                                            <button class="btn btn-success btn-sm showBtn" data-id="{{ $report->id }}"><i class="fa-solid fa-eye"></i></button>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             @endforeach

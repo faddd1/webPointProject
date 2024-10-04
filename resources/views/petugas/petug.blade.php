@@ -13,40 +13,121 @@
                         });
                     </script>
                     @endif
+
+                    <style>
+                        .input-group {
+                                width: 100%; 
+                                max-width: 200px; 
+                            }
+            
+                            .input-group .form-control {
+                                border-radius: 0.25rem 0 0 0.25rem; 
+                                flex: 1; 
+                                height: 30px; 
+                                font-size: 0.875rem; 
+                            }
+            
+                            .input-group .btn {
+                                border-radius: 0 0.25rem 0.25rem 0; 
+                                background-color: #266278; 
+                                color: #fff; 
+                                height: 30px; 
+                                padding: 0 10px; 
+                            }
+            
+                            
+                            @media (max-width: 576px) {
+                                .input-group {
+                                    flex-direction: row; 
+                                    max-width: 180px; 
+                                }
+                            }
+
+                            .status-badge {
+                                display: inline-block;
+                                width: 120px;
+                                padding: 5px 0; 
+                                text-align: center;
+                                font-size: 12px; 
+                                border-radius: 4px;
+                            }
+
+                            .status-badge:hover {
+                                transform: translateY(-5px);
+                                background: linear-gradient(45deg, #4dacff, #3ecf69);
+                            }
+
+                            .btn-primary:hover {
+                                transform: translateY(-5px);
+                                transition: transform 0.3s ease;
+                            }
+
+                            .btn-danger:hover {
+                                transform: translateY(-5px);
+                                transition: transform 0.3s ease;
+                            }
+
+                            .action-buttons {
+                                display: flex;
+                                justify-content: center;
+                                gap: 5px;
+                            }
+
+                            
+                            @media (max-width: 576px) {
+                                .action-buttons {
+                                    flex-direction: row; 
+                                }
+                            }
+                    </style>
                     <div class="card">
                         <div class="card-header">
                             <div class="card-tools">
                                 @if (auth()->user()->role == 'admin')
-                                <button class="btn btn-primary btn-sm" style="margin-top: 3px;" id="tambahDataBtn"><i class="fa-solid fa-circle-plus"></i> Add</button>
+                                <button class="btn btn-sm" style="margin-top: 1px; background-color:#245c70; color:#ffff; margin-right: 10px;" id="tambahDataBtn">
+                                    <i class="fa-solid fa-circle-plus"></i> <span class="d-none d-sm-inline">Add</span>
+                                </button>
                                 @endif
                             </div>
                             <form action="/datapetugas/search" class="form-inline" method="GET">
                                 <div class="card-item d-flex">
-                                    <input type="search" class="form-control col-md-11 col-14 mb-14 mr-2" name="search" placeholder="Cari" value="{{ request()->input('search') }}" id="search-input">
-                                    <button type="submit" class="btn btn-primary mb-2">Cari</button>
+                                    <div class="input-group">
+                                        <input type="search" class="form-control" name="search" placeholder="Cari" value="{{ request()->input('search') }}" id="search-input">
+                                        <div class="input-group-append">
+                                            <button type="submit" class="btn" style="background-color: #266278; color: #fff;">
+                                                <i class="fa-solid fa-magnifying-glass"></i> <!-- Search icon -->
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </form>
                         </div>
+                     
   
                         
                         <div class="card-body">
                           <div class="table-responsive">
-                              <table class="table table-hover table-bordered table-sm">
+                              <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px;  border-radius: 5px 5px 0 0; overflow: hidden;">
                                   <thead>
-                                      <tr>
-                                          <th style="text-align: center; vertical-align: middle;">No</th>
-                                          <th style="text-align: center; vertical-align: middle;">NIS</th>
-                                          <th style="text-align: center; vertical-align: middle;">Nama</th>
-                                          <th style="text-align: center; vertical-align: middle;">Kelas</th>
-                                          <th style="text-align: center; vertical-align: middle;">Jenis Kelamin</th>
-                                          <th style="text-align: center; vertical-align: middle;">Jurusan</th>
-                                          <th style="text-align: center; vertical-align: middle;">Organisasi</th>
+                                      <tr style="background-color: #4D869C; color:#ffff;">
+                                          <td style="text-align: center; vertical-align: middle;" class="py-2">No</td>
+                                          <td style="text-align: center; vertical-align: middle;">NIS</td>
+                                          <td style="text-align: center; vertical-align: middle;">Nama</td>
+                                          <td style="text-align: center; vertical-align: middle;">Kelas</td>
+                                          <td style="text-align: center; vertical-align: middle;">Jenis Kelamin</td>
+                                          <td style="text-align: center; vertical-align: middle;">Jurusan</td>
+                                          <td style="text-align: center; vertical-align: middle;">Organisasi</td>
                                           @if (auth()->user()->role == 'admin')
-                                          <th style="text-align: center; vertical-align: middle;">Action</th>
+                                          <td style="text-align: center; vertical-align: middle;">Action</td>
                                           @endif
                                       </tr>
                                   </thead>
                                   <tbody>
+                                    @if ($petugas->isEmpty())
+                                    <tr>
+                                        <td colspan="8" style="text-align: center;">Tidak ada data yang ditemukan</td>
+                                    </tr>
+                                    @else
                                       @foreach ($petugas as $no => $petugasd)
                                       <tr>
                                         <td style="text-align: center; vertical-align: middle;">
@@ -60,6 +141,7 @@
                                           <td style="text-align: center; vertical-align: middle;">{{ $petugasd->namao }}</td>
                                           @if (auth()->user()->role == 'admin')
                                           <td style="text-align: center; vertical-align: middle; ">
+                                            <div class="action-buttons">
                                               <button class="btn btn-sm btn-primary editBtn" data-id="{{ $petugasd->id }}">
                                                   <i class="fa-solid fa-pen-to-square"></i>
                                               </button>
@@ -70,10 +152,12 @@
                                                       <i class="fa-solid fa-trash"></i>
                                                   </button>
                                               </form>
+                                            </div>
                                           </td>
                                           @endif
                                       </tr>
                                       @endforeach
+                                    @endif
                                   </tbody>
                               </table>
                               <div class="d-flex">

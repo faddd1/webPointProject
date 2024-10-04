@@ -1,33 +1,15 @@
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+<nav class="main-header navbar navbar-expand" style="background-color: #ffff;">
+
+
  
-  <ul class="navbar-nav">
+  <ul class="navbar-nav py-1">
       <li class="nav-item">
-          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars" style="color: black; text-decoration: none;"  onmouseover="this.style.color='#4D869C'" onmouseout="this.style.color='#000'"></i></a>
       </li>
   </ul>
 
  
   <ul class="navbar-nav ml-auto">
-     
-    @if (auth()->user()->role == 'admin')
-    <li class="nav-item dropdown">
-      <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
-      </a>
-      <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item text-wrap w-100">
-              <i class="fas fa-envelope mr-2"></i> 4 new messages
-              <span class="float-right text-muted text-sm">3 mins</span>
-          </a>
-
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-      </div>
-    </li>
-    @endif
-
     @if (auth()->user()->role == 'siswa')
     @php
         $nis = Auth::user()->nis;
@@ -43,11 +25,11 @@
 
     <li class="nav-item dropdown">
       <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell"></i>
+        <i class="far fa-bell" style="color: black; text-decoration: none;"  onmouseover="this.style.color='#4D869C'" onmouseout="this.style.color='#000'"></i>
           <span class="badge badge-warning navbar-badge">{{ $count }}</span>
       </a>
       <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">{{ $count }} Notifications</span>
+          <span class="dropdown-item dropdown-header">{{ $count }} Notifikasi</span>
           <div class="dropdown-divider"></div>
           @foreach ($notifications as $notification)
           <a href="#" class="dropdown-item text-wrap w-100">
@@ -55,18 +37,18 @@
             <span class="float-right text-muted text-sm">{{ $notification->created_at->diffForHumans() }}</span>
             </a>
             @endforeach
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+          <a href="#" class="dropdown-item dropdown-footer">Lihat Semua Notifikasi</a>
       </div>
     </li>
     @endif
 
-  <li class="nav-item dropdown">
-    <a class="nav-link" data-toggle="dropdown" href="#" role="button">
-        <i class="fa-solid fa-user"></i>  {{ Auth::user()->name ?? 'Tidak diketahui' }}
+  <li class="nav-item dropdown" >
+    <a class="nav-link" data-toggle="dropdown" href="#" role="button" style="color: black; text-decoration: none;"  onmouseover="this.style.color='#4D869C'" onmouseout="this.style.color='#000'">
+        <i class="fa-solid fa-user" ></i>  {{ Auth::user()->name ?? 'Tidak diketahui' }}
     </a>
     <div class="dropdown-menu dropdown-menu-right">
-        <a href="/profile" class="dropdown-item">Profile</a>
-        <a href="/logout" class="dropdown-item" id="logoutButton">Logout</a>
+        <a href="/profile" class="dropdown-item"style="color: black; text-decoration: none;"  onmouseover="this.style.color='#4D869C'" onmouseout="this.style.color='#000'">Profile</a>
+        <a href="/logout" class="dropdown-item" id="logoutButton" style="color: #000; text-decoration: none;" onmouseover="this.style.color='#4D869C'" onmouseout="this.style.color='#000'">Logout</a>
     </div>
   </li>
   </ul>

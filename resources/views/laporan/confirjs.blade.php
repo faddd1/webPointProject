@@ -8,6 +8,26 @@
         min-width: 600px; 
     }
 
+    .btn-custom,
+    .btn-custom:hover{
+    background-color: #266278 !important; /* Biru */
+    color: white !important;
+    border: none;
+    }
+    
+    .btn-custom-p,
+    .btn-custom-p:hover{
+    background-color: #535353 !important; /* Biru */
+    color: white !important;
+    border: none;
+    }
+
+    .btn-custom-grey{
+    background-color: !important; /* Warna abu-abu */
+    color: white !important;
+    border: none;
+    }
+    
 </style>
 <script>
     function showSearchAlert(type) {
@@ -23,11 +43,16 @@
         }
 
         Swal.fire({
-            title: `Cari ${placeholderText}`,
-            html: generateSearchHtml(type),
-            showCancelButton: true,
-            confirmButtonText: 'Cari',
-            showLoaderOnConfirm: false, 
+    title: `Cari ${placeholderText}`,
+    html: generateSearchHtml(type),
+    showCancelButton: true,
+    confirmButtonText: 'Cari',
+    cancelButtonText: 'Cancel',
+    showLoaderOnConfirm: false,
+    customClass: {
+        confirmButton: 'btn-custom', // Kelas untuk tombol Cari
+        cancelButton: 'btn-custom-p'   // Kelas untuk tombol Cancel
+    },
             preConfirm: () => {
                 const searchValue = document.getElementById('search-input').value;
                 const jurusan = document.getElementById('jurusan-select') ? document.getElementById('jurusan-select').value : '';

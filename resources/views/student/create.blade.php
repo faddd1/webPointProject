@@ -1,4 +1,12 @@
-
+<style>
+    .btn-primary-custom {
+    background-color: #245c70;
+    color: #fff;
+}
+    .btn-primary-custom:hover{
+    color: #fff;
+}
+</style>
 <form action="{{ route('datasiswa.store') }}" method="POST"  id="uploadForm">
     @csrf
     <div class="form-group">
@@ -52,5 +60,5 @@
           <option value="SK 2">SK 2</option>
         </select>
     </div>
-    <button type="submit" class="btn btn-primary btn-block">Tambah</button>
+    <button type="submit" class="btn btn-block btn-primary-custom">Tambah</button>
 </form>

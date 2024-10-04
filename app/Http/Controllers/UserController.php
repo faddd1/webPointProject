@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     public function index(){
 
-        $data = User::with('siswa')->paginate(5);
+        $data = User::with('siswa')->paginate(10);
        
         return view ('tambahUser.tambahakun', [
             'data' => $data,

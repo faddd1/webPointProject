@@ -12,7 +12,7 @@ class TeacherController extends Controller
     public function index()
 
     {
-        $teacher = Teacher::paginate(5);
+        $teacher = Teacher::paginate(10);
         return view('teacher.dataguru', [
             'teacher' => $teacher,
             'title' => 'Data Guru'

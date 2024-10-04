@@ -38,10 +38,8 @@ class AdminController extends Controller
             ->limit(5)
             ->get();
 
-            
-
                 return view('page.dashboard', [
-                    'title' => 'Beranda'
+                    'title' => 'Beranda',
                 ], compact('totalSiswa','topPelanggaran','totalPelanggaranHariIni', 'totalGuru','topStudents', 'totalPelanggaran', 'totalUser', 'totalPetugas'));
 
      }
@@ -64,7 +62,7 @@ class AdminController extends Controller
         ->get();
 
         return view('page.dashboard', [
-            'title' => 'Dashboard'
+            'title' => 'Beranda'
         ], compact('topPelanggaran','totalPelanggaranHariIni','topStudents'));
     }
 
@@ -86,7 +84,7 @@ class AdminController extends Controller
         ->get();
 
         return view('page.dashboard', [
-            'title' => 'Dashboard'
+            'title' => 'Beranda'
         ], compact('topPelanggaran','totalPelanggaranHariIni','topStudents'));
     }
 
@@ -106,7 +104,7 @@ class AdminController extends Controller
         ->get();
 
         return view('page.dashboard', [
-            'title' => 'Dashboard'
+            'title' => 'Beranda'
         ], compact('topPelanggaran','topStudents'));
     }
 }

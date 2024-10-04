@@ -1,3 +1,12 @@
+<style>
+    .btn-primary-custom {
+    background-color: #245c70;
+    color: #fff;
+    }
+    .btn-primary-custom:hover{
+    color: #fff;
+}
+</style>
 <form action="{{ route('store.guru') }}" method="POST">
     @csrf
     <div class="form-group">
@@ -25,5 +34,5 @@
             </div>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary btn-block">Tambah</button>
+    <button type="submit" class="btn btn-block btn-primary-custom">Tambah</button>
 </form>
