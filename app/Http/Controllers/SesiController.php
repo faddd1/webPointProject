@@ -27,8 +27,7 @@ class SesiController extends Controller
 
         if(Auth::attempt($infoLogin)){
             $role = Auth::user()->role;
-
-           
+        
             switch($role) {
                 case 'admin':
                     return redirect('dashboard/admin')->with('success', 'Anda Berhasil Login ke Admin');
@@ -43,8 +42,9 @@ class SesiController extends Controller
                     return redirect()->back()->withErrors('Role tidak ditemukan.');
             }
         } else {
-            return redirect()->back()->withErrors('Username dan Password yang dimasukkan tidak sesuai.');
+            return redirect()->back()->with('error', 'NIS atau Password yang Anda masukkan salah.');
         }
+        
     }
 
     public function logout(){

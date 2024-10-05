@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class PetugasController extends Controller
 {
+   
     public function tampil(){
         $petugas = Petugas::paginate(10);
         return view('petugas.petug',compact('petugas'),[
@@ -15,24 +16,37 @@ class PetugasController extends Controller
         ]);
     }
 
+    
     public function tambah(){
         return view('petugas.tambah',['title' => 'Tambah Data Petugas']);
     }
 
+   
     public function submit(Request $request){
-        $petugas = new Petugas();
-        $petugas->nis = $request->nis;
-        $petugas->namaP = $request->namaP;
-        $petugas->kelas = $request->kelas;
-        $petugas->jk = $request->jk;
-        $petugas->jurusan = $request->jurusan;
-        $petugas->namao = $request->nama_orga;
-        $petugas->save();
 
+        $request->validate([
+            'nis' => 'required|unique:petugas,nis',
+            'nama' => 'required|string|max:255',
+            'kelas' => 'required|string|max:10',
+            'jk' => 'required',
+            'jurusan' => 'required|string|max:100',
+            'namao' => 'required|string|max:255',
+        ], [
+            'nis.unique' => 'NIS sudah digunakan. Silakan gunakan NIS yang lain.',
+        ]);
+
+        Petugas::create([
+            'nis' => $request->nis,
+            'nama' => $request->nama,
+            'kelas' => $request->kelas,
+            'jk' => $request->jk,
+            'jurusan' => $request->jurusan,
+            'namao' => $request->namao,
+        ]);
         return redirect()->route('petugas.tampil')->with('success', 'Data berhasil ditambahkan!');
-
     }
 
+    
     public function edit($id){
         $petugas = Petugas::find($id);
         return view('petugas.edit',compact('petugas'),[
@@ -40,22 +54,41 @@ class PetugasController extends Controller
         ]);
     }
 
+  
     public function update(Request $request, $id){
-        $petugas = Petugas::find($id);
-        $petugas->nis = $request->nis;
-        $petugas->namap = $request->nama_petugas;
-        $petugas->kelas = $request->kelas;
-        $petugas->jk = $request->jk;
-        $petugas->jurusan = $request->jurusan;
-        $petugas->namao = $request->nama_orga;
-        $petugas->update();
 
-        return redirect()->route('petugas.tampil')->with('success', 'Data berhasil diubah!');
+           
+       
+        $request->validate([
+            'nis' => 'required|unique:petugas,nis',
+            'nama' => 'required|string|max:255',
+            'kelas' => 'required|string|max:10',
+            'jk' => 'required',
+            'jurusan' => 'required|string|max:100',
+            'namao' => 'required|string|max:255',
+        ], [
+            'nis.unique' => 'NIS sudah digunakan. Silakan gunakan NIS yang lain.',
+        ]);
+
+        $petugas->update([
+            'nis' => $request->nis,
+            'nama' => $request->nama,
+            'kelas' => $request->kelas,
+            'jk' => $request->jk,
+            'jurusan' => $request->jurusan,
+            'namao' => $request->namao,
+        ]);
+        return redirect()->route('petugas.tampil')->with('success', 'Data berhasil ditambahkan!');
 
     }
+
+    
+    
+
+   
     public function delete($id){
         $petugas = Petugas::find($id);
-        $user = User::where('nis', $petugas->nis)->first();
+        $user = User::where('nis', $petugas->nis)->where('role', 'petugas')->first(); 
         if ($user) {
             $user->delete();
         }
@@ -64,20 +97,21 @@ class PetugasController extends Controller
         return redirect()->route('petugas.tampil')->with('success', 'Data berhasil dihapus!');
     }
 
+   
     public function search(Request $request)
     {
         $searchTerm = $request->input('search');
         
         $petugas = Petugas::where('nis', 'LIKE', "%{$searchTerm}%")
-                    ->orWhere('namaP', 'LIKE', "%{$searchTerm}")
+                    ->orWhere('nama', 'LIKE', "%{$searchTerm}%")
                     ->orWhere('kelas', 'LIKE', "%{$searchTerm}%")
                     ->orWhere('jurusan', 'LIKE', "%{$searchTerm}%")
                     ->orWhere('namao', 'LIKE', "%{$searchTerm}%")
                     ->paginate();
+                    
         return view('petugas.petug', compact('petugas'), [
             'title'=>'Data Petugas'
 
         ]);
     }
-
 }

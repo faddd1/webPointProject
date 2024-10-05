@@ -31,13 +31,16 @@ class TeacherController extends Controller
     public function store(Request $request)
     {
         $request -> validate([
-            'nis'=> 'required',
+            'nis' => 'required|unique:teachers,nis,',
             'namaguru' => 'required',
             'jabatan' => 'required',
             'jk' => 'required'
 
-        ]);
+        ], [
+             'nis.unique' => 'Nip sudah digunakan, silakan pilih yang lain.',
 
+        ]);
+       
         Teacher::create([
             'nis' => $request->nis,
             'namaguru' => $request->namaguru,
@@ -69,12 +72,16 @@ class TeacherController extends Controller
     public function update(Request $request, Teacher $teacher , $id)
     {
         $request -> validate([
-            'nis'=> 'required',
+            'nis' => 'required|unique:teachers,nis,' . $id,
             'namaguru' => 'required',
             'jabatan' => 'required',
             'jk' => 'required'
 
-        ]);
+        ], [
+            'nis.unique' => 'Nip sudah digunakan, silakan pilih yang lain.',
+
+       ]);
+        
         $teacher = Teacher::find($id);
         $teacher->update([
             'nis' => $request->nis,

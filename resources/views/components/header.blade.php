@@ -20,6 +20,10 @@
               width: 208px;
           @elseif($slot == 'Tambah Akun')
               width: 182px;
+          @elseif($slot == 'Penebusan')
+              width: 140px;
+          @elseif($slot == 'Review Penebusan')
+              width: 240px;
           @endif
       }
   </style>

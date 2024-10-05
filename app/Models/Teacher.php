@@ -16,4 +16,8 @@ class Teacher extends Model
         'jabatan',
         'jk'
     ];
+    public function pelanggaran()
+    {
+        return $this->hasMany(Laporan::class, 'nis', 'nis');
+    }
 }

@@ -1,22 +1,11 @@
 
+
 <x-layout>
     <x-slot:title>{{ $title }}</x-slot:title>
     <div class="container">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    @if (session('success'))
-                        <script>
-                            document.addEventListener("DOMContentLoaded", function() {
-                                Swal.fire({
-                                    title: "SUCCESS",
-                                    text: "{{ session('success') }}",
-                                    icon: "success"
-                                });
-                            });
-                        </script>
-                    @endif
-                    
                     @if (session('success'))
                         <script>
                             document.addEventListener("DOMContentLoaded", function() {
@@ -28,6 +17,25 @@
                             });
                         </script>
                     @endif
+                    @if ($errors->has('nis'))
+                    <script>
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: "top-end",
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.onmouseenter = Swal.stopTimer;
+                                toast.onmouseleave = Swal.resumeTimer;
+                            }
+                        });
+                        Toast.fire({
+                            icon: "error",
+                            title: " {{ $errors->first('nis') }}"
+                        });
+                    </script>
+                     @endif
 
                     <style>
                         .btn-primary:hover {

@@ -21,22 +21,6 @@ class DummyUserSeeder extends Seeder
                 'role' => 'admin',
                 'password' => bcrypt('12345678')
 
-            ],
-            [
-                'name'=> 'Petugas',
-                'nis' => '222310228',
-                'role'=> 'petugas',
-                'password'=> bcrypt('12345678')
-            ],[
-                'name'=> 'Guru',
-                'nis' => '222310227',
-                'role'=> 'guru',
-                'password'=> bcrypt('12345678')
-            ],[
-                'name'=> 'siswa',
-                'nis' => '222310226',
-                'role'=> 'siswa',
-                'password'=> bcrypt('12345678')
             ]
             ];
 

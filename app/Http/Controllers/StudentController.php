@@ -55,12 +55,15 @@ class StudentController extends Controller
     {
        $request -> validate ([
 
-        'nis' => 'required|string|max:40',
+        'nis' => 'required|unique:students,nis,',
         'nama' => 'required|string|max:50',
         'kelas' => 'required|string|max:50',
         'jurusan' => 'required|string|max:50',
         'jk' => 'required|string|max:50',
-       ]);
+       ], [
+        'nis.unique' =>  'nis sudah digunakan, silakan pilih yang lain.',
+
+   ]);
 
        Student::create([
 
@@ -95,12 +98,15 @@ class StudentController extends Controller
     public function update(Request $request, Student $studentItem, $id)
     {
         $request -> validate ([
-        'nis' => 'required|string|max:40',
+        'nis' => 'required|unique:students,nis,' . $id,
         'nama' => 'required|string|max:50',
         'kelas' => 'required|string|max:50',
         'jurusan' => 'required|string|max:50',
         'jk' => 'required|string|max:50',
-        ]);
+        ], [
+            'nis.unique' => 'Nis sudah digunakan, silakan pilih yang lain.',
+
+       ]);
 
         $studentItem = Student::find($id);
         $studentItem->update ([
@@ -121,7 +127,7 @@ class StudentController extends Controller
     {
         $studentItem = Student::findOrFail($id);
         
-        $user = User::with('laporan')->where('nis', $studentItem->nis)->first();
+        $user = User::with('laporan')->where('nis', $studentItem->nis)->where('role', 'siswa')->first();
         if ($user) {
             $user->delete();
         }

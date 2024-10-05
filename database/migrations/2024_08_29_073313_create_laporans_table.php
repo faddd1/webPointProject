@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('laporans', function (Blueprint $table) {
-            $table->id(); // Auto-incrementing ID
-            $table->string('nis'); // Kolom untuk NIS siswa
-            $table->string('pelanggaran'); // Kolom untuk pelanggaran yang dilakukan
-            $table->date('tanggal'); // Kolom untuk tanggal pelanggaran
-            $table->string('bukti')->nullable(); // Kolom untuk menyimpan bukti (file), bisa nullable
-            $table->timestamps(); // Kolom created_at dan updated_at
+            $table->id(); 
+            $table->string('nis');
+            $table->string('pelanggaran');
+            $table->date('tanggal'); 
+            $table->string('bukti')->nullable(); 
+            $table->timestamps();
         });
     }
 

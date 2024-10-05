@@ -36,6 +36,16 @@ class Student extends Model
         return $this->hasMany(Laporan::class, 'nis', 'nis');
     }
 
+    public function status()
+    {
+        return $this->hasOne(Laporan::class, 'status', 'Diterima');
+    }
+
+    public function penebusan()
+    {
+        return $this->hasMany(Penebusan::class, 'nis', 'nis');
+    }
+
     public function petugas() {
         return $this->hasOne(Petugas::class, 'nis', 'nis');
     }

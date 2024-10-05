@@ -6,13 +6,35 @@
                 <div class="col-12">
                     @if (session('success'))
                     <script>
-                      Swal.fire({
-                        title: "SUCCESS",
-                        text: "{{ session('success') }}",
-                        icon: "success"
+                        document.addEventListener("DOMContentLoaded", function() {
+                            Swal.fire({
+                                title: "ERROR",
+                                text: "{{ session('success') }}",
+                                icon: "error"
+                            });
                         });
                     </script>
-                    @endif
+                @endif
+                @if ($errors->has('nis'))
+                <script>
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: "top-end",
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.onmouseenter = Swal.stopTimer;
+                            toast.onmouseleave = Swal.resumeTimer;
+                        }
+                    });
+                    Toast.fire({
+                        icon: "error",
+                        title: " {{ $errors->first('nis') }}"
+                    });
+                </script>
+                 @endif
+
 
                     <style>
                         .input-group {
@@ -134,7 +156,7 @@
                                             {{ ($petugas->currentPage() - 1) * $petugas->perPage() + $loop->iteration }}
                                         </td>
                                           <td style="text-align: center; vertical-align: middle;">{{ $petugasd->nis }}</td>
-                                          <td style="text-align: center; vertical-align: middle;">{{ $petugasd->namaP }}</td>
+                                          <td style="text-align: center; vertical-align: middle;">{{ $petugasd->nama}}</td>
                                           <td style="text-align: center; vertical-align: middle;">{{ $petugasd->kelas }}</td>
                                           <td style="text-align: center; vertical-align: middle;">{{ $petugasd->jk }}</td>
                                           <td style="text-align: center; vertical-align: middle;">{{ $petugasd->jurusan }}</td>

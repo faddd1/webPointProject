@@ -13,6 +13,13 @@
     <div class="form-group">
         <label>NIS</label>
         <input type="text" class="form-control" value="{{ $studentItem->nis }}" name="nis" placeholder="Enter NIS" required>
+        @if ($errors->any())
+        <div class="alert alert-danger">
+                @foreach ($errors->all() as $error)
+                    <p>{{ $error }}</p>
+                @endforeach
+        </div>
+    @endif
     </div>
     <div class="form-group">
         <label>Nama Siswa</label>

@@ -13,6 +13,26 @@
                     });
                 </script>
                 @endif
+
+                @if ($errors->has('nis'))
+                <script>
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: "top-end",
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.onmouseenter = Swal.stopTimer;
+                            toast.onmouseleave = Swal.resumeTimer;
+                        }
+                    });
+                    Toast.fire({
+                        icon: "error",
+                        title: " {{ $errors->first('nis') }}"
+                    });
+                </script>
+                 @endif
                   <div class="card">
                       <div class="card-header">
                           <div class="card-tools">
@@ -213,3 +233,4 @@
     });
 </script>
 </x-layout>
+

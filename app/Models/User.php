@@ -38,6 +38,13 @@ class User extends Authenticatable
         return $this->hasMany(Laporan::class, 'nis', 'nis',);
 
     }
+
+    public function penebus(){
+
+        return $this->hasMany(Penebus::class, 'nis', 'nis',);
+
+    }
+
     public function petugas() {
 
         return $this->belongsTo(Petugas::class, 'nis', 'nis');

@@ -15,7 +15,7 @@
     </div>
     <div class="form-group">
         <label>Nama Petugas</label>
-        <input type="text" class="form-control" name="nama_petugas" value="{{ $petugas->namaP }}" placeholder="Enter student name" required>
+        <input type="text" class="form-control" name="nama" value="{{ $petugas->nama }}" placeholder="Enter student name" required>
     </div>
     <div class="form-group">
         <label for="kelas" class="form-label">Kelas</label>
@@ -62,8 +62,8 @@
     </div>
     
     <div class="form-group">
-        <label for="nama_orga" class="form-label">Organisasi</label>
-        <select class="form-control" id="nama_orga" name="nama_orga" required>
+        <label for="namao" class="form-label">Organisasi</label>
+        <select class="form-control" id="namao" name="namao" required>
           <option value="">Pilih Organisasi</option>
           <option value="MPK" {{ $petugas->namao == 'MPK' ? 'selected' : '' }}>MPK</option>
           <option value="OSIS" {{ $petugas->namao == 'OSIS' ? 'selected' : '' }}>OSIS</option>

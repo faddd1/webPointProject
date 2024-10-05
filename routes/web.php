@@ -1,16 +1,21 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\KategoriController;
-use App\Http\Controllers\LaporanController;
-use App\Http\Controllers\PetugasController;
-use App\Http\Controllers\SesiController;
-use App\Http\Controllers\StudentController;
-use App\Http\Controllers\TeacherController;
-use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SesiController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\PetugasController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\UserGuruController;
+use App\Http\Controllers\PenebusanController;
+use App\Http\Controllers\UserSiswaController;
+use App\Http\Controllers\UserPetugasController;
+use App\Http\Controllers\PoinPenebusanController;
 // --------------------- PAGE ROUTES ------------------------ //
    
 Route::get('/', [HomeController::class, 'home'])->name('home');
@@ -51,28 +56,76 @@ Route::middleware(['auth', 'userAkses:admin,guru,petugas'])->group(function () {
     Route::get('/laporan', [LaporanController::class, 'index']);
     // Datapetugas Routes
     Route::get('/datapetugas', [PetugasController::class, 'tampil'])->name('petugas.tampil');
+
+      
 });
 
 Route::middleware(['auth', 'userAkses:admin,guru'])->group(function () {
-    // Teacher Routes
-    Route::get('/teacher', [TeacherController::class, 'index'])->name('dataguru');
-    Route::get('/teacher/search', [TeacherController::class, 'search'])->name('teacher.search');
-    // Student Data Routes
-    Route::get('/datasiswa', [StudentController::class, 'indexdata'])->name('datasiswa');
-    Route::get('/datasiswa/show/{id}', [StudentController::class, 'showsiswa'])->name('datasiswa.show');
+  // Teacher Routes
+  Route::get('/teacher', [TeacherController::class, 'index'])->name('dataguru');
+  Route::get('/teacher/search', [TeacherController::class, 'search'])->name('teacher.search');
+  // Student Data Routes
+  Route::get('/datasiswa', [StudentController::class, 'indexdata'])->name('datasiswa');
+  Route::get('/datasiswa/show/{id}', [StudentController::class, 'showsiswa'])->name('datasiswa.show');
+
+  // Poin Penebusan
+  Route::get('/PoinPenebusan', [PoinPenebusanController::class, 'index'])->name('Poin.Penebusan');
+  Route::post('/PoinPenebusan/store', [PoinPenebusanController::class, 'store'])->name('Poin.store');
+  Route::get('/PoinPenebusan/create', [PoinPenebusanController::class, 'create'])->name('Poin.create');
+  Route::get('/PoinPenebusan/edit/{id}', [PoinPenebusanController::class, 'edit'])->name('Poin.edit');
+  Route::put('/PoinPenebusan/update/{id}', [PoinPenebusanController::class, 'update'])->name('Poin.update');
+  Route::delete('/PoinPenebusan/destroy/{id}', [PoinPenebusanController::class, 'destroy'])->name('Poin.destroy');
+
+  Route::get('/Penebusan', [PenebusanController::class, 'index'])->name('penebusan');
+  Route::post('/Penebusan/store', [PenebusanController::class, 'store'])->name('penebusan.store');
+  Route::get('/Penebusan/search', [PenebusanController::class, 'searchPenebusan'])->name('penebusan.search');
+
+  Route::get('/penebusan/review', [PenebusanController::class, 'showpenebusan'])->name('penebusan.review');
+  Route::put('/penebusan/approve/{id}', [PenebusanController::class, 'terimapenebusan'])->name('penebusan.approve');
+  Route::post('/penebusan/not-approve/{id}', [PenebusanController::class, 'tolakpenebusan'])->name('penebusan.notApprove');
+  Route::get('/penebusan/show/{id}', [PenebusanController::class, 'show'])->name('penebusan.show');
+  
+
+
 
 });
 
 Route::middleware(['auth', 'userAkses:admin'])->group(function () {
-    // User Management Routes
-    Route::get('/tambah', [UserController::class, 'index']);
+    // Akun Admin
+    Route::get('/tambah', [UserController::class, 'index'])->name('tambah');
     Route::get('tambah/user', [UserController::class, 'create']);
     Route::get('tambah/edit{id}', [UserController::class, 'edit'])->name('tambah.edit');
     Route::post('tambah/store', [UserController::class, 'store'])->name('tambah.store');
     Route::put('tambah/update{id}', [UserController::class, 'update'])->name('tambah.update');
     Route::get('tambah/destroy{id}', [UserController::class, 'destroy'])->name('tambah.destroy');
-    // Laporan Review Routes
-    Route::get('/dashboard', [LaporanController::class, 'getNotifications'])->name('dashboard');
+    Route::get('tambahAdmin/search', [UserController::class, 'search'])->name('tambahAdmin.search');
+    //Akun Petugas
+    Route::get('/tambahPetugas', [UserPetugasController::class, 'index'])->name('tambahPetugas');
+    Route::get('tambahPetugas/user', [UserPetugasController::class, 'create']);
+    Route::get('tambahPetugas/edit{id}', [UserPetugasController::class, 'edit'])->name('tambahPetugas.edit');
+    Route::post('tambahPetugas/store', [UserPetugasController::class, 'store'])->name('tambahPetugas.store');
+    Route::put('tambahPetugas/update{id}', [UserPetugasController::class, 'update'])->name('tambahPetugas.update');
+    Route::get('tambahPetugas/destroy{id}', [UserPetugasController::class, 'destroy'])->name('tambahPetugas.destroy');
+    Route::get('tambahPetugas/search', [UserPetugasController::class, 'search'])->name('tambahPetugas.search');
+    // Akun Siswa
+    Route::get('/tambahSiswa', [UserSiswaController::class, 'index'])->name('tambahSiswa');
+    Route::get('tambahSiswa/user', [UserSiswaController::class, 'create']);
+    Route::get('tambahSiswa/edit{id}', [UserSiswaController::class, 'edit'])->name('tambahSiswa.edit');
+    Route::post('tambahSiswa/store', [UserSiswaController::class, 'store'])->name('tambahSiswa.store');
+    Route::put('tambahSiswa/update{id}', [UserSiswaController::class, 'update'])->name('tambahSiswa.update');
+    Route::get('tambahSiswa/destroy{id}', [UserSiswaController::class, 'destroy'])->name('tambahSiswa.destroy');
+    Route::get('tambahSiswa/search', [UserSiswaController::class, 'search'])->name('tambahSiswa.search');
+
+
+    Route::get('/tambahGuru', [UserGuruController::class, 'index'])->name('tambahGuru');
+    Route::get('tambahGuru/user', [UserGuruController::class, 'create']);
+    Route::get('tambahGuru/edit{id}', [UserGuruController::class, 'edit'])->name('tambahGuru.edit');
+    Route::post('tambahGuru/store', [UserGuruController::class, 'store'])->name('tambahGuru.store');
+    Route::put('tambahGuru/update{id}', [UserGuruController::class, 'update'])->name('tambahGuru.update');
+    Route::get('tambahGuru/destroy{id}', [UserGuruController::class, 'destroy'])->name('tambahGuru.destroy');
+    Route::get('tambahGuru/search', [UserGuruController::class, 'search'])->name('tambahGuru.search');
+
+    // Laporan Review Routee
     Route::get('/laporan/review', [LaporanController::class, 'showlaporan'])->name('laporan.review');
     Route::put('/laporan/approve/{id}', [LaporanController::class, 'terimalaporan'])->name('laporan.approve');
     Route::post('/laporan/not-approve/{id}', [LaporanController::class, 'tolaklaporan'])->name('laporan.notApprove');
@@ -91,7 +144,7 @@ Route::middleware(['auth', 'userAkses:admin'])->group(function () {
     Route::delete('/datasiswa/destroy/{id}', [StudentController::class, 'destroy'])->name('datasiswa.destroy');
     Route::delete('/datasiswa/hapus/point', [StudentController::class, 'hapusPoint'])->name('hapus.point');
     // Kategori Pelanggaran Management Routes
-    Route::get('/kategoripelanggaran/create', [KategoriController::class, 'create']);
+    Route::get('/kategoripelanggaran/create', [KategoriController::class, 'create']); 
     Route::get('kategori/edit/{id}', [KategoriController::class, 'edit'])->name('kategori.edit');
     Route::delete('kategori/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
     Route::put('kategori/{id}', [KategoriController::class, 'update'])->name('kategori.update');

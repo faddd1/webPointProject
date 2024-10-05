@@ -23,7 +23,7 @@ class LaporanController extends Controller
 
     public function store(Request $request)
     {
-        // Validasi input
+       
         $request->validate([
             'nis' => 'required',
             'nama' => 'required',
@@ -34,7 +34,7 @@ class LaporanController extends Controller
         ]);
 
         try {
-            // Simpan laporan
+           
             $report = new Laporan();
             $report->nis = $request->nis;
             $report->nama = $request->nama;
@@ -84,9 +84,10 @@ class LaporanController extends Controller
         $pelanggaran = Kategori::where('pelanggaran', $report->pelanggaran)->first();
 
         if ($siswa && $pelanggaran) {
-            $siswa->point += $pelanggaran->point;
+            $siswa->point -= abs($pelanggaran->point);
             $siswa->save();
         }
+        
 
         return redirect()->route('laporan.review')->with('success', 'Laporan berhasil disetujui.');
     }
@@ -99,19 +100,11 @@ class LaporanController extends Controller
             return redirect()->route('laporan.review')->with('error', 'Laporan tidak ditemukan.');
         }
 
-        // Ubah status laporan menjadi 'Laporan Tidak Valid'
+       
         $report->status = 'Laporan Tidak Valid';
         $report->save();
 
-        // Ambil data siswa dan pelanggaran
-        $siswa = Student::where('nis', $report->nis)->first();
-        $pelanggaran = Kategori::where('pelanggaran', $report->pelanggaran)->first();
-
-        if ($siswa && $pelanggaran) {
-            // Update data pelanggaran walaupun laporan ditolak
-            $siswa->point += $pelanggaran->point;
-            $siswa->save();
-        }
+        
 
         return redirect()->route('laporan.review')->with('success', 'Laporan telah ditolak dan dimasukkan ke daftar pelanggaran.');
     }
@@ -123,22 +116,22 @@ class LaporanController extends Controller
         return view ('laporan.showlaporan', compact('report'));
     }
 
-    public function getNotifications()
-    {
+    // public function getNotifications()
+    // {
     
-        $nis = Auth::user()->nis;
+    //     $nis = Auth::user()->nis;
     
 
-        $notifications = Laporan::where('nis', $nis)
-                                ->where('created_at', '>=', now()->subDay())
-                                ->get();
+    //     $notifications = Laporan::where('nis', $nis)
+    //                             ->where('created_at', '>=', now()->subDay())
+    //                             ->get();
     
         
-        $count = $notifications->count();
+    //     $count = $notifications->count();
 
-        $title = 'Dashboard Siswa';
+    //     $title = 'Dashboard Siswa';
     
        
-        return view('components.navbar', compact('notifications', 'count'));
-    }
+    //     return view('components.navbar', compact('notifications', 'count'));
+    // }
 }
