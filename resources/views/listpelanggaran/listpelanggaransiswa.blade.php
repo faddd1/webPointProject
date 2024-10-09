@@ -76,15 +76,15 @@
         <div class="card-body">
             <h4 class="text-md py-2">Pelanggaran Yang Pernah Kamu Lakukan :</h4>
             <div class="table-responsive">
-                <table class="table table-bordered">
+                <table class="table table-bordered" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                     <thead>
-                        <tr>
-                            <th style="text-align: center; vertical-align: middle;">No</th>
-                            <th style="text-align: center; vertical-align: middle;">Nama Pelapor</th>
-                            <th style="text-align: center; vertical-align: middle;">Nama Pelanggaran</th>
-                            <th style="text-align: center; vertical-align: middle;">Jumlah Point</th>
-                            <th style="text-align: center; vertical-align: middle;">Bukti</th>
-                            <th style="text-align: center; vertical-align: middle;">Tanggal</th>
+                        <tr style="background-color: #4D869C; color:#ffff;">
+                            <td style="text-align: center; vertical-align: middle;">No</td>
+                            <td style="text-align: center; vertical-align: middle;">Nama Pelapor</td>
+                            <td style="text-align: center; vertical-align: middle;">Nama Pelanggaran</td>
+                            <td style="text-align: center; vertical-align: middle;">Jumlah Point</td>
+                            <td style="text-align: center; vertical-align: middle;">Bukti</td>
+                            <td style="text-align: center; vertical-align: middle;">Tanggal</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -125,4 +125,5 @@
             </div>
         </div>
     </div>
+
 </x-layout>

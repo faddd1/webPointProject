@@ -17,7 +17,7 @@ class UserPetugasController extends Controller
         
         return view('tambahUserPetugas.tambahakun', [
             'data' => $data,
-            'title' => 'Tambah Akun Petugas',
+            'title' => 'Akun Petugas',
             'selectedRole' => $role 
         ]);
     }
@@ -25,7 +25,7 @@ class UserPetugasController extends Controller
 
     public function create(){
         return view ('tambahUserPetugas.buatakun', [
-            'title' => 'Tambah Akun'
+            'title' => 'Akun Petugas'
         ]);
     }
 

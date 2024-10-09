@@ -1,3 +1,12 @@
+<style>
+    .btn-primary-custom {
+    background-color: #245c70;
+    color: #fff;
+}
+    .btn-primary-custom:hover{
+    color: #fff;
+}
+</style>
 <form action="{{ route('tambahPetugas.store') }}" method="POST">
     @csrf
     <div class="mb-3">
@@ -20,6 +29,6 @@
         </div>
     </div>
     <div class="py-3">
-        <button type="submit" class="btn btn-primary btn-block">Save</button>
+        <button type="submit" class="btn btn-primary-custom btn-block">Save</button>
     </div>
 </form>

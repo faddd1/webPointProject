@@ -24,61 +24,43 @@
                 @endif
                 <style>
                     .btn-danger:hover {
-                        transition: transform 0.3s ease;
+                        transition: transform 0.5s ease;
                         transform: translateY(-5px);
                     }
 
                     .btn-primary:hover {
-                        transition: transform 0.3s ease;
+                        transition: transform 0.5s ease;
                         transform: translateY(-5px);
                     }
-
-                    /* #tambahDataBtn {
-                        margin-left: auto;
-                    }
-
-                    @media (max-width: 576px) {
-                        #tambahDataBtn {
-                            width: 15%;
-                            margin-top: 10px;
-                            margin-left: auto;
-                            flex-basis: auto;
-                        }
-                        .btn-group .btn {
-                            width: 100%;
-                            margin-bottom: 5px;
-                        }
-                    } */
 
                     .card-header {
                         display: flex;
                         justify-content: space-between;
                         align-items: center;
-                        flex-wrap: nowrap; /* Prevent wrapping in mobile */
+                        flex-wrap: nowrap; 
                     }
 
                     .card-header .btn-group {
-                        flex: 1; /* Allow btn-group to take available space */
+                        flex: 1; 
                         margin-right: 15px;
                     }
 
                     #tambahDataBtn {
-                        margin-left: auto; /* Keep button aligned to the right */
+                        margin-left: auto;
                     }
 
-                    /* On mobile */
                     @media (max-width: 576px) {
                         .card-header {
-                            flex-wrap: wrap; /* Allow wrapping */
+                            flex-wrap: wrap; 
                         }
                         .btn-group {
                             flex: 1 1 auto;
-                            margin-bottom: 10px; /* Optional margin for spacing */
+                            margin-bottom: 10px;
                             margin-top: 10px;
                         }
                         #tambahDataBtn {
-                            margin-left: 0; /* Override auto margin on mobile */
-                            flex-basis: auto; /* Keep button width consistent */
+                            margin-left: 0;
+                            flex-basis: auto; 
                         }
                     }
 
@@ -123,6 +105,11 @@
                                 </thead>
                                 <tbody id="user-table-body">
 
+                                    @if ($data->isEmpty())
+                                    <tr>
+                                        <td colspan="9" style="text-align: center;">Tidak ada data yang ditemukan</td>
+                                    </tr>
+                                    @else
                                     @foreach( $data as $datas)
                                         
                                 
@@ -146,6 +133,7 @@
                                         </td>
                                     </tr>
                                     @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                             <div class="d-flex">

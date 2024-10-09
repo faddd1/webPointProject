@@ -51,6 +51,9 @@ Route::middleware(['auth', 'userAkses:admin,guru,petugas'])->group(function () {
     Route::get('/student/searchSiswa', [StudentController::class, 'searchSiswa'])->name('student.searchSiswa');
     Route::get('/listpelanggaran/show/{id}', [StudentController::class, 'show'])->name('listpelanggaran.show');
     Route::delete('/listpelanggaran/{id}}', [StudentController::class, 'listDestroy'])->name('listpelanggaran.destroy');
+    // List Prestasi Siswa
+    Route::get('/listprestasi', [StudentController::class, 'prestasi'])->name('listprestasi.prestasi');
+    Route::get('/listprestasi/search', [PoinPenebusanController::class, 'search'])->name('listprestasi.search');
     // Laporan Routes
     Route::post('/lapor', [LaporanController::class, 'store'])->name('lapor.store');
     Route::get('/laporan', [LaporanController::class, 'index']);

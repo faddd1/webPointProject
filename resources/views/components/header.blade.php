@@ -20,10 +20,26 @@
               width: 208px;
           @elseif($slot == 'Tambah Akun')
               width: 182px;
-          @elseif($slot == 'Penebusan')
+          @elseif($slot == 'Restorasi')
+              width: 120px;
+          @elseif($slot == 'Review Restorasi')
+              width: 220px;
+          @elseif($slot == 'List Prestasi Siswa')
+              width: 235px;
+          @elseif($slot == 'Kategori Prestasi')
+              width: 220px;
+          @elseif($slot == 'Akun Siswa')
+              width: 147px;
+          @elseif($slot == 'Akun Guru')
               width: 140px;
-          @elseif($slot == 'Review Penebusan')
-              width: 240px;
+          @elseif($slot == 'Akun Petugas')
+              width: 180px;
+          @elseif($slot == 'Akun Admin')
+              width: 165px;
+          @elseif($slot == 'Profile')
+              width: 85px;
+          @elseif($slot == 'Tambah Akun')
+              width: 165px;
           @endif
       }
   </style>

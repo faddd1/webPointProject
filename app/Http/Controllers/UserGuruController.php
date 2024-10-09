@@ -17,7 +17,7 @@ class UserGuruController extends Controller
         
         return view('tambahUserGuru.tambahakun', [
             'data' => $data,
-            'title' => 'Tambah Akun',
+            'title' => 'Akun Guru',
             'selectedRole' => $role 
         ]);
     }
@@ -25,7 +25,7 @@ class UserGuruController extends Controller
 
     public function create(){
         return view ('tambahUserGuru.buatakun', [
-            'title' => 'Tambah Akun'
+            'title' => 'Akun Guru'
         ]);
     }
 

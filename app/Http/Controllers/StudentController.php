@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Penebusan;
 use App\Models\User;
 use App\Models\Laporan;
 use App\Models\Student;
+use App\Models\Prestasi;
 use Illuminate\Http\Request;
 use PHPUnit\Framework\MockObject\Builder\Stub;
 
@@ -22,15 +24,38 @@ class StudentController extends Controller
         ->orWhere('point', 'LIKE', "%{$searchTerm}%")
         ->orWhere('tanggal', 'LIKE', "%{$searchTerm}%")
         ->orderBy('created_at', 'desc')
-        ->paginate(10); 
-    
+        ->paginate(10);  
+
+        
         return view('listpelanggaran.listpelanggaran', [
             'title' 
                   => 'List Pelanggaran Siswa',
             'students' => $students,
         ]);
+
     }
     
+    public function prestasi(Request $request)
+    {
+
+        $searchTerm = $request->input('search');
+
+        $prestasis = Penebusan::with('siswa')
+        ->whereHas('siswa', function($query) use ($searchTerm) {
+            $query->where('nama', 'LIKE', "%{$searchTerm}%");})
+        ->orWhere('nama', 'LIKE', "%{$searchTerm}%")
+        ->orWhere('nama_Prestasi', 'LIKE', "%{$searchTerm}%")
+        ->orWhere('point', 'LIKE', "%{$searchTerm}%")
+        ->orWhere('tanggal', 'LIKE', "%{$searchTerm}%")
+        ->orderBy('created_at', 'desc')
+        ->paginate(10); 
+    
+        return view('prestasi.listprestasi', [
+            'title' 
+                  => 'List Prestasi Siswa',
+            'prestasis' => $prestasis,
+        ]);
+    }
 
 
     
@@ -82,7 +107,7 @@ class StudentController extends Controller
     public function showsiswa($id)
     {
        
-        $studentlist = Student::with('pelanggaran')->findOrFail($id);  
+        $studentlist = Student::with('pelanggaran' ,'penebusan')->findOrFail($id);  
         return view('student.showsiswa', compact('studentlist'));
         
     }
@@ -123,23 +148,24 @@ class StudentController extends Controller
     }
 
 
-    public function destroy(Student $studentItem, $id)
-    {
-        $studentItem = Student::findOrFail($id);
-        
-        $user = User::with('laporan')->where('nis', $studentItem->nis)->where('role', 'siswa')->first();
-        if ($user) {
-            $user->delete();
-        }
-        $laporan = Laporan::where('nis', $studentItem->nis)->get(); 
-        foreach ($laporan as $data) {
-            $data->delete();
-        }
-        
-        $studentItem->delete();
+public function destroy(Student $studentItem, $id)
+{
+    $studentItem = Student::findOrFail($id);
     
-        return redirect('datasiswa')->with('success', 'Data siswa, user, dan laporan berhasil dihapus!');
+    $user = User::with('laporan')->where('nis', $studentItem->nis)->where('role', 'siswa')->first();
+    if ($user) {
+        $user->delete();
     }
+    $laporan = Laporan::where('nis', $studentItem->nis)->get(); 
+    foreach ($laporan as $data) {
+        $data->delete();
+    }
+    
+    $studentItem->delete();
+
+    return redirect()->route('datasiswa')->with('success', 'Data siswa, user, dan laporan berhasil dihapus!');
+}
+
 
     public function hapusPoint() {
         $pointsiswa = Student::whereNotNull('point')->update(['point' => 0]);

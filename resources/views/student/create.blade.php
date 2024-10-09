@@ -11,11 +11,11 @@
     @csrf
     <div class="form-group">
         <label>NIS</label>
-        <input type="text" class="form-control" name="nis" placeholder="Enter NIS" required>
+        <input type="text" class="form-control" name="nis" placeholder="NIS" required>
     </div>
     <div class="form-group">
         <label>Nama Siswa</label>
-        <input type="text" class="form-control" name="nama" placeholder="Enter student name" required>
+        <input type="text" class="form-control" name="nama" placeholder="Nama Siswa" required>
     </div>
     <div class="form-group mb-4">
         <label for="kelas" class="form-label">Kelas</label>

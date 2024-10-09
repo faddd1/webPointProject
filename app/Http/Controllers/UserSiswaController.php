@@ -18,7 +18,7 @@ class UserSiswaController extends Controller
         
         return view('tambahUserSiswa.tambahakun', [
             'data' => $data,
-            'title' => 'Tambah Akun Siswa',
+            'title' => 'Akun Siswa',
             'selectedRole' => $role 
         ]);
     }
@@ -26,7 +26,7 @@ class UserSiswaController extends Controller
 
     public function create(){
         return view ('tambahUserSiswa.buatakun', [
-            'title' => 'Tambah Akun'
+            'title' => 'Akun Siswa'
         ]);
     }
 

@@ -13,37 +13,103 @@
                 });
               </script>
             @endif
-            <div class="card">
-              <div class="card-header">
-                <div class="card-tools">
-                  @if (auth()->user()->role == 'admin')
-                    <button class="btn btn-sm btn-primary" id="tambahDataBtnn" style="margin-top: 5px;">
-                      <i class="fa-solid fa-circle-plus"></i> Add
-                    </button>
-                  @endif
-                </div>
-                {{-- <form action="/kategoripelanggaran/search" class="form-inline" method="GET">
-                  <div class="card-item d-flex">
-                    <input type="search" class="form-control col-md-11 col-14 mb-14 mr-2" name="search" placeholder="Cari" value="{{ request()->input('search') }}" id="search-input">
-                    <button type="submit" class="btn btn-primary mb-2">Cari</button>
-                  </div>
-                </form> --}}
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-tools">
+                @if (auth()->user()->role == 'admin')
+                  <button class="btn btn-sm" style="background-color:#245c70; color:#ffff; margin-top: 5px; margin-right: 10px;" id="tambahDataBtnn">
+                     <i class="fa-solid fa-circle-plus"></i> <span class="d-none d-sm-inline">Add</span>
+                  </button>
+                @endif
               </div>
+              <form action="/listprestasi/search" class="form-inline" method="GET">
+                <div class="card-item d-flex">
+                    <div class="input-group">
+                        <input type="search" class="form-control" name="search" placeholder="Cari" value="{{ request()->input('search') }}" id="search-input">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn" style="background-color: #266278; color: #fff;">
+                                <i class="fa-solid fa-magnifying-glass"></i> <!-- Search icon -->
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+          </div>
+
+          <style>
+            .input-group {
+                width: 100%; /* Full width */
+                max-width: 200px; /* Set a maximum width for a compact look */
+            }
+
+            .input-group .form-control {
+                border-radius: 0.25rem 0 0 0.25rem; /* Rounded corners on the left */
+                flex: 1; /* Allow input to take up available space */
+                height: 30px; /* Set a smaller height for the input field */
+                font-size: 0.875rem; /* Smaller font size */
+            }
+
+            .input-group .btn {
+                border-radius: 0 0.25rem 0.25rem 0; /* Rounded corners on the right */
+                background-color: #266278; /* Same button color */
+                color: #fff; /* Button text color */
+                height: 30px; /* Match the height of the input field */
+                padding: 0 10px; /* Smaller padding for a more compact button */
+            }
+
+            /* Adjust styles for mobile devices */
+            @media (max-width: 576px) {
+                .input-group {
+                    flex-direction: row; /* Ensure items are in a row */
+                    max-width: 180px; /* Set a smaller max width for mobile */
+                }
+            }
+
+            .action-buttons {
+                  display: flex;
+                  justify-content: center;
+                  gap: 5px;
+              }
+
+            
+              @media (max-width: 576px) {
+                  .action-buttons {
+                      flex-direction: row; 
+                  }
+              }
+
+              .btn-danger:hover {
+                transition: transform 0.3s ease;
+                transform: translateY(-5px);
+              }
+
+              .btn-primary:hover {
+                transition: transform 0.3s ease;
+                transform: translateY(-5px);
+              }
+        </style>
+        
               <div class="card-body">
                 <div class="table-responsive">
-                  <table class="table table-bordered table-hover table-sm">
+                  <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                     <thead>
-                      <tr>
-                        <th style="text-align: center; vertical-align: middle;">No</th>
-                        <th style="text-align: center; vertical-align: middle;">Nama Prestasi</th>
-                        <th style="text-align: center; vertical-align: middle;">Poin</th>
-                        <th style="text-align: center; vertical-align: middle;">Tingkat</th>
+                      <tr style="background-color: #4D869C; color:#ffff;">
+                        <td style="text-align: center; vertical-align: middle;">No</td>
+                        <td style="text-align: center; vertical-align: middle;">Nama Prestasi</td>
+                        <td style="text-align: center; vertical-align: middle;">Poin</td>
+                        <td style="text-align: center; vertical-align: middle;">Tingkat</td>
                         @if (auth()->check() && auth()->user()->role == 'admin')
-                          <th style="text-align: center; vertical-align: middle;">Action</th>
+                          <td style="text-align: center; vertical-align: middle;">Action</td>
                         @endif
                       </tr>
                     </thead>
                     <tbody>
+                      @if ($prestasi->isEmpty())
+                      <tr>
+                          <td colspan="9" style="text-align: center;">Tidak ada data yang ditemukan</td>
+                      </tr>
+                      @else
                       @foreach ($prestasi as $no => $prestasis)
                         <tr>
                           <td style="text-align: center; vertical-align: middle;">{{$no+1}}</td>
@@ -66,6 +132,7 @@
                           @endif
                         </tr>
                       @endforeach
+                      @endif
                     </tbody>
                   </table>
                 </div>
@@ -94,6 +161,12 @@
   
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+      document.getElementById('search-input').addEventListener('input', function() {
+            if (this.value === '') {
+              window.location.href = "{{ url('/PoinPenebusan') }}";
+            }
+          });
+
         document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById('tambahDataBtnn').addEventListener('click', function (event) {
                     event.preventDefault(); 
@@ -101,7 +174,7 @@
                     .then(response => response.text())
                     .then(html => {
                         document.getElementById('modalBody').innerHTML = html;
-                        document.getElementById('dataModalLabel').innerText = 'Tambah Data Siswa';
+                        document.getElementById('dataModalLabel').innerText = 'Tambah Kategori Prestasi';
                         const dataModal = new bootstrap.Modal(document.getElementById('dataModal'));
                         dataModal.show();
                     })

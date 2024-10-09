@@ -3,7 +3,6 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   
-  <!-- Main content -->
   <section class="content">
     @if(session()->has('success'))
       <script>
@@ -96,7 +95,6 @@
       </div>
       
       <style>
-          /* Hover effect */
           .small-box:hover {
             transform: translateY(-5px);
             background: linear-gradient(45deg, #4dacff, #3ecf69);
@@ -178,10 +176,8 @@
         }
 
         .card-siswa:hover {
-            /* transform: scale(1);  */
-            /* transform: perspective(500px) translateZ(20px); */
             transform: translateY(-5px);
-            transition: transform 0.3s ease; /* Animasi smooth */
+            transition: transform 0.3s ease;
         }
         
         .card-body h6 {
@@ -212,6 +208,13 @@
       
       <h4>Top Siswa</h4>
       <div class="row">
+        @if ($topStudents->isEmpty())
+        <div class="card-body p-2">
+          <div class="card col-xl-12 col-sm-12" style="padding: 20px; display: flex; justify-content: center; align-items: center; height: 100px;">
+            <span style="align-items: center; align-content:center;">Tidak ada data yang ditemukan.</span>
+          </div>
+        </div>
+        @else
         @foreach($topStudents as $index => $student)
           <div class="col-xl-3 col-lg-4 col-md-6 col-6 mb-3">
               <div class="card card-siswa h-100">
@@ -272,6 +275,7 @@
               </div>
           </div>
           @endforeach
+          @endif
       </div>
 
 
@@ -286,6 +290,11 @@
             </tr>
           </thead>
           <tbody>
+            @if ($topPelanggaran->isEmpty())
+            <tr>
+                <td colspan="9" style="text-align: center;">Tidak ada data yang ditemukan</td>
+            </tr>
+            @else
             @foreach($topPelanggaran as $index => $pelanggaran)
             <tr>
               <td style="text-align: center; vertical-align: middle;">{{ $index + 1 }}</td>
@@ -293,6 +302,7 @@
               <td style="text-align: center; vertical-align: middle;">{{ $pelanggaran->jumlah }}</td>
             </tr>
             @endforeach
+            @endif
           </tbody>
         </table>
       </div>

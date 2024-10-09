@@ -101,12 +101,12 @@
 
                             .btn-primary:hover {
                                 transform: translateY(-5px);
-                                transition: transform 0.3s ease;
+                                transition: transform 0.5s ease;
                             }
 
                             .btn-danger:hover {
                                 transform: translateY(-5px);
-                                transition: transform 0.3s ease;
+                                transition: transform 0.5s ease;
                             }
 
                             .action-buttons {

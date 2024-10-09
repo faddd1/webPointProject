@@ -26,7 +26,7 @@ class AdminController extends Controller
         $totalPetugas = Petugas::count();
         $totalPelanggaran = Kategori::where('pelanggaran', '!=', null)->count();
         $totalUser = User::count();
-        $topStudents = Student::orderBy('point', 'desc')->take(4)->get();
+        $topStudents = Student::orderBy('point', 'asc')->take(4)->get();
 
    
         $totalPelanggaranHariIni = Laporan::where('status', 'Diterima')
@@ -34,11 +34,11 @@ class AdminController extends Controller
             ->count();
 
       
-            $topPelanggaran = Laporan::select('pelanggaran', \DB::raw('sum(point) as jumlah'))
-            ->where('status', 'Diterima')  
-            ->where('point', '<', 0)       
-            ->groupBy('pelanggaran')       
-            ->orderBy('jumlah', 'asc')    
+                
+            $topPelanggaran = Laporan::select('pelanggaran', \DB::raw('count(*) as jumlah'))
+            ->where('status', 'Diterima')
+            ->groupBy('pelanggaran')
+            ->orderBy('jumlah', 'desc')
             ->limit(5)
             ->get();
 
@@ -56,7 +56,7 @@ class AdminController extends Controller
 
         $today = Carbon::today();
 
-        $topStudents = Student::orderBy('point', 'desc')->take(4)->get();
+        $topStudents = Student::orderBy('point', 'asc')->take(4)->get();
         
       
         $totalPelanggaranHariIni = Laporan::where('status', 'Diterima')
@@ -86,7 +86,7 @@ class AdminController extends Controller
 
         $today = Carbon::today();
 
-        $topStudents = Student::orderBy('point', 'desc')->take(4)->get();
+        $topStudents = Student::orderBy('point', 'asc')->take(4)->get();
         
       
         $totalPelanggaranHariIni = Laporan::where('status', 'Diterima')
@@ -113,7 +113,7 @@ class AdminController extends Controller
             return redirect('/homepage')->with('error', 'Anda tidak memiliki akses ke halaman ini.');
         }
 
-        $topStudents = Student::orderBy('point', 'desc')->take(4)->get();
+        $topStudents = Student::orderBy('point', 'asc')->take(4)->get();
 
        
         $topPelanggaran = Laporan::select('pelanggaran', \DB::raw('count(*) as jumlah'))

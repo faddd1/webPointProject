@@ -6,7 +6,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <form action="{{ route('listpelanggaran.index')}}" class="form-inline" method="GET">
+                            <form action="{{ route('listprestasi.prestasi')}}" class="form-inline" method="GET">
                                 <div class="card-item d-flex">
                                     <div class="input-group">
                                         <input type="search" class="form-control" name="search" placeholder="Cari" value="{{ request()->input('search') }}" id="search-input">
@@ -82,9 +82,9 @@
                                     <thead>
                                         <tr style="background-color: #4D869C; color:#ffff;">
                                             <td class="text-center align-middle" class="py-2">No</td>
-                                            <td class="text-center align-middle">Nama Pelapor</td>
+                                            <td class="text-center align-middle">NIS</td>
                                             <td class="text-center align-middle">Nama</td>
-                                            <td class="text-center align-middle">Nama Pelanggaran</td>
+                                            <td class="text-center align-middle">Nama Prestasi</td>
                                             <td class="text-center align-middle">Jumlah Point</td>
                                             <td class="text-center align-middle">Tanggal</td>
                                             <td class="text-center align-middle">Bukti</td>
@@ -92,31 +92,31 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @if ($students->isEmpty())
+                                        @if ($prestasis->isEmpty())
                                         <tr>
                                             <td colspan="9" style="text-align: center;">Tidak ada data yang ditemukan</td>
                                         </tr>
                                         @else
-                                        @foreach($students as $no => $student)
+                                        @foreach($prestasis as $no => $prestasi)
                                             <tr>
                                                 <td class="text-center align-middle">{{ $no + 1 }}</td>
-                                                <td class="text-center align-middle">{{ $student->pelapor->name ?? 'tidak diketahui' }}</td>
-                                                <td class="text-center align-middle">{{ $student->nama }}</td>
-                                                <td class="text-center align-middle">{{ $student->pelanggaran }}</td>
-                                                <td class="text-center align-middle">{{ $student->point }}</td>
-                                                <td class="text-center align-middle">{{ $student->tanggal }}</td>
+                                                <td class="text-center align-middle">{{ $prestasi->nis}}</td>
+                                                <td class="text-center align-middle">{{ $prestasi->nama }}</td>
+                                                <td class="text-center align-middle">{{ $prestasi->nama_Prestasi }}</td>
+                                                <td class="text-center align-middle">{{ $prestasi->point }}</td>
+                                                <td class="text-center align-middle">{{ $prestasi->tanggal }}</td>
                                                 <td class="text-center align-middle">
-                                                    @if ($student->bukti)
-                                                        <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal-{{ $student->id }}">
-                                                            <img src="{{ asset('uploads/' . $student->bukti) }}" alt="Bukti {{ $student->nama }}" class="img-thumbnail" style="width: 50px; height: 50px; cursor: pointer;">
+                                                    @if ($prestasi->bukti)
+                                                        <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal-{{ $prestasi->id }}">
+                                                            <img src="{{ asset('uploads/' . $prestasi->bukti) }}" alt="Bukti {{ $prestasi->nama }}" class="img-thumbnail" style="width: 50px; height: 50px; cursor: pointer;">
                                                         </a>
                                     
                                                     
-                                                        <div class="modal fade" id="imageModal-{{ $student->id }}" tabindex="-1" aria-labelledby="imageModalLabel-{{ $student->id }}" aria-hidden="true">
+                                                        <div class="modal fade" id="imageModal-{{ $prestasi->id }}" tabindex="-1" aria-labelledby="imageModalLabel-{{ $prestasi->id }}" aria-hidden="true">
                                                             <div class="modal-dialog modal-dialog-centered">
                                                                 <div class="modal-content">
                                                                     <div class="modal-body">
-                                                                        <img src="{{ asset('uploads/' . $student->bukti) }}" alt="Bukti {{ $student->nama }}" class="img-fluid">
+                                                                        <img src="{{ asset('uploads/' . $prestasi->bukti) }}" alt="Bukti {{ $prestasi->nama }}" class="img-fluid">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -124,24 +124,14 @@
                                                     @endif
                                                 </td>
                                                 <td class="text-center align-middle">
-                                                    @if ($student->status == 'Diterima')
+                                                    @if ($prestasi->status == 'Diterima')
                                                         <span class="badge status-badge" style="background: rgb(50, 202, 50); color:#000;">Laporan Diterima</span>
-                                                    @elseif ($student->status == 'Laporan Tidak Valid')
+                                                    @elseif ($prestasi->status == 'Laporan Tidak Valid')
                                                         <span class="badge status-badge" style="background: rgb(255, 80, 80); color:#000;">Laporan Ditolak</span>
                                                     @else
                                                         <span class="badge status-badge" style="background: #fffb07; color:#000;">Menunggu Verifikasi</span>
                                                     @endif
                                                 </td>
-                                                
-                                                {{-- <td class="text-center align-middle">
-                                                    <form action="{{ route('listpelanggaran.destroy', $student->id )}}" class="d-inline deleteForm" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
-                                                    </form>
-                                                </td> --}}
-                                                
-
                                             </tr>
                                         @endforeach
                                         @endif
@@ -149,7 +139,7 @@
                                 </table>
                                 <div class="d-flex">
                                     <div class="ml-auto">
-                                        {{ $students->links('pagination::bootstrap-4') }}
+                                        {{ $prestasis->links('pagination::bootstrap-4') }}
                                     </div>
                                 </div>
                             </div>
@@ -176,7 +166,7 @@
     <script>
         document.getElementById('search-input').addEventListener('input', function() {
       if (this.value === '') {
-        window.location.href = "{{ url('/listpelanggaran') }}";
+        window.location.href = "{{ url('/listprestasi') }}";
       }
     });
         document.addEventListener('DOMContentLoaded', function () {
@@ -213,13 +203,13 @@ $(document).ready(function() {
     });
 });
 </script>
-<script>
+{{-- <script>
     document.getElementById('search-input').addEventListener('input', function() {
       if (this.value === '') {
         window.location.href = "{{ url('/listpelanggaran') }}"; 
       }
     });
-  </script>
+  </script> --}}
 
     
 </x-layout>

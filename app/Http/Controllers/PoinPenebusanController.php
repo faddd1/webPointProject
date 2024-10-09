@@ -11,7 +11,7 @@ class PoinPenebusanController extends Controller
         $prestasi = PoinPenebusan::get();
         return view ('poinPenebusan.index', [
             'prestasi' => $prestasi,
-            'title' => 'Poin Penebusan'
+            'title' => 'Kategori Prestasi'
         ]);
     }
 
@@ -33,14 +33,14 @@ class PoinPenebusanController extends Controller
 
     public function create (){
         return view ('poinPenebusan.create', [
-            'title' => 'Poin Penebusan'
+            'title' => 'Poin Restorasi'
         ]);
     }
 
     public function edit ($id){
         $prestasi = PoinPenebusan::findOrfail($id);
         return view ('poinPenebusan.edit', compact('prestasi'), [
-            'title' => 'Poin Penebusan'
+            'title' => 'Poin Restorasi'
         ]);
     }
 
@@ -57,12 +57,27 @@ class PoinPenebusanController extends Controller
             'Tingkat'  => $request->Tingkat,
         ]);
 
-        return redirect()->back()->with('success', 'Data berhasil ditambahkan!');
+        return redirect()->back()->with('success', 'Data berhasil diubah!');
     }
 
-    public function destroy ($id){
-       $prestasi = PoinPenebusan::get();
-       $prestasi -> delete();
-         return redirect()->back()->with('success', 'Data berhasil ditambahkan!');
+    public function destroy($id)
+    {
+        $prestasi = PoinPenebusan::find($id); 
+        $prestasi->delete(); 
+        return redirect()->back()->with('success', 'Data berhasil dihapus!');
+    }
+
+
+    public function search(Request $request)
+    {
+        $searchTerm = $request->input('search');
+        
+      
+        $prestasi = PoinPenebusan::where('nama_prestasi', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('point', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('tingkat', 'LIKE', "%{$searchTerm}%")
+                    ->paginate(4);
+        
+        return view('poinPenebusan.index', compact('prestasi'), ['title' => 'Poin Restorasi']);
     }
 }

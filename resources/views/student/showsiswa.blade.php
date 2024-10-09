@@ -76,6 +76,42 @@
                 @endif
             </div>
         </div>
+
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5>Riwayat Prestasi</h5>
+            </div>
+            <div class="card-body">
+                @if ($studentlist->penebusan->isEmpty())
+                    <p class="text-center">Tidak ada riwayat prestasi yang tercatat.</p>
+                @else
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-sm">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Prestasi</th>
+                                    <th>Point</th>
+                                    <th>Tanggal</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($studentlist->penebusan as $index => $prestasi)
+                                    <tr>
+                                        <td>{{ $index + 1 }}</td>
+                                        <td>{{ $prestasi->nama_Prestasi }}</td>
+                                        <td>{{ $prestasi->point }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($prestasi->tanggal)->format('j F Y') }}</td>
+                                        <td>{{ $prestasi->status }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                @endif
+            </div>
+        </div>
     </div>
 
     {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script> --}}

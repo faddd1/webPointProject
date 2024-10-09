@@ -165,21 +165,26 @@
                                             
                                             <td style="text-align: center; vertical-align: middle;">
                                                 <div class="action-buttons">
-                                                    <button class="btn btn-primary btn-sm editBtn" data-id="{{ $student->id }}">
-                                                        <i class="fa-solid fa-pen-to-square"></i>
+                                                    <!-- Tombol Edit dan Delete hanya untuk Admin -->
+                                                    @if(auth()->user()->role == 'admin')
+                                                        <button class="btn btn-primary btn-sm editBtn" data-id="{{ $student->id }}">
+                                                            <i class="fa-solid fa-pen-to-square"></i>
+                                                        </button>
+                                                        
+                                                        <form action="{{ route('datasiswa.destroy', $student->id) }}" class="d-inline deleteForm" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                                <i class="fa-solid fa-trash"></i>
+                                                            </button>
+                                                        </form>
+                                                    @endif
+                                                        <!-- Tombol Show yang bisa dilihat oleh semua (guru dan admin) -->
+                                                    <button class="btn btn-sm btn-success showBtn" data-id="{{ $student->id }}">
+                                                        <i class="fa-solid fa-eye"></i>
                                                     </button>
-                                                    
-                                                    <form action="{{ route('datasiswa.destroy', $student->id) }}" class="d-inline deleteForm" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
-                                                    </form>
-                                                    
-                                                    <button class="btn btn-sm btn-success showBtn" data-id="{{ $student->id }}"><i class="fa-solid fa-eye"></i></button>
-                                                    @if (auth()->check() && (auth()->user()->role == 'admin'))
                                                 </div>
-                                            </td>
-                                            @endif
+                                            </td>                                            
                                         </tr>
                                         @endforeach
                                         @endif
@@ -233,6 +238,43 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.querySelectorAll('.showBtn').forEach(button => {
+            button.addEventListener('click', function () {
+                const studentId = this.getAttribute('data-id');
+                fetch(`/datasiswa/show/${studentId}`)
+                    .then(response => response.text())
+                    .then(html => {
+                        document.getElementById('modalBody').innerHTML = html;
+                        document.getElementById('dataModalLabel').innerText = 'Detail Data Siswa';
+                        new bootstrap.Modal(document.getElementById('dataModal')).show();
+                    })
+                    .catch(error => console.error('Error loading data:', error));
+            });
+        });
+    </script>
+    @if (session('success'))
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    title: "SUCCESS", 
+                    text: "{{ session('success') }}", 
+                    icon: "success" 
+                });
+            });
+        </script>
+    @elseif (session('error'))
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    title: "ERROR",
+                    text: "{{ session('error') }}",
+                    icon: "error"
+                });
+            });
+        </script>
+    @endif
 
 
 

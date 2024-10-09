@@ -81,12 +81,12 @@
 
                             .btn-primary:hover {
                                 transform: translateY(-5px);
-                                transition: transform 0.3s ease;
+                                transition: transform 0.5s ease;
                             }
 
                             .btn-danger:hover {
                                 transform: translateY(-5px);
-                                transition: transform 0.3s ease;
+                                transition: transform 0.5s ease;
                             }
 
                             .action-buttons {
@@ -152,9 +152,7 @@
                                     @else
                                       @foreach ($petugas as $no => $petugasd)
                                       <tr>
-                                        <td style="text-align: center; vertical-align: middle;">
-                                            {{ ($petugas->currentPage() - 1) * $petugas->perPage() + $loop->iteration }}
-                                        </td>
+                                        <td style="text-align: center; vertical-align: middle;">{{$no+1}} </td>
                                           <td style="text-align: center; vertical-align: middle;">{{ $petugasd->nis }}</td>
                                           <td style="text-align: center; vertical-align: middle;">{{ $petugasd->nama}}</td>
                                           <td style="text-align: center; vertical-align: middle;">{{ $petugasd->kelas }}</td>
@@ -272,4 +270,25 @@
                 });
         });
     </script>
+    @if (session('success'))
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            Swal.fire({
+                title: "SUCCESS", // Ubah dari "ERROR" ke "SUCCESS"
+                text: "{{ session('success') }}", // Gunakan pesan sukses dari session
+                icon: "success" // Ubah dari "error" ke "success"
+            });
+        });
+    </script>
+    @elseif (session('error'))
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    title: "ERROR",
+                    text: "{{ session('error') }}",
+                    icon: "error"
+                });
+            });
+        </script>
+    @endif
 </x-layout>

@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Student;
 use App\Models\Teacher;
+use App\Models\Penebusan;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -41,7 +42,7 @@ class User extends Authenticatable
 
     public function penebus(){
 
-        return $this->hasMany(Penebus::class, 'nis', 'nis',);
+        return $this->hasMany(Penebusan::class, 'nis', 'nis',);
 
     }
 

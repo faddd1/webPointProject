@@ -36,17 +36,17 @@
                             @else
                              
                                 <div class="table-responsive">
-                                    <table class="table table-bordered btn-sm">
+                                    <table class="table table-bordered btn-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                                         <thead>
-                                            <tr>
-                                                <th class="text-center align-middle">No</th>
-                                                <th class="text-center align-middle">Nama Pelapor</th>
-                                                <th class="text-center align-middle">Nama</th>
-                                                <th class="text-center align-middle">Nama nama_Prestasi</th>
-                                                <th class="text-center align-middle">Jumlah Point</th>
-                                                <th class="text-center align-middle">Tanggal</th>
-                                                <th class="text-center align-middle">Bukti</th>
-                                                <th class="text-center align-middle">Status</th>
+                                            <tr style="background-color: #4D869C; color:#ffff;">
+                                                <td class="text-center align-middle">No</td>
+                                                <td class="text-center align-middle">Nama Pelapor</td>
+                                                <td class="text-center align-middle">Nama</td>
+                                                <td class="text-center align-middle">Nama nama_Prestasi</td>
+                                                <td class="text-center align-middle">Jumlah Point</td>
+                                                <td class="text-center align-middle">Tanggal</td>
+                                                <td class="text-center align-middle">Bukti</td>
+                                                <td class="text-center align-middle">Status</td>
                                             </tr>
                                         </thead>
                                         <tbody>

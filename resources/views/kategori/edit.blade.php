@@ -25,5 +25,5 @@
             <option value="Berat" {{ $kategoris->level == 'Berat' ? 'selected' : ''}}>Berat</option> 
         </select>
     </div>
-    <button type="submit" class="btn btn-primary btn-block btn-primary-custom">Update</button>
+    <button type="submit" class="btn btn-block btn-primary-custom">Update</button>
 </form>

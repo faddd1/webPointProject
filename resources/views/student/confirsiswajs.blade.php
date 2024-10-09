@@ -15,20 +15,6 @@
         .catch(error => console.error('Error loading create form:', error));
     });
 
-    document.querySelectorAll('.showBtn').forEach(button => {
-        button.addEventListener('click', function () {
-            const studentId = this.getAttribute('data-id');
-            fetch(`/datasiswa/show/${studentId}`)
-                .then(response => response.text())
-                .then(html => {
-                    document.getElementById('modalBody').innerHTML = html;
-                    document.getElementById('dataModalLabel').innerText = 'Detail Data Siswa';
-                    new bootstrap.Modal(document.getElementById('dataModal')).show();
-                })
-                .catch(error => console.error('Error loading data:', error));
-        });
-    });
-
 
         document.querySelectorAll('.editBtn').forEach(button => {
             button.addEventListener('click', function () {

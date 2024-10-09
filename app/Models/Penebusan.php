@@ -15,10 +15,12 @@ class Penebusan extends Model
         'nama',
         'nama_Prestasi',
         'tanggal',
-        'point',
+        'point', 
         'bukti',
         'status'
     ];
+
+    
 
     public function siswa()
     {

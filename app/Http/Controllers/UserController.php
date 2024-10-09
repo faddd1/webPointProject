@@ -18,7 +18,7 @@ class UserController extends Controller
         
         return view('tambahUserAdmin.tambahakun', [
             'data' => $data,
-            'title' => 'Tambah Akun',
+            'title' => 'Akun Admin',
             'selectedRole' => $role 
         ]);
     }
@@ -26,7 +26,7 @@ class UserController extends Controller
 
     public function create(){
         return view ('tambahUserAdmin.buatakun', [
-            'title' => 'Tambah Akun'
+            'title' => 'Akun Admin'
         ]);
     }
 

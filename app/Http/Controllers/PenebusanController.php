@@ -20,7 +20,7 @@ class PenebusanController extends Controller
 
         return view('penebusan.penebusan', [
             'penebusan' => $penebusan,
-            'title' => 'Penebusan'
+            'title' => 'Restorasi'
         ]);
     }
 
@@ -81,7 +81,7 @@ class PenebusanController extends Controller
             ->orderBy('created_at', 'desc') 
             ->get();
     
-        return view('penebusan.review', compact('penebusan'), ['title' => 'Review Penebusan']);
+        return view('penebusan.review', compact('penebusan'), ['title' => 'Review Restorasi']);
     }
     
     public function terimapenebusan($id)

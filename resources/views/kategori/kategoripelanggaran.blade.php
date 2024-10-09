@@ -37,30 +37,29 @@
             
             <style>
                 .input-group {
-                    width: 100%; /* Full width */
-                    max-width: 200px; /* Set a maximum width for a compact look */
+                    width: 100%; 
+                    max-width: 200px; 
                 }
 
                 .input-group .form-control {
-                    border-radius: 0.25rem 0 0 0.25rem; /* Rounded corners on the left */
-                    flex: 1; /* Allow input to take up available space */
-                    height: 30px; /* Set a smaller height for the input field */
-                    font-size: 0.875rem; /* Smaller font size */
+                    border-radius: 0.25rem 0 0 0.25rem; 
+                    flex: 1; 
+                    height: 30px; 
+                    font-size: 0.875rem; 
                 }
 
                 .input-group .btn {
-                    border-radius: 0 0.25rem 0.25rem 0; /* Rounded corners on the right */
-                    background-color: #266278; /* Same button color */
-                    color: #fff; /* Button text color */
-                    height: 30px; /* Match the height of the input field */
-                    padding: 0 10px; /* Smaller padding for a more compact button */
+                    border-radius: 0 0.25rem 0.25rem 0;
+                    background-color: #266278; 
+                    color: #fff; 
+                    height: 30px; 
+                    padding: 0 10px; 
                 }
 
-                /* Adjust styles for mobile devices */
                 @media (max-width: 576px) {
                     .input-group {
-                        flex-direction: row; /* Ensure items are in a row */
-                        max-width: 180px; /* Set a smaller max width for mobile */
+                        flex-direction: row; 
+                        max-width: 180px; 
                     }
                 }
 
@@ -78,12 +77,12 @@
                   }
 
                   .btn-danger:hover {
-                    transition: transform 0.3s ease;
+                    transition: transform 0.5s ease;
                     transform: translateY(-5px);
                   }
 
                   .btn-primary:hover {
-                    transition: transform 0.3s ease;
+                    transition: transform 0.5s ease;
                     transform: translateY(-5px);
                   }
             </style>
@@ -202,7 +201,7 @@
           .then(response => response.text())
           .then(html => {
             document.getElementById('modalBody').innerHTML = html;
-            document.getElementById('dataModalLabel').innerText = 'Tambah Data Kategori';
+            document.getElementById('dataModalLabel').innerText = 'Tambah Kategori Pelanggaran';
             const dataModal = new bootstrap.Modal(document.getElementById('dataModal'));
             dataModal.show();
           })

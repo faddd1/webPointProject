@@ -24,31 +24,14 @@
                 @endif
                 <style>
                     .btn-danger:hover {
-                        transition: transform 0.3s ease;
+                        transition: transform 0.5s ease;
                         transform: translateY(-5px);
                     }
 
                     .btn-primary:hover {
-                        transition: transform 0.3s ease;
+                        transition: transform 0.5s ease;
                         transform: translateY(-5px);
                     }
-
-                    /* #tambahDataBtn {
-                        margin-left: auto;
-                    }
-
-                    @media (max-width: 576px) {
-                        #tambahDataBtn {
-                            width: 15%;
-                            margin-top: 10px;
-                            margin-left: auto;
-                            flex-basis: auto;
-                        }
-                        .btn-group .btn {
-                            width: 100%;
-                            margin-bottom: 5px;
-                        }
-                    } */
 
                     .card-header {
                         display: flex;
@@ -123,6 +106,11 @@
                                 </thead>
                                 <tbody id="user-table-body">
 
+                                    @if ($data->isEmpty())
+                                    <tr>
+                                        <td colspan="9" style="text-align: center;">Tidak ada data yang ditemukan</td>
+                                    </tr>
+                                    @else
                                     @foreach( $data as $datas)
                                         
                                 
@@ -146,6 +134,7 @@
                                         </td>
                                     </tr>
                                     @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                             <div class="d-flex">

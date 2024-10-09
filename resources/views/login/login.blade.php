@@ -80,7 +80,7 @@
                         <div>
                             
                             <label for="nis" class="form-label">NIP/NIS :</label>
-                            <input type="text" class="form-control" value="{{ old('nis') }}" name="nis"  placeholder="Nip atau Nis" required>
+                            <input type="text" class="form-control" value="{{ old('nis') }}" name="nis"  placeholder="NIP/NIS" required>
                             <div class="invalid-feedback">
                                 Masukan Nip atau Nis.
                             </div>

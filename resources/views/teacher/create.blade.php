@@ -11,15 +11,15 @@
     @csrf
     <div class="form-group">
         <label>NIP</label>
-        <input type="text" class="form-control" name="nis" placeholder="KETIK NIP" required>
+        <input type="text" class="form-control" name="nis" placeholder="NIP" required>
     </div>
     <div class="form-group">
-        <label>NAMA GURU</label>
-        <input type="text" class="form-control" name="namaguru" placeholder="KETIK NAMA GURU" required>
+        <label>Nama Guru</label>
+        <input type="text" class="form-control" name="namaguru" placeholder="Nama Guru" required>
     </div>
     <div class="form-group">
-        <label>JABATAN</label>
-        <input type="text" class="form-control" name="jabatan" placeholder="KETIK JABATAN" required>
+        <label>Jabatan</label>
+        <input type="text" class="form-control" name="jabatan" placeholder="Jabatan" required>
     </div>
     <div class="form-group">
         <label>Jenis Kelamin</label>
