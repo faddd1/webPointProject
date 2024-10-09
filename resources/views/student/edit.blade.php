@@ -61,8 +61,8 @@
             <option value="PPLG 3" {{ $studentItem->jurusan == 'PPLG 3' ? 'selected' : '' }}>PPLG 3</option>
             <option value="DPIB 1" {{ $studentItem->jurusan == 'DPIB 1' ? 'selected' : '' }}>DPIB 1</option>
             <option value="DPIB 2" {{ $studentItem->jurusan == 'DPIB 2' ? 'selected' : '' }}>DPIB 2</option>
-            <option value="MP 1" {{ $studentItem->jurusan == 'MP 1' ? 'selected' : '' }}>MP 1</option>
-            <option value="MP 2" {{ $studentItem->jurusan == 'MP 2' ? 'selected' : '' }}>MP 2</option>
+            <option value="MPLB 1" {{ $studentItem->jurusan == 'MPLB 1' ? 'selected' : '' }}>MPLB 1</option>
+            <option value="MPLB 2" {{ $studentItem->jurusan == 'MPLB 2' ? 'selected' : '' }}>MPLB 2</option>
             <option value="AK 1" {{ $studentItem->jurusan == 'AK 1' ? 'selected' : '' }}>AK 1</option>
             <option value="AK 2" {{ $studentItem->jurusan == 'AK 2' ? 'selected' : '' }}>AK 2</option>
             <option value="SK 1" {{ $studentItem->jurusan == 'SK 1' ? 'selected' : '' }}>SK 1</option>

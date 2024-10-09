@@ -79,52 +79,52 @@
         <aside class="control-sidebar control-sidebar-dark">
         </aside>
     </div>
-    <footer class="main-footer" style="background-color: #f9f9f; color: #333333; padding: 25px 0 0 5px; font-size: 13px; font-family: 'Poppins', sans-serif;">
-    <div class="container">
-        <div class="row">
-            <!-- Bagian Tentang SMKN 1 Kawali -->
-            <div class="col-md-3 mb-3 ml-5 tentang-section">
-                <h6 style="font-weight: 600; color: #000;">Tentang SMKN 1 Kawali</h6>
-                <p style="font-size: 12px; color: #777; margin-bottom: 10px;">SMKN 1 Kawali menciptakan lulusan yang siap bersaing di dunia industri.</p>
-                <strong>&copy; 2024 - 2025 <a href="http://smkn1kawali.sch.id" style="color: #4D869C; text-decoration: none;">SMKN 1 Kawali</a>.</strong>
-            </div>
+         <footer class="main-footer" style="background-color: #f9f9f; color: #333333; padding: 25px 0 0 5px; font-size: 13px; font-family: 'Poppins', sans-serif;">
+            <div class="container">
+                <div class="row">
+                    <!-- Bagian Tentang SMKN 1 Kawali -->
+                    <div class="col-md-3 mb-3 ml-5 tentang-section">
+                        <h6 style="font-weight: 600; color: #000;">Tentang SMKN 1 Kawali</h6>
+                        <p style="font-size: 12px; color: #777; margin-bottom: 10px;">SMKN 1 Kawali menciptakan lulusan yang siap bersaing di dunia industri.</p>
+                        <strong>&copy; 2024 - 2025 <a href="http://smkn1kawali.sch.id" style="color: #4D869C; text-decoration: none;">SMKN 1 Kawali</a>.</strong>
+                    </div>
 
-            <!-- Bagian Sosial Media -->
-            <div class="col-md-4 text-center mb-3 social-section">
-                <h6 style="font-weight: 600; color: #000;">Ikuti Kami</h6>
-                <div class="social-icons" style="font-size: 16px; margin-top: 8px;">
-                    <a href="https://www.facebook.com/smkn1kawali" target="_blank" style="color: #4D869C; margin: 0 10px; transition: color 0.3s;">
-                        <i class="fab fa-facebook"></i>
-                    </a>
-                    <a href="https://www.twitter.com/smkn1kawali" target="_blank" style="color: #4D869C; margin: 0 10px; transition: color 0.3s;">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="https://www.instagram.com/smkn1kawali" target="_blank" style="color: #4D869C; margin: 0 10px; transition: color 0.3s;">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="https://www.youtube.com/smkn1kawali" target="_blank" style="color: #4D869C; margin: 0 10px; transition: color 0.3s;">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/smkn1kawali" target="_blank" style="color: #4D869C; margin: 0 10px; transition: color 0.3s;">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
+                    <!-- Bagian Sosial Media -->
+                    <div class="col-md-4 text-center mb-3 social-section">
+                        <h6 style="font-weight: 600; color: #000;">Ikuti Kami</h6>
+                        <div class="social-icons" style="font-size: 16px; margin-top: 8px;">
+                            <a href="https://www.facebook.com/smkn1kawali" target="_blank" style="color: #4D869C; margin: 0 10px; transition: color 0.3s;">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="https://www.twitter.com/smkn1kawali" target="_blank" style="color: #4D869C; margin: 0 10px; transition: color 0.3s;">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://www.instagram.com/smkn1kawali" target="_blank" style="color: #4D869C; margin: 0 10px; transition: color 0.3s;">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://www.youtube.com/smkn1kawali" target="_blank" style="color: #4D869C; margin: 0 10px; transition: color 0.3s;">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/smkn1kawali" target="_blank" style="color: #4D869C; margin: 0 10px; transition: color 0.3s;">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Bagian Kontak dan Alamat -->
+                    <div class="col-md-2 mb-3 ml-5 kontak-section">
+                        <h6 style="font-weight: 600; color: #000;">Kontak Kami</h6>
+                        <ul style="list-style: none; padding: 0; font-size: 12px; color: #777;">
+                            <li style="margin-bottom: 5px;"><i class="fas fa-map-marker-alt"></i> Jl. Raya Kawali No.1, Kawali</li>
+                            <li style="margin-bottom: 5px;"><i class="fas fa-phone"></i> (0265) 123456</li>
+                            <li><i class="fas fa-envelope"></i> info@smkn1kawali.sch.id</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+        </footer>
 
-            <!-- Bagian Kontak dan Alamat -->
-            <div class="col-md-2 mb-3 ml-5 kontak-section">
-                <h6 style="font-weight: 600; color: #000;">Kontak Kami</h6>
-                <ul style="list-style: none; padding: 0; font-size: 12px; color: #777;">
-                    <li style="margin-bottom: 5px;"><i class="fas fa-map-marker-alt"></i> Jl. Raya Kawali No.1, Kawali</li>
-                    <li style="margin-bottom: 5px;"><i class="fas fa-phone"></i> (0265) 123456</li>
-                    <li><i class="fas fa-envelope"></i> info@smkn1kawali.sch.id</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</footer>
-
-    
+            
     
 
     

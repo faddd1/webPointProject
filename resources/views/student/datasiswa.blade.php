@@ -2,7 +2,6 @@
 
 <x-layout>
     <x-slot:title>{{ $title }}</x-slot:title>
-    <div class="container">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
@@ -45,7 +44,7 @@
 
                         .btn-danger:hover {
                             transform: translateY(-5px);
-                            transition: transform 0.3s ease;
+                            transition: transform 0.5s ease;
                         }
 
                         .btn-success:hover {
@@ -67,22 +66,69 @@
                         }
                     </style>
                     
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <h5 id="bulan" style="font-weight: 700;"></h5>
+                                    <p style="font-style: italic; margin-bottom: 0;">Data semua siswa yang ada di SMKN 1 KAWALI</p>
+                                </div>
+                               
+                            </div>
+                            <form id="download-form" method="GET" class="p-3 rounded shadow mt-3">
+                                <div class="form-group mb-3">
+                                    <label for="jurusan" class="form-label font-weight-bold">Pilih Jurusan:</label>
+                                    <select name="jurusan" id="jurusan" class="form-control">
+                                        <option value="all">Semua Jurusan</option> 
+                                        <option value="TKR 1">TKR 1</option> 
+                                        <option value="TKR 2">TKR 2</option> 
+                                        <option value="TKR 3">TKR 3</option> 
+                                        <option value="TKJ 1">TKJ 1</option>
+                                        <option value="TKJ 2">TKJ 2</option>
+                                        <option value="TKJ 3">TKJ 3</option>
+                                        <option value="PPLG 1">PPLG 1</option>
+                                        <option value="PPLG 2">PPLG 2</option>
+                                        <option value="PPLG 3">PPLG 3</option>
+                                        <option value="DPIB 1">DPIB 1</option>
+                                        <option value="DPIB 2">DPIB 2</option>
+                                        <option value="MPLB 1">MPLB 1</option>
+                                        <option value="MPLB 2">MPLB 2</option>
+                                        <option value="AK 1">AK 1</option>
+                                        <option value="AK 2">AK 2</option>
+                                        <option value="SK 1">SK 1</option>
+                                        <option value="SK 2">SK 2</option>
+                                    </select>
+                                    <div class="d-flex justify-content-end mt-3">
+                                        <button type="button" onclick="confirmDownload('{{ route('data.pdf') }}')" class="btn btn-danger  mr-2">
+                                        <i class="fas fa-file-pdf"></i> Pdf
+                                        </button>
+                                
+                                        <button type="button" onclick="confirmDownload('{{ route('data.excel') }}')" class="btn btn-success ">
+                                        <i class="fas fa-file-excel"></i> Excel
+                                        </button>
+                                    </div>
+                                </div>                          
+                            </form>
+                        </div>
+    
+                    </div>
+                      
+
+
+
+
+
                     <div class="card">
                         <div class="card-header">
                             @if (auth()->user()->role == 'admin')
-                            <div class="card-tools">
-                                <button id="tambahDataBtn" class="btn btn-sm" style="margin-top: 10px; background-color:#245c70; color:#ffff;">
-                                    <i class="fa-solid fa-circle-plus"></i> <span class="d-none d-sm-inline">Add</span>
-                                </button>
-                                <form action="{{ route('hapus.point') }}" class="d-inline" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm mt-2" style="margin-right: 10px"><i class="fa-solid fa-trash"></i></button>
-                                </form>
-                            </div>
-
-                           
+                                <div class="card-tools">
+                                    <button id="tambahDataBtn" class="btn btn-sm" style="margin-top: 10px; background-color:#245c70; color:#ffff;">
+                                        <i class="fa-solid fa-circle-plus"></i> <span class="d-none d-sm-inline">Add</span>
+                                    </button>
+                                </div>
                             @endif
+                        
                        
                             <form method="GET" action="{{ route('student.searchSiswa') }}">
                                 <div class="card-item row mt-2 d-flex align-items-center">
@@ -129,9 +175,7 @@
                                     <a href="{{ route('student.searchSiswa') }}" class="btn btn-danger mb-2">Clear</a>
                                 </div>
                             </form>
-                    </div>
-
-                       
+                        </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px;  border-radius: 5px 5px 0 0; overflow: hidden;" id="studentTable">
@@ -148,9 +192,9 @@
                                     </thead>
                                     <tbody>
                                     @if ($studentItem->isEmpty())
-                                    <tr>
-                                        <td colspan="7" style="text-align: center;">Tidak ada data yang ditemukan</td>
-                                    </tr>
+                                        <tr>
+                                            <td colspan="7" style="text-align: center;">Tidak ada data yang ditemukan</td>
+                                        </tr>
                                     @else
                                         @foreach ($studentItem as $student)
                                         <tr>
@@ -187,9 +231,10 @@
                                             </td>                                            
                                         </tr>
                                         @endforeach
-                                        @endif
+                                    @endif
                                     </tbody>
                                 </table>
+                            </div>
                                 <div class="d-flex">
                                     <div class="ml-auto">
                                         <style>
@@ -211,18 +256,23 @@
                                                 border-color: #245c70;
                                             }
                                         </style>
-                                        {{ $studentItem->links('pagination::bootstrap-4') }}
+                                        <div class="d-flex mt-5">
+                                            {{ $studentItem->links('pagination::bootstrap-4') }}
+                                            <div class="ml-auto">
+                                                <form action="{{ route('hapus.point') }}" class="d-inline deletePoint mt-1" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-xs mt-1">Hapus semua Point<i class="fa-solid fa-star ml-1"></i></button>
+                                                </form> 
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                         </div>
-                       
                     </div>
-                  
                 </div>
             </div>
         </div>
-    </div>
 
    
     <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="dataModalLabel" aria-hidden="true">
@@ -279,4 +329,69 @@
 
 
     @include('student.confirsiswajs')
+
+        <script>
+            // script untuk bulannya ganti dengan sendiri
+            const date = new Date();
+            const monthNames = [
+                "Januari", "Februari", "Maret", "April", "Mei", "Juni", 
+                "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+            ];
+            const currentMonth = monthNames[date.getMonth()];
+            const currentYear = date.getFullYear();
+        
+            
+            document.getElementById("bulan").textContent = `${currentMonth} ${currentYear}`;
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Include AlertifyJS CSS and JS -->
+
+
+        <script>
+            document.querySelectorAll('.showBtn').forEach(button => {
+                button.addEventListener('click', function () {
+                    const studentId = this.getAttribute('data-id');
+                    fetch(`/datasiswa/show/${studentId}`)
+                        .then(response => response.text())
+                        .then(html => {
+                            document.getElementById('modalBody').innerHTML = html;
+                            document.getElementById('dataModalLabel').innerText = 'Detail Data Siswa';
+                            new bootstrap.Modal(document.getElementById('dataModal')).show();
+                        })
+                        .catch(error => console.error('Error loading data:', error));
+                });
+            });
+        </script>
+
+        <script>
+            function confirmDownload(action) {
+            const jurusan = document.getElementById('jurusan').value;
+        
+            
+            Swal.fire({
+                title: 'Konfirmasi Unduh',
+                text: 'Apakah Anda yakin ingin mengunduh data ini?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, unduh!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                document.getElementById('download-form').action = action;
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'jurusan';
+                input.value = jurusan;
+                document.getElementById('download-form').appendChild(input);
+                
+                document.getElementById('download-form').submit();
+                }
+            });
+            }
+        </script>
+
+
+
 </x-layout>

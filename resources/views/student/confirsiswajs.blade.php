@@ -15,7 +15,6 @@
         .catch(error => console.error('Error loading create form:', error));
     });
 
-
         document.querySelectorAll('.editBtn').forEach(button => {
             button.addEventListener('click', function () {
                 const studentId = this.getAttribute('data-id');
@@ -56,7 +55,7 @@
                 event.preventDefault();
                 Swal.fire({
                     title: 'Hapus Point',
-                    text: "Apakah Anda yakin ingin menghapus seluruh point siswa??",
+                    text: "Apakah Anda yakin ingin menghapus seluruh point siswa?",
                     icon: 'question',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',

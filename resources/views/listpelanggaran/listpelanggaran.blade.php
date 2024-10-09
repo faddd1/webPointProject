@@ -2,6 +2,43 @@
     <x-slot:title>{{ $title }}</x-slot:title>
     <div class="container">
         <div class="container-fluid">
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center flex-column flex-md-row text-center text-md-start">
+                        <span class="btn" style="font-style: italic; margin-bottom: 0; font-size: 0.9rem; color: #6c757d; background:#e2e1e1">
+                            <i class="fas fa-calendar-alt"></i> 8 Oktober 2024
+                        </span>
+                    </div>
+            
+                   <!-- Date filter form -->
+                   <form action="/export-list-pdf" method="GET" class="row mt-4 g-3">
+                    <div class="col-12 col-md-4 mb-3 mb-md-0">
+                        <label for="start_date" class="form-label">Tanggal Awal</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-calendar-day"></i></span>
+                            <input type="date" id="start_date" name="start_date" class="form-control" required placeholder="Pilih tanggal awal">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 mb-3 mb-md-0">
+                        <label for="end_date" class="form-label">Tanggal Akhir</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-calendar-day"></i></span>
+                            <input type="date" id="end_date" name="end_date" class="form-control" required placeholder="Pilih tanggal akhir">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 d-flex justify-content-center justify-content-md-start align-items-end">
+                        <button type="submit" class="btn btn-danger" style="transition: background-color 0.3s;">
+                            <i class="fas fa-file-pdf"></i> Download PDF
+                        </button>
+                    </div>
+                </form>
+
+                </div>
+            </div>
+            
+            
+            
+            </div>
             <div class="row justify-content-center">
                 <div class="col-12">
                     <div class="card">
@@ -19,7 +56,7 @@
                                 </div>
                             </form>
 
-                            <style>
+                            {{-- <style>
                                 .input-group {
                                     width: 100%; 
                                     max-width: 200px; 
@@ -72,7 +109,7 @@
                                     transition: transform 0.5s ease;
                                     align-content: center;
                                 }
-                            </style>
+                            </style> --}}
                             
                         </div>
 
@@ -81,7 +118,7 @@
                                 <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                                     <thead>
                                         <tr style="background-color: #4D869C; color:#ffff;">
-                                            <td class="text-center align-middle" class="py-2">No</td>
+                                            <td class="text-center align-middle">No</td>
                                             <td class="text-center align-middle">Nama Pelapor</td>
                                             <td class="text-center align-middle">Nama</td>
                                             <td class="text-center align-middle">Nama Pelanggaran</td>
@@ -213,6 +250,31 @@ $(document).ready(function() {
     });
 });
 </script>
+
+<script>
+    document.getElementById('downloadBtn').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        Swal.fire({
+            title: 'Anda yakin?',
+            text: "Apakah anda yakin ingin mendownload data ini?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Ya, download!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Submit the form after confirmation
+                document.getElementById('exportPdfForm').submit();
+            }
+        });
+    });
+</script>
+
+
+
 <script>
     document.getElementById('search-input').addEventListener('input', function() {
       if (this.value === '') {
@@ -220,6 +282,25 @@ $(document).ready(function() {
       }
     });
   </script>
+<script>
+    // Fungsi untuk mendapatkan nama bulan
+    function getMonthName(monthIndex) {
+        const months = [
+            'Januari', 'Februari', 'Maret', 'April', 
+            'Mei', 'Juni', 'Juli', 'Agustus', 
+            'September', 'Oktober', 'November', 'Desember'
+        ];
+        return months[monthIndex];
+    }
 
+    // Mengambil tanggal saat ini
+    const now = new Date();
+    const day = now.getDate();
+    const month = getMonthName(now.getMonth());
+    const year = now.getFullYear();
+
+    // Mengupdate elemen dengan ID 'date'
+    document.getElementById('date').textContent = ` ${day} ${month} ${year}`;
+</script>
     
 </x-layout>

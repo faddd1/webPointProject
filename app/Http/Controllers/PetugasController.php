@@ -10,7 +10,8 @@ class PetugasController extends Controller
 {
    
     public function tampil(){
-        $petugas = Petugas::paginate(10);
+        // $petugas = Petugas::paginate(5);
+        $petugas = Petugas::orderBy('created_at', 'desc')->paginate(5);
         return view('petugas.petug',compact('petugas'),[
             'title' => 'Data Petugas'
         ]);

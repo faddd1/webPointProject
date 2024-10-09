@@ -10,9 +10,10 @@ class TeacherController extends Controller
 {
   
     public function index()
-
     {
-        $teacher = Teacher::paginate(10);
+        // $teacher = Teacher::paginate(5);
+        $teacher = Teacher::orderBy('created_at', 'desc')->paginate(5);
+
         return view('teacher.dataguru', [
             'teacher' => $teacher,
             'title' => 'Data Guru'

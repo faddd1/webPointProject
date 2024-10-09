@@ -52,8 +52,8 @@
           <option value="PPLG 3" {{ $petugas->jurusan == 'PPLG 3' ? 'selected' : '' }}>PPLG 3</option>
           <option value="DPIB 1" {{ $petugas->jurusan == 'DPIB 1' ? 'selected' : '' }}>DPIB 1</option>
           <option value="DPIB 2" {{ $petugas->jurusan == 'DPIB 2' ? 'selected' : '' }}>DPIB 2</option>
-          <option value="MP 1"{{ $petugas->jurusan == 'MP 1' ? 'selected' : '' }}>MP 1</option>
-          <option value="MP 2" {{ $petugas->jurusan == 'MP 2' ? 'selected' : '' }}>MP 2</option>
+          <option value="MPLB 1"{{ $petugas->jurusan == 'MPLB 1' ? 'selected' : '' }}>MPLB 1</option>
+          <option value="MPLB 2" {{ $petugas->jurusan == 'MPLB 2' ? 'selected' : '' }}>MPLB 2</option>
           <option value="AK 1"{{ $petugas->jurusan == 'AKL 1' ? 'selected' : '' }}>AK 1</option>
           <option value="AK 2"{{ $petugas->jurusan == 'AKL 2' ? 'selected' : '' }}>AK 2</option>
           <option value="SK 1"{{ $petugas->jurusan == 'SK 1' ? 'selected' : '' }}>SK 1</option>

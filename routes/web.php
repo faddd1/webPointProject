@@ -20,6 +20,9 @@ use App\Http\Controllers\PoinPenebusanController;
    
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
+//Kontak
+Route::post('/kontak',[HomeController::class, 'send'])->name('send.email');
+
 // Rute Autentikasi
 Route::get('/login', [SesiController::class, 'index'])->name('login');
 Route::post('/login', [SesiController::class, 'login']);
@@ -59,8 +62,10 @@ Route::middleware(['auth', 'userAkses:admin,guru,petugas'])->group(function () {
     Route::get('/laporan', [LaporanController::class, 'index']);
     // Datapetugas Routes
     Route::get('/datapetugas', [PetugasController::class, 'tampil'])->name('petugas.tampil');
+    
+    
+  
 
-      
 });
 
 Route::middleware(['auth', 'userAkses:admin,guru'])->group(function () {
@@ -87,6 +92,11 @@ Route::middleware(['auth', 'userAkses:admin,guru'])->group(function () {
   Route::put('/penebusan/approve/{id}', [PenebusanController::class, 'terimapenebusan'])->name('penebusan.approve');
   Route::post('/penebusan/not-approve/{id}', [PenebusanController::class, 'tolakpenebusan'])->name('penebusan.notApprove');
   Route::get('/penebusan/show/{id}', [PenebusanController::class, 'show'])->name('penebusan.show');
+
+  Route::get('/export-pdf', [StudentController::class, 'exportPdf'])->name('data.pdf');
+  Route::get('/export-excel', [StudentController::class, 'exportExcel'])->name('data.excel');
+  //listpdf
+  Route::get('/export-list-pdf', [StudentController::class, 'listPdf'])->name('list.pdf');
   
 
 

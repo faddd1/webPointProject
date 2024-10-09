@@ -51,6 +51,7 @@
         </a>
 
         <nav id="navmenu" class="navmenu">
+        
             <ul>
                 <li><a href="#hero" class="active">Beranda</a></li>
                 <li><a href="#about">Tentang</a></li>
@@ -58,7 +59,7 @@
                     <li><a href="#team">Tim</a></li>
                 @endif
                 <li><a href="#contact">Kontak</a></li>
-                @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'  || auth()->user()->role == 'siswa'  || auth()->user()->role == 'petugas'))
+                {{-- @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'  || auth()->user()->role == 'siswa'  || auth()->user()->role == 'petugas'))
                 <li>  
                     <a href=" 
                         @if(auth()->user()->role == 'admin')
@@ -74,8 +75,7 @@
                         Dashboard
                     </a>
                 </li>
-            
-            @endif
+            @endif --}}
 
             @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'  || auth()->user()->role == 'siswa'  || auth()->user()->role == 'petugas'))
                           <li class="nav-item dropdown">
@@ -90,6 +90,21 @@
                                   <li>
                                       <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
                                   </li>
+                                  <li>  
+                                    <a class="dropdown-item" href=" 
+                                        @if(auth()->user()->role == 'admin')
+                                            /dashboard/admin
+                                        @elseif(auth()->user()->role == 'guru')
+                                            /dashboard/guru
+                                        @elseif(auth()->user()->role == 'petugas')
+                                            /dashboard/petugas
+                                        @elseif(auth()->user()->role == 'siswa')
+                                            /dashboard/siswa
+                                        @endif" class="active">
+                                       
+                                        Dashboard
+                                    </a>
+                                </li>
                               </ul>
                           </li>
                     @endif 
@@ -114,27 +129,27 @@
         <img src="assets/img/bg1.png" alt="" class="hero-bg">
 
             <div class="container">
-            <div class="row gy-4 justify-content-between">
-            <div class="col-lg-4  order-lg-last hero-img" data-aos="zoom-out" data-aos-delay="100">
-                    <img src="{{ asset('assets/img/apawe.png') }}" class="img-fluid animated" alt="">
-            </div>
+                <div class="row gy-4 justify-content-between">
+                    <div class="col-lg-4 order-lg-last hiroImg" data-aos="zoom-out" data-aos-delay="100">
+                            <img src="{{ asset('assets/img/apawe.png') }}" class="img-fluid animated mt-5" alt="">
+                    </div>
 
-            <div class="col-lg-6 py-5  d-flex flex-column justify-content-center" data-aos="fade-in">
-                <h1>Selamat Datang di Website <span class="text-danger fst-italic">P</span><span class="text-dark fst-italic">P</span><span class="fst-italic" style="color: #f6f23a;">S</span> !</h1>
-                <p>PSS adalah Website Poin Pelanggara Siswa untuk digunakan oleh SMKN 1 KAWALI</p>
+                    <div class="col-lg-6 d-flex flex-column justify-content-center teksHiro" data-aos="fade-in">
+                        <h1>Selamat Datang di Website <span class="text-danger fst-italic">P</span><span class="text-dark fst-italic">P</span><span class="fst-italic" style="color: #f6f23a;">S</span> !</h1>
+                        <p class="mt-3">PSS adalah Website Poin Pelanggara Siswa untuk digunakan oleh SMKN 1 KAWALI</p>
+                    </div>
+                    
                 </div>
-                
-            </div>
 
-            </div>
+                </div>
             </div>
 
         </section>
 
        
-        <section id="about" class="about section">
+        <section id="about" class="about section mt-5">
 
-        <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="container py-2" data-aos="fade-up" data-aos-delay="100">
             <div class="row align-items-xl-center gy-5">
             <div class="hihi justify-content-center">
                 <img src="{{ asset('assets/img/lala.png') }}" alt="" width="200" height="200" >
@@ -143,14 +158,13 @@
                 
                 <h2 style="color: #104e67">Tentang</h2>
                 <h3>PPS </h3>
-                <h2></h2>
             </div>
-            <div class="content1">
-                <p>Website poin pelanggaran siswa adalah platform digital yang dirancang untuk memantau dan mencatat pelanggaran yang dilakukan oleh siswa di sekolah. Sistem ini membantu guru dan staf sekolah dalam mencatat perilaku negatif siswa serta memberikan sanksi sesuai dengan kebijakan yang berlaku di sekolah.</p>
-              
-
+            <div class="content1" style="padding: 20px;">
+                <p>Website <span>Poin Pelanggaran Siswa</span> adalah platform digital yang dirancang untuk memantau dan mencatat pelanggaran yang dilakukan oleh siswa di sekolah. Sistem ini membantu guru dan staf sekolah dalam mencatat perilaku negatif siswa serta memberikan sanksi sesuai dengan kebijakan yang berlaku di sekolah.</p>
+            </div>
+            
             <div>
-                <div class="row gy-4 icon-boxes"  id="icontentang" >
+                <div class="row mt-2 gy-4 icon-boxes"  id="icontentang" >
                 <div class="col-md-15" data-aos="fade-up" data-aos-delay="200">
                     <div class="icon-box">
                         <i class="bi bi-card-checklist"></i>
@@ -178,6 +192,7 @@
                 </div>
             </div>
 
+            
             </div>
         </div>
 
@@ -281,7 +296,57 @@
                     <h4 style="color: #104e67">Rahma Fauziah</h4>
                     <span style="color: #104e67">Anggota Tim</span>
                     <div class="social">
+
                     <a href=""><i class="bi bi-github"></i></a>
+                    <a href=""><i class="bi bi-twitter-x"></i></a>
+                    <a href=""><i class="bi bi-facebook"></i></a>
+                    <a href=""><i class="bi bi-instagram"></i></a>
+                    <a href=""><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="member">
+                <div class="pic"><img src="{{ asset('assets/img/team/team-3.jpg') }}" class="img-fluid" alt=""></div>
+                <div class="member-info">
+                    <h4>Irma Nuryani</h4>
+                    <span>Anggota Tim</span>
+                    <div class="social">
+                    <a href=""><i class="bi bi-twitter-x"></i></a>
+                    <a href=""><i class="bi bi-facebook"></i></a>
+                    <a href=""><i class="bi bi-instagram"></i></a>
+                    <a href=""><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="member">
+                <div class="pic"><img src="{{ asset('assets/img/team/team-3.jpg') }}" class="img-fluid" alt=""></div>
+                <div class="member-info">
+                    <h4>Malva Riski Nur Aulia</h4>
+                    <span>Anggota Tim</span>
+                    <div class="social">
+                    <a href=""><i class="bi bi-twitter-x"></i></a>
+                    <a href=""><i class="bi bi-facebook"></i></a>
+                    <a href=""><i class="bi bi-instagram"></i></a>
+                    <a href=""><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="member">
+                <div class="pic"><img src="{{ asset('assets/img/team/team-3.jpg') }}" class="img-fluid" alt=""></div>
+                <div class="member-info">
+                    <h4>Rahma Fauziah</h4>
+                    <span>Anggota Tim</span>
+                    <div class="social">
+                    <a href=""><i class="bi bi-twitter-x"></i></a>
+                    <a href=""><i class="bi bi-facebook"></i></a>
                     <a href=""><i class="bi bi-instagram"></i></a>
                     <a href=""><i class="bi bi-linkedin"></i></a>
                     </div>
@@ -312,7 +377,7 @@
             <div class="row gy-4">
 
             <div class="col-lg-4 col-md-6">
-                <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
+                <div class="info-item d- p-4 rounded shadow-sm" data-aos="fade-up" data-aos-delay="200">
                 <i class="bi bi-geo-alt flex-shrink-0"></i>
                 <div>
                     <h3 style="color: #104e67">Address</h3>
@@ -320,7 +385,7 @@
                 </div>
                 </div>
 
-                <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+                <div class="info-item d-flex p-4 rounded shadow-sm" data-aos="fade-up" data-aos-delay="300">
                 <i class="bi bi-telephone flex-shrink-0"></i>
                 <div>
                     <h3 style="color: #104e67">Call Us</h3>
@@ -328,7 +393,7 @@
                 </div>
                 </div>
 
-                <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+                <div class="info-item d-flex p-4 rounded shadow-sm" data-aos="fade-up" data-aos-delay="400">
                 <i class="bi bi-envelope flex-shrink-0"></i>
                 <div>
                     <h3 style="color: #104e67">Email Us</h3>
@@ -339,36 +404,55 @@
             </div>
 
             <div class="col-lg-8">
-                <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
-                <div class="row gy-4">
-
-                    <div class="col-md-6">
-                    <input type="text" name="name" class="form-control" placeholder="Masukan Nama" required="">
-                    </div>
-
-                    <div class="col-md-6 ">
-                    <input type="email" class="form-control" name="email" placeholder="Masukan Email" required="">
-                    </div>
-
-                    <div class="col-md-12">
-                    <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
-                    </div>
-
-                    <div class="col-md-12">
-                    <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
-                    </div>
-
-                    <div class="col-md-12 text-center">
-                    <div class="loading">Loading</div>
-                    <div class="error-message"></div>
-                    <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                    <button type="submit">Kirim Pesan</button>
-                    </div>
-
+                @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Success!</strong> {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
+                @endif
+                <form action="{{ route('send.email') }}" method="POST" class="p-4 rounded shadow-lg " data-aos="fade-up" data-aos-delay="200">
+                    @csrf
+                    <div class="row gy-4">
+                        <!-- Floating input for Name -->
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <input type="text" name="name" id="name" class="form-control" placeholder="Masukan Nama" required>
+                                <label for="name">Masukan Nama</label>
+                            </div>
+                        </div>
+            
+                        <!-- Floating input for Email -->
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <input type="email" id="email" class="form-control" name="email" placeholder="Masukan Email" required>
+                                <label for="email">Masukan Email</label>
+                            </div>
+                        </div>
+            
+                        <!-- Floating input for Subject -->
+                        <div class="col-md-12">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                                <label for="subject">Subject</label>
+                            </div>
+                        </div>
+            
+                        <!-- Textarea for Message -->
+                        <div class="col-md-12">
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control" name="message" id="message" rows="6" placeholder="Message" required style="height: 150px;"></textarea>
+                                <label for="message">Message</label>
+                            </div>
+                        </div>
+            
+                        <!-- Submit Button -->
+                        <div class="col-md-12 d-grid">
+                            <button type="submit" class="btn btn-success shadow-sm">Kirim Pesan</button>
+                        </div>
+                    </div>
                 </form>
-            </div><!-- End Contact Form -->
+            </div>
+            
 
             </div>
 

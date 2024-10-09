@@ -52,8 +52,8 @@
           <option value="PPLG 3">PPLG 3</option>
           <option value="DPIB 1">DPIB 1</option>
           <option value="DPIB 2">DPIB 2</option>
-          <option value="MP 1">MP 1</option>
-          <option value="MP 2">MP 2</option>
+          <option value="MPLB 1">MPLB 1</option>
+          <option value="MPLB 2">MPLB 2</option>
           <option value="AK 1">AK 1</option>
           <option value="AK 2">AK 2</option>
           <option value="SK 1">SK 1</option>
