@@ -25,7 +25,7 @@ class UserPetugasController extends Controller
 
     public function create(){
         return view ('tambahUserPetugas.buatakun', [
-            'title' => 'Akun Petugas'
+            'title' => 'Tambah Akun Petugas'
         ]);
     }
 
@@ -37,7 +37,7 @@ class UserPetugasController extends Controller
             'required',
             function ($attribute, $value, $fail) use ($request) {
                 if (User::where('nis', $value)->where('role', $request->role)->exists()) {
-                    $fail('NIS sudah digunakan dalam role ini, silakan pilih NIS lain.');
+                    $fail('NIS sudah digunakan, silakan pilih NIS yang lain.');
                 }
             }
         ],
@@ -54,7 +54,7 @@ class UserPetugasController extends Controller
         'plain_password' => $request->password,
     ]);
 
-    return redirect()->back()->with('success', 'Data berhasil ditambahkan!');
+    return redirect()->back()->with('success', 'Akun Petugas Berhasil di Tambahkan!');
 }
 
 
@@ -78,7 +78,7 @@ class UserPetugasController extends Controller
                     ->where('role', $request->role)
                     ->where('id', '!=', $id)  
                     ->exists()) {
-                    $fail('NIS sudah digunakan dalam role ini, silakan pilih NIS lain.');
+                    $fail('NIS sudah digunakan, silakan pilih NIS yang lain.');
                 }
             }
         ],
@@ -96,14 +96,14 @@ class UserPetugasController extends Controller
         'plain_password' => $request->password,
     ]);
 
-    return redirect('tambahPetugas')->with('success', 'Data berhasil diubah');
+    return redirect('tambahPetugas')->with('success', 'Akun Petugas Berhasil di Ubah');
 }
 
     public function destroy(Request $request, User $data, $id){
 
         $data = User::findOrFail($id);
         $data->delete();
-        return redirect('/tambahPetugas')->with('success', 'Datasiswa Berhasil di Hapus');
+        return redirect('/tambahPetugas')->with('success', 'Akun Petugas Berhasil di Hapus');
     }
 
     public function search(Request $request)

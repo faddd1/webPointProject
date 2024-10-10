@@ -36,8 +36,8 @@
                     </script>
                      @endif
 
-                    <style>
-                        .btn-primary:hover {
+                     <style>
+                        .btn-primary:hover, .btn-danger:hover, .btn-success:hover {
                             transform: translateY(-5px);
                             transition: transform 0.3s ease;
                         }
@@ -52,6 +52,7 @@
                             transition: transform 0.3s ease;
                         }
                         
+
                         .action-buttons {
                             display: flex;
                             justify-content: center;
@@ -63,7 +64,29 @@
                             .action-buttons {
                                 flex-direction: row; 
                             }
+
+                            
+
                         }
+
+                        #card{
+                            margin: auto;
+                            height: 135px;
+                            margin-bottom: 20px
+                        }
+
+                        #card{
+                            margin-bottom: 10px;
+                        }
+
+                        @media (max-width: 576px) {
+                            #card {
+                               height: 300px;
+                            }
+
+                        }
+
+
                     </style>
                     
 
@@ -280,7 +303,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="dataModalLabel">Tambah Data Siswa</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-arrow-right"></i></a>
                 </div>
                 <div class="modal-body" id="modalBody">
                   

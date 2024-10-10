@@ -10,8 +10,8 @@
                 <div class="card-tools">
                     @if (Auth::user()->siswa)
                         <span class="me-2">Sisa Poin :</span>
-                        @if (Auth::user()->siswa->point == 0)
-                            <a class="btn btn-success btn-sm" style="color: #fff;">
+                        @if (Auth::user()->siswa->point <= -1)
+                            <a class="btn btn-danger btn-sm" style="color: #fff;">
                                 {{ Auth::user()->siswa->point }}/200
                             </a>
                         @elseif (Auth::user()->siswa->point <= 20)
@@ -35,6 +35,7 @@
                         <span class="text-danger">Tidak Bisa Menampilkan Poin</span>
                     @endif
                 </div>
+              
             </div>
             
             <div class="card-body">
@@ -69,12 +70,109 @@
                     </div>
                 @endif
             </div>
+           
         </div>
     </div>
-
+   
+        @if (Auth::user()->siswa->point >= 0)
+           
+        @elseif (Auth::user()->siswa->point  >= -12)
+            <div class="card text-center shadow">
+                <div class="card-body">
+                    <h2 class="card-title">Poin Anda Sudah Mencapai: <strong>{{ Auth::user()->siswa->point }}</strong></h2>
+                    <p class="card-text text-warning">Anda Terkena Sanksi: <strong>Teguran Lisan</strong></p>
+                </div>
+                <div class="card-footer text-muted">
+                    Harap perhatikan peraturan yang berlaku.
+                </div>
+            </div>
+            @elseif (Auth::user()->siswa->point  >= -18 && Auth::user()->siswa->point < 18)
+            <div class="card text-center shadow">
+                <div class="card-body">
+                    <h2 class="card-title">Poin Anda Sudah Mencapai: <strong>{{ Auth::user()->siswa->point }}</strong></h2>
+                    <p class="card-text text-warning">Anda Terkena Sanksi: <strong>Peringatan Tertulis</strong></p>
+                </div>
+                <div class="card-footer text-muted">
+                    Harap perhatikan peraturan yang berlaku.
+                </div>
+            </div>
+            @elseif (Auth::user()->siswa->point  >= -22 && Auth::user()->siswa->point < 22)
+            <div class="card text-center shadow">
+                <div class="card-body">
+                    <h2 class="card-title">Poin Anda Sudah Mencapai: <strong>{{ Auth::user()->siswa->point }}</strong></h2>
+                    <p class="card-text text-warning">Anda Terkena Sanksi: <strong>Peringatan tertulis disampaikan kepada orang tua</strong></p>
+                </div>
+                <div class="card-footer text-muted">
+                    Harap perhatikan peraturan yang berlaku.
+                </div>
+            </div>
+            @elseif (Auth::user()->siswa->point  >= -50)
+            <div class="card text-center shadow">
+                <div class="card-body">
+                    <h2 class="card-title">Poin Anda Sudah Mencapai: <strong>{{ Auth::user()->siswa->point }}</strong></h2>
+                    <p class="card-text text-warning">Anda Terkena Sanksi: <strong>Pemanggilan orang tua</strong></p>
+                </div>
+                <div class="card-footer text-muted">
+                    Harap perhatikan peraturan yang berlaku.
+                </div>
+            </div>
+            @elseif (Auth::user()->siswa->point  >= -75)
+            <div class="card text-center shadow">
+                <div class="card-body">
+                    <h2 class="card-title">Poin Anda Sudah Mencapai: <strong>{{ Auth::user()->siswa->point }}</strong></h2>
+                    <p class="card-text text-warning">Anda Terkena Sanksi: <strong>Siswa dan orang tua membuat surat perjanjian bermaterai
+                    </strong></p>
+                </div>
+                <div class="card-footer text-muted">
+                    Harap perhatikan peraturan yang berlaku.
+                </div>
+            </div>
+            @elseif (Auth::user()->siswa->point  >= -100)
+            <div class="card text-center shadow">
+                <div class="card-body">
+                    <h2 class="card-title">Poin Anda Sudah Mencapai: <strong>{{ Auth::user()->siswa->point }}</strong></h2>
+                    <p class="card-text text-warning">Anda Terkena Sanksi: <strong>Siswa diskor selama tiga hari</strong></p>
+                </div>
+                <div class="card-footer text-muted">
+                    Harap perhatikan peraturan yang berlaku.
+                </div>
+            </div>
+            @elseif (Auth::user()->siswa->point  >= -135)
+            <div class="card text-center shadow">
+                <div class="card-body">
+                    <h2 class="card-title">Poin Anda Sudah Mencapai: <strong>{{ Auth::user()->siswa->point }}</strong></h2>
+                    <p class="card-text text-warning">Anda Terkena Sanksi: <strong>Siswa diskor selama enam hari
+                    </strong></p>
+                </div>
+                <div class="card-footer text-muted">
+                    Harap perhatikan peraturan yang berlaku.
+                </div>
+            </div>
+            @elseif (Auth::user()->siswa->point  >= -175)
+            <div class="card text-center shadow">
+                <div class="card-body">
+                    <h2 class="card-title">Poin Anda Sudah Mencapai: <strong>{{ Auth::user()->siswa->point }}</strong></h2>
+                    <p class="card-text text-warning">Anda Terkena Sanksi: <strong> Siswa diminta pindah sekolah</strong></p>
+                </div>
+                <div class="card-footer text-muted">
+                    Harap perhatikan peraturan yang berlaku.
+                </div>
+            </div>
+            @elseif (Auth::user()->siswa->point  >= -50)
+            <div class="card text-center shadow">
+                <div class="card-body">
+                    <h2 class="card-title">Poin Anda Sudah Mencapai: <strong>{{ Auth::user()->siswa->point }}</strong></h2>
+                    <p class="card-text text-warning">Anda Terkena Sanksi: <strong>Siswa dikembalikan kepada orang tua</strong></p>
+                </div>
+                <div class="card-footer text-muted">
+                    Harap perhatikan peraturan yang berlaku.
+                </div>
+            </div>
+        
+        @endif
     <div class="card">
         <div class="card-body">
-            <h4 class="text-md py-2">Pelanggaran Yang Pernah Kamu Lakukan :</h4>
+            <h3 class="text-md py-2">Pelanggaran Yang Pernah Kamu Lakukan : <strong>{{ $totalPelanggaran }}</strong></h3>
             <div class="table-responsive">
                 <table class="table table-bordered" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                     <thead>
@@ -126,4 +224,60 @@
         </div>
     </div>
 
+<<<<<<< Updated upstream
+=======
+    <div class="card">
+        <div class="card-body">
+            <h3 class="text-md py-2">Prestasi Yang Pernah Kamu Lakukan : <strong>{{ $totalPrestasi }}</strong></h3>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="text-align: center; vertical-align: middle;">No</th>
+                            <th style="text-align: center; vertical-align: middle;">Nama Pelapor</th>
+                            <th style="text-align: center; vertical-align: middle;">Nama Prestasi</th>
+                            <th style="text-align: center; vertical-align: middle;">Jumlah Point</th>
+                            <th style="text-align: center; vertical-align: middle;">Bukti</th>
+                            <th style="text-align: center; vertical-align: middle;">Tanggal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if($laporans->count() > 0)
+                            @foreach ($prestasi as $index => $prestasis)
+                                <tr>
+                                    <td style="text-align: center; vertical-align: middle;">{{ $index + 1 }}</td>
+                                    <td style="text-align: center; vertical-align: middle;">{{ $prestasis->pelapor->name ?? 'tidak diketahui' }}</td>
+                                    <td style="text-align: center; vertical-align: middle;">{{ $prestasis->nama_Prestasi }}</td>
+                                    <td style="text-align: center; vertical-align: middle;">{{ $prestasis->point }}</td>
+                                    <td style="text-align: center; vertical-align: middle;">
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal-{{ $prestasis->id }}">
+                                            <img src="{{ asset('uploads/' . $prestasis->bukti) }}" alt="Bukti {{ $prestasis->nama }}" class="img-thumbnail" style="width: 50px; height: 50px; cursor: pointer;">
+                                        </a>
+
+                                       
+                                        <div class="modal fade" id="imageModal-{{ $prestasis->id }}" tabindex="-1" aria-labelledby="imageModalLabel-{{ $prestasis->id }}" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-body">
+                                                        <img src="{{ asset('uploads/' . $prestasis->bukti) }}" alt="Bukti {{ $prestasis->nama }}" class="img-fluid">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td style="text-align: center; vertical-align: middle;">{{ $prestasis->tanggal }}</td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr>
+                                <td colspan="6" style="text-align: center;">Tidak ada laporan yang ditemukan</td>
+                            </tr>
+                        @endif
+                    </tbody>
+                </table>
+                {{ $laporans->links('pagination::bootstrap-4') }}
+            </div>
+        </div>
+    </div>
+>>>>>>> Stashed changes
 </x-layout>

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Laporan;
+use DB;
 use App\Models\User;
+use App\Models\Laporan;
 use App\Models\Student;
+use App\Models\Penebusan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -18,7 +20,7 @@ class UserController extends Controller
         
         return view('tambahUserAdmin.tambahakun', [
             'data' => $data,
-            'title' => 'Akun Admin',
+            'title' => 'Tambah Akun Admin',
             'selectedRole' => $role 
         ]);
     }
@@ -26,7 +28,7 @@ class UserController extends Controller
 
     public function create(){
         return view ('tambahUserAdmin.buatakun', [
-            'title' => 'Akun Admin'
+            'title' => 'Tambah Akun Admin'
         ]);
     }
 
@@ -38,7 +40,7 @@ class UserController extends Controller
             'required',
             function ($attribute, $value, $fail) use ($request) {
                 if (User::where('nis', $value)->where('role', $request->role)->exists()) {
-                    $fail('NIS sudah digunakan dalam role ini, silakan pilih NIS lain.');
+                    $fail(' Admin Id sudah digunakan, silakan pilih Admin Id yang lain.');
                 }
             }
         ],
@@ -55,7 +57,7 @@ class UserController extends Controller
         'plain_password' => $request->password,
     ]);
 
-    return redirect()->back()->with('success', 'Data berhasil ditambahkan!');
+    return redirect()->back()->with('success', 'Akun Admin Berhasil di Tambahkan!');
 }
 
 
@@ -79,7 +81,7 @@ class UserController extends Controller
                     ->where('role', $request->role)
                     ->where('id', '!=', $id)  
                     ->exists()) {
-                    $fail('NIS sudah digunakan dalam role ini, silakan pilih NIS lain.');
+                    $fail('Admin Id sudah digunakan, silakan pilih Admin Id lain.');
                 }
             }
         ],
@@ -97,7 +99,7 @@ class UserController extends Controller
         'plain_password' => $request->password,
     ]);
 
-    return redirect('tambah')->with('success', 'Data berhasil diubah');
+    return redirect('tambah')->with('success', 'Akun Admin Berhasil di Ubah');
 }
 
     public function profil() {
@@ -114,12 +116,28 @@ class UserController extends Controller
 
         $data = User::findOrFail($id);
         $data->delete();
-        return redirect('/tambah')->with('success', 'Datasiswa Berhasil di Hapus');
+        return redirect('/tambah')->with('success', 'Akun Admin Berhasil di Hapus');
     }
 
         public function listsiswa(){
-            $laporans = Laporan::with(['pelapor', 'siswa'])->where('nis', auth()->user()->nis)->paginate(4);
-            return view('listpelanggaran.listpelanggaransiswa', compact('laporans'), [
+            $totalPelanggaran = Laporan::where('nis', auth()->user()->nis)
+            ->count('pelanggaran');
+
+            $totalPrestasi = Penebusan::where('nis', auth()->user()->nis)
+            ->count('nama_Prestasi');
+
+
+            $prestasi = Penebusan::with(['pelapor', 'siswa'])
+            ->where('status', 'Diterima')
+            ->where('nis', auth()->user()->nis)
+            ->paginate(5);
+
+            $laporans = Laporan::with(['pelapor', 'siswa'])
+            ->where('status', 'Diterima')
+            ->where('nis', auth()->user()->nis)
+            ->paginate(5);
+
+            return view('listpelanggaran.listpelanggaransiswa', compact('laporans','prestasi', 'totalPelanggaran', 'totalPrestasi'), [
                 'title' => 'List Pelanggaran Siswa'
             ]);
         }

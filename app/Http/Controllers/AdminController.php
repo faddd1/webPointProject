@@ -32,16 +32,13 @@ class AdminController extends Controller
         $totalPelanggaranHariIni = Laporan::where('status', 'Diterima')
             ->whereDate('created_at', $today)
             ->count();
-
-      
-                
+            
             $topPelanggaran = Laporan::select('pelanggaran', \DB::raw('count(*) as jumlah'))
             ->where('status', 'Diterima')
             ->groupBy('pelanggaran')
             ->orderBy('jumlah', 'desc')
             ->limit(5)
             ->get();
-
                 return view('page.dashboard', [
                     'title' => 'Beranda',
                 ], compact('totalSiswa','topPelanggaran','totalPelanggaranHariIni', 'totalGuru','topStudents', 'totalPelanggaran', 'totalUser', 'totalPetugas'));

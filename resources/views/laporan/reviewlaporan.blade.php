@@ -26,28 +26,20 @@
                     @endif
 
                     <style>
-                        .btn-primary:hover {
+                        .btn-primary:hover, .btn-danger:hover, .btn-success:hover {
                             transform: translateY(-5px);
+                            transition: transform 0.3s ease;
                         }
 
-                        .btn-danger:hover {
-                            transform: translateY(-5px);
-                        }
-
-                        .btn-success:hover {
-                            transform: translateY(-5px);
-                        }
-                        
                         .action-buttons {
                             display: flex;
                             justify-content: center;
                             gap: 5px;
                         }
 
-                        
                         @media (max-width: 576px) {
                             .action-buttons {
-                                flex-direction: row; 
+                                flex-direction: row;
                             }
                         }
                     </style>
@@ -105,21 +97,19 @@
                                                         @endif
                                                     </td>
                                                     <td class="text-center align-middle">
-                                                        <div class="action-buttons">
-                                                            <form action="{{ route('laporan.approve', $report->id) }}" method="POST" style="display: inline;">
-                                                                @csrf
-                                                                @method('PUT')
-                                                                <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-check"></i></button>
-                                                            </form>
+                                                        <form action="{{ route('laporan.approve', $report->id) }}" method="POST" class="approve-form" style="display: inline;">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-check"></i></button>
+                                                        </form>
 
-                                                            <form action="{{ route('laporan.notApprove', $report->id) }}" method="POST" style="display: inline;">
-                                                                @csrf
-                                                                @method('POST')
-                                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-circle-minus "></i></button>
-                                                            </form>
+                                                        <form action="{{ route('laporan.notApprove', $report->id) }}" method="POST" class="reject-form" style="display: inline;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-circle-minus"></i></button>
+                                                        </form>
 
-                                                            <button class="btn btn-success btn-sm showBtn" data-id="{{ $report->id }}"><i class="fa-solid fa-eye"></i></button>
-                                                        </div>
+                                                        <button class="btn btn-success btn-sm showBtn" data-id="{{ $report->id }}"><i class="fa-solid fa-eye"></i></button>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -141,8 +131,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="dataModalLabel">Tambah Data Siswa</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                    <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-arrow-right"></i></a>
                     </button>
                     
                 </div>
@@ -170,25 +159,45 @@
                 });
             });
 
-            document.querySelectorAll('.deleteForm').forEach(form => {
-                    form.addEventListener('submit', function(event) {
-                        event.preventDefault();
-                        Swal.fire({
-                            title: 'Hapus Data',
-                            text: "Apakah Anda yakin ingin menghapus data ini?",
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Ya, Hapus!',
-                            cancelButtonText: 'Batal'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                form.submit(); 
-                            }
-                        });
+            document.querySelectorAll('.approve-form').forEach(form => {
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    Swal.fire({
+                        title: 'Terima Laporan?',
+                        text: "Apakah Kamu yakin ingin menrima laporan ini?",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ya !Terima',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit(); 
+                        }
                     });
                 });
+            });
+
+            document.querySelectorAll('.reject-form').forEach(form => {
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    Swal.fire({
+                        title: 'Tolak Laporan?',
+                        text: "Apakah kamu yakin ingin menolak laporan ini?",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ya, Tolak!',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit(); 
+                        }
+                    });
+                });
+            });
         });
     </script>
    

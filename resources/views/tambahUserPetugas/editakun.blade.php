@@ -7,7 +7,7 @@
     </div>
 
     <div class="form-group">
-        <label>Username</label>
+        <label>Nis</label>
         <input type="text"  name="nis" value="{{ $data->nis }}" class="form-control">
     </div>
 

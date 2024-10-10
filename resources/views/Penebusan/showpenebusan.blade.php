@@ -7,7 +7,7 @@
                 <td>{{ $penebusan->pelapor->name ?? 'tidak diketahui' }}</td>
             </tr>
             <tr>
-                <td>Nama Pelanggaran</td>
+                <td>Nama Prestasi</td>
                 <td> : </td>
                 <td>{{ $penebusan->nama_Prestasi}}</td>
             </tr>

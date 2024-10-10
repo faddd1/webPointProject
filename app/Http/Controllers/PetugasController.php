@@ -62,6 +62,7 @@ class PetugasController extends Controller
        
         $request->validate([
             'nis' => 'required|unique:petugas,nis,'. $id,
+
             'nama' => 'required|string|max:255',
             'kelas' => 'required|string|max:10',
             'jk' => 'required',
@@ -70,6 +71,7 @@ class PetugasController extends Controller
         ], [
             'nis.unique' => 'NIS sudah digunakan. Silakan gunakan NIS yang lain.',
         ]);
+        
         $petugas = Petugas::find($id);
         $petugas->update([
             'nis' => $request->nis,
@@ -83,10 +85,6 @@ class PetugasController extends Controller
 
     }
 
-    
-    
-
-   
     public function delete($id){
         $petugas = Petugas::find($id);
         $user = User::where('nis', $petugas->nis)->where('role', 'petugas')->first(); 

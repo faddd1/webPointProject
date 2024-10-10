@@ -148,8 +148,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="dataModalLabel">Tambah Data Pelanggaran</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+            <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-arrow-right"></i></a>
             </button>
           </div>
           <div class="modal-body" id="modalBody">
