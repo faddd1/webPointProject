@@ -17,7 +17,7 @@
                
                 document.getElementById('modalBody').innerHTML = html;
                 
-                document.getElementById('dataModalLabel').innerText = 'Tambah User';
+                document.getElementById('dataModalLabel').innerText = 'Tambah Akun Admin';
                
                 const dataModal = new bootstrap.Modal(document.getElementById('dataModal'));
                 dataModal.show();
@@ -31,7 +31,7 @@
                     .then(response => response.text())
                     .then(html => {
                         document.getElementById('modalBody').innerHTML = html;
-                        document.getElementById('dataModalLabel').innerText = 'Edit Data Siswa';
+                        document.getElementById('dataModalLabel').innerText = 'Edit Akun Admin';
                         const dataModal = new bootstrap.Modal(document.getElementById('dataModal'));
                         dataModal.show();
                     })

@@ -17,7 +17,7 @@
                
                 document.getElementById('modalBody').innerHTML = html;
                 
-                document.getElementById('dataModalLabel').innerText = 'Tambah User';
+                document.getElementById('dataModalLabel').innerText = 'Tambah Akun Siswa';
                
                 const dataModal = new bootstrap.Modal(document.getElementById('dataModal'));
                 dataModal.show();

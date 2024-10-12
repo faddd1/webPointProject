@@ -22,7 +22,7 @@
         <input type="password" id="password" name="password" class="form-control">
     </div>
     <div class="form-group mb-4">
-        <label class="form-label d-block">Status</label>
+        <label class="form-label d-block">Status :</label>
         <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="role" id="role" value="Petugas" {{ old('role') == 'Petugas' ? 'checked' : '' }} required>
             <label class="form-check-label" for="role">Petugas</label>

@@ -17,7 +17,8 @@ class UserGuruController extends Controller
         
         return view('tambahUserGuru.tambahakun', [
             'data' => $data,
-            'title' => 'Akun Guru',
+            'title' => 'Tambah Akun Guru',
+
             'selectedRole' => $role 
         ]);
     }
@@ -25,7 +26,8 @@ class UserGuruController extends Controller
 
     public function create(){
         return view ('tambahUserGuru.buatakun', [
-            'title' => 'Akun Guru'
+
+            'title' => 'Tambah Akun Guru'
         ]);
     }
 
@@ -37,7 +39,7 @@ class UserGuruController extends Controller
             'required',
             function ($attribute, $value, $fail) use ($request) {
                 if (User::where('nis', $value)->where('role', $request->role)->exists()) {
-                    $fail('NIS sudah digunakan dalam role ini, silakan pilih NIS lain.');
+                    $fail('NIP sudah digunakan, silakan pilih NIP yang lain.');
                 }
             }
         ],
@@ -54,7 +56,7 @@ class UserGuruController extends Controller
         'plain_password' => $request->password,
     ]);
 
-    return redirect()->back()->with('success', 'Data berhasil ditambahkan!');
+    return redirect()->back()->with('success', 'Akun Guru Berhasil di Tambahkan!');
 }
 
 
@@ -78,7 +80,7 @@ class UserGuruController extends Controller
                     ->where('role', $request->role)
                     ->where('id', '!=', $id)  
                     ->exists()) {
-                    $fail('NIS sudah digunakan dalam role ini, silakan pilih NIS lain.');
+                    $fail('NIP sudah digunakan, silakan pilih NIP yang lain.');
                 }
             }
         ],
@@ -96,7 +98,7 @@ class UserGuruController extends Controller
         'plain_password' => $request->password,
     ]);
 
-    return redirect('tambah')->with('success', 'Data berhasil diubah');
+    return redirect('/tambahGuru')->with('success', 'Akun Guru Berhasil di Ubah');
 }
 
 
@@ -104,7 +106,7 @@ class UserGuruController extends Controller
 
         $data = User::findOrFail($id);
         $data->delete();
-        return redirect('/tambah')->with('success', 'Datasiswa Berhasil di Hapus');
+        return redirect('/tambahGuru')->with('success', 'Akun Guru Berhasil di Hapus');
     }
 
     public function search(Request $request)

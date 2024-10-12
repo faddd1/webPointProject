@@ -14,7 +14,7 @@
         <input type="text" id="name" name="name" class="form-control">
     </div>
     <div class="mb-3">
-        <label for="nis" class="form-label">Nip/Nis :</label>
+        <label for="nis" class="form-label">Nip :</label>
         <input type="text" id="nis" name="nis" class="form-control">
     </div>
     <div class="mb-3">

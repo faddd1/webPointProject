@@ -22,6 +22,25 @@
                         });
                 </script>
                 @endif
+                @if ($errors->has('nis'))
+                    <script>
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: "top-end",
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.onmouseenter = Swal.stopTimer;
+                                toast.onmouseleave = Swal.resumeTimer;
+                            }
+                        });
+                        Toast.fire({
+                            icon: "error",
+                            title: " {{ $errors->first('nis') }}"
+                        });
+                    </script>
+                 @endif
                 <style>
                     .btn-danger:hover {
                         transition: transform 0.5s ease;
@@ -98,7 +117,7 @@
                                     <tr style="background-color: #4D869C; color:#ffff;">
                                         <td style="text-align: center; vertical-align: middle;" class="py-2">No</td>
                                         <td style="text-align: center; vertical-align: middle;">Nama</td>
-                                        <td style="text-align: center; vertical-align: middle;">Username</td>
+                                        <td style="text-align: center; vertical-align: middle;">Nip</td>
                                         <td style="text-align: center; vertical-align: middle;">Password</td>
                                         <td style="text-align: center; vertical-align: middle;">Role</td>
                                         <td style="text-align: center; vertical-align: middle;">Action</td>
@@ -125,7 +144,7 @@
                                         <td style="text-align: center; vertical-align: middle;">
                                             <div class="action-buttons">
                                             <button data-id="{{ $datas->id }}" class="btn btn-sm btn-primary editBtn"><i class="fa-solid fa-pen-to-square "></i></button>
-                                            <form action="{{ route('tambah.destroy', $datas->id )}}" class="d-inline col-mb-2 deleteForm">
+                                            <form action="{{ route('tambahGuru.destroy', $datas->id )}}" class="d-inline col-mb-2 deleteForm">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i> </button>
@@ -185,9 +204,7 @@
             <div class="modal-content">
                 <div class="modal-header text-center">
                     <h5 class="modal-title" id="dataModalLabel"></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span> 
-                    </button>
+                    <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-arrow-right"></i></a>
                     
                 </div>
                 <div class="modal-body" id="modalBody">

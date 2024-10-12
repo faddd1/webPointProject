@@ -26,7 +26,8 @@ class UserSiswaController extends Controller
 
     public function create(){
         return view ('tambahUserSiswa.buatakun', [
-            'title' => 'Akun Siswa'
+
+            'title' => 'Tambah Akun Siswa'
         ]);
     }
 
@@ -38,7 +39,7 @@ class UserSiswaController extends Controller
             'required',
             function ($attribute, $value, $fail) use ($request) {
                 if (User::where('nis', $value)->where('role', $request->role)->exists()) {
-                    $fail('NIS sudah digunakan dalam role ini, silakan pilih NIS lain.');
+                    $fail('NIS sudah digunakan, silakan pilih NIS yang lain.');
                 }
             }
         ],
@@ -55,7 +56,7 @@ class UserSiswaController extends Controller
         'plain_password' => $request->password,
     ]);
 
-    return redirect()->back()->with('success', 'Akun Siswa berhasil ditambahkan!');
+    return redirect()->back()->with('success', 'Akun Siswa berhasil di Tambahkan!');
 }
 
 
@@ -64,7 +65,7 @@ class UserSiswaController extends Controller
         $data = User::findOrFail($id);
         return view('tambahUserSiswa.editakun', compact('data'), [
             
-            'title' => 'title'
+            'title' => 'Edit Akun Siswa'
         ]);
     }
 
@@ -79,7 +80,7 @@ class UserSiswaController extends Controller
                     ->where('role', $request->role)
                     ->where('id', '!=', $id)  
                     ->exists()) {
-                    $fail('NIS sudah digunakan dalam role ini, silakan pilih NIS lain.');
+                    $fail('NIS sudah digunakan , silakan pilih NIS lain.');
                 }
             }
         ],
@@ -97,14 +98,14 @@ class UserSiswaController extends Controller
         'plain_password' => $request->password,
     ]);
 
-    return redirect()->back()->with('success', 'Akun Petugas berhasil diubah');
+    return redirect()->back()->with('success', 'Akun Siswa berhasil di Ubah');
 }
     
     public function destroy(Request $request, User $data, $id){
 
         $data = User::findOrFail($id);
         $data->delete();
-        return redirect()->back()->with('success', 'Akun Petugas Berhasil di Hapus');
+        return redirect()->back()->with('success', 'Akun Siswa Berhasil di Hapus');
     }
 
     public function search(Request $request)

@@ -141,7 +141,7 @@ Route::middleware(['auth', 'userAkses:admin'])->group(function () {
     // Laporan Review Routee
     Route::get('/laporan/review', [LaporanController::class, 'showlaporan'])->name('laporan.review');
     Route::put('/laporan/approve/{id}', [LaporanController::class, 'terimalaporan'])->name('laporan.approve');
-    Route::post('/laporan/not-approve/{id}', [LaporanController::class, 'tolaklaporan'])->name('laporan.notApprove');
+    Route::delete('/laporan/not-approve/{id}', [LaporanController::class, 'tolaklaporan'])->name('laporan.notApprove');
     Route::get('/laporan/show/{id}', [LaporanController::class, 'show'])->name('laporan.show');
     // Teacher Management Routes
     Route::get('/teacher/create', [TeacherController::class, 'create'])->name('create.guru');
@@ -174,4 +174,10 @@ Route::middleware(['auth', 'userAkses:admin'])->group(function () {
 
 Route::middleware(['auth', 'userAkses:siswa'])->group(function () {
     Route::get('/listpelanggaran/siswa',[UserController::class, 'listsiswa'])->name('listsiswa');
+});
+
+Route::get('/informasi', function(){
+    return view ('informasi.informasi', [
+        'title' => 'informasi'
+    ]);
 });
