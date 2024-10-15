@@ -348,6 +348,19 @@ h6 {
     background-color: #4D869C;
     color: #fff;
   }
+  .formlogin .custom-btn {
+    background: #104e67;
+    color: #fff;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    width: 100%;
+  }
+  
+  
+  .formlogin .custom-btn:hover {
+      background: #082632;
+      color: #fff;
+      transform: translateY(-5px);
+  }
 }
 
 /* Mobile Navigation */
@@ -379,10 +392,13 @@ h6 {
     text-align: center;
     margin-top: 20px;
     margin-bottom: 20px;
+  } 
+
+  .formlogin .custom-btn {
+    background: #104e67;
+    color: #fff;
+    width: 50%;
   }
-
-
-  
   .navmenu {
     padding: 6px;
     z-index: 9997;
@@ -506,6 +522,11 @@ h6 {
     padding: 20px;
     text-align: justify;
     text-justify: inter-word; 
+  }
+
+  .formlogin button {
+      transition: none;
+      width: 100%;
   }
 
 }
@@ -707,6 +728,25 @@ h6 {
   }
 }
 
+
+
+@keyframes moveUpDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px); /* Moves the text up by 10px */
+  }
+  100% {
+    transform: translateY(0); /* Returns the text to its original position */
+  }
+}
+
+.teksHiro h1 {
+  animation: moveUpDown 2s ease-in-out infinite; 
+}
+
+
 /*--------------------------------------------------------------
 # Scroll Top Button
 --------------------------------------------------------------*/
@@ -746,6 +786,9 @@ h6 {
 @media screen and (max-width: 768px) {
   [data-aos-delay] {
     transition-delay: 0 !important;
+  }
+  .teksHiro h1{
+    animation: none;
   }
 }
 
@@ -910,7 +953,7 @@ section,
   font-family: var(--nav-font);
   margin: 5px 0 30px 0;
   font-size: 22px;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 
@@ -1039,8 +1082,8 @@ section,
   font-weight: 700;
   line-height: 19px;
   padding: 10px 20px;
-  background: color-mix(in srgb, var(--accent-color2), transparent 80%);
-  color: var(--accent-color2);
+  background: color-mix(in srgb,  #104e67, transparent 80%);
+  color:  #104e67;
   border-radius: 7px;
   display: inline-block;
   margin-left: 15px;
@@ -1049,6 +1092,7 @@ section,
 .about .content h2 {
   font-weight: 700;
   font-size: 25px;
+  color:  #000000;
 }
 
 .about .content p:last-child {
@@ -1400,18 +1444,18 @@ section,
   font-weight: 700;
   line-height: 19px;
   padding: 10px 20px;
-  background: color-mix(in srgb, var(--accent-color2), transparent 80%);
-  color: var(--accent-color2);
+  background: color-mix(in srgb,  #104e67, transparent 80%);
+  color:  #104e67;
   border-radius: 7px;
   display: inline-block;
   margin-left: 15px;
 }
 
 
-/* .container1 .span1 span {
-  color: var(--accent-color2);
-  border-bottom: 4px solid var(--heading-color);
-} */
+.container1 .span1 span {
+  color: #000000;
+  /* border-bottom: 4px solid var(--heading-color); */
+}
 
 .team .member {
   position: relative;
@@ -1432,7 +1476,7 @@ section,
   right: 20px;
   padding: 20px 15px;
   overflow: hidden;
-  transition: 0.5s;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 .team .member h4 {
@@ -1442,6 +1486,13 @@ section,
   position: relative;
   padding-bottom: 10px;
 }
+
+.team .member .member-info:hover{
+    transform: translateY(-10px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+
+}
+
 
 .team .member h4::after {
   content: "";
@@ -1722,6 +1773,11 @@ section,
 /*--------------------------------------------------------------
 # Contact Section
 --------------------------------------------------------------*/
+
+
+
+
+
 .contact .info-item+.info-item {
   margin-top: 40px;
 }

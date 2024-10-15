@@ -5,33 +5,32 @@
             <div class="card shadow-sm border-0">
                 <div class="card-body p-4">
                     <div class="d-flex justify-content-between align-items-center flex-column flex-md-row text-center text-md-start">
-                        <span class="btn" style="font-style: italic; margin-bottom: 0; font-size: 0.9rem; color: #6c757d; background:#e2e1e1">
-                            <i class="fas fa-calendar-alt"></i> 8 Oktober 2024
+                        <span class="btn" id="date" style="font-style: italic; margin-bottom: 0; font-size: 0.9rem; color: #6c757d; background:#e2e1e1">
+                            <i class="fas fa-calendar-alt"></i> 
                         </span>
                     </div>
             
-                   <!-- Date filter form -->
-                   <form action="/export-list-pdf" method="GET" class="row mt-4 g-3">
-                    <div class="col-12 col-md-4 mb-3 mb-md-0">
-                        <label for="start_date" class="form-label">Tanggal Awal</label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="fas fa-calendar-day"></i></span>
-                            <input type="date" id="start_date" name="start_date" class="form-control" required placeholder="Pilih tanggal awal">
+                    <form id="exportPdfForm" action="/export-list-pdf" method="GET" class="row mt-4 g-3">
+                        <div class="col-12 col-md-4 mb-3 mb-md-0">
+                            <label for="start_date" class="form-label">Tanggal Awal</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-calendar-day"></i></span>
+                                <input type="date" id="start_date" name="start_date" class="form-control" required placeholder="Pilih tanggal awal">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-md-4 mb-3 mb-md-0">
-                        <label for="end_date" class="form-label">Tanggal Akhir</label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="fas fa-calendar-day"></i></span>
-                            <input type="date" id="end_date" name="end_date" class="form-control" required placeholder="Pilih tanggal akhir">
+                        <div class="col-12 col-md-4 mb-3 mb-md-0">
+                            <label for="end_date" class="form-label">Tanggal Akhir</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-calendar-day"></i></span>
+                                <input type="date" id="end_date" name="end_date" class="form-control" required placeholder="Pilih tanggal akhir">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-md-4 d-flex justify-content-center justify-content-md-start align-items-end">
-                        <button type="submit" class="btn btn-danger" style="transition: background-color 0.3s;">
-                            <i class="fas fa-file-pdf"></i> Download PDF
-                        </button>
-                    </div>
-                </form>
+                        <div class="col-12 col-md-4 d-flex justify-content-center justify-content-md-start align-items-end">
+                            <button type="submit" id="downloadBtn" class="btn btn-danger" style="transition: background-color 0.3s;">
+                                <i class="fas fa-file-pdf"></i> Download PDF
+                            </button>
+                        </div>
+                    </form>
 
                 </div>
             </div>
@@ -198,22 +197,37 @@
 <script>
     document.getElementById('downloadBtn').addEventListener('click', function(event) {
         event.preventDefault(); // Prevent form submission
+        
+        // Get the values of start_date and end_date fields
+        const startDate = document.getElementById('start_date').value;
+        const endDate = document.getElementById('end_date').value;
 
-        Swal.fire({
-            title: 'Anda yakin?',
-            text: "Apakah anda yakin ingin mendownload data ini?",
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Ya, download!',
-            cancelButtonText: 'Batal'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Submit the form after confirmation
-                document.getElementById('exportPdfForm').submit();
-            }
-        });
+        // Check if both dates are selected
+        if (!startDate || !endDate) {
+            Swal.fire({
+                title: 'Tanggal Belum Dipilih!',
+                text: "Silakan pilih tanggal awal dan akhir sebelum mendownload.",
+                icon: 'warning',
+                confirmButtonText: 'OK'
+            });
+        } else {
+            // If dates are valid, show the confirmation dialog
+            Swal.fire({
+                title: 'Anda yakin?',
+                text: "Apakah anda yakin ingin mendownload data ini?",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, download!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Submit the form after confirmation
+                    document.getElementById('exportPdfForm').submit();
+                }
+            });
+        }
     });
 </script>
 

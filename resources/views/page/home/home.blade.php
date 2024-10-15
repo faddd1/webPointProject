@@ -133,7 +133,7 @@
 
                     <div class="col-lg-6 d-flex flex-column justify-content-center teksHiro" data-aos="fade-in">
                         <h1>Selamat Datang di Website <span class="text-danger fst-italic">P</span><span class="text-dark fst-italic">P</span><span class="fst-italic" style="color: #f6f23a;">S</span> !</h1>
-                        <p class="mt-3">PSS adalah Website Poin Pelanggara Siswa untuk digunakan oleh SMKN 1 KAWALI</p>
+                        <p class="mt-3">PPS adalah Website Poin Pelanggara Siswa untuk digunakan oleh SMKN 1 KAWALI</p>
                     </div>
                     
                 </div>
@@ -153,7 +153,7 @@
             </div>
             <div class="content">
                 
-                <h2 style="color: #104e67">Tentang</h2>
+                <h2>Tentang</h2>
                 <h3>PPS </h3>
             </div>
             <div class="content1" style="padding: 20px;">
@@ -203,7 +203,7 @@
                 <img src="{{ asset('assets/img/lala.png') }}" alt="" width="200" height="200" >
             </div>
         <div class="container1 section-title py-4" data-aos="fade-up">
-            <div class="fs-4 py-4"><span style="color: #104e67">Tim Pembuatan</span>
+            <div class="fs-4 py-4 span1"><span>Tim Pembuatan</span>
             <h3>PPS</h3>
             </div>
         </div>
@@ -303,7 +303,9 @@
                 </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+
+
+            {{-- <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
                 <div class="member">
                 <div class="pic"><img src="{{ asset('assets/img/team/team-3.jpg') }}" class="img-fluid" alt=""></div>
                 <div class="member-info">
@@ -349,7 +351,7 @@
                     </div>
                 </div>
                 </div>
-            </div>
+            </div> --}}
 
             </div>
 
@@ -374,33 +376,33 @@
             <div class="row gy-4">
 
             <div class="col-lg-4 col-md-6">
-                <div class="info-item d- p-4 rounded shadow-sm" data-aos="fade-up" data-aos-delay="200">
-                <i class="bi bi-geo-alt flex-shrink-0"></i>
-                <div>
-                    <h3 style="color: #104e67">Address</h3>
-                    <p>A108 Adam Street, New York, NY 535022</p>
-                </div>
+                <div class="info-item d-flex p-4 rounded shadow-sm" data-aos="fade-up" data-aos-delay="200">
+                    <i class="bi bi-geo-alt flex-shrink-0"></i>
+                    <div>
+                        <h3 style="color: #104e67">Alamat</h3>
+                        <p>Jl.Talagasari, No.35 Kawalimukti, Kawali Kabupaten Ciamis Jawa Barat 46252</p>
+                    </div>
                 </div>
 
                 <div class="info-item d-flex p-4 rounded shadow-sm" data-aos="fade-up" data-aos-delay="300">
                 <i class="bi bi-telephone flex-shrink-0"></i>
                 <div>
-                    <h3 style="color: #104e67">Call Us</h3>
-                    <p>+1 5589 55488 55</p>
+                    <h3 style="color: #104e67">Telephone</h3>
+                    <p>(0265) 791 727-Central Office</p>
                 </div>
                 </div>
 
                 <div class="info-item d-flex p-4 rounded shadow-sm" data-aos="fade-up" data-aos-delay="400">
                 <i class="bi bi-envelope flex-shrink-0"></i>
                 <div>
-                    <h3 style="color: #104e67">Email Us</h3>
-                    <p>info@example.com</p>
+                    <h3 style="color: #104e67">Email</h3>
+                    <p>smkn1kawali@gmail.com</p>
                 </div>
                 </div>
 
             </div>
 
-            <div class="col-lg-8">
+            <div class="col-lg-8 ">
                 @if(session('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <strong>Success!</strong> {{ session('success') }}
@@ -442,10 +444,10 @@
                             </div>
                         </div>
             
-                        <!-- Submit Button -->
-                        <div class="col-md-12 d-grid">
-                            <button type="submit" class="btn btn-success shadow-sm">Kirim Pesan</button>
+                        <div class="col-md-12 formlogin text-center">
+                            <button type="submit" class="btn custom-btn  shadow-sm">Kirim Pesan</button>
                         </div>
+
                     </div>
                 </form>
             </div>
