@@ -4,7 +4,7 @@
       <div class="container-fluid">
           <div class="row justify-content-center">
               <div class="col-12">
-                  {{-- @if (session('success'))
+                  @if (session('success'))
                       <script>
                           Swal.fire({
                               title: "BERHASIL",
@@ -12,7 +12,7 @@
                               icon: "success"
                           });
                       </script>
-                  @endif --}}
+                  @endif
                   <div class="card">
                       <div class="card-header">
                           <div class="card-tools">
@@ -22,7 +22,7 @@
                                   </button>
                               {{-- @endif --}}
                           </div>
-                          <form action="/kategoripelanggaran/search" class="form-inline" method="GET">
+                          <form action="{{ route('hukuman.search') }}" class="form-inline" method="GET">
                               <div class="card-item d-flex">
                                   <div class="input-group">
                                       <input type="search" class="form-control" name="search" placeholder="Cari" value="{{ request()->input('search') }}" id="search-input">
@@ -101,6 +101,20 @@
                                               <td style="text-align: center; vertical-align: middle;">{{$no+1}}</td>
                                               <td style="text-align: center; vertical-align: middle;">{{$item->nama_hukuman}}</td>
                                               <td style="text-align: center; vertical-align: middle;">({{$item->pointAwal}}) Sampai ({{ $item->pointAkhir }})</td>
+                                              <td style="text-align: center; vertical-align: middle;">
+                                                <div class="action-buttons text-center align-middle">
+                                                    <button class="btn btn-sm btn-primary editBtn" data-id="{{ $item->id }}">
+                                                        <i class="fa-solid fa-pen-to-square"></i>
+                                                    </button>
+                                                    <form action="{{ route('hukuman.destroy', $item->id )}}" class="d-inline col-mb-2 deleteForm" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-sm btn-danger">
+                                                            <i class="fa-solid fa-trash"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </td>
                                           </tr>
                                       @endforeach
                                   </tbody>
@@ -153,6 +167,11 @@
 
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       <script>
+         document.getElementById('search-input').addEventListener('input', function() {
+            if (this.value === '') {
+                window.location.href = "{{ url('/hukuman') }}";
+            }
+        });
           document.addEventListener('DOMContentLoaded', function () {
               document.getElementById('tambahHukuman').addEventListener('click', function (event) {
                   event.preventDefault();
@@ -167,6 +186,40 @@
                       .catch(error => console.error('Gagal memuat form tambah:', error));
               });
           });
+          document.querySelectorAll('.editBtn').forEach(button => {
+           button.addEventListener('click', function () {
+             const hukumanId = this.getAttribute('data-id');
+             
+             fetch(`/hukuman/edit${hukumanId}`)
+               .then(response => response.text())
+               .then(html => {
+                 document.getElementById('modalBody').innerHTML = html;
+                 document.getElementById('dataModalLabel').innerText = 'Edit Data Hukuman';
+                 const dataModal = new bootstrap.Modal(document.getElementById('dataModal'));
+                 dataModal.show();
+               })
+               .catch(error => console.error('Error loading edit form:', error));
+           });
+           document.querySelectorAll('.deleteForm').forEach(form => {
+                form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                Swal.fire({
+                    title: 'Hapus Data',
+                    text: "Apakah Anda yakin ingin menghapus data ini?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, Hapus!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                    form.submit();
+                    }
+                });
+                });
+            });
+         });
       </script>
   </div>
 </x-layout>

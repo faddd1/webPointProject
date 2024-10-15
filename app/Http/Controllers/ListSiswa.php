@@ -65,11 +65,64 @@ class ListSiswa extends Controller
             'pointAkhir' => $pointAkhir,
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Data hukuman berhasil ditambahkan!');
     }
 
     public function create(){
         return view('hukuman.create');
     }
 
+    public function edit(Hukuman $punismen, $id)
+    {
+        $punismen = Hukuman::findOrFail($id);
+        return view('hukuman.edit', compact('punismen'), ['title' => 'Edit Data']);
+    }
+
+    public function update( Request $request,Hukuman $punismen, $id) {
+        $request->validate ([
+            'nama_hukuman' => 'required',
+            'pointAwal' =>'required|integer',
+            'pointAkhir' =>'required|integer',
+        ]);
+        
+        $pointAwal = -abs($request->input('pointAwal'));
+        $pointAkhir = -abs($request->input('pointAkhir'));
+
+        $punismen = Hukuman::findOrFail($id);
+
+        $punismen->update([
+            'nama_hukuman' => $request->input('nama_hukuman'),
+            'pointAwal' => $pointAwal,
+            'pointAkhir' => $pointAkhir,
+        ]);
+
+        return redirect()->back()->with('success', 'Data hukuman berhasil diubah!');
+    }
+
+    public function destroy(Hukuman $punismen, $id)
+    {
+        $punismen = Hukuman::findOrFail($id);
+        $punismen->delete();
+        return redirect()->route('hukuman')->with('success', 'Data hukuman berhasil dihapus!');
+    }
+
+    public function searchHukuman(Request $request)
+    {
+        $query = $request->get('query');
+        $punismen = Hukuman::where('nama_hukuman', 'LIKE', "%{$query}%")->get();
+    
+        return response()->json($punismen);
+    }
+
+   
+    public function search(Request $request)
+    {
+        $searchTerm = $request->input('search');
+        
+      
+        $punismen = Hukuman::where('nama_hukuman', 'LIKE', "%{$searchTerm}%")
+                    ->paginate(4);
+        
+        return view('hukuman.index', compact('punismen'), ['title' => ' Pencarian Hukuman']);
+    }
 }

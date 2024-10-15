@@ -16,6 +16,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\UserGuruController;
 use App\Http\Controllers\PenebusanController;
 use App\Http\Controllers\UserSiswaController;
+use App\Http\Controllers\TataTertibController;
 use App\Http\Controllers\UserPetugasController;
 use App\Http\Controllers\PoinPenebusanController;
 // --------------------- PAGE ROUTES ------------------------ //
@@ -43,6 +44,14 @@ Route::group(['middleware' => ['auth', 'userAkses:admin,guru,petugas,siswa']], f
     Route::get('dashboard/guru', [AdminController::class, 'guru'])->middleware('userAkses:guru');
     Route::get('dashboard/petugas', [AdminController::class, 'petugas'])->middleware('userAkses:petugas');
     Route::get('dashboard/siswa', [AdminController::class, 'siswa'])->middleware('userAkses:siswa')->name('dashboard.siswa');
+
+    Route::get('/tatatertib',[TataTertibController::class, 'tampilanTata']);
+    //unduh data siswa
+    Route::get('/download/tata-tertib', function () {
+        $filePath = public_path('assets/pdf/TataTertib.pdf');
+        $fileName = 'TataTertib.pdf';
+        return response()->download($filePath, $fileName);
+    });
 });
 
 Route::middleware(['auth', 'userAkses:admin,guru,petugas'])->group(function () {
@@ -100,7 +109,8 @@ Route::middleware(['auth', 'userAkses:admin,guru'])->group(function () {
   //listpdf
   Route::get('/export-list-pdf', [StudentController::class, 'listPdf'])->name('list.pdf');
   
-
+    //searchhukuman
+  Route::get('/hukuman/search/hukumansiswa', [ListSiswa::class, 'searchHukuman'])->name('hukumansiswa.search');
 
 
 });
@@ -181,6 +191,11 @@ Route::middleware(['auth', 'userAkses:admin'])->group(function () {
     Route::get('/hukuman',[ListSiswa::class, 'index'])->name('hukuman');
     Route::post('/hukuman/store',[ListSiswa::class, 'store'])->name('hukuman.store');
     Route::get('/hukuman/create',[ListSiswa::class, 'create'])->name('hukuman.create');
+    Route::get('/hukuman/edit{id}',[ListSiswa::class, 'edit'])->name('hukuman.edit');
+    Route::put('/hukuman/update/{id}',[ListSiswa::class, 'update'])->name('hukuman.update');
+    Route::delete('/hukuman/{id}', [ListSiswa::class, 'destroy'])->name('hukuman.destroy');
+    Route::get('/hukuman/search', [ListSiswa::class, 'search'])->name('hukuman.search');
+
 });
 
 Route::middleware(['auth', 'userAkses:siswa'])->group(function () {

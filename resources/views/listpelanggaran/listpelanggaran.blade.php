@@ -86,7 +86,7 @@
                                                 <td class="text-center align-middle">{{ $student->nama }}</td>
                                                 <td class="text-center align-middle">{{ $student->pelanggaran }}</td>
                                                 <td class="text-center align-middle">{{ $student->point }}</td>
-                                                <td class="text-center align-middle">{{ $student->tanggal }}</td>
+                                                <td class="text-center align-middle">{{  \Carbon\Carbon::parse($student->tanggal)->format('j F Y') }}</td>
                                                 <td class="text-center align-middle">
                                                     @if ($student->bukti)
                                                         <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal-{{ $student->id }}">
@@ -139,7 +139,7 @@
                                                         @foreach ($pelanggaranPerHari as $no=>$item)
                                                             <tr>
                                                                 <td class="text-center align-middle">{{ $no+1 }}</td>
-                                                                <td class="text-center align-middle">{{ \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y') }}</td>
+                                                                <td class="text-center align-middle">{{ \Carbon\Carbon::parse($item->tanggal)->format('j F Y') }}</td>
                                                                 <td class="text-center align-middle">{{ $item->total }}</td>
                                                             </tr>
                                                         @endforeach  

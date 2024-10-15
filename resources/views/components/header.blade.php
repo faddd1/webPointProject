@@ -8,6 +8,10 @@
               width: 300px;
           @elseif($slot == 'Kategori Pelanggaran')
               width: 280px;
+          @elseif($slot == 'Hukuman Siswa')
+              width: 212px;
+          @elseif($slot == 'Tata Tertib')
+              width: 138px;
           @elseif($slot == 'Data Siswa')
               width: 145px;
           @elseif($slot == 'Data Guru')

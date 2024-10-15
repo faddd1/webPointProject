@@ -124,16 +124,28 @@
                                     <p style="color: #000; text-decoration: none;" onmouseover="this.style.color='#000'" onmouseout="this.style.color='#000'">Kategori Pelanggaran</p>
                                 </a>
                             </li>
+                            @if(auth()->check() && in_array($role, ['admin', 'guru']))
+                                <li class="nav-item">
+                                    <a href="/hukuman" class="nav-link">
+                                        <i class="far fa-circle nav-icon" style="color: #000; text-decoration: none;" onmouseover="this.style.color='#96B6C5'" onmouseout="this.style.color='#000'"></i>
+                                        <p style="color: #000; text-decoration: none;" onmouseover="this.style.color='#000'" onmouseout="this.style.color='#000'">Kategori Hukuman</p>
+                                    </a>
+                                </li>
+                            @endif
 
-                            <li class="nav-item">
-                                <a href="/hukuman" class="nav-link">
-                                    <i class="far fa-circle nav-icon" style="color: #000; text-decoration: none;" onmouseover="this.style.color='#96B6C5'" onmouseout="this.style.color='#000'"></i>
-                                    <p style="color: #000; text-decoration: none;" onmouseover="this.style.color='#000'" onmouseout="this.style.color='#000'">Kategori Hukuman</p>
-                                </a>
-                            </li>
+                            @if(auth()->check() && in_array($role, ['siswa', 'guru', 'petugas', 'admin']))
+                                <li class="nav-item">
+                                    <a href="/tatatertib" class="nav-link">
+                                        <i class="far fa-circle nav-icon" style="color: #000; text-decoration: none;" onmouseover="this.style.color='#96B6C5'" onmouseout="this.style.color='#000'"></i>
+                                        <p style="color: #000; text-decoration: none;" onmouseover="this.style.color='#000'" onmouseout="this.style.color='#000'">Tata Tertib</p>
+                                    </a>
+                                </li>
+                            @endif
+
                         </ul>
                     </li>
                 @endif
+              
                     @if(auth()->check() && in_array($role, ['admin', 'guru',]))
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">

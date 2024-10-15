@@ -124,7 +124,7 @@
                                 <td style="text-align: center; vertical-align: middle;">{{$no+1}}</td>
                                 <td style="text-align: center; vertical-align: middle;">{{$kategori->pelanggaran}}</td>
                                 <td style="text-align: center; vertical-align: middle;">{{$kategori->point}}</td>
-                                <td style="text-align: center; vertical-align: middle;">{{$kategori->pasal->level}}</td>
+                                <td style="text-align: center; vertical-align: middle;">{{$kategori->pasal->level  ?? 'Tidak Ada Pasal'}}</td>
                                 @if (auth()->check() && auth()->user()->role == 'admin')
                                 <td style="text-align: center; vertical-align: middle;">
                                   <div class="action-buttons text-center align-middle">
