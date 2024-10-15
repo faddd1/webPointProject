@@ -43,14 +43,17 @@
             <input type="text" class="form-control" value="{{ $kategoris->point }}" name="point" placeholder="Point yang Diberikan" required>
         </div>
         <div class="form-group">
-            <label>Level</label>
+            <label>Pasal</label>
             <select class="form-control" name="level" required>
-                <option value="">Pilih Level</option>
-                <option value="Ringan" {{ $kategoris->level == 'Ringan' ? 'selected' : ''}}>Ringan</option>
-                <option value="Sedang" {{ $kategoris->level == 'Sedang' ? 'selected' : ''}}>Sedang</option>
-                <option value="Berat" {{ $kategoris->level == 'Berat' ? 'selected' : ''}}>Berat</option> 
+                <option value="">Pilih Pasal</option>
+                @foreach ($pasals as $pasal)
+                    <option value="{{ $pasal->id }}" {{ $kategoris->level == $pasal->id ? 'selected' : '' }}>
+                        {{ $pasal->level }}
+                    </option>
+                @endforeach
             </select>
         </div>
+        
         <button type="submit" class="btn btn-block btn-primary-custom">Update</button>
     </form>
 </div>

@@ -76,6 +76,7 @@
    
             @if ($hukuman)
                 <div class="card text-center shadow">
+                    <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"><i class="fa-solid fa-arrow-right"></i></a>
                     <div class="card-body">
                         <h2 class="card-title">Poin Anda Sudah Mencapai: <strong>{{ Auth::user()->siswa->point }}</strong></h2>
                         <p class="card-text text-warning">Anda Terkena Sanksi: <strong>{{ $hukuman->nama_hukuman }}</strong></p>
@@ -143,9 +144,9 @@
         <div class="card-body">
             <h3 class="text-md py-2">Prestasi Yang Pernah Kamu Lakukan : <strong>{{ $totalPrestasi }}</strong></h3>
             <div class="table-responsive">
-                <table class="table table-bordered">
+                <table class="table table-bordered" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                     <thead>
-                        <tr>
+                        <tr style="background-color: #4D869C; color:#ffff;">
                             <th style="text-align: center; vertical-align: middle;">No</th>
                             <th style="text-align: center; vertical-align: middle;">Nama Pelapor</th>
                             <th style="text-align: center; vertical-align: middle;">Nama Prestasi</th>
@@ -183,7 +184,7 @@
                             @endforeach
                         @else
                             <tr>
-                                <td colspan="6" style="text-align: center;">Tidak ada laporan yang ditemukan</td>
+                                <td colspan="6" style="text-align: center;">Tidak ada prestasi yang ditemukan</td>
                             </tr>
                         @endif
                     </tbody>

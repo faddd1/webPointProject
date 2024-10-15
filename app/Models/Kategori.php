@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Pasal;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Kategori extends Model
 {
     use HasFactory;
 
     protected $table = 'kategoris';
-
     protected $fillable = [
         'pelanggaran',
         'point',
@@ -25,4 +25,10 @@ class Kategori extends Model
     {
         return $this->hasMany(Laporan::class, 'kategori_id', 'id');
     }
+
+    public function pasal()
+    {
+        return $this->belongsTo(Pasal::class, 'level', 'id');
+    }
+
 }

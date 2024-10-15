@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pasal;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 
@@ -10,15 +11,23 @@ class KategoriController extends Controller
    
     public function index()
     {
-        // $datakategori = Kategori::paginate(5);
         $kategoris = Kategori::paginate(10);
-        return view('kategori.kategoripelanggaran', ['kategoris' => $kategoris, 'title' => 'Kategori Pelanggaran']);
+        $pasal = Pasal::all();
+        return view('kategori.kategoripelanggaran', [
+        'pasal' => $pasal,
+        'kategoris' => $kategoris,
+        'title' => 'Kategori Pelanggaran']);
     }
     
    
     public function create()
     {
-        return view('kategori.create', ['title' => 'Tambah Kategori']);
+        $pasal = Pasal::all();
+        return view('kategori.create', 
+        [
+            'pasal' => $pasal,
+            'title' => 'Tambah Kategori'
+        ]);
     }
 
    
@@ -31,7 +40,6 @@ class KategoriController extends Controller
             'level' => 'required|string|max:50',
         ]);
     
-       
         Kategori::create([
             'pelanggaran' => $request->pelanggaran,
             'point' => $request->point,
@@ -46,7 +54,8 @@ class KategoriController extends Controller
     public function edit(Kategori $kategoris, $id)
     {
         $kategoris = Kategori::findOrFail($id);
-        return view('kategori.edit', compact('kategoris'), ['title' => 'Edit Data']);
+        $pasals = Pasal::all(); 
+        return view('kategori.edit', compact('kategoris', 'pasals'), ['title' => 'Edit Data']);
     }
 
   
@@ -70,8 +79,7 @@ class KategoriController extends Controller
        
         return redirect('/kategoripelanggaran')->with('success', 'Data berhasil diubah!');
     }
-
-   
+  
     public function destroy(Kategori $kategoris, $id)
     {
         $kategoris = Kategori::findOrFail($id);
@@ -101,4 +109,57 @@ class KategoriController extends Controller
         
         return view('kategori.kategoripelanggaran', compact('kategoris'), ['title' => 'Kategori Pelanggaran']);
     }
+
+    public function createPasall(){
+
+        $pasal = Pasal::all();
+        return view('kategori.pasal.createPasal', [
+            'pasal' => $pasal,
+            'title' => 'Tambah Pasal'
+        ]);
+    }
+
+    public function createPasal(Request $request){
+        
+        $request->validate([
+            'level' => 'required'
+        ]);
+
+        Pasal::create([
+            'level' => $request->level
+        ]);
+
+        return redirect('/kategoripelanggaran')->with('success', 'Data berhasil ditambahakan!');
+    }
+
+    public function editPasal($id){
+
+        $pasal = Pasal::findOrfail($id);
+        return view('kategori.pasal.editPasal',[
+            'pasal' => $pasal
+        ]);
+    }
+
+    public function updatePasal(Request $request,$id){
+        $request->validate([
+            'level' => 'required'
+        ]);
+        $pasal = Pasal::find($id);
+        $pasal->update([
+            'level' => $request->level
+        ]);
+
+        return redirect('/kategoripelanggaran')->with('success', 'Data berhasil diubah!');
+        
+    }
+
+    public function destroyPasal($id){
+
+        $pasal = Pasal::findOrfail($id);
+        $pasal -> delete();
+
+        return redirect('/kategoripelanggaran')->with('success', 'Data berhasil dihapus!');
+    }
+
+
 }

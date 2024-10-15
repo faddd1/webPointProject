@@ -14,17 +14,20 @@ class SesiController extends Controller
     public function login(Request $request){
         $request->validate([
             'nis' => 'required',
-            'password' => 'required'
+            'password' => 'required',
+            'role' => 'required',
         ],[
             'nis.required' => 'NIS Wajib di Isi',
-            'password.required' => 'Password Wajib di Isi'
+            'password.required' => 'Password Wajib di Isi',
+            'role.required' => 'Role Wajib di Isi',
         ]);
-
+    
         $infoLogin = [
             'nis' => $request->nis,
             'password' => $request->password,
+            'role' => $request->role,
         ];
-
+    
         if(Auth::attempt($infoLogin)){
             $role = Auth::user()->role;
         
@@ -42,10 +45,10 @@ class SesiController extends Controller
                     return redirect()->back()->withErrors('Role tidak ditemukan.');
             }
         } else {
-            return redirect()->back()->with('error', 'NIS/NIP dan Password yang Anda masukkan salah.');
+            return redirect()->back()->with('error', 'NIS/NIP, Password, atau Role yang Anda masukkan salah.');
         }
-        
     }
+    
 
     public function logout(){
         Auth::logout();

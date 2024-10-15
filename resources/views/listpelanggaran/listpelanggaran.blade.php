@@ -123,32 +123,30 @@
                                     <div class="ml-auto">
                                         {{ $students->links('pagination::bootstrap-4') }}
                                     </div>
-                                    <div class="table-responsive">
-                                        <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
-                                            <thead>
-                                                <tr style="background-color: #4D869C; color:#ffff;">
-                                                    <td class="text-center align-middle">No</td>
-                                                    <td class="text-center align-middle">Tangal</td>
-                                                    <td class="text-center align-middle">Jumlah</td>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @if ($pelanggaranPerHari->isNotEmpty())
-                                                @foreach ($pelanggaranPerHari as $no=>$item)
-                                                    <tr>
-                                                        <td class="text-center align-middle">{{ $no+1 }}</td>
-                                                        <td class="text-center align-middle">{{ \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y') }}</td>
-                                                        <td class="text-center align-middle">{{ $item->total }}</td>
+                                    @if ($pelanggaranPerHari->isEmpty())
+                                    @else
+                                        <div class="table-responsive">
+                                            <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
+                                                <thead>
+                                                    <tr style="background-color: #4D869C; color:#ffff;">
+                                                        <td class="text-center align-middle">No</td>
+                                                        <td class="text-center align-middle">Tangal</td>
+                                                        <td class="text-center align-middle">Jumlah</td>
                                                     </tr>
-                                                @endforeach
-                                            @else
-                                                <tr>
-                                                    <td colspan="2" class="text-center">Tidak ada data pelanggaran.</td>
-                                                </tr>
-                                            @endif                 
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                                </thead>
+                                                <tbody>
+                                                    
+                                                        @foreach ($pelanggaranPerHari as $no=>$item)
+                                                            <tr>
+                                                                <td class="text-center align-middle">{{ $no+1 }}</td>
+                                                                <td class="text-center align-middle">{{ \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y') }}</td>
+                                                                <td class="text-center align-middle">{{ $item->total }}</td>
+                                                            </tr>
+                                                        @endforeach  
+                                    @endif           
+                                                </tbody>
+                                            </table>
+                                        </div>
 
                                 </div>
                             </div>

@@ -165,6 +165,11 @@ Route::middleware(['auth', 'userAkses:admin'])->group(function () {
     Route::put('kategori/{id}', [KategoriController::class, 'update'])->name('kategori.update');
     Route::post('/kategoripelanggaran/store', [KategoriController::class, 'store'])->name('kategori.store');
     Route::get('/kategoripelanggaran/search', [KategoriController::class, 'search'])->name('kategori.search');
+    Route::post('/kategoripelanggaran/tambah/pasal', [KategoriController::class, 'createPasal'])->name('kategori.createPasal');
+    Route::get('/kategoripelanggaran/pasal', [KategoriController::class, 'createPasall'])->name('kategori.pasal');
+    Route::get('/kategoripelanggaran/pasal/edit/{id}', [KategoriController::class, 'editPasal'])->name('kategori.editPasal');
+    Route::put('/kategoripelanggaran/pasal/update/{id}', [KategoriController::class, 'updatePasal'])->name('kategori.updatePasal');
+    Route::delete('/kategoripelanggaran/pasal/destroy/{id}', [KategoriController::class, 'destroyPasal'])->name('kategori.destroyPasal');
     // Petugas Management Routes
     Route::get('/datapetugas/tambah', [PetugasController::class, 'tambah'])->name('petugas.create');
     Route::post('/datapetugas/submit', [PetugasController::class, 'submit'])->name('petugas.submit');

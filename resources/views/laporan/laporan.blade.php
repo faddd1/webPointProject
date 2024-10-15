@@ -92,7 +92,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="tanggal" class="form-label">Tanggal :</label>
-                        <input type="date" id="tanggal-input" name="tanggal" class="form-control" value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}">
+                        <input type="date" id="tanggal-input" name="tanggal" class="form-control">
                     </div>
                     
                     <button type="submit" class="btn w-100 laporForm" style="background-color: #4D869C;" id="submitButton">

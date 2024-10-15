@@ -30,26 +30,12 @@
 </style>
 
 <div class="form-container">
-    <form action="{{ route('kategori.store') }}" method="POST" id="formKategori">
+    <form action="{{ route('kategori.updatePasal', $pasal->id) }}" method="POST" id="formKategori">
         @csrf
+        @method('PUT')
         <div class="form-group">
-            <label>Nama Pelanggaran</label>
-            <input type="text" class="form-control" name="pelanggaran" placeholder="Nama Pelanggaran" required>
-        </div>
-        <div class="form-group">
-            <label>Point yang Diberikan</label>
-            <input type="text" class="form-control" name="point" placeholder="Point yang Diberikan" required>
-        </div>
-        <div class="form-group">
-            <label>Pasal</label>
-            <select class="form-control" name="level" required>
-                <option value="">Pilih Pasal</option>
-                @foreach ($pasal as $item)
-                    <option value="{{ $item->id }}">{{ $item->level }}</option>
-                @endforeach
-            </select>
-            
-            
+            <label>Nama Pasal</label>
+            <input type="text" class="form-control" name="level" value="{{ $pasal->level }}" placeholder="Nama Pasal" required>
         </div>
         <button type="submit" class="btn btn-block btn-primary-custom" id="submitButton">Tambah</button>
     </form>

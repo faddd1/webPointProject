@@ -106,7 +106,7 @@
                       <td style="text-align: center; vertical-align: middle;" class="py-2">No</td>
                       <td style="text-align: center; vertical-align: middle;">Nama Pelanggaran</td>
                       <td style="text-align: center; vertical-align: middle;">Point</td>
-                      <td style="text-align: center; vertical-align: middle;">Level</td>
+                      <td style="text-align: center; vertical-align: middle;">Pasal</td>
                       @if (auth()->check() && auth()->user()->role == 'admin')
                         <td style="text-align: center; vertical-align: middle;">Action</td>
                       @endif
@@ -124,7 +124,7 @@
                                 <td style="text-align: center; vertical-align: middle;">{{$no+1}}</td>
                                 <td style="text-align: center; vertical-align: middle;">{{$kategori->pelanggaran}}</td>
                                 <td style="text-align: center; vertical-align: middle;">{{$kategori->point}}</td>
-                                <td style="text-align: center; vertical-align: middle;">{{$kategori->level}}</td>
+                                <td style="text-align: center; vertical-align: middle;">{{$kategori->pasal->level}}</td>
                                 @if (auth()->check() && auth()->user()->role == 'admin')
                                 <td style="text-align: center; vertical-align: middle;">
                                   <div class="action-buttons text-center align-middle">
@@ -174,6 +174,58 @@
               </div>
             </div>
           </div>
+          <div class="card">
+            <div class="card-header">
+             
+              <div class="card-tools">
+                @if (auth()->user()->role == 'admin')
+                  <button class="btn btn-sm" style="background-color:#245c70; color:#ffff; margin-top: 5px; margin-right: 10px;" id="tambahPasal">
+                     <i class="fa-solid fa-circle-plus"></i> <span class="d-none d-sm-inline">Add</span>
+                  </button>
+                @endif
+              </div>
+              <h5>Tambahkan Pasal</h5>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
+                  <thead>
+                      <tr style="background-color: #4D869C; color:#ffff;">
+                        <td style="text-align: center; vertical-align: middle;">No</td>
+                        <td style="text-align: center; vertical-align: middle;">Pasal</td>
+                        <td style="text-align: center; vertical-align: middle;">Action</td>
+                      </tr>
+                </thead>
+                <tbody>
+                  @foreach ($pasal as $no => $item)
+                    <tr>
+                      <td style="text-align: center; vertical-align: middle;">{{ $no + 1 }}</td>
+                      <td style="text-align: center; vertical-align: middle;">{{ $item->level }}</td>
+                      <td style="text-align: center; vertical-align: middle;">
+                        <div class="action-buttons text-center align-middle">
+                          <button class="btn btn-sm btn-primary editPasal" data-id="{{ $item->id }}">
+                              <i class="fa-solid fa-pen-to-square"></i>
+                          </button>
+                          <form action="{{ route('kategori.destroyPasal', $item->id )}}" class="d-inline col-mb-2 deletePasal" method="POST">
+                              @csrf
+                              @method('DELETE')
+                              <button type="submit" class="btn btn-sm btn-danger">
+                                  <i class="fa-solid fa-trash"></i>
+                              </button>
+                          </form>
+                      </div>
+                      </td>
+                    </tr>
+                    </tr>
+                  @endforeach
+                 
+                </tbody>
+                 
+                </table>
+              </div>
+              
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -217,6 +269,36 @@
           .catch(error => console.error('Error loading create form:', error));
       });
 
+      document.getElementById('tambahPasal').addEventListener('click', function (event) {
+        event.preventDefault();
+        
+        fetch('/kategoripelanggaran/pasal')
+          .then(response => response.text())
+          .then(html => {
+            document.getElementById('modalBody').innerHTML = html;
+            document.getElementById('dataModalLabel').innerText = 'Tambah Kategori Pasal';
+            const dataModal = new bootstrap.Modal(document.getElementById('dataModal'));
+            dataModal.show();
+          })
+          .catch(error => console.error('Error loading create form:', error));
+      });
+
+      document.querySelectorAll('.editPasal').forEach(button => {
+        button.addEventListener('click', function () {
+          const pasalId = this.getAttribute('data-id');
+          
+          fetch(`/kategoripelanggaran/pasal/edit/${pasalId}`)
+            .then(response => response.text())
+            .then(html => {
+              document.getElementById('modalBody').innerHTML = html;
+              document.getElementById('dataModalLabel').innerText = 'Edit Kategori Pasal';
+              const dataModal = new bootstrap.Modal(document.getElementById('dataModal'));
+              dataModal.show();
+            })
+            .catch(error => console.error('Error loading edit form:', error));
+        });
+      });
+
       document.querySelectorAll('.editBtn').forEach(button => {
         button.addEventListener('click', function () {
           const kategoriId = this.getAttribute('data-id');
@@ -239,6 +321,25 @@
           Swal.fire({
             title: 'Hapus Data',
             text: "Apakah Anda yakin ingin menghapus data ini?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Hapus!',
+            cancelButtonText: 'Batal'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              form.submit();
+            }
+          });
+        });
+      });
+      document.querySelectorAll('.deletePasal').forEach(form => {
+        form.addEventListener('submit', function(event) {
+          event.preventDefault();
+          Swal.fire({
+            title: 'Hapus Pasal',
+            text: "Apakah Anda yakin ingin menghapus Pasal ini?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

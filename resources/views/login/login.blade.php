@@ -75,26 +75,32 @@
                         });
             </script>
             @endif
-                <form class="was-validated" action="" method="POST">
+                <form action="" method="POST">
                     @csrf
                         <div>
                             
                             <label for="nis" class="form-label">NIP/NIS :</label>
                             <input type="text" class="form-control" value="{{ old('nis') }}" name="nis"  placeholder="NIP/NIS" required>
-                            <div class="invalid-feedback">
-                                Masukan Nip atau Nis.
-                            </div>
                         </div>
                     <div>
                         <label for="password" class="form-label">Password :</label>
                         <input type="password" class="form-control" name="password" placeholder="Password" required>
-                        <div class="invalid-feedback">
-                            Masukan Password. 
-                        </div>
-                        <div class="d-grid gap-2" style="margin-top: 1rem;">
-                            <button class="btn" type="submit" style="background-color: #4D869C; color: #ffff;">Login</button>
-                        </div>
+                        
                     </div>
+                    <div>
+                        <label for="role" class="form-label">Status :</label>
+                        <select name="role" class="form-control" required>
+                            <option>Pilih Status</option>
+                            <option value="admin">Admin</option>
+                            <option value="guru">Guru</option>
+                            <option value="petugas">Petugas</option>
+                            <option value="siswa">Siswa</option>
+                        </select>
+                    </div>
+                    
+                    <div class="d-grid gap-2 " style="margin-top: 1rem;">
+                            <button class="btn mt-3" type="submit" style="background-color: #4D869C; color: #ffff;">Login</button>
+                        </div>
                 </form>
         </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> 
