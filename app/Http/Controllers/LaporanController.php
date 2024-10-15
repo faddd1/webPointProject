@@ -31,6 +31,11 @@ class LaporanController extends Controller
             'point' => 'required|integer',
             'tanggal' => 'required|date',
             'bukti' => 'nullable|file',
+        ],[
+            'nis.required' => 'Pastikan nama dan nis sudah terisi',
+            'pelanggaran.required' => 'Pastikan pelanggaran dan point sudah terisi',
+            'tanggal.required' => 'Tanggal Wajib di isi',
+            'bukti.required' => 'Bukti Wajib di isi'
         ]);
 
         try {

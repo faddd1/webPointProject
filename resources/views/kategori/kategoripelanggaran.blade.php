@@ -13,6 +13,16 @@
               });
             </script>
           @endif
+
+          @if (session('error'))
+          <script>
+            Swal.fire({
+              title: "error",
+              text: "{{ session('error') }}",
+              icon: "error"
+            });
+          </script>
+        @endif
           <div class="card">
             <div class="card-header">
               <div class="card-tools">
@@ -244,4 +254,7 @@
       });
     });
   </script>
+
+  
+  
 </x-layout>

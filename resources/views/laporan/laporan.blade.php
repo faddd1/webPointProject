@@ -14,15 +14,15 @@
                         toast.onmouseenter = Swal.stopTimer;
                         toast.onmouseleave = Swal.resumeTimer;
                     }
-                    });
-                    Toast.fire({
+                });
+                Toast.fire({
                     icon: "success",
-                    title: " {{ session('success') }}"
-                    });
+                    title: "{{ session('success') }}"
+                });
             </script>
         @elseif(session('error'))
-        <script>
-            const Toast = Swal.mixin({
+            <script>
+                const Toast = Swal.mixin({
                     toast: true,
                     position: "top-end",
                     showConfirmButton: false,
@@ -32,17 +32,16 @@
                         toast.onmouseenter = Swal.stopTimer;
                         toast.onmouseleave = Swal.resumeTimer;
                     }
-                    });
-                    Toast.fire({
+                });
+                Toast.fire({
                     icon: "error",
-                    title: " {{ session('error')}}"
-                    });
-        </script>
+                    title: "{{ session('error') }}"
+                });
+            </script>
         @endif
+        
         <div class="card shadow-lg border-0">
-           
             <div class="card-header text-white d-flex justify-content-between align-items-center" style="background-color: #4D869C;">
-               
                 <div>
                     <button class="btn btn-outline-light me-2" onclick="showSearchAlert('siswa')">
                         <i class="fas fa-user"></i> Cari Siswa
@@ -53,7 +52,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form action="{{ route('lapor.store') }}" method="POST" enctype="multipart/form-data">
+                <form id="laporForm" action="{{ route('lapor.store') }}" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
                     @csrf
                     <div class="row">
                         <div class="col-md-6 mb-3">
@@ -87,22 +86,22 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="mb-3">
                         <label for="bukti" class="form-label">Bukti :</label>
-                        <input type="file"  name="bukti">
+                        <input type="file" name="bukti" id="bukti-input">
                     </div>
                     <div class="mb-3">
                         <label for="tanggal" class="form-label">Tanggal :</label>
-                        <input type="date" id="tanggal-input" name="tanggal" class="form-control">
+                        <input type="date" id="tanggal-input" name="tanggal" class="form-control" value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}">
                     </div>
-                    <button type="submit" class="btn w-100 laporForm" style="background-color: #4D869C;">
+                    
+                    <button type="submit" class="btn w-100 laporForm" style="background-color: #4D869C;" id="submitButton">
                         <i class="fas fa-paper-plane" style="color: #fff;"></i> <span style="color: #fff;">Selesai</span>
                     </button>
                 </form>
             </div>
         </div>
     </div>
+
     @include('laporan.confirjs')
 </x-layout>
-

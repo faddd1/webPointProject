@@ -16,30 +16,46 @@
         
        
         $notifications = \App\Models\Laporan::where('nis', $nis)
-                
+                                ->where('created_at', '>=',  Carbon\Carbon::now()->subHours(10))
                                 ->get();
 
        
         $count = $notifications->count();
     @endphp
 
-    <li class="nav-item dropdown">
-      <a class="nav-link" data-toggle="dropdown" href="#">
-        <i class="far fa-bell" style="color: black; text-decoration: none;"  onmouseover="this.style.color='#4D869C'" onmouseout="this.style.color='#000'"></i>
-          <span class="badge badge-warning navbar-badge">{{ $count }}</span>
-      </a>
-      <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">{{ $count }} Notifikasi</span>
-          <div class="dropdown-divider"></div>
+<li class="nav-item dropdown">
+    <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
+      <i class="far fa-bell" style="color: black; text-decoration: none;" onmouseover="this.style.color='#4D869C'" onmouseout="this.style.color='#000'"></i>
+      <span class="badge badge-warning navbar-badge">{{ $count }}</span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right shadow-lg">
+        <span class="dropdown-item dropdown-header bg-primary text-white">{{ $count }} Notifikasi</span>
+        <div class="dropdown-divider"></div>
+  
+        @if ($notifications->count() > 0)
           @foreach ($notifications as $notification)
           <a href="#" class="dropdown-item text-wrap w-100">
-            <i class="fas fa-envelope mr-2"></i> Anda telah melakukan pelanggaran {{ $notification->pelanggaran }}
-            <span class="float-right text-muted text-sm">{{ $notification->created_at->diffForHumans() }}</span>
-            </a>
-            @endforeach
-          <a href="#" class="dropdown-item dropdown-footer">Lihat Semua Notifikasi</a>
-      </div>
-    </li>
+            <div class="d-flex align-items-center">
+              <div class="mr-3">
+                <i class="fas fa-exclamation-circle text-danger"></i>
+              </div>
+              <div class="text-truncate">
+                <strong>Pelanggaran:</strong> {{ $notification->pelanggaran }}
+                <br>
+                <span class="text-muted text-sm">{{ $notification->created_at->diffForHumans() }}</span>
+              </div>
+            </div>
+          </a>
+          <div class="dropdown-divider"></div>
+          @endforeach
+        @else
+          <span class="dropdown-item text-center text-muted">Tidak ada notifikasi</span>
+        @endif
+        
+        <a href="#" class="dropdown-item dropdown-footer text-primary">Lihat Semua Notifikasi</a>
+    </div>
+  </li>
+  
     @endif
 
   <li class="nav-item dropdown" >

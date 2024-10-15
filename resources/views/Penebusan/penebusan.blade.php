@@ -14,15 +14,15 @@
                         toast.onmouseenter = Swal.stopTimer;
                         toast.onmouseleave = Swal.resumeTimer;
                     }
-                    });
-                    Toast.fire({
+                });
+                Toast.fire({
                     icon: "success",
-                    title: " {{ session('success') }}"
-                    });
+                    title: "{{ session('success') }}"
+                });
             </script>
         @elseif(session('error'))
-        <script>
-            const Toast = Swal.mixin({
+            <script>
+                const Toast = Swal.mixin({
                     toast: true,
                     position: "top-end",
                     showConfirmButton: false,
@@ -32,17 +32,15 @@
                         toast.onmouseenter = Swal.stopTimer;
                         toast.onmouseleave = Swal.resumeTimer;
                     }
-                    });
-                    Toast.fire({
+                });
+                Toast.fire({
                     icon: "error",
-                    title: " {{ session('error')}}"
-                    });
-        </script>
+                    title: "{{ session('error') }}"
+                });
+            </script>
         @endif
         <div class="card shadow-lg border-0">
-           
             <div class="card-header text-white d-flex justify-content-between align-items-center" style="background-color: #4D869C;">
-               
                 <div>
                     <button class="btn btn-outline-light me-2" onclick="showSearchAlert('siswa')">
                         <i class="fas fa-user"></i> Cari Siswa
@@ -53,7 +51,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form action="{{ route('penebusan.store') }}" method="POST" enctype="multipart/form-data">
+                <form id="penebusanForm" action="{{ route('penebusan.store') }}" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
                     @csrf
                     <div class="row">
                         <div class="col-md-6 mb-3">
@@ -73,7 +71,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="nama_Prestasi" class="form-label">Prestas :</label>
+                            <label for="nama_Prestasi" class="form-label">Prestasi :</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fas fa-exclamation-circle"></i></span>
                                 <input type="text" id="penebusan-input" name="nama_Prestasi" class="form-control" readonly>
@@ -90,19 +88,60 @@
 
                     <div class="mb-3">
                         <label for="bukti" class="form-label">Bukti :</label>
-                        <input type="file"  name="bukti">
+                        <input type="file" name="bukti" id="bukti-input">
                     </div>
                     <div class="mb-3">
                         <label for="tanggal" class="form-label">Tanggal :</label>
                         <input type="date" id="tanggal-input" name="tanggal" class="form-control">
                     </div>
-                    <button type="submit" class="btn w-100 laporForm" style="background-color: #4D869C;">
+                    <button type="submit" class="btn w-100 laporForm" style="background-color: #4D869C;" id="submitButton">
                         <i class="fas fa-paper-plane" style="color: #fff;"></i> <span style="color: #fff;">Selesai</span>
                     </button>
                 </form>
             </div>
         </div>
     </div>
+
+    <script>
+        function validateForm() {
+            const nis = document.getElementById('nis-input').value;
+            const nama = document.getElementById('nama-input').value;
+            const nama_Prestasi = document.getElementById('penebusan-input').value;
+            const point = document.getElementById('point-input').value;
+            const bukti = document.getElementById('bukti-input').value;
+            const tanggal = document.getElementById('tanggal-input').value;
+
+            const today = new Date().toISOString().split('T')[0];
+
+            console.log("Tanggal dari input:", tanggal);
+            console.log("Tanggal hari ini:", today);
+
+            if (!nis || !nama || !nama_Prestasi || !point || !bukti || !tanggal) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Oops...',
+                    text: 'Semua kolom wajib diisi!',
+                });
+                return false; 
+            }
+
+            if (tanggal !== today) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Tanggal tidak valid',
+                    text: 'Tanggal pelaporan harus sesuai dengan tanggal hari ini!',
+                });
+                return false;
+            }
+
+            const submitButton = document.getElementById('submitButton');
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses...';
+
+        return true; 
+
+        }
+    </script>
+    
     @include('penebusan.penebusanjs')
 </x-layout>
-

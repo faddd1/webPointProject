@@ -119,28 +119,7 @@ class UserController extends Controller
         return redirect('/tambah')->with('success', 'Akun Admin Berhasil di Hapus');
     }
 
-        public function listsiswa(){
-            $totalPelanggaran = Laporan::where('nis', auth()->user()->nis)
-            ->count('pelanggaran');
-
-            $totalPrestasi = Penebusan::where('nis', auth()->user()->nis)
-            ->count('nama_Prestasi');
-
-
-            $prestasi = Penebusan::with(['pelapor', 'siswa'])
-            ->where('status', 'Diterima')
-            ->where('nis', auth()->user()->nis)
-            ->paginate(5);
-
-            $laporans = Laporan::with(['pelapor', 'siswa'])
-            ->where('status', 'Diterima')
-            ->where('nis', auth()->user()->nis)
-            ->paginate(5);
-
-            return view('listpelanggaran.listpelanggaransiswa', compact('laporans','prestasi', 'totalPelanggaran', 'totalPrestasi'), [
-                'title' => 'List Pelanggaran Siswa'
-            ]);
-        }
+       
         public function search(Request $request)
         {
             $searchTerm = $request->input('search');

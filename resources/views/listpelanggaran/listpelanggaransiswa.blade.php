@@ -9,26 +9,26 @@
                 </h4>
                 <div class="card-tools">
                     @if (Auth::user()->siswa)
-                        <span class="me-2">Sisa Poin :</span>
+                        <span class="me-2"> Poin :</span>
                         @if (Auth::user()->siswa->point <= -1)
                             <a class="btn btn-danger btn-sm" style="color: #fff;">
-                                {{ Auth::user()->siswa->point }}/200
+                                {{ Auth::user()->siswa->point }}
                             </a>
                         @elseif (Auth::user()->siswa->point <= 20)
                             <a class="btn btn-primary btn-sm" style="color: #fff;">
-                                {{ Auth::user()->siswa->point }}/200
+                                {{ Auth::user()->siswa->point }}
                             </a>
                         @elseif (Auth::user()->siswa->point <= 50)
                             <a class="btn btn-warning btn-sm" style="color: #fff;">
-                                {{ Auth::user()->siswa->point }}/200
+                                {{ Auth::user()->siswa->point }}
                             </a>
                         @elseif (Auth::user()->siswa->point <= 100)
                             <a class="btn btn-danger btn-sm" style="color: #fff;">
-                                {{ Auth::user()->siswa->point }}/200
+                                {{ Auth::user()->siswa->point }}
                             </a>
                         @elseif (Auth::user()->siswa->point <= 150)
                             <a class="btn btn-danger btn-sm" style="color: #fff;">
-                                {{ Auth::user()->siswa->point }}/200
+                                {{ Auth::user()->siswa->point }}
                             </a>
                         @endif
                     @else
@@ -74,102 +74,18 @@
         </div>
     </div>
    
-        @if (Auth::user()->siswa->point >= 0)
-           
-        @elseif (Auth::user()->siswa->point  >= -12)
-            <div class="card text-center shadow">
-                <div class="card-body">
-                    <h2 class="card-title">Poin Anda Sudah Mencapai: <strong>{{ Auth::user()->siswa->point }}</strong></h2>
-                    <p class="card-text text-warning">Anda Terkena Sanksi: <strong>Teguran Lisan</strong></p>
+            @if ($hukuman)
+                <div class="card text-center shadow">
+                    <div class="card-body">
+                        <h2 class="card-title">Poin Anda Sudah Mencapai: <strong>{{ Auth::user()->siswa->point }}</strong></h2>
+                        <p class="card-text text-warning">Anda Terkena Sanksi: <strong>{{ $hukuman->nama_hukuman }}</strong></p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Harap perhatikan peraturan yang berlaku.
+                    </div>
                 </div>
-                <div class="card-footer text-muted">
-                    Harap perhatikan peraturan yang berlaku.
-                </div>
-            </div>
-            @elseif (Auth::user()->siswa->point  >= -18 && Auth::user()->siswa->point < 18)
-            <div class="card text-center shadow">
-                <div class="card-body">
-                    <h2 class="card-title">Poin Anda Sudah Mencapai: <strong>{{ Auth::user()->siswa->point }}</strong></h2>
-                    <p class="card-text text-warning">Anda Terkena Sanksi: <strong>Peringatan Tertulis</strong></p>
-                </div>
-                <div class="card-footer text-muted">
-                    Harap perhatikan peraturan yang berlaku.
-                </div>
-            </div>
-            @elseif (Auth::user()->siswa->point  >= -22 && Auth::user()->siswa->point < 22)
-            <div class="card text-center shadow">
-                <div class="card-body">
-                    <h2 class="card-title">Poin Anda Sudah Mencapai: <strong>{{ Auth::user()->siswa->point }}</strong></h2>
-                    <p class="card-text text-warning">Anda Terkena Sanksi: <strong>Peringatan tertulis disampaikan kepada orang tua</strong></p>
-                </div>
-                <div class="card-footer text-muted">
-                    Harap perhatikan peraturan yang berlaku.
-                </div>
-            </div>
-            @elseif (Auth::user()->siswa->point  >= -50)
-            <div class="card text-center shadow">
-                <div class="card-body">
-                    <h2 class="card-title">Poin Anda Sudah Mencapai: <strong>{{ Auth::user()->siswa->point }}</strong></h2>
-                    <p class="card-text text-warning">Anda Terkena Sanksi: <strong>Pemanggilan orang tua</strong></p>
-                </div>
-                <div class="card-footer text-muted">
-                    Harap perhatikan peraturan yang berlaku.
-                </div>
-            </div>
-            @elseif (Auth::user()->siswa->point  >= -75)
-            <div class="card text-center shadow">
-                <div class="card-body">
-                    <h2 class="card-title">Poin Anda Sudah Mencapai: <strong>{{ Auth::user()->siswa->point }}</strong></h2>
-                    <p class="card-text text-warning">Anda Terkena Sanksi: <strong>Siswa dan orang tua membuat surat perjanjian bermaterai
-                    </strong></p>
-                </div>
-                <div class="card-footer text-muted">
-                    Harap perhatikan peraturan yang berlaku.
-                </div>
-            </div>
-            @elseif (Auth::user()->siswa->point  >= -100)
-            <div class="card text-center shadow">
-                <div class="card-body">
-                    <h2 class="card-title">Poin Anda Sudah Mencapai: <strong>{{ Auth::user()->siswa->point }}</strong></h2>
-                    <p class="card-text text-warning">Anda Terkena Sanksi: <strong>Siswa diskor selama tiga hari</strong></p>
-                </div>
-                <div class="card-footer text-muted">
-                    Harap perhatikan peraturan yang berlaku.
-                </div>
-            </div>
-            @elseif (Auth::user()->siswa->point  >= -135)
-            <div class="card text-center shadow">
-                <div class="card-body">
-                    <h2 class="card-title">Poin Anda Sudah Mencapai: <strong>{{ Auth::user()->siswa->point }}</strong></h2>
-                    <p class="card-text text-warning">Anda Terkena Sanksi: <strong>Siswa diskor selama enam hari
-                    </strong></p>
-                </div>
-                <div class="card-footer text-muted">
-                    Harap perhatikan peraturan yang berlaku.
-                </div>
-            </div>
-            @elseif (Auth::user()->siswa->point  >= -175)
-            <div class="card text-center shadow">
-                <div class="card-body">
-                    <h2 class="card-title">Poin Anda Sudah Mencapai: <strong>{{ Auth::user()->siswa->point }}</strong></h2>
-                    <p class="card-text text-warning">Anda Terkena Sanksi: <strong> Siswa diminta pindah sekolah</strong></p>
-                </div>
-                <div class="card-footer text-muted">
-                    Harap perhatikan peraturan yang berlaku.
-                </div>
-            </div>
-            @elseif (Auth::user()->siswa->point  >= -50)
-            <div class="card text-center shadow">
-                <div class="card-body">
-                    <h2 class="card-title">Poin Anda Sudah Mencapai: <strong>{{ Auth::user()->siswa->point }}</strong></h2>
-                    <p class="card-text text-warning">Anda Terkena Sanksi: <strong>Siswa dikembalikan kepada orang tua</strong></p>
-                </div>
-                <div class="card-footer text-muted">
-                    Harap perhatikan peraturan yang berlaku.
-                </div>
-            </div>
-        
-        @endif
+            @endif
+
     <div class="card">
         <div class="card-body">
             <h3 class="text-md py-2">Pelanggaran Yang Pernah Kamu Lakukan : <strong>{{ $totalPelanggaran }}</strong></h3>
@@ -223,9 +139,6 @@
             </div>
         </div>
     </div>
-
-<<<<<<< Updated upstream
-=======
     <div class="card">
         <div class="card-body">
             <h3 class="text-md py-2">Prestasi Yang Pernah Kamu Lakukan : <strong>{{ $totalPrestasi }}</strong></h3>
@@ -279,5 +192,4 @@
             </div>
         </div>
     </div>
->>>>>>> Stashed changes
 </x-layout>

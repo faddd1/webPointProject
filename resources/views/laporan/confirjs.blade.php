@@ -248,6 +248,42 @@
     }
 </script>
 
+<script>
+    function validateForm() {
+        const nis = document.getElementById('nis-input').value;
+        const nama = document.getElementById('nama-input').value;
+        const pelanggaran = document.getElementById('pelanggaran-input').value;
+        const point = document.getElementById('point-input').value;
+        const bukti = document.getElementById('bukti-input').value;
+        const tanggal = document.getElementById('tanggal-input').value;
+        const today = new Date().toISOString().split('T')[0]; 
+
+        if (!nis || !nama || !pelanggaran || !point || !bukti || !tanggal) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Oops...',
+                text: 'Semua kolom wajib diisi!',
+            });
+            return false; 
+        }
+
+        if (tanggal !== today) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Tanggal tidak valid',
+                text: 'Tanggal pelaporan harus sesuai dengan tanggal hari ini!',
+            });
+            return false;
+        }
+
+        const submitButton = document.getElementById('submitButton');
+        submitButton.disabled = true;
+        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses...';
+
+        return true; 
+    }
+</script>
+
 
  <script src="{{ asset('https://code.jquery.com/jquery-3.6.0.min.js') }}"></script>
  <script src="{{ asset('https://cdn.jsdelivr.net/npm/sweetalert2@11') }}"></script>

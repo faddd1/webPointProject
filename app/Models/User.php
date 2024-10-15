@@ -26,7 +26,8 @@ class User extends Authenticatable
         'nis',
         'password',
         'role',
-        'plain_password'
+        'plain_password',
+        'is_logged_in'
     ];
 
     public function siswa()

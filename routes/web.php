@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\ListSiswa;
+use App\Http\Controllers\Notifikasi;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SesiController;
@@ -170,10 +172,15 @@ Route::middleware(['auth', 'userAkses:admin'])->group(function () {
     Route::post('/datapetugas/update{id}', [PetugasController::class, 'update'])->name('petugas.update');
     Route::post('/datapetugas/delete{id}', [PetugasController::class, 'delete'])->name('petugas.delete');
     Route::get('/datapetugas/search', [PetugasController::class, 'search'])->name('petugas.search');
+
+    Route::get('/hukuman',[ListSiswa::class, 'index'])->name('hukuman');
+    Route::post('/hukuman/store',[ListSiswa::class, 'store'])->name('hukuman.store');
+    Route::get('/hukuman/create',[ListSiswa::class, 'create'])->name('hukuman.create');
 });
 
 Route::middleware(['auth', 'userAkses:siswa'])->group(function () {
-    Route::get('/listpelanggaran/siswa',[UserController::class, 'listsiswa'])->name('listsiswa');
+    Route::get('/listpelanggaran/siswa',[ListSiswa::class, 'listsiswa'])->name('listsiswa');
+    
 });
 
 Route::get('/informasi', function(){

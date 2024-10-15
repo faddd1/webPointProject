@@ -81,7 +81,7 @@
                                                     <td class="text-center align-middle">{{ $penebusan->nama }}</td>
                                                     <td class="text-center align-middle">{{ $penebusan->nama_Prestasi }}</td>
                                                     <td class="text-center align-middle">{{ $penebusan->point }}</td>
-                                                    <td class="text-center align-middle">{{ $penebusan->tanggal }}</td>
+                                                    <td class="text-center align-middle text-muted text-sm">{{ $penebusan->tanggal }},{{ $penebusan->created_at->diffForHumans() }}</td>
                                                     <td class="text-center align-middle">
                                                         @if ($penebusan->bukti)
                                                             <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal-{{ $penebusan->id }}">

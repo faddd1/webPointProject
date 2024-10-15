@@ -77,7 +77,7 @@
                                                     <td class="text-center align-middle">{{ $report->nama }}</td>
                                                     <td class="text-center align-middle">{{ $report->pelanggaran }}</td>
                                                     <td class="text-center align-middle">{{ $report->point }}</td>
-                                                    <td class="text-center align-middle">{{ $report->tanggal }}</td>
+                                                    <td class="text-center align-middle text-muted text-sm">{{ $report->tanggal }},{{ $report->created_at->diffForHumans() }}</span></td>
                                                     <td class="text-center align-middle">
                                                         @if ($report->bukti)
                                                             <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal-{{ $report->id }}">

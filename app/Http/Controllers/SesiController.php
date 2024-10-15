@@ -42,7 +42,7 @@ class SesiController extends Controller
                     return redirect()->back()->withErrors('Role tidak ditemukan.');
             }
         } else {
-            return redirect()->back()->with('error', 'NIS atau Password yang Anda masukkan salah.');
+            return redirect()->back()->with('error', 'NIS/NIP dan Password yang Anda masukkan salah.');
         }
         
     }

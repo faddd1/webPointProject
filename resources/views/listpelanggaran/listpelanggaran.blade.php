@@ -55,61 +55,6 @@
                                     </div>
                                 </div>
                             </form>
-
-                            {{-- <style>
-                                .input-group {
-                                    width: 100%; 
-                                    max-width: 200px; 
-                                }
-                
-                                .input-group .form-control {
-                                    border-radius: 0.25rem 0 0 0.25rem; 
-                                    flex: 1; 
-                                    height: 30px; 
-                                    font-size: 0.875rem; 
-                                }
-                
-                                .input-group .btn {
-                                    border-radius: 0 0.25rem 0.25rem 0; 
-                                    background-color: #266278; 
-                                    color: #fff; 
-                                    height: 30px; 
-                                    padding: 0 10px; 
-                                }
-
-                                .status-badge {
-                                    font-size: 12px;
-                                }
-                
-                                
-                                @media (max-width: 576px) {
-                                    .input-group {
-                                        flex-direction: row; 
-                                        max-width: 180px; 
-                                    }
-                                }
-
-                                .status-badge {
-                                    display: inline-block;
-                                    width: 120px;
-                                    padding: 5px 0; 
-                                    text-align: center;
-                                    font-size: 12px; 
-                                    border-radius: 4px;
-                                }
-
-                                .status-badge:hover {
-                                    transform: translateY(-5px);
-                                    background: linear-gradient(45deg, #4dacff, #3ecf69);
-                                    transition: transform 0.5s ease;
-                                }
-
-                                .btn-danger:hover {
-                                    transform: translateY(-5px);
-                                    transition: transform 0.5s ease;
-                                    align-content: center;
-                                }
-                            </style> --}}
                             
                         </div>
 
@@ -169,16 +114,6 @@
                                                         <span class="badge status-badge" style="background: #fffb07; color:#000;">Menunggu Verifikasi</span>
                                                     @endif
                                                 </td>
-                                                
-                                                {{-- <td class="text-center align-middle">
-                                                    <form action="{{ route('listpelanggaran.destroy', $student->id )}}" class="d-inline deleteForm" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
-                                                    </form>
-                                                </td> --}}
-                                                
-
                                             </tr>
                                         @endforeach
                                         @endif
@@ -188,6 +123,33 @@
                                     <div class="ml-auto">
                                         {{ $students->links('pagination::bootstrap-4') }}
                                     </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
+                                            <thead>
+                                                <tr style="background-color: #4D869C; color:#ffff;">
+                                                    <td class="text-center align-middle">No</td>
+                                                    <td class="text-center align-middle">Tangal</td>
+                                                    <td class="text-center align-middle">Jumlah</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if ($pelanggaranPerHari->isNotEmpty())
+                                                @foreach ($pelanggaranPerHari as $no=>$item)
+                                                    <tr>
+                                                        <td class="text-center align-middle">{{ $no+1 }}</td>
+                                                        <td class="text-center align-middle">{{ \Carbon\Carbon::parse($item->tanggal)->format('d-m-Y') }}</td>
+                                                        <td class="text-center align-middle">{{ $item->total }}</td>
+                                                    </tr>
+                                                @endforeach
+                                            @else
+                                                <tr>
+                                                    <td colspan="2" class="text-center">Tidak ada data pelanggaran.</td>
+                                                </tr>
+                                            @endif                 
+                                            </tbody>
+                                        </table>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -231,24 +193,6 @@
                 });
             });
         });
-    
-
-
-$(document).ready(function() {
-    $('.btn-show').on('click', function() {
-        var id = $(this).data('id');
-        $.ajax({
-            url: '/pelanggaran/' + id, 
-            method: 'GET',
-            success: function(response) {
-                $('#dataDetail').html(response);
-            },
-            error: function() {
-                $('#dataDetail').html('<p>Terjadi kesalahan saat memuat data.</p>');
-            }
-        });
-    });
-});
 </script>
 
 <script>

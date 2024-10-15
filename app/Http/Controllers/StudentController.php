@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Penebusan;
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Laporan;
 use App\Models\Student;
+use App\Models\Kategori;
 use App\Models\Prestasi;
+use App\Models\Penebusan;
 use Illuminate\Http\Request;
 use App\Exports\StudentExport;
-use App\Models\Kategori;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use PHPUnit\Framework\MockObject\Builder\Stub;
 
@@ -28,12 +30,18 @@ class StudentController extends Controller
         ->orWhere('point', 'LIKE', "%{$searchTerm}%")
         ->orWhere('tanggal', 'LIKE', "%{$searchTerm}%")
         ->orderBy('created_at', 'desc')
-        ->paginate(10);  
+        ->paginate(10); 
+         
+        $today = Carbon::today();
+        $pelanggaranPerHari = Laporan::select(DB::raw('DATE(created_at) as tanggal'), DB::raw('COUNT(*) as total'))
+        ->where('status', 'Diterima')
+        ->groupBy(DB::raw('DATE(created_at)'))
+        ->paginate(8);
+
 
         
-        return view('listpelanggaran.listpelanggaran', [
-            'title' 
-                  => 'List Pelanggaran Siswa',
+        return view('listpelanggaran.listpelanggaran', compact('pelanggaranPerHari',),[
+            'title' => 'List Pelanggaran Siswa',
             'students' => $students,
         ]);
 

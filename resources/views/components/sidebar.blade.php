@@ -124,10 +124,17 @@
                                     <p style="color: #000; text-decoration: none;" onmouseover="this.style.color='#000'" onmouseout="this.style.color='#000'">Kategori Pelanggaran</p>
                                 </a>
                             </li>
+
+                            <li class="nav-item">
+                                <a href="/hukuman" class="nav-link">
+                                    <i class="far fa-circle nav-icon" style="color: #000; text-decoration: none;" onmouseover="this.style.color='#96B6C5'" onmouseout="this.style.color='#000'"></i>
+                                    <p style="color: #000; text-decoration: none;" onmouseover="this.style.color='#000'" onmouseout="this.style.color='#000'">Kategori Hukuman</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 @endif
-                    @if(auth()->check() && in_array($role, ['admin', 'guru', 'petugas']))
+                    @if(auth()->check() && in_array($role, ['admin', 'guru',]))
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="fa-solid fa-medal" style="color: #000; text-decoration: none; font-size: 17px; margin-right: 2px;"></i>
@@ -198,7 +205,8 @@
                     </li>
                 @endif
 
-                @if(auth()->check() && in_array($role, ['admin', 'petugas', 'guru']))
+                @if(auth()->check() && in_array($role, ['admin']))
+                
                     <li class="nav-item has-treeview">
                       <a href="#" class="nav-link">
                         <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24"><path fill="currentColor" d="M13 9V3.5L18.5 9M6 2c-1.11 0-2 .89-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8L14 2z" style="color: #000; text-decoration: none;" onmouseover="this.style.color='#96B6C5'" onmouseout="this.style.color='#000'"/></svg>
@@ -225,8 +233,16 @@
                         </ul>
                     </li>
                 @endif
+                @if(auth()->check() && in_array($role, ['petugas', 'guru']))
+                <li class="nav-item">
+                            <a href="{{ url('/laporan') }}" class="nav-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24"><path fill="currentColor" d="M13 9V3.5L18.5 9M6 2c-1.11 0-2 .89-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8L14 2z" style="color: #000; text-decoration: none;" onmouseover="this.style.color='#96B6C5'" onmouseout="this.style.color='#000'"/></svg>
+                                <p style="color: #000; text-decoration: none;" onmouseover="this.style.color='#000'" onmouseout="this.style.color='#000'">Laporan</p>
+                            </a>
+                    </li>
+                @endif
 
-                @if(auth()->check() && in_array($role, ['admin', 'guru']))
+                @if(auth()->check() && in_array($role, ['admin']))
                 <li class="nav-item has-treeview">
                   <a href="" class="nav-link">
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="m19.41 7.41l-4.83-4.83c-.37-.37-.88-.58-1.41-.58H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8.83c0-.53-.21-1.04-.59-1.42M12 18c-1.65 0-3.19-.81-4.12-2.17a.75.75 0 0 1 .19-1.04c.34-.24.81-.15 1.04.19c.65.95 1.73 1.52 2.88 1.52c1.93 0 3.5-1.57 3.5-3.5a3.495 3.495 0 0 0-6.6-1.61L10.5 13H7c-.28 0-.5-.22-.5-.5V9l1.3 1.3A4.98 4.98 0 0 1 12 8c2.76 0 5 2.24 5 5s-2.24 5-5 5"  style="color: #000; text-decoration: none;"/></svg>
@@ -252,6 +268,15 @@
                         </li>
                     </ul>
                 </li>
+                @endif
+
+                @if(auth()->check() && in_array($role, ['guru']))
+                <li class="nav-item">
+                            <a href="{{ url('/Penebusan') }}" class="nav-link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="m19.41 7.41l-4.83-4.83c-.37-.37-.88-.58-1.41-.58H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8.83c0-.53-.21-1.04-.59-1.42M12 18c-1.65 0-3.19-.81-4.12-2.17a.75.75 0 0 1 .19-1.04c.34-.24.81-.15 1.04.19c.65.95 1.73 1.52 2.88 1.52c1.93 0 3.5-1.57 3.5-3.5a3.495 3.495 0 0 0-6.6-1.61L10.5 13H7c-.28 0-.5-.22-.5-.5V9l1.3 1.3A4.98 4.98 0 0 1 12 8c2.76 0 5 2.24 5 5s-2.24 5-5 5"  style="color: #000; text-decoration: none;"/></svg>
+                                <p style="color: #000; text-decoration: none;" onmouseover="this.style.color='#000'" onmouseout="this.style.color='#000'">Restorasi</p>
+                            </a>
+                    </li>
                 @endif
                     @if(auth()->check() && in_array($role, ['admin']))
                         <li class="nav-item has-treeview">
