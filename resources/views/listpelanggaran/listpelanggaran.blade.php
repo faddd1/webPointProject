@@ -5,8 +5,9 @@
             <div class="card shadow-sm border-0">
                 <div class="card-body p-4">
                     <div class="d-flex justify-content-between align-items-center flex-column flex-md-row text-center text-md-start">
-                        <span class="btn" id="date" style="font-style: italic; margin-bottom: 0; font-size: 0.9rem; color: #6c757d; background:#e2e1e1">
-                            <i class="fas fa-calendar-alt"></i> 
+                        <span class="btn d-flex align-items-center" style=" margin-bottom: 0; font-size: 0.9rem; color: #6c757d; background: #e2e1e1; padding: 5px 10px; border-radius: 5px;">
+                            <i class="fas fa-calendar-alt" id="dateIcon" style="font-size: 13px; margin-right: 5px;"></i>
+                            <span id="date" style="font-weight: bold;"></span>
                         </span>
                     </div>
             
@@ -27,7 +28,7 @@
                         </div>
                         <div class="col-12 col-md-4 d-flex justify-content-center justify-content-md-start align-items-end">
                             <button type="submit" id="downloadBtn" class="btn btn-danger" style="transition: background-color 0.3s;">
-                                <i class="fas fa-file-pdf"></i> Download PDF
+                                <i class="fas fa-file-pdf"></i><span style="font-size: 13px; margin-left: 5px;"> Download</span>
                             </button>
                         </div>
                     </form>
@@ -258,7 +259,7 @@
     const year = now.getFullYear();
 
     // Mengupdate elemen dengan ID 'date'
-    document.getElementById('date').textContent = ` ${day} ${month} ${year}`;
+    document.getElementById('date').textContent = `${day} ${month} ${year}`;
 </script>
     
 </x-layout>

@@ -54,9 +54,9 @@
             }
             h5 {
                 text-align: center;
-                font-size: 12px;
-                margin-top: 10px;
-                margin-bottom: 20px;
+                font-size: 10px;
+                margin-top: 5px;
+                margin-bottom: 13px;
                 text-transform: uppercase;
             }
     
@@ -131,8 +131,11 @@
         </div>
     
         <!-- Title Section -->
-        <h1>Laporan Data Poin Pelanggaran Siswa</h1>
-        <h5>Data Siswa Jurusan {{ $jurusan == 'all' ? '(Semua Jurusan)' : strtoupper($jurusan) }}</h5>
+        <h5>
+            Data Siswa 
+            Kelas {{ $kelas == 'all' ? '(Semua Kelas)' : strtoupper($kelas) }},
+            Jurusan {{ $jurusan == 'all' ? '(Semua Jurusan)' : strtoupper($jurusan) }} 
+        </h5>
     
         <!-- Table Section -->
         <table>

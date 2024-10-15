@@ -52,6 +52,13 @@
                 margin-bottom: 20px;
                 text-transform: uppercase;
             }
+            p {
+                text-align: center;
+                font-size: 10px;
+                margin-top: 5px;
+                margin-bottom: 15px;
+                text-transform: uppercase;
+            }
             h5 {
                 text-align: center;
                 font-size: 12px;
@@ -132,7 +139,9 @@
     
         <!-- Title Section -->
         <h1>Laporan List Pelanggaran Siswa</h1>
-    
+        {{-- <p>Tanggal: {{ \Carbon\Carbon::parse($startDate)->format('d M, Y') }} - {{ \Carbon\Carbon::parse($endDate)->format('d M, Y') }}</p> --}}
+        <p>Tanggal: {{ \Carbon\Carbon::parse($startDate)->locale('id')->translatedFormat('d F,Y') }} - {{ \Carbon\Carbon::parse($endDate)->locale('id')->translatedFormat('d F,Y') }}</p>
+
         <!-- Table Section -->
         <table>
             <thead>

@@ -133,7 +133,7 @@
 
                     <div class="col-lg-6 d-flex flex-column justify-content-center teksHiro" data-aos="fade-in">
                         <h1>Selamat Datang di Website <span class="text-danger fst-italic">P</span><span class="text-dark fst-italic">P</span><span class="fst-italic" style="color: #f6f23a;">S</span> !</h1>
-                        <p class="mt-3">PPS adalah Website Poin Pelanggara Siswa untuk digunakan oleh SMKN 1 KAWALI</p>
+                        <p class="mt-3">PPS adalah Website Poin Pelanggara Siswa untuk digunakan oleh <span style="font-style: italic; font-weight:600; color :#635d5d;">SMKN 1 KAWALI</span></p>
                     </div>
                     
                 </div>

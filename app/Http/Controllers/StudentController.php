@@ -255,37 +255,66 @@ public function destroy(Student $studentItem, $id)
     }
 
 
-    public function exportPdf(Request $request){
+    // public function exportPdf(Request $request)
+    // {
        
-        $jurusan = $request->input('jurusan');
+    //     $jurusan = $request->input('jurusan');
             
-        // Check if 'Semua Jurusan' is selected
-        if ($jurusan == 'all') {
-            // Fetch all students if 'Semua Jurusan' is selected
-            $studentItem = Student::all();
-        } else {
-            // Filter data berdasarkan jurusan yang dipilih
-            $studentItem = Student::where('jurusan', $jurusan)->get();
-        }
+    //     // Check if 'Semua Jurusan' is selected
+    //     if ($jurusan == 'all') {
+    //         // Fetch all students if 'Semua Jurusan' is selected
+    //         $studentItem = Student::all();
+    //     } else {
+    //         // Filter data berdasarkan jurusan yang dipilih
+    //         $studentItem = Student::where('jurusan', $jurusan)->get();
+    //     }
         
-        // Check if there are no students for the specified jurusan or all
-        if ($studentItem->isEmpty()) {
-            return redirect()->back()->with('error', 'Data jurusan tidak ditemukan.'); // Redirect back with error message
+    //     // Check if there are no students for the specified jurusan or all
+    //     if ($studentItem->isEmpty()) {
+    //         return redirect()->back()->with('error', 'Data jurusan tidak ditemukan.'); // Redirect back with error message
+    //     }
+    
+    //     // Generate PDF with the filtered or all student data
+    //     $pdf = PDF::loadView('pdf.dataSiswa', compact('studentItem', 'jurusan'));
+    
+    //     // Use 'semua' in the filename if 'Semua Jurusan' is selected
+    //     return $pdf->download('data_siswa_jurusan_' . ($jurusan == 'all' ? 'semua' : $jurusan) . '.pdf');
+    // }
+
+
+    public function exportPdf(Request $request)
+    {
+        $jurusan = $request->input('jurusan');
+        $kelas = $request->input('kelas'); // Get the selected class
+
+        // Fetch students based on jurusan and kelas
+        $studentQuery = Student::query();
+
+        // Check if 'Semua Jurusan' is selected
+        if ($jurusan != 'all') {
+            $studentQuery->where('jurusan', $jurusan);
         }
-    
+
+        // Check if 'Semua Kelas' is selected
+        if ($kelas != 'all') {
+            $studentQuery->where('kelas', $kelas);
+        }
+
+        // Execute the query to fetch students
+        $studentItem = $studentQuery->get();
+
+        // Check if there are no students for the specified criteria
+        if ($studentItem->isEmpty()) {
+            return redirect()->back()->with('error', 'Data jurusan dan kelas tidak ditemukan.'); // Redirect back with error message
+        }
+
         // Generate PDF with the filtered or all student data
-        $pdf = PDF::loadView('pdf.dataSiswa', compact('studentItem', 'jurusan'));
-    
-        // Use 'semua' in the filename if 'Semua Jurusan' is selected
-        return $pdf->download('data_siswa_jurusan_' . ($jurusan == 'all' ? 'semua' : $jurusan) . '.pdf');
+        $pdf = PDF::loadView('pdf.dataSiswa', compact('studentItem', 'jurusan', 'kelas'));
+
+        // Use 'semua' in the filename if 'Semua Jurusan' or 'Semua Kelas' is selected
+        return $pdf->download('data_siswa_jurusan_' . ($jurusan == 'all' ? 'semua' : $jurusan) . '_kelas_' . ($kelas == 'all' ? 'semua' : $kelas) . '.pdf');
     }
 
-
-    // public function listPdf(){
-    //     $studentItem = Laporan::with('siswa','pelanggaranDetail')->get();
-    //     $pdf = Pdf::loadView('pdf.listPelanggaran',['studentItem' => $studentItem]);
-    //     return $pdf->download('List-Pelanggaran.pdf');
-    // }
 
 
     public function listPdf(Request $request)
@@ -294,54 +323,87 @@ public function destroy(Student $studentItem, $id)
         $startDate = $request->input('start_date');
         $endDate = $request->input('end_date');
     
-        // If both dates are provided, filter the data by the date range
-        if ($startDate && $endDate) {
-            $studentItem = Laporan::with('siswa', 'pelanggaranDetail')
-                ->whereBetween('created_at', [$startDate, $endDate])
-                ->get();
-        } else {
-            // If no date range is provided, fetch all data
-            $studentItem = Laporan::with('siswa', 'pelanggaranDetail')->get();
-        }
-        
-
+        // Adjust the end date to include the entire day
+        $adjustedEndDate = \Carbon\Carbon::parse($endDate)->endOfDay();
+    
+        // Fetch the data based on the date range and exclude 'Menunggu Verifikasi' status
+        $studentItem = Laporan::with('siswa', 'pelanggaranDetail')
+            ->whereBetween('created_at', [$startDate, $adjustedEndDate])
+            ->where('status', 'Diterima') 
+            ->orderBy('created_at', 'desc')
+            ->get();
+    
+        // Check if data is found
         if ($studentItem->isEmpty()) {
-            // If no data is found, redirect back with an error message
             return redirect()->back()->with('error', 'Tidak ada data yang ditemukan');
         }
-        // Load the PDF view with the filtered or all data
-        $pdf = Pdf::loadView('pdf.listPelanggaran', ['studentItem' => $studentItem]);
     
+        // Load the PDF view with the filtered data
+        $pdf = Pdf::loadView('pdf.listPelanggaran', [
+            'studentItem' => $studentItem,
+            'startDate' => $startDate,
+            'endDate' => $endDate
+        ]);
         // Return the generated PDF for download
         return $pdf->download('List-Pelanggaran.pdf');
     }
+    
 
 
-    public function exportExcel(Request $request){
+
+    public function exportExcel(Request $request)
+    {
         $jurusan = $request->input('jurusan');
+        $kelas = $request->input('kelas'); // Get the selected class
+
+        // Fetch students based on jurusan and kelas
+        $studentQuery = Student::query();
 
         // Check if 'Semua Jurusan' is selected
-        if ($jurusan == 'all') {
-            // Fetch all students if 'all' is selected
-            $data = Student::all();
-        } else {
-            // Filter data based on selected jurusan
-            $data = Student::where('jurusan', $jurusan)->get();
+        if ($jurusan != 'all') {
+            $studentQuery->where('jurusan', $jurusan);
         }
+
+        // Check if 'Semua Kelas' is selected
+        if ($kelas != 'all') {
+            $studentQuery->where('kelas', $kelas);
+        }
+
+        // Execute the query to fetch students
+        $data = $studentQuery->get();
 
         // If no data is found, redirect with an error message
         if ($data->isEmpty()) {
-            return redirect()->back()->with('error', 'Tidak ada data untuk jurusan yang dipilih.');
+            return redirect()->back()->with('error', 'Tidak ada data untuk jurusan dan kelas yang dipilih.');
         }
 
         // Generate Excel file based on the filtered data or all data
-        return Excel::download(new StudentExport($jurusan), 'data_siswa_jurusan_' . ($jurusan == 'all' ? 'semua' : $jurusan) . '.xlsx');
+        return Excel::download(new StudentExport($jurusan, $kelas), 'data_siswa_jurusan_' . ($jurusan == 'all' ? 'semua' : $jurusan) . '_kelas_' . ($kelas == 'all' ? 'semua' : $kelas) . '.xlsx');
     }
 
-    // public function exportExcel(){
-    //     return(new StudentExport)->download('Data-Siswa.xlsx');
-    //     // return Excel::download(new StudentExport, 'invoices.xlsx');
+
+    // public function exportExcel(Request $request){
+    //     $jurusan = $request->input('jurusan');
+
+    //     // Check if 'Semua Jurusan' is selected
+    //     if ($jurusan == 'all') {
+    //         // Fetch all students if 'all' is selected
+    //         $data = Student::all();
+    //     } else {
+    //         // Filter data based on selected jurusan
+    //         $data = Student::where('jurusan', $jurusan)->get();
+    //     }
+
+    //     // If no data is found, redirect with an error message
+    //     if ($data->isEmpty()) {
+    //         return redirect()->back()->with('error', 'Tidak ada data untuk jurusan yang dipilih.');
+    //     }
+
+    //     // Generate Excel file based on the filtered data or all data
+    //     return Excel::download(new StudentExport($jurusan), 'data_siswa_jurusan_' . ($jurusan == 'all' ? 'semua' : $jurusan) . '.xlsx');
     // }
+
+   
 
     
 }

@@ -122,17 +122,29 @@
                                         <option value="SK 1">SK 1</option>
                                         <option value="SK 2">SK 2</option>
                                     </select>
-                                    <div class="d-flex justify-content-end mt-3">
-                                        <button type="button" onclick="confirmDownload('{{ route('data.pdf') }}')" class="btn btn-danger  mr-2">
+                                </div>
+                            
+                                <div class="form-group mb-3">
+                                    <label for="kelas" class="form-label font-weight-bold">Pilih Kelas:</label>
+                                    <select name="kelas" id="kelas" class="form-control">
+                                        <option value="all">Semua Kelas</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
+                                </div>
+                            
+                                <div class="d-flex justify-content-end mt-3">
+                                    <button type="button" onclick="confirmDownload('{{ route('data.pdf') }}')" class="btn btn-danger mr-2">
                                         <i class="fas fa-file-pdf"></i> Pdf
-                                        </button>
-                                
-                                        <button type="button" onclick="confirmDownload('{{ route('data.excel') }}')" class="btn btn-success ">
+                                    </button>
+                            
+                                    <button type="button" onclick="confirmDownload('{{ route('data.excel') }}')" class="btn btn-success">
                                         <i class="fas fa-file-excel"></i> Excel
-                                        </button>
-                                    </div>
-                                </div>                          
+                                    </button>
+                                </div>
                             </form>
+                            
                         </div>
     
                     </div>
@@ -258,8 +270,6 @@
                                     </tbody>
                                 </table>
                             </div>
-                                <div class="d-flex">
-                                    <div class="ml-auto">
                                         <style>
                                             .pagination .page-link {
                                                 color: #245c70; /* Warna abu-abu */
@@ -278,20 +288,38 @@
                                                 background-color: #245c70; /* Warna abu-abu saat aktif */
                                                 border-color: #245c70;
                                             }
+                                            
                                         </style>
-                                        <div class="d-flex mt-5">
-                                            {{ $studentItem->links('pagination::bootstrap-4') }}
-                                            <div class="ml-auto">
-                                                <form action="{{ route('hapus.point') }}" class="d-inline deletePoint mt-1" method="POST">
+                                        <div class="card-footer mt-3" style="background: #fff;">
+                                            <div class="d-flex justify-content-between align-items-center flex-column flex-md-row text-center text-md-start gap-2">
+                                                <form action="{{ route('hapus.point') }}" class="d-inline deletePoint" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-xs mt-1">Hapus semua Point<i class="fa-solid fa-star ml-1"></i></button>
-                                                </form> 
+                                                    <button type="submit" class="btn btn-danger btn-xs">
+                                                        Hapus Semua Point <i class="fa-solid fa-star"></i>
+                                                    </button>
+                                                </form>
+                                                <div class="mt-2 mt-md-0">
+                                                    {{ $studentItem->links('pagination::bootstrap-4') }}
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                        
+                                        {{-- <div class="card-footer mt-3" style="background: #fff;">
+                                            <div class="d-flex justify-content-between align-items-center flex-column flex-md-row  text-center text-md-start">
+                                                <form action="{{ route('hapus.point') }}" class="d-inline deletePoint" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-xs">
+                                                        Hapus Semua Point <i class="fa-solid fa-star"></i>
+                                                    </button>
+                                                </form>
+                                                    {{ $studentItem->links('pagination::bootstrap-4') }}
+                                            </div>
+                                        </div>  --}}
                                 </div>
-                        </div>
+                            </div>          
+                        </div>     
                     </div>
                 </div>
             </div>
