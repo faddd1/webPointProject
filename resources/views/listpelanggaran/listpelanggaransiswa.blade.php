@@ -86,47 +86,65 @@
                     </div>
                 </div>
             @endif
+    
 
+            <style>
+                 .bukti-image {
+                    width: 50px;      
+                    height: 50px;     
+                    object-fit: cover; 
+                    aspect-ratio: 1/1; 
+                    border-radius: 0.25rem; 
+                }
+                @media (max-width: 576px) {
+                    .bukti-image {
+                        width: 40px; 
+                        height: 40px; 
+                        }
+                    }
+            </style>
     <div class="card">
         <div class="card-body">
             <h3 class="text-md py-2">Pelanggaran Yang Pernah Kamu Lakukan : <strong>{{ $totalPelanggaran }}</strong></h3>
             <div class="table-responsive">
-                <table class="table table-bordered" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
+                <table class="table table-sm table-bordered" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                     <thead>
                         <tr style="background-color: #4D869C; color:#ffff;">
-                            <td style="text-align: center; vertical-align: middle;">No</td>
-                            <td style="text-align: center; vertical-align: middle;">Nama Pelapor</td>
-                            <td style="text-align: center; vertical-align: middle;">Nama Pelanggaran</td>
-                            <td style="text-align: center; vertical-align: middle;">Jumlah Point</td>
-                            <td style="text-align: center; vertical-align: middle;">Bukti</td>
-                            <td style="text-align: center; vertical-align: middle;">Tanggal</td>
+                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">No</th>
+                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Pelapor</th>
+                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Pelanggaran</th>
+                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Jumlah Point</th>
+                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Bukti</th>
+                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Tanggal</th>
                         </tr>
                     </thead>
                     <tbody>
                         @if($laporans->count() > 0)
                             @foreach ($laporans as $index => $laporan)
                                 <tr>
-                                    <td style="text-align: center; vertical-align: middle;">{{ $index + 1 }}</td>
-                                    <td style="text-align: center; vertical-align: middle;">{{ $laporan->pelapor->name ?? 'tidak diketahui' }}</td>
-                                    <td style="text-align: center; vertical-align: middle;">{{ $laporan->pelanggaran }}</td>
-                                    <td style="text-align: center; vertical-align: middle;">{{ $laporan->point }}</td>
-                                    <td style="text-align: center; vertical-align: middle;">
+                                    <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $index + 1 }}</td>
+                                    <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $laporan->pelapor->name ?? 'tidak diketahui' }}</td>
+                                    <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $laporan->pelanggaran }}</td>
+                                    <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $laporan->point }}</td>
+                                    <td style="text-align: center; vertical-align: middle; margin-top:10px;">
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal-{{ $laporan->id }}">
-                                            <img src="{{ asset('uploads/' . $laporan->bukti) }}" alt="Bukti {{ $laporan->nama }}" class="img-thumbnail" style="width: 50px; height: 50px; cursor: pointer;">
+                                            <div style="width: 50px; height: 50px; overflow: hidden; display: inline-block;">
+                                                <img src="{{ asset('uploads/' . $laporan->bukti) }}" alt="Bukti {{ $laporan->nama }}" class="img-thumbnail bukti-image " style="width: 100%; height: auto; cursor: pointer;">
+                                            </div>
                                         </a>
-
-                                       
+                                    
                                         <div class="modal fade" id="imageModal-{{ $laporan->id }}" tabindex="-1" aria-labelledby="imageModalLabel-{{ $laporan->id }}" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
-                                                    <div class="modal-body">
-                                                        <img src="{{ asset('uploads/' . $laporan->bukti) }}" alt="Bukti {{ $laporan->nama }}" class="img-fluid">
+                                                    <div class="modal-body text-center">
+                                                        <img src="{{ asset('uploads/' . $laporan->bukti) }}" alt="Bukti {{ $laporan->nama }}" class="img-fluid" style="max-width: 100%; height: auto;">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </td>
-                                    <td style="text-align: center; vertical-align: middle;">{{ $laporan->tanggal }}</td>
+                                    
+                                    <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $laporan->tanggal }}</td>
                                 </tr>
                             @endforeach
                         @else
@@ -136,61 +154,88 @@
                         @endif
                     </tbody>
                 </table>
-                {{ $laporans->links('pagination::bootstrap-4') }}
             </div>
         </div>
+        <style>
+            .pagination .page-link {
+                color: #245c70; /* Warna abu-abu */
+                background-color: #f8f9fa; /* Warna latar belakang */
+                border-color: #dee2e6; /* Warna border */
+            }
+    
+            .pagination .page-link:hover {
+                color:#245c70; /* Warna abu-abu yang lebih gelap saat hover */
+                background-color: #e9ecef; /* Latar belakang sedikit lebih gelap */
+                border-color: #dee2e6;
+            }
+        
+            .pagination .active .page-link {
+                color: white; /* Warna teks saat aktif */
+                background-color: #245c70; /* Warna abu-abu saat aktif */
+                border-color: #245c70;
+            }                                            
+        </style>
+        <div class="card-footer mt-3" style="background: #fff;">
+            <div class="d-flex">
+                <div class="ml-auto">
+                    {{ $laporans->links('pagination::bootstrap-4') }}
+                </div>
+            </div>
+        </div> 
     </div>
     <div class="card">
         <div class="card-body">
             <h3 class="text-md py-2">Prestasi Yang Pernah Kamu Lakukan : <strong>{{ $totalPrestasi }}</strong></h3>
-            <div class="table-responsive">
-                <table class="table table-bordered" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
-                    <thead>
-                        <tr style="background-color: #4D869C; color:#ffff;">
-                            <th style="text-align: center; vertical-align: middle;">No</th>
-                            <th style="text-align: center; vertical-align: middle;">Nama Pelapor</th>
-                            <th style="text-align: center; vertical-align: middle;">Nama Prestasi</th>
-                            <th style="text-align: center; vertical-align: middle;">Jumlah Point</th>
-                            <th style="text-align: center; vertical-align: middle;">Bukti</th>
-                            <th style="text-align: center; vertical-align: middle;">Tanggal</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if($laporans->count() > 0)
-                            @foreach ($prestasi as $index => $prestasis)
-                                <tr>
-                                    <td style="text-align: center; vertical-align: middle;">{{ $index + 1 }}</td>
-                                    <td style="text-align: center; vertical-align: middle;">{{ $prestasis->pelapor->name ?? 'tidak diketahui' }}</td>
-                                    <td style="text-align: center; vertical-align: middle;">{{ $prestasis->nama_Prestasi }}</td>
-                                    <td style="text-align: center; vertical-align: middle;">{{ $prestasis->point }}</td>
-                                    <td style="text-align: center; vertical-align: middle;">
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal-{{ $prestasis->id }}">
-                                            <img src="{{ asset('uploads/' . $prestasis->bukti) }}" alt="Bukti {{ $prestasis->nama }}" class="img-thumbnail" style="width: 50px; height: 50px; cursor: pointer;">
-                                        </a>
+                <div class="table-responsive">
+                    <table class="table table-sm table-bordered" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
+                        <thead>
+                            <tr style="background-color: #4D869C; color:#ffff;">
+                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">No</th>
+                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Pelapor</th>
+                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Prestasi</th>
+                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Jumlah Point</th>
+                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Bukti</th>
+                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Tanggal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if($laporans->count() > 0)
+                                @foreach ($prestasi as $index => $prestasis)
+                                    <tr>
+                                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $index + 1 }}</td>
+                                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $prestasis->pelapor->name ?? 'tidak diketahui' }}</td>
+                                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $prestasis->nama_Prestasi }}</td>
+                                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $prestasis->point }}</td>
+                                        <td style="text-align: center; vertical-align: middle;">
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal-{{ $laporan->id }}">
+                                                <div style="width: 50px; height: 50px; overflow: hidden; display: inline-block;">
+                                                    <img src="{{ asset('uploads/' . $laporan->bukti) }}" alt="Bukti {{ $laporan->nama }}" class="img-thumbnail bukti-image" style="width: 100%; height: auto; cursor: pointer;">
+                                                </div>
+                                            </a>
 
-                                       
-                                        <div class="modal fade" id="imageModal-{{ $prestasis->id }}" tabindex="-1" aria-labelledby="imageModalLabel-{{ $prestasis->id }}" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-body">
-                                                        <img src="{{ asset('uploads/' . $prestasis->bukti) }}" alt="Bukti {{ $prestasis->nama }}" class="img-fluid">
+                                        
+                                            <div class="modal fade" id="imageModal-{{ $prestasis->id }}" tabindex="-1" aria-labelledby="imageModalLabel-{{ $prestasis->id }}" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body">
+                                                            <img src="{{ asset('uploads/' . $prestasis->bukti) }}" alt="Bukti {{ $prestasis->nama }}" class="img-fluid">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td style="text-align: center; vertical-align: middle;">{{ $prestasis->tanggal }}</td>
+                                        </td>
+                                        <td style="text-align: center; vertical-align: middle;white-space: nowrap;">{{ $prestasis->tanggal }}</td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <tr>
+                                    <td colspan="6" style="text-align: center;">Tidak ada prestasi yang ditemukan</td>
                                 </tr>
-                            @endforeach
-                        @else
-                            <tr>
-                                <td colspan="6" style="text-align: center;">Tidak ada prestasi yang ditemukan</td>
-                            </tr>
-                        @endif
-                    </tbody>
-                </table>
-                {{ $laporans->links('pagination::bootstrap-4') }}
-            </div>
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
         </div>
+        {{ $laporans->links('pagination::bootstrap-4') }}
     </div>
 </x-layout>

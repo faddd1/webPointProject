@@ -42,7 +42,7 @@ class ListSiswa extends Controller
     
 
     public function index() {
-        $punismen = Hukuman::get();
+        $punismen = Hukuman::paginate(10);
         return view('hukuman.index', [
             'punismen' => $punismen,
             'title' => "Hukuman Siswa"

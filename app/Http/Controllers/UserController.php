@@ -20,7 +20,7 @@ class UserController extends Controller
         
         return view('tambahUserAdmin.tambahakun', [
             'data' => $data,
-            'title' => 'Tambah Akun Admin',
+            'title' => 'Akun Admin',
             'selectedRole' => $role 
         ]);
     }

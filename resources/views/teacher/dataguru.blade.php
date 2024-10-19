@@ -128,13 +128,13 @@
                             <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                                 <thead>
                                     <tr style="background-color: #4D869C; color:#ffff;">
-                                        <td style="text-align: center; vertical-align: middle;" class="py-2">No</td>
-                                        <td style="text-align: center; vertical-align: middle;">NIP</td>
-                                        <td style="text-align: center; vertical-align: middle;">Nama Guru</td>
-                                        <td style="text-align: center; vertical-align: middle;">Jabatan</td>
-                                        <td style="text-align: center; vertical-align: middle;">Jenis Kelamin</td>
+                                        <th style="text-align: center; vertical-align: middle;" class="py-2">No</th>
+                                        <th style="text-align: center; vertical-align: middle; white-space: nowrap;">NIP</th>
+                                        <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Guru</th>
+                                        <th class="col-2" style="text-align: center; vertical-align: middle; white-space: nowrap;">Jabatan</th>
+                                        <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Jenis Kelamin</th>
                                         @if (auth()->user()->role == 'admin')
-                                        <td style="text-align: center; vertical-align: middle;">Action</td>
+                                        <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Action</th>
                                         @endif
                                     </tr>
                                 </thead>
@@ -149,12 +149,12 @@
                                         <td style="text-align: center; vertical-align: middle;">
                                             {{ ($teacher->currentPage() - 1) * $teacher->perPage() + $loop->iteration }}
                                         </td>
-                                        <td style="text-align: center; vertical-align: middle;">{{ $teachers->nis }}</td>
-                                        <td style="text-align: center; vertical-align: middle;">{{ $teachers->namaguru }}</td>
-                                        <td style="text-align: center; vertical-align: middle;">{{ $teachers->jabatan }}</td>
-                                        <td style="text-align: center; vertical-align: middle;">{{ $teachers->jk }}</td>
+                                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $teachers->nis }}</td>
+                                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $teachers->namaguru }}</td>
+                                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $teachers->jabatan }}</td>
+                                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $teachers->jk }}</td>
                                         @if (auth()->user()->role == 'admin')
-                                        <td style="text-align: center; vertical-align: middle;">
+                                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">
                                             <div class="action-buttons">
                                             <button class="btn btn-primary editBtn btn-sm" data-id="{{ $teachers->id }}">
                                                 <i class="fa-solid fa-pen-to-square"></i>
@@ -174,53 +174,54 @@
                                     @endif
                                 </tbody>
                             </table>
-                            <div class="d-flex">
-                                <div class="ml-auto">
-                                    <style>
-                                        .pagination .page-link {
-                                            color: #245c70; /* Warna abu-abu */
-                                            background-color: #f8f9fa; /* Warna latar belakang */
-                                            border-color: #dee2e6; /* Warna border */
-                                        }
-                            
-                                        .pagination .page-link:hover {
-                                            color:#245c70; /* Warna abu-abu yang lebih gelap saat hover */
-                                            background-color: #e9ecef; /* Latar belakang sedikit lebih gelap */
-                                            border-color: #dee2e6;
-                                        }
-                            
-                                        .pagination .active .page-link {
-                                            color: white; /* Warna teks saat aktif */
-                                            background-color: #245c70; /* Warna abu-abu saat aktif */
-                                            border-color: #245c70;
-                                        }
-                                    </style>
-                                    {{ $teacher->links('pagination::bootstrap-4') }}
-                                </div>
+                        </div>
+                    </div>
+                    <div class="card-footer mt-3" style="background: #fff;">
+                        <div class="d-flex">
+                            <div class="ml-auto">
+                                <style>
+                                    .pagination .page-link {
+                                        color: #245c70; /* Warna abu-abu */
+                                        background-color: #f8f9fa; /* Warna latar belakang */
+                                        border-color: #dee2e6; /* Warna border */
+                                    }
+                        
+                                    .pagination .page-link:hover {
+                                        color:#245c70; /* Warna abu-abu yang lebih gelap saat hover */
+                                        background-color: #e9ecef; /* Latar belakang sedikit lebih gelap */
+                                        border-color: #dee2e6;
+                                    }
+                        
+                                    .pagination .active .page-link {
+                                        color: white; /* Warna teks saat aktif */
+                                        background-color: #245c70; /* Warna abu-abu saat aktif */
+                                        border-color: #245c70;
+                                    }
+                                </style>
+                                {{ $teacher->links('pagination::bootstrap-4') }}
                             </div>
                         </div>
-                      </div>
+                    </div>
                   </div>
               </div>
           </div>
       </div>
   </div>
 
-  <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="dataModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="dataModalLabel">Tambah Data Siswa</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span> 
-                </button>
+    <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="dataModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="dataModalLabel">Tambah Data Siswa</h5>
+                    <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                <div class="modal-body" id="modalBody">
                 
-            </div>
-            <div class="modal-body" id="modalBody">
+                </div>
             </div>
         </div>
     </div>
- </div> 
+    
 @include('teacher.confirgurujs')
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

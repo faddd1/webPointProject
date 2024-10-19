@@ -132,15 +132,15 @@
                               <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px;  border-radius: 5px 5px 0 0; overflow: hidden;">
                                   <thead>
                                       <tr style="background-color: #4D869C; color:#ffff;">
-                                          <td style="text-align: center; vertical-align: middle;" class="py-2">No</td>
-                                          <td style="text-align: center; vertical-align: middle;">NIS</td>
-                                          <td style="text-align: center; vertical-align: middle;">Nama</td>
-                                          <td style="text-align: center; vertical-align: middle;">Kelas</td>
-                                          <td style="text-align: center; vertical-align: middle;">Jenis Kelamin</td>
-                                          <td style="text-align: center; vertical-align: middle;">Jurusan</td>
-                                          <td style="text-align: center; vertical-align: middle;">Organisasi</td>
+                                          <th style="text-align: center; vertical-align: middle;" class="py-2">No</th>
+                                          <th style="text-align: center; vertical-align: middle; white-space: nowrap;">NIS</th>
+                                          <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama</th>
+                                          <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Kelas</th>
+                                          <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Jenis Kelamin</th>
+                                          <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Jurusan</th>
+                                          <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Organisasi</th>
                                           @if (auth()->user()->role == 'admin')
-                                          <td style="text-align: center; vertical-align: middle;">Action</td>
+                                          <th style="text-align: center; vertical-align: middle;">Action</th>
                                           @endif
                                       </tr>
                                   </thead>
@@ -153,14 +153,14 @@
                                       @foreach ($petugas as $no => $petugasd)
                                       <tr>
                                         <td style="text-align: center; vertical-align: middle;">{{$no+1}} </td>
-                                          <td style="text-align: center; vertical-align: middle;">{{ $petugasd->nis }}</td>
-                                          <td style="text-align: center; vertical-align: middle;">{{ $petugasd->nama}}</td>
-                                          <td style="text-align: center; vertical-align: middle;">{{ $petugasd->kelas }}</td>
-                                          <td style="text-align: center; vertical-align: middle;">{{ $petugasd->jk }}</td>
-                                          <td style="text-align: center; vertical-align: middle;">{{ $petugasd->jurusan }}</td>
-                                          <td style="text-align: center; vertical-align: middle;">{{ $petugasd->namao }}</td>
+                                          <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $petugasd->nis }}</td>
+                                          <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $petugasd->nama}}</td>
+                                          <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $petugasd->kelas }}</td>
+                                          <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $petugasd->jk }}</td>
+                                          <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $petugasd->jurusan }}</td>
+                                          <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $petugasd->namao }}</td>
                                           @if (auth()->user()->role == 'admin')
-                                          <td style="text-align: center; vertical-align: middle; ">
+                                          <td style="text-align: center; vertical-align: middle; white-space: nowrap;">
                                             <div class="action-buttons">
                                               <button class="btn btn-sm btn-primary editBtn" data-id="{{ $petugasd->id }}">
                                                   <i class="fa-solid fa-pen-to-square"></i>
@@ -180,13 +180,34 @@
                                     @endif
                                   </tbody>
                               </table>
-                              <div class="d-flex">
+                            </div>
+                        </div>
+                        <div class="card-footer mt-3" style="background: #fff;"> 
+                            <div class="d-flex">
                                 <div class="ml-auto">
+                                    <style>
+                                        .pagination .page-link {
+                                            color: #245c70; /* Warna abu-abu */
+                                            background-color: #f8f9fa; /* Warna latar belakang */
+                                            border-color: #dee2e6; /* Warna border */
+                                        }
+                                
+                                        .pagination .page-link:hover {
+                                            color:#245c70; /* Warna abu-abu yang lebih gelap saat hover */
+                                            background-color: #e9ecef; /* Latar belakang sedikit lebih gelap */
+                                            border-color: #dee2e6;
+                                        }
+                                    
+                                        .pagination .active .page-link {
+                                            color: white; /* Warna teks saat aktif */
+                                            background-color: #245c70; /* Warna abu-abu saat aktif */
+                                            border-color: #245c70;
+                                        }                                            
+                                    </style>
                                     {{ $petugas->links('pagination::bootstrap-4') }}
                                 </div>
                             </div>
-                          </div>
-                        </div> 
+                        </div>
                     </div>
                 </div>
             </div>
@@ -200,15 +221,13 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="dataModalLabel">Tambah Data Petugas</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span> 
-                    </button>
-                    
+                    <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-arrow-right"></i></a>
                 </div>
                 <div class="modal-body" id="modalBody">
+                  
                 </div>
             </div>
-        </div> 
+        </div>
     </div>
 
 

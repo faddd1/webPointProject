@@ -95,12 +95,12 @@
                   <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                     <thead>
                       <tr style="background-color: #4D869C; color:#ffff;">
-                        <td style="text-align: center; vertical-align: middle;">No</td>
-                        <td style="text-align: center; vertical-align: middle;">Nama Prestasi</td>
-                        <td style="text-align: center; vertical-align: middle;">Poin</td>
-                        <td style="text-align: center; vertical-align: middle;">Tingkat</td>
+                        <th style="text-align: center; vertical-align: middle; white-space: nowrap;">No</th>
+                        <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Prestasi</th>
+                        <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Poin</th>
+                        <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Tingkat</th>
                         @if (auth()->check() && auth()->user()->role == 'admin')
-                          <td style="text-align: center; vertical-align: middle;">Action</td>
+                          <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Action</th>
                         @endif
                       </tr>
                     </thead>
@@ -113,11 +113,11 @@
                       @foreach ($prestasi as $no => $prestasis)
                         <tr>
                           <td style="text-align: center; vertical-align: middle;">{{$no+1}}</td>
-                          <td style="text-align: center; vertical-align: middle;">{{$prestasis->nama_Prestasi}}</td>
-                          <td style="text-align: center; vertical-align: middle;">{{$prestasis->point}}</td>
-                          <td style="text-align: center; vertical-align: middle;">{{$prestasis->Tingkat}}</td>
+                          <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{$prestasis->nama_Prestasi}}</td>
+                          <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{$prestasis->point}}</td>
+                          <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{$prestasis->Tingkat}}</td>
                           @if (auth()->check() && auth()->user()->role == 'admin')
-                            <td style="text-align: center; vertical-align: middle;">
+                            <td style="text-align: center; vertical-align: middle; white-space: nowrap;">
                               <button class="btn btn-sm btn-primary editBtnn" data-id="{{ $prestasis->id }}">
                                 <i class="fa-solid fa-pen-to-square"></i>
                               </button>
@@ -137,6 +137,32 @@
                   </table>
                 </div>
               </div>
+              <div class="card-footer mt-3" style="background: #fff;">
+                <div class="d-flex">
+                    <div class="ml-auto">
+                        <style>
+                            .pagination .page-link {
+                                color: #245c70; /* Warna abu-abu */
+                                background-color: #f8f9fa; /* Warna latar belakang */
+                                border-color: #dee2e6; /* Warna border */
+                            }
+                    
+                            .pagination .page-link:hover {
+                                color:#245c70; /* Warna abu-abu yang lebih gelap saat hover */
+                                background-color: #e9ecef; /* Latar belakang sedikit lebih gelap */
+                                border-color: #dee2e6;
+                            }
+                        
+                            .pagination .active .page-link {
+                                color: white; /* Warna teks saat aktif */
+                                background-color: #245c70; /* Warna abu-abu saat aktif */
+                                border-color: #245c70;
+                            }                                            
+                        </style>
+                        {{ $prestasi->links('pagination::bootstrap-4') }}
+                    </div>
+                </div>
+            </div>
             </div>
           </div>
         </div>

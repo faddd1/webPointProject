@@ -103,12 +103,12 @@
                 <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                   <thead>
                     <tr style="background-color: #4D869C; color:#ffff;">
-                      <td style="text-align: center; vertical-align: middle;" class="py-2">No</td>
-                      <td style="text-align: center; vertical-align: middle;">Nama Pelanggaran</td>
-                      <td style="text-align: center; vertical-align: middle;">Point</td>
-                      <td style="text-align: center; vertical-align: middle;">Pasal</td>
+                      <th style="text-align: center; vertical-align: middle;" class="py-2">No</th>
+                      <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Pelanggaran</th>
+                      <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Point</th>
+                      <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Pasal</th>
                       @if (auth()->check() && auth()->user()->role == 'admin')
-                        <td style="text-align: center; vertical-align: middle;">Action</td>
+                        <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Action</th>
                       @endif
                     </tr>
                   </thead>
@@ -122,11 +122,11 @@
                         @foreach ($kategoris as $no => $kategori)
                             <tr>
                                 <td style="text-align: center; vertical-align: middle;">{{$no+1}}</td>
-                                <td style="text-align: center; vertical-align: middle;">{{$kategori->pelanggaran}}</td>
-                                <td style="text-align: center; vertical-align: middle;">{{$kategori->point}}</td>
-                                <td style="text-align: center; vertical-align: middle;">{{$kategori->pasal->level  ?? 'Tidak Ada Pasal'}}</td>
+                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{$kategori->pelanggaran}}</td>
+                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{$kategori->point}}</td>
+                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{$kategori->pasal->level  ?? 'Tidak Ada Pasal'}}</td>
                                 @if (auth()->check() && auth()->user()->role == 'admin')
-                                <td style="text-align: center; vertical-align: middle;">
+                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">
                                   <div class="action-buttons text-center align-middle">
                                       <button class="btn btn-sm btn-primary editBtn" data-id="{{ $kategori->id }}">
                                           <i class="fa-solid fa-pen-to-square"></i>
@@ -146,7 +146,9 @@
                     @endif
                 </tbody>
                 </table>
-
+              </div>
+            </div>
+            <div class="card-footer mt-3" style="background: #fff;">
                 <div class="d-flex">
                   <div class="ml-auto">
                       <style>
@@ -168,10 +170,9 @@
                               border-color: #245c70;
                           }
                       </style>
-                       {{ $kategoris->links('pagination::bootstrap-4') }}
+                      {{ $kategoris->links('pagination::bootstrap-4') }}
                   </div>
                 </div>
-              </div>
             </div>
           </div>
           <div class="card">
@@ -191,17 +192,17 @@
                 <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                   <thead>
                       <tr style="background-color: #4D869C; color:#ffff;">
-                        <td style="text-align: center; vertical-align: middle;">No</td>
-                        <td style="text-align: center; vertical-align: middle;">Pasal</td>
-                        <td style="text-align: center; vertical-align: middle;">Action</td>
+                        <th style="text-align: center; vertical-align: middle; ">No</th>
+                        <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Pasal</th>
+                        <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Action</th>
                       </tr>
                 </thead>
                 <tbody>
                   @foreach ($pasal as $no => $item)
                     <tr>
                       <td style="text-align: center; vertical-align: middle;">{{ $no + 1 }}</td>
-                      <td style="text-align: center; vertical-align: middle;">{{ $item->level }}</td>
-                      <td style="text-align: center; vertical-align: middle;">
+                      <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $item->level }}</td>
+                      <td style="text-align: center; vertical-align: middle; white-space: nowrap;">
                         <div class="action-buttons text-center align-middle">
                           <button class="btn btn-sm btn-primary editPasal" data-id="{{ $item->id }}">
                               <i class="fa-solid fa-pen-to-square"></i>

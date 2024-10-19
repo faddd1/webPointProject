@@ -86,7 +86,7 @@
                     <div class="col-md-3 mb-3 ml-5 tentang-section">
                         <h6 style="font-weight: 600; color: #000;">Tentang SMKN 1 Kawali</h6>
                         <p style="font-size: 12px; color: #777; margin-bottom: 10px;">SMKN 1 Kawali menciptakan lulusan yang siap bersaing di dunia industri.</p>
-                        <strong>&copy; 2024 - 2025 <a href="http://smkn1kawali.sch.id" style="color: #4D869C; text-decoration: none;">SMKN 1 Kawali</a>.</strong>
+                        {{-- <strong>&copy; 2024 - 2025 <a href="http://smkn1kawali.sch.id" style="color: #4D869C; text-decoration: none;">SMKN 1 Kawali</a>.</strong> --}}
                     </div>
 
                     <!-- Bagian Sosial Media -->
@@ -112,7 +112,7 @@
                     </div>
 
                     <!-- Bagian Kontak dan Alamat -->
-                    <div class="col-md-2 mb-3 ml-5 kontak-section">
+                    <div class="col-md-3 mb-3 ml-5 kontak-section">
                         <h6 style="font-weight: 600; color: #000;">Kontak Kami</h6>
                         <ul style="list-style: none; padding: 0; font-size: 12px; color: #777;">
                             <li style="margin-bottom: 5px;"><i class="fas fa-map-marker-alt"></i> Jl. Raya Kawali No.1, Kawali</li>

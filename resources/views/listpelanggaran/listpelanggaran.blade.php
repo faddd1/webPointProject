@@ -10,25 +10,25 @@
                             <span id="date" style="font-weight: bold;"></span>
                         </span>
                     </div>
-            
-                    <form id="exportPdfForm" action="/export-list-pdf" method="GET" class="row mt-4 g-3">
+                    
+                    <form id="exportPdfForm" action="/export-list-pdf" method="GET" class="row mt-4 g-3 p-3 bg-light rounded shadow-sm">
                         <div class="col-12 col-md-4 mb-3 mb-md-0">
                             <label for="start_date" class="form-label">Tanggal Awal</label>
                             <div class="input-group">
-                                <span class="input-group-text"><i class="fas fa-calendar-day"></i></span>
+                                <span class="input-group-text" style="color: #266278; "><i class="fas fa-calendar-day"></i></span>
                                 <input type="date" id="start_date" name="start_date" class="form-control" required placeholder="Pilih tanggal awal">
                             </div>
                         </div>
                         <div class="col-12 col-md-4 mb-3 mb-md-0">
                             <label for="end_date" class="form-label">Tanggal Akhir</label>
                             <div class="input-group">
-                                <span class="input-group-text"><i class="fas fa-calendar-day"></i></span>
+                                <span class="input-group-text" style="color: #266278; "><i class="fas fa-calendar-day"></i></span>
                                 <input type="date" id="end_date" name="end_date" class="form-control" required placeholder="Pilih tanggal akhir">
                             </div>
                         </div>
                         <div class="col-12 col-md-4 d-flex justify-content-center justify-content-md-start align-items-end">
-                            <button type="submit" id="downloadBtn" class="btn btn-danger" style="transition: background-color 0.3s;">
-                                <i class="fas fa-file-pdf"></i><span style="font-size: 13px; margin-left: 5px;"> Download</span>
+                            <button type="submit" id="downloadBtn" class="btn btn-danger shadow" style="transition: background-color 0.3s;">
+                                <i class="fas fa-file-pdf"></i><span style="font-size: 13px; margin-left: 5px;"> Download Pdf</span>
                             </button>
                         </div>
                     </form>
@@ -45,10 +45,10 @@
                         <div class="card-header">
                             <form action="{{ route('listpelanggaran.index')}}" class="form-inline" method="GET">
                                 <div class="card-item d-flex">
-                                    <div class="input-group">
-                                        <input type="search" class="form-control" name="search" placeholder="Cari" value="{{ request()->input('search') }}" id="search-input">
+                                    <div class="input-group" style="width: 100%;  max-width: 200px;">
+                                        <input type="search" class="form-control" style="border-radius: 0.25rem 0 0 0.25rem; flex: 1; height: 30px; font-size: 0.875rem; " name="search" placeholder="Cari" value="{{ request()->input('search') }}" id="search-input">
                                         <div class="input-group-append">
-                                            <button type="submit" class="btn" style="background-color: #266278; color: #fff;">
+                                            <button type="submit" class="btn" style="border-radius: 0 0.25rem 0.25rem 0; background-color: #266278; color: #fff; height: 30px; padding: 0 10px; ">
                                                 <i class="fa-solid fa-magnifying-glass"></i> <!-- Search icon -->
                                             </button>
                                         </div>
@@ -59,18 +59,35 @@
                         </div>
 
                         <div class="card-body">
-                            <div class="table-responsive">
+                            <style>
+                                
+                                .bukti-image {
+                                    width: 50px;     
+                                    height: 50px;   
+                                    object-fit: cover; 
+                                    aspect-ratio: 1/1; 
+                                    border-radius: 0.25rem; 
+                                }
+
+                                @media (max-width: 576px) {
+                                    .bukti-image {
+                                        width: 40px;  
+                                        height: 40px; 
+                                    }
+                                }
+                            </style>
+                            <div class="table-responsive table-scrollable" style="overflow-x: auto;">
                                 <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                                     <thead>
                                         <tr style="background-color: #4D869C; color:#ffff;">
-                                            <td class="text-center align-middle">No</td>
-                                            <td class="text-center align-middle">Nama Pelapor</td>
-                                            <td class="text-center align-middle">Nama</td>
-                                            <td class="text-center align-middle">Nama Pelanggaran</td>
-                                            <td class="text-center align-middle">Jumlah Point</td>
-                                            <td class="text-center align-middle">Tanggal</td>
-                                            <td class="text-center align-middle">Bukti</td>
-                                            <td class="text-center align-middle">Status</td>
+                                            <th class="text-center align-middle">No</th>
+                                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Pelapor</th>
+                                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama</th>
+                                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Pelanggaran</th>
+                                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Jumlah Point</th>
+                                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Tanggal</th>
+                                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Bukti</th>
+                                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -82,30 +99,34 @@
                                         @foreach($students as $no => $student)
                                             <tr>
                                                 <td class="text-center align-middle">{{ $no + 1 }}</td>
-                                                <td class="text-center align-middle">{{ $student->pelapor->name ?? 'tidak diketahui' }}</td>
-                                                <td class="text-center align-middle">{{ $student->nama }}</td>
-                                                <td class="text-center align-middle">{{ $student->pelanggaran }}</td>
-                                                <td class="text-center align-middle">{{ $student->point }}</td>
-                                                <td class="text-center align-middle">{{  \Carbon\Carbon::parse($student->tanggal)->format('j F Y') }}</td>
-                                                <td class="text-center align-middle">
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $student->pelapor->name ?? 'tidak diketahui' }}</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ $student->nama }}</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $student->pelanggaran }}</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $student->point }}</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{  \Carbon\Carbon::parse($student->tanggal)->format('j F Y') }}</td>
+                                                <td class="col-2 text-center align-middle">
                                                     @if ($student->bukti)
                                                         <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal-{{ $student->id }}">
-                                                            <img src="{{ asset('uploads/' . $student->bukti) }}" alt="Bukti {{ $student->nama }}" class="img-thumbnail" style="width: 50px; height: 50px; cursor: pointer;">
+                                                            <div style="width: 50px; height: 50px; overflow: hidden; display: inline-block;">
+                                                                <img src="{{ asset('uploads/' . $student->bukti) }}" alt="Bukti {{ $student->nama }}" class="img-thumbnail bukti-image" style="width: 100%; height: auto; cursor: pointer;">
+                                                            </div>
                                                         </a>
-                                    
-                                                    
+                                                
+                                                        <!-- Modal to show full image -->
                                                         <div class="modal fade" id="imageModal-{{ $student->id }}" tabindex="-1" aria-labelledby="imageModalLabel-{{ $student->id }}" aria-hidden="true">
                                                             <div class="modal-dialog modal-dialog-centered">
                                                                 <div class="modal-content">
-                                                                    <div class="modal-body">
-                                                                        <img src="{{ asset('uploads/' . $student->bukti) }}" alt="Bukti {{ $student->nama }}" class="img-fluid">
+                                                                    <div class="modal-body text-center">
+                                                                        <img src="{{ asset('uploads/' . $student->bukti) }}" alt="Bukti {{ $student->nama }}" class="img-fluid" style="max-width: 100%; height: auto;">
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     @endif
                                                 </td>
-                                                <td class="text-center align-middle">
+                                                
+                                                
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">
                                                     @if ($student->status == 'Diterima')
                                                         <span class="badge status-badge" style="background: rgb(50, 202, 50); color:#000;">Laporan Diterima</span>
                                                     @elseif ($student->status == 'Laporan Tidak Valid')
@@ -119,43 +140,64 @@
                                         @endif
                                     </tbody>                                
                                 </table>
-                                <div class="d-flex">
-                                    <div class="ml-auto">
-                                        {{ $students->links('pagination::bootstrap-4') }}
-                                    </div>
-                                    @if ($pelanggaranPerHari->isEmpty())
-                                    @else
-                                        <div class="table-responsive">
-                                            <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
-                                                <thead>
-                                                    <tr style="background-color: #4D869C; color:#ffff;">
-                                                        <td class="text-center align-middle">No</td>
-                                                        <td class="text-center align-middle">Tangal</td>
-                                                        <td class="text-center align-middle">Jumlah</td>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    
-                                                        @foreach ($pelanggaranPerHari as $no=>$item)
-                                                            <tr>
-                                                                <td class="text-center align-middle">{{ $no+1 }}</td>
-                                                                <td class="text-center align-middle">{{ \Carbon\Carbon::parse($item->tanggal)->format('j F Y') }}</td>
-                                                                <td class="text-center align-middle">{{ $item->total }}</td>
-                                                            </tr>
-                                                        @endforeach  
-                                    @endif           
-                                                </tbody>
-                                            </table>
-                                        </div>
-
+                            </div>
+                        
+                        </div>
+                        <style>
+                            .pagination .page-link {
+                                color: #245c70; /* Warna abu-abu */
+                                background-color: #f8f9fa; /* Warna latar belakang */
+                                border-color: #dee2e6; /* Warna border */
+                            }
+                    
+                            .pagination .page-link:hover {
+                                color:#245c70; /* Warna abu-abu yang lebih gelap saat hover */
+                                background-color: #e9ecef; /* Latar belakang sedikit lebih gelap */
+                                border-color: #dee2e6;
+                            }
+                        
+                            .pagination .active .page-link {
+                                color: white; /* Warna teks saat aktif */
+                                background-color: #245c70; /* Warna abu-abu saat aktif */
+                                border-color: #245c70;
+                            }                                            
+                        </style>
+                        <div class="card-footer mt-3" style="background: #fff;">
+                            <div class="d-flex">
+                                <div class="ml-auto">
+                                    {{ $students->links('pagination::bootstrap-4') }}
                                 </div>
                             </div>
+                            @if (!$pelanggaranPerHari->isEmpty())
+                                <div class="table-responsive mt-3">
+                                    <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
+                                        <thead>
+                                            <tr style="background-color: #4D869C; color:#ffff;">
+                                                <th class="text-center align-middle">No</th>
+                                                <th class="text-center align-middle">Tanggal</th>
+                                                <th class="text-center align-middle">Jumlah</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($pelanggaranPerHari as $no=>$item)
+                                                <tr>
+                                                    <td class="text-center align-middle">{{ $no+1 }}</td>
+                                                    <td class="text-center align-middle">{{ \Carbon\Carbon::parse($item->tanggal)->format('j F Y') }}</td>
+                                                    <td class="text-center align-middle">{{ $item->total }}</td>
+                                                </tr>
+                                            @endforeach 
+                                        </tbody>
+                                    </table>
+                                </div> 
+                            @endif
                         </div>
+                        
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    
 
    
     <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="dataModalLabel" aria-hidden="true">
