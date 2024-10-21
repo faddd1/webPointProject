@@ -30,16 +30,13 @@ class StudentController extends Controller
         ->orWhere('point', 'LIKE', "%{$searchTerm}%")
         ->orWhere('tanggal', 'LIKE', "%{$searchTerm}%")
         ->orderBy('created_at', 'desc')
-        ->paginate(10)
-        ->appends(['search' => $searchTerm]); 
-
+        ->paginate(10); 
          
         $today = Carbon::today();
         $pelanggaranPerHari = Laporan::select(DB::raw('DATE(created_at) as tanggal'), DB::raw('COUNT(*) as total'))
         ->where('status', 'Diterima')
         ->groupBy(DB::raw('DATE(created_at)'))
         ->paginate(8);
-
 
 
         
@@ -203,7 +200,7 @@ public function destroy(Student $studentItem, $id)
        
         $students = Student::where('nama', 'LIKE', "%{$query}%")
                            ->orWhere('nis', 'LIKE', "%{$query}%")
-                           ->paginate();
+                           ->get();
     
         return response()->json($students);
      }
@@ -215,20 +212,17 @@ public function destroy(Student $studentItem, $id)
         $jurusan = $request->query('jurusan');
         $kelas = $request->query('kelas');
 
-        $studentItem = Student::where('nama', 'like', "%{$query}%")
+        $siswa = Siswa::where('nama', 'like', "%{$query}%")
             ->when($jurusan, function ($q) use ($jurusan) {
                 return $q->where('jurusan', $jurusan);
             })
             ->when($kelas, function ($q) use ($kelas) {
                 return $q->where('kelas', $kelas);
             })
-            ->paginate(4);
+            ->get();
 
-         return view('student.datasiswa', [
-             'title' => 'Search Data Siswa',
-             'studentItem' => $studentItem
-         ]);
-     }
+        return response()->json($siswa);
+    }
 
      public function listDestroy($id)
     {

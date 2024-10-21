@@ -116,11 +116,9 @@ class UserPetugasController extends Controller
                         $query->where('name', 'LIKE', "%{$searchTerm}%")
                               ->orWhere('nis', 'LIKE', "%{$searchTerm}%");
                     })
-                    ->paginate(5)
-                    ->appends(['search' => $searchTerm]); 
-
+                    ->paginate(5);
     
-        return view('tambahUserPetugas.tambahakun', compact('data'), ['title' => 'Search Akun Petugas']);
+        return view('tambahUserPetugas.tambahakun', compact('data'), ['title' => 'Akun Petugas']);
     }
 
         

@@ -118,11 +118,9 @@ class UserSiswaController extends Controller
                         $query->where('name', 'LIKE', "%{$searchTerm}%")
                               ->orWhere('nis', 'LIKE', "%{$searchTerm}%");
                     })
-                    ->paginate(5)
-                    ->appends(['search' => $searchTerm]); 
-
+                    ->paginate(5);
     
-        return view('tambahUserSiswa.tambahakun', compact('data'), ['title' => 'Search Akun Siswa']);
+        return view('tambahUserSiswa.tambahakun', compact('data'), ['title' => 'Akun Siswa']);
     }
     
         

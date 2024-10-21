@@ -130,11 +130,9 @@ class UserController extends Controller
                             $query->where('name', 'LIKE', "%{$searchTerm}%")
                                   ->orWhere('nis', 'LIKE', "%{$searchTerm}%");
                         })
-                        ->paginate(5)
-                        ->appends(['search' => $searchTerm]); 
-
+                        ->paginate(5);
         
-            return view('tambahUserAdmin.tambahakun', compact('data'), ['title' => 'Search Akun Petugas']);
+            return view('tambahUserAdmin.tambahakun', compact('data'), ['title' => 'Akun Petugas']);
         }
         
     }

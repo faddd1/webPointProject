@@ -119,11 +119,9 @@ class UserGuruController extends Controller
                         $query->where('name', 'LIKE', "%{$searchTerm}%")
                               ->orWhere('nis', 'LIKE', "%{$searchTerm}%");
                     })
-                    ->paginate(5)
-                    ->appends(['search' => $searchTerm]); 
-
+                    ->paginate(5);
     
-        return view('tambahUserGuru.tambahakun', compact('data'), ['title' => 'Search Akun Guru']);
+        return view('tambahUserGuru.tambahakun', compact('data'), ['title' => 'Akun Guru']);
     }
 
         
