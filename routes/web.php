@@ -51,7 +51,7 @@ Route::group(['middleware' => ['auth', 'userAkses:admin,guru,petugas,siswa']], f
     //unduh data siswa
     Route::get('/download/tata-tertib', function () {
         $filePath = public_path('assets/pdf/TataTertib.pdf');
-        $fileName = 'TataTertib.pdf';
+        $fileName = 'TataTertib_2024.pdf';
         return response()->download($filePath, $fileName);
     });
 });

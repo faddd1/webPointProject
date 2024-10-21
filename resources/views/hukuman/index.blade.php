@@ -87,22 +87,37 @@
                               <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                                   <thead>
                                       <tr style="background-color: #4D869C; color:#ffff;">
+<<<<<<< HEAD
                                           <td style="text-align: center; vertical-align: middle;" class="py-2">No</td>
                                           <td style="text-align: center; vertical-align: middle;">Nama Hukuman</td>
                                           <td style="text-align: center; vertical-align: middle;">Poin</td>
                                           @if (auth()->check() && auth()->user()->role == 'admin')
                                               <td style="text-align: center; vertical-align: middle;">Aksi</td>
                                           @endif
+=======
+                                          <th style="text-align: center; vertical-align: middle;" class="py-2">No</th>
+                                          <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Hukuman</th>
+                                          <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Poin</th>
+                                          {{-- @if (auth()->check() && auth()->user()->role == 'admin') --}}
+                                              <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Aksi</th>
+                                          {{-- @endif --}}
+>>>>>>> b5366eab050cc3b00258628b81b833af3e032295
                                       </tr>
                                   </thead>
                                   <tbody>
                                       @foreach ($punismen as $no => $item)
                                           <tr>
                                               <td style="text-align: center; vertical-align: middle;">{{$no+1}}</td>
+<<<<<<< HEAD
                                               <td style="vertical-align: middle; max-width: 150px;">{{$item->nama_hukuman}}</td>
                                               <td style="text-align: center; vertical-align: middle;">({{$item->pointAwal}}) Sampai ({{ $item->pointAkhir }})</td>
                                               @if (auth()->check() && auth()->user()->role == 'admin')
                                               <td style="text-align: center; vertical-align: middle;">
+=======
+                                              <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{$item->nama_hukuman}}</td>
+                                              <td style="text-align: center; vertical-align: middle; white-space: nowrap;">({{$item->pointAwal}}) Sampai ({{ $item->pointAkhir }})</td>
+                                              <td style="text-align: center; vertical-align: middle; white-space: nowrap;">
+>>>>>>> b5366eab050cc3b00258628b81b833af3e032295
                                                 <div class="action-buttons text-center align-middle">
                                                     <button class="btn btn-sm btn-primary editBtn" data-id="{{ $item->id }}">
                                                         <i class="fa-solid fa-pen-to-square"></i>
@@ -121,33 +136,34 @@
                                       @endforeach
                                   </tbody>
                               </table>
-                              
-                              <div class="d-flex">
-                                  <div class="ml-auto">
-                                      <style>
-                                          .pagination .page-link {
-                                              color: #245c70; /* Warna teks */
-                                              background-color: #f8f9fa; /* Warna latar */
-                                              border-color: #dee2e6; /* Warna border */
-                                          }
+                            </div>
+                        </div>
+                        <div class="card-footer mt-3" style="background: #fff;">                            
+                            <div class="d-flex">
+                                <div class="ml-auto">
+                                    <style>
+                                        .pagination .page-link {
+                                            color: #245c70; /* Warna teks */
+                                            background-color: #f8f9fa; /* Warna latar */
+                                            border-color: #dee2e6; /* Warna border */
+                                        }
 
-                                          .pagination .page-link:hover {
-                                              color: #245c70; 
-                                              background-color: #e9ecef; 
-                                              border-color: #dee2e6;
-                                          }
+                                        .pagination .page-link:hover {
+                                            color: #245c70; 
+                                            background-color: #e9ecef; 
+                                            border-color: #dee2e6;
+                                        }
 
-                                          .pagination .active .page-link {
-                                              color: white;
-                                              background-color: #245c70;
-                                              border-color: #245c70;
-                                          }
-                                      </style>
-                                      {{-- {{ $kategoris->links('pagination::bootstrap-4') }} --}}
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
+                                        .pagination .active .page-link {
+                                            color: white;
+                                            background-color: #245c70;
+                                            border-color: #245c70;
+                                        }
+                                    </style>
+                                    {{ $punismen->links('pagination::bootstrap-4') }}
+                                </div>
+                            </div>
+                        </div>
                   </div>
               </div>
           </div>

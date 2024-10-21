@@ -8,7 +8,7 @@ use App\Models\PoinPenebusan;
 class PoinPenebusanController extends Controller
 {
     public function index (){
-        $prestasi = PoinPenebusan::get();
+        $prestasi = PoinPenebusan::paginate(10);
         return view ('poinPenebusan.index', [
             'prestasi' => $prestasi,
             'title' => 'Kategori Prestasi'

@@ -115,12 +115,12 @@
                             <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                                 <thead>
                                     <tr style="background-color: #4D869C; color:#ffff;">
-                                        <td style="text-align: center; vertical-align: middle;" class="py-2">No</td>
-                                        <td style="text-align: center; vertical-align: middle;">Nama</td>
-                                        <td style="text-align: center; vertical-align: middle;">Nip</td>
-                                        <td style="text-align: center; vertical-align: middle;">Password</td>
-                                        <td style="text-align: center; vertical-align: middle;">Role</td>
-                                        <td style="text-align: center; vertical-align: middle;">Action</td>
+                                        <th style="text-align: center; vertical-align: middle;" class="py-2">No</th>
+                                        <th style="text-align: center; vertical-align: middle;">Nama</th>
+                                        <th style="text-align: center; vertical-align: middle;">Nip</th>
+                                        <th style="text-align: center; vertical-align: middle;">Password</th>
+                                        <th style="text-align: center; vertical-align: middle;">Role</th>
+                                        <th style="text-align: center; vertical-align: middle;">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody id="user-table-body">
@@ -190,8 +190,33 @@
                                             }
                                         }
                                     </style>
-                                    {{ $data->links('pagination::bootstrap-4') }}
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer mt-3" style="background: #fff;">
+                        <div class="d-flex">
+                            <div class="ml-auto">
+                                <style>
+                                    .pagination .page-link {
+                                        color: #245c70; /* Warna abu-abu */
+                                        background-color: #f8f9fa; /* Warna latar belakang */
+                                        border-color: #dee2e6; /* Warna border */
+                                    }
+                            
+                                    .pagination .page-link:hover {
+                                        color:#245c70; /* Warna abu-abu yang lebih gelap saat hover */
+                                        background-color: #e9ecef; /* Latar belakang sedikit lebih gelap */
+                                        border-color: #dee2e6;
+                                    }
+                                
+                                    .pagination .active .page-link {
+                                        color: white; /* Warna teks saat aktif */
+                                        background-color: #245c70; /* Warna abu-abu saat aktif */
+                                        border-color: #245c70;
+                                    }                                            
+                                </style>
+                                {{ $data->links('pagination::bootstrap-4') }}
                             </div>
                         </div>
                     </div>

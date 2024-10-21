@@ -53,21 +53,21 @@
                         <table class="table table-bordered table-sm">
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Nama Pelanggaran</th>
-                                    <th>Jumlah Point</th>
-                                    <th>Tanggal</th>
-                                    <th>Status</th>
+                                    <th style="text-align: center; vertical-align: middle; white-space: nowrap;">No</th>
+                                    <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Pelanggaran</th>
+                                    <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Jumlah Point</th>
+                                    <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Tanggal</th>
+                                    <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($studentlist->pelanggaran as $index => $pelanggaran)
                                     <tr>
-                                        <td>{{ $index + 1 }}</td>
-                                        <td>{{ $pelanggaran->pelanggaranDetail->pelanggaran }}</td>
-                                        <td>{{ $pelanggaran->point }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($pelanggaran->tanggal)->format('j F Y') }}</td>
-                                        <td>{{ $pelanggaran->status }}</td>
+                                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $index + 1 }}</td>
+                                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $pelanggaran->pelanggaranDetail->pelanggaran }}</td>
+                                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $pelanggaran->point }}</td>
+                                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ \Carbon\Carbon::parse($pelanggaran->tanggal)->format('j F Y') }}</td>
+                                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $pelanggaran->status }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

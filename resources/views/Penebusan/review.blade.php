@@ -40,10 +40,23 @@
                             justify-content: center;
                             gap: 5px;
                         }
+                        .bukti-image {
+                            width: 50px;      
+                            height: 50px;     
+                            object-fit: cover; 
+                            aspect-ratio: 1/1; 
+                            border-radius: 0.25rem; 
+                        }
 
+                       
+                        
                         @media (max-width: 576px) {
                             .action-buttons {
                                 flex-direction: row;
+                            }
+                            .bukti-image {
+                                width: 40px; 
+                                height: 40px; 
                             }
                         }
                     </style>
@@ -60,32 +73,34 @@
                             @else
                                 <div class="table-responsive">
 
-                                    <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 15px; border-radius: 5px 5px 0 0;">
+                                    <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                                         <thead>
                                             <tr style="background-color: #4D869C; color:#ffff;">
                                                 <th class="text-center align-middle">No</th>
-                                                <th class="text-center align-middle">Nama Pelapor</th>
-                                                <th class="text-center align-middle">Nama</th>
-                                                <th class="text-center align-middle">Nama Prestasi</th>
-                                                <th class="text-center align-middle">Jumlah Point</th>
-                                                <th class="text-center align-middle">Tanggal</th>
-                                                <th class="text-center align-middle">Bukti</th>
-                                                <th class="text-center align-middle">Status</th>
+                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Pelapor</th>
+                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama</th>
+                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Prestasi</th>
+                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Jumlah Point</th>
+                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Tanggal</th>
+                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Bukti</th>
+                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach($penebusan as $no => $penebusan)
                                                 <tr>
                                                     <td class="text-center align-middle">{{ $no + 1 }}</td>
-                                                    <td class="text-center align-middle">{{ $penebusan->pelapor->name ?? 'tidak diketahui' }}</td>
-                                                    <td class="text-center align-middle">{{ $penebusan->nama }}</td>
-                                                    <td class="text-center align-middle">{{ $penebusan->nama_Prestasi }}</td>
-                                                    <td class="text-center align-middle">{{ $penebusan->point }}</td>
-                                                    <td class="text-center align-middle text-muted text-sm">{{ $penebusan->tanggal }},{{ $penebusan->created_at->diffForHumans() }}</td>
+                                                    <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $penebusan->pelapor->name ?? 'tidak diketahui' }}</td>
+                                                    <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $penebusan->nama }}</td>
+                                                    <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $penebusan->nama_Prestasi }}</td>
+                                                    <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $penebusan->point }}</td>
+                                                    <td class="text-muted text-sm" style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $penebusan->tanggal }},{{ $penebusan->created_at->diffForHumans() }}</td>
                                                     <td class="text-center align-middle">
                                                         @if ($penebusan->bukti)
                                                             <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal-{{ $penebusan->id }}">
-                                                                <img src="{{ asset('uploads/' . $penebusan->bukti) }}" alt="Bukti {{ $penebusan->nama }}" class="img-thumbnail" style="width: 50px; height: 50px; cursor: pointer;">
+                                                                <div style="width: 50px; height: 50px; overflow: hidden; display: inline-block;">
+                                                                    <img src="{{ asset('uploads/' . $penebusan->bukti) }}" alt="Bukti {{ $penebusan->nama }}" class="img-thumbnail bukti-image" style="width: 100%; height: auto; cursor: pointer;">
+                                                                </div>
                                                             </a>
 
                                                             <div class="modal fade" id="imageModal-{{ $penebusan->id }}" tabindex="-1" aria-labelledby="imageModalLabel-{{ $penebusan->id }}" aria-hidden="true">
@@ -100,19 +115,21 @@
                                                         @endif
                                                     </td>
                                                     <td class="text-center align-middle">
-                                                        <form action="{{ route('penebusan.approve', $penebusan->id) }}" method="POST" class="terima" style="display: inline;">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-check"></i></button>
-                                                        </form>
-
-                                                        <form action="{{ route('penebusan.notApprove', $penebusan->id) }}" class="tolak"method="POST" style="display: inline;">
-                                                            @csrf
-                                                            @method('POST')
-                                                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-circle-minus"></i></button>
-                                                        </form>
-
-                                                        <button class="btn btn-success btn-sm showBtn" data-id="{{ $penebusan->id }}"><i class="fa-solid fa-eye"></i></button>
+                                                        <div class="action-buttons">
+                                                            <form action="{{ route('penebusan.approve', $penebusan->id) }}" method="POST" class="terima" style="display: inline;">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-check"></i></button>
+                                                            </form>
+    
+                                                            <form action="{{ route('penebusan.notApprove', $penebusan->id) }}" class="tolak"method="POST" style="display: inline;">
+                                                                @csrf
+                                                                @method('POST')
+                                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-circle-minus"></i></button>
+                                                            </form>
+    
+                                                            <button class="btn btn-success btn-sm showBtn" data-id="{{ $penebusan->id }}"><i class="fa-solid fa-eye"></i></button>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             @endforeach

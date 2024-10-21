@@ -43,6 +43,14 @@
                                 .status-badge {
                                     font-size: 12px;
                                 }
+                                .bukti-image {
+                                    width: 50px;      
+                                    height: 50px;    
+                                    object-fit: cover; 
+                                    aspect-ratio: 1/1; 
+                                    border-radius: 0.25rem; 
+                                }
+
                 
                                 
                                 @media (max-width: 576px) {
@@ -50,7 +58,13 @@
                                         flex-direction: row; 
                                         max-width: 180px; 
                                     }
+                                    
+                                    .bukti-image {
+                                        width: 40px;  /* Reduce size on mobile screens */
+                                        height: 40px; /* Maintain square shape */
+                                    }
                                 }
+
 
                                 .status-badge {
                                     display: inline-block;
@@ -81,14 +95,14 @@
                                 <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                                     <thead>
                                         <tr style="background-color: #4D869C; color:#ffff;">
-                                            <td class="text-center align-middle" class="py-2">No</td>
-                                            <td class="text-center align-middle">NIS</td>
-                                            <td class="text-center align-middle">Nama</td>
-                                            <td class="text-center align-middle">Nama Prestasi</td>
-                                            <td class="text-center align-middle">Jumlah Point</td>
-                                            <td class="text-center align-middle">Tanggal</td>
-                                            <td class="text-center align-middle">Bukti</td>
-                                            <td class="text-center align-middle">Status</td>
+                                            <th class="text-center align-middle" class="py-2">No</th>
+                                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">NIS</th>
+                                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama</th>
+                                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Prestasi</th>
+                                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Jumlah Point</th>
+                                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Tanggal</th>
+                                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Bukti</th>
+                                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -100,23 +114,25 @@
                                         @foreach($prestasis as $no => $prestasi)
                                             <tr>
                                                 <td class="text-center align-middle">{{ $no + 1 }}</td>
-                                                <td class="text-center align-middle">{{ $prestasi->nis}}</td>
-                                                <td class="text-center align-middle">{{ $prestasi->nama }}</td>
-                                                <td class="text-center align-middle">{{ $prestasi->nama_Prestasi }}</td>
-                                                <td class="text-center align-middle">{{ $prestasi->point }}</td>
-                                                <td class="text-center align-middle">{{ $prestasi->tanggal }}</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $prestasi->nis}}</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $prestasi->nama }}</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $prestasi->nama_Prestasi }}</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $prestasi->point }}</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $prestasi->tanggal }}</td>
                                                 <td class="text-center align-middle">
                                                     @if ($prestasi->bukti)
                                                         <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal-{{ $prestasi->id }}">
-                                                            <img src="{{ asset('uploads/' . $prestasi->bukti) }}" alt="Bukti {{ $prestasi->nama }}" class="img-thumbnail" style="width: 50px; height: 50px; cursor: pointer;">
+                                                            <div style="width: 50px; height: 50px; overflow: hidden; display: inline-block;">
+                                                                <img src="{{ asset('uploads/' . $prestasi->bukti) }}" alt="Bukti {{ $prestasi->nama }}" class="img-thumbnail bukti-image" style="width: 100%; height: auto; cursor: pointer;">
+                                                            </div>
                                                         </a>
-                                    
-                                                    
+                                                
+                                                        <!-- Modal to show full image -->
                                                         <div class="modal fade" id="imageModal-{{ $prestasi->id }}" tabindex="-1" aria-labelledby="imageModalLabel-{{ $prestasi->id }}" aria-hidden="true">
                                                             <div class="modal-dialog modal-dialog-centered">
                                                                 <div class="modal-content">
-                                                                    <div class="modal-body">
-                                                                        <img src="{{ asset('uploads/' . $prestasi->bukti) }}" alt="Bukti {{ $prestasi->nama }}" class="img-fluid">
+                                                                    <div class="modal-body text-center">
+                                                                        <img src="{{ asset('uploads/' . $prestasi->bukti) }}" alt="Bukti {{ $prestasi->nama }}" class="img-fluid" style="max-width: 100%; height: auto;">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -137,10 +153,31 @@
                                         @endif
                                     </tbody>                                
                                 </table>
-                                <div class="d-flex">
-                                    <div class="ml-auto">
-                                        {{ $prestasis->links('pagination::bootstrap-4') }}
-                                    </div>
+                            </div>
+                        </div>
+                        <div class="card-footer mt-3" style="background: #fff;">
+                            <div class="d-flex">
+                                <div class="ml-auto">
+                                    <style>
+                                        .pagination .page-link {
+                                            color: #245c70; /* Warna abu-abu */
+                                            background-color: #f8f9fa; /* Warna latar belakang */
+                                            border-color: #dee2e6; /* Warna border */
+                                        }
+                                
+                                        .pagination .page-link:hover {
+                                            color:#245c70; /* Warna abu-abu yang lebih gelap saat hover */
+                                            background-color: #e9ecef; /* Latar belakang sedikit lebih gelap */
+                                            border-color: #dee2e6;
+                                        }
+                                    
+                                        .pagination .active .page-link {
+                                            color: white; /* Warna teks saat aktif */
+                                            background-color: #245c70; /* Warna abu-abu saat aktif */
+                                            border-color: #245c70;
+                                        }                                            
+                                    </style>
+                                    {{ $prestasis->links('pagination::bootstrap-4') }}
                                 </div>
                             </div>
                         </div>

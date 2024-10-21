@@ -284,9 +284,9 @@
         <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
           <thead>
             <tr style="background-color: #4D869C; color:#ffff; font-size: 15px;">
-              <td style="text-align: center; vertical-align: middle;" class="py-2">Rank</td>
-              <td style="text-align: center; vertical-align: middle;">Jenis Pelanggaran</td>
-              <td style="text-align: center; vertical-align: middle;">Jumlah Pelanggaran</td> 
+              <th style="text-align: center; vertical-align: middle;" class="py-2">Rank</th>
+              <th style="text-align: center; vertical-align: middle;">Jenis Pelanggaran</th>
+              <th style="text-align: center; vertical-align: middle;">Jumlah Pelanggaran</th> 
             </tr>
           </thead>
           <tbody>
