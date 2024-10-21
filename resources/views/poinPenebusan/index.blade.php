@@ -217,5 +217,14 @@
             });
         });
     </script>
+
+
+<script>
+  function test(event, formId){
+      event.target.setAttribute('disabled','disabled');
+      const a =  document.querySelector(`#${formId}`);
+      a.submit();
+  } 
+</script>
   </x-layout>
   

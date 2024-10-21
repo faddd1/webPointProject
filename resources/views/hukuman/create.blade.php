@@ -30,7 +30,7 @@
 </style>
 
 <div class="form-container">
-    <form action="{{ route('hukuman.store') }}" method="POST">
+    <form id="formHukuman" action="{{ route('hukuman.store') }}" method="POST">
         @csrf
         <div class="form-group">
             <label>Nama Hukuman</label>
@@ -47,17 +47,7 @@
             <input type="text" class="form-control form-control-custom" name="pointAkhir" placeholder="Poin Akhir" required>
         </div>
 
-        <button type="submit" class="btn btn-block btn-primary-custom">Tambah</button>
+        <button type="submit" class="btn btn-block btn-primary-custom" onclick="test(event, 'formHukuman')">Tambah</button>
     </form>
 </div>
 
-<script>
-    // Function to ensure that values are always negative
-    document.querySelectorAll('input[name="pointAwal"], input[name="pointAkhir"]').forEach(input => {
-        input.addEventListener('input', function() {
-            // Ensure value is always negative
-            let value = this.value.replace(/[^0-9]/g, ''); // Remove non-numeric characters
-            this.value = value ? `-${value}` : ''; // Prepend minus sign to the value
-        });
-    });
-</script>

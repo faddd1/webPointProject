@@ -37,7 +37,12 @@
             <label>Nama Pasal</label>
             <input type="text" class="form-control" name="level" value="{{ $pasal->level }}" placeholder="Nama Pasal" required>
         </div>
-        <button type="submit" class="btn btn-block btn-primary-custom" id="submitButton">Tambah</button>
+
+        <div class="form-group">
+            <label>Deskripsi</label>
+            <input type="text" class="form-control" name="deskripsi" value="{{ $pasal->deskripsi }}" placeholder="Deskripsi" required>
+        </div>
+        <button type="submit" class="btn btn-block btn-primary-custom" id="submitButton">Perbarui</button>
     </form>
 </div>
 

@@ -50,7 +50,7 @@ class TeacherController extends Controller
 
         ]);
 
-       return redirect()->back()->with('success', 'Data berhasil ditambahkan!');
+       return redirect()->back()->with('success', 'Data Guru berhasil ditambahkan!');
         
     }
 
@@ -92,7 +92,7 @@ class TeacherController extends Controller
 
         ]);
 
-        return redirect('teacher')->with('success', 'Data berhasil diubah!');
+        return redirect('teacher')->with('success', 'Data Guru berhasil diubah!');
     }
 
    
@@ -109,7 +109,7 @@ class TeacherController extends Controller
         $teacher->delete();
 
 
-        return redirect('teacher')->with('success', 'Data berhasil dihapus!');
+        return redirect('teacher')->with('success', 'Data Guru berhasil dihapus!');
 
     } 
 

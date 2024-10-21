@@ -44,7 +44,7 @@ class PetugasController extends Controller
             'jurusan' => $request->jurusan,
             'namao' => $request->namao,
         ]);
-        return redirect()->route('petugas.tampil')->with('success', 'Data berhasil ditambahkan!');
+        return redirect()->route('petugas.tampil')->with('success', 'Data Petugas berhasil ditambahkan!');
     }
 
     
@@ -81,7 +81,7 @@ class PetugasController extends Controller
             'jurusan' => $request->jurusan,
             'namao' => $request->namao,
         ]);
-        return redirect()->route('petugas.tampil')->with('success', 'Data berhasil diUbah!');
+        return redirect()->route('petugas.tampil')->with('success', 'Data Petugas berhasil diUbah!');
 
     }
 
@@ -93,7 +93,7 @@ class PetugasController extends Controller
         }
         $petugas->delete();
 
-        return redirect()->route('petugas.tampil')->with('success', 'Data berhasil dihapus!');
+        return redirect()->route('petugas.tampil')->with('success', 'Data Petugas berhasil dihapus!');
     }
 
    

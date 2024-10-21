@@ -1,3 +1,51 @@
+<style>
+    .table-responsive {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .table td, .table th {
+        padding: 0.1rem;
+        font-size: 0.8rem; 
+        white-space: nowrap; 
+    }
+
+ 
+    @media (max-width: 768px) {
+        .table {
+            width: 100%;
+            min-width: 400px;
+        }
+
+       
+        .table td, .table th {
+            font-size: 0.7rem;
+            padding: 0.1rem; 
+        }
+
+        .swal2-popup {
+            width: 95% !important;
+        }
+    }
+
+    
+    #confirm-selection-btn {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+   
+    .btn-custom,
+    .btn-custom:hover {
+        background-color: #266278 !important;
+        color: white !important;
+        border: none;
+    }
+
+</style>
+
 <script>
     function showSearchAlert(type) {
         let placeholderText = '';
@@ -60,8 +108,11 @@
                 Swal.fire({
                     title: `Pilih ${type === 'siswa' ? 'Siswa' : 'Penebusan'}`,
                     html: result.value.htmlContent, 
-                    showConfirmButton: false,
-                    width: '80%',
+                            showConfirmButton: false,
+                            width: '50%', 
+                            customClass: {
+                            container: 'swal2-responsive'
+                                },
                 });
 
                 document.getElementById('confirm-selection-btn').addEventListener('click', function() {

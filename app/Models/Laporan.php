@@ -33,4 +33,9 @@ class Laporan extends Model
     {
         return $this->belongsTo(User::class, 'pelapor_id');
     }
+
+    public function pasal()
+    {
+        return $this->belongsTo(Pasal::class, 'level', 'id');
+    }
 }

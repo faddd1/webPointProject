@@ -114,7 +114,7 @@ class StudentController extends Controller
 
        ]);
 
-       return redirect()->back()->with('success', 'Data berhasil ditambahkan!');
+       return redirect()->back()->with('success', 'Data Siswa berhasil ditambahkan!');
     }
 
 
@@ -159,7 +159,7 @@ class StudentController extends Controller
     
         ]);
 
-        return redirect()->route('datasiswa')->with('success', 'Data berhasil diubah!');
+        return redirect()->route('datasiswa')->with('success', 'Data Siswa Berhasil diubah!');
     }
 
 
@@ -178,7 +178,7 @@ public function destroy(Student $studentItem, $id)
     
     $studentItem->delete();
 
-    return redirect()->route('datasiswa')->with('success', 'Data siswa, user, dan laporan berhasil dihapus!');
+    return redirect()->route('datasiswa')->with('success', 'Data Siswa, Akun Siswa, dan Laporan Berhasil dihapus!');
 }
 
 
@@ -207,40 +207,22 @@ public function destroy(Student $studentItem, $id)
 
 
 
-     public function searchSiswa(Request $request)
-     {
-         
-         $nama = $request->input('nama');
-         $kelas = $request->input('kelas');
-         $jurusan = $request->input('jurusan');
-     
-         
-         $query = Student::query();
-     
-         
-         if ($nama) {
-             $query->where('nama', 'like', '%' . $nama . '%');
-         }
-     
-        
-         if ($kelas) {
-             $query->where('kelas', $kelas);
-         }
-     
-        
-         if ($jurusan) {
-             $query->where('jurusan', $jurusan);
-         }
-     
-        
-         $studentItem = $query->paginate(10);
+     public function searchSiswa(Request $request) {
+        $query = $request->query('query');
+        $jurusan = $request->query('jurusan');
+        $kelas = $request->query('kelas');
 
+        $siswa = Siswa::where('nama', 'like', "%{$query}%")
+            ->when($jurusan, function ($q) use ($jurusan) {
+                return $q->where('jurusan', $jurusan);
+            })
+            ->when($kelas, function ($q) use ($kelas) {
+                return $q->where('kelas', $kelas);
+            })
+            ->get();
 
-         return view('student.datasiswa', [
-             'title' => 'Data Siswa',
-             'studentItem' => $studentItem
-         ]);
-     }
+        return response()->json($siswa);
+    }
 
      public function listDestroy($id)
     {

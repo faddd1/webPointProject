@@ -11,6 +11,7 @@ class Pasal extends Model
 
     protected $table = 'table_pasal';
     protected $fillable = [
+        'deskripsi',
         'level'
     ];
 

@@ -50,8 +50,12 @@ class Student extends Model
         return $this->hasOne(Petugas::class, 'nis', 'nis');
     }
 
+  public function hukuman () {
+    return $this->hasOne(Hukuman::class, 'nama_hukuman');
+  }
     
-    
-    
-
 }
+
+    
+    
+    

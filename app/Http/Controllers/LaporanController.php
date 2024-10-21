@@ -13,7 +13,7 @@ class LaporanController extends Controller
 {
     public function index()
     {
-        $report = Laporan::where('nis', Auth::user()->nis)->get();
+        $report = Laporan::where('nis', Auth::user()->nis)->with('pasal')->get();
 
         return view('laporan.laporan', [
             'report' => $report,
@@ -100,19 +100,24 @@ class LaporanController extends Controller
     public function tolaklaporan($id)
     {
         $report = Laporan::find($id);
-
+    
         if (!$report) {
             return redirect()->route('laporan.review')->with('error', 'Laporan tidak ditemukan.');
         }
-
-       
+    
+        if ($report->bukti) {
+            $filePath = public_path('uploads/' . $report->bukti);
+            if (file_exists($filePath)) {
+                unlink($filePath); 
+            }
+        }
+    
         $report->status = 'Laporan Tidak Valid';
         $report->save();
-
-        
-
-        return redirect()->route('laporan.review')->with('success', 'Laporan telah ditolak dan dimasukkan ke daftar pelanggaran.');
+    
+        return redirect()->route('laporan.review')->with('success', 'Laporan telah ditolak dan foto bukti telah dihapus.');
     }
+    
 
 
     public function show($id){
@@ -120,23 +125,4 @@ class LaporanController extends Controller
 
         return view ('laporan.showlaporan', compact('report'));
     }
-
-    // public function getNotifications()
-    // {
-    
-    //     $nis = Auth::user()->nis;
-    
-
-    //     $notifications = Laporan::where('nis', $nis)
-    //                             ->where('created_at', '>=', now()->subDay())
-    //                             ->get();
-    
-        
-    //     $count = $notifications->count();
-
-    //     $title = 'Dashboard Siswa';
-    
-       
-    //     return view('components.navbar', compact('notifications', 'count'));
-    // }
 }

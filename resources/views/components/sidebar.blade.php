@@ -45,7 +45,7 @@
     @if (auth()->user()->role == 'siswa')
         <div class="user-panel mt-3 pb-3 mb-3 d-flex border-bottom">
             <div class="image">
-                <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+                <img src="https://1.bp.blogspot.com/-fhQrt5qoZVQ/Vk7JRkLvD4I/AAAAAAAAF-k/ePg_jf3sDwI/s1600/Smk-Negeri-1-Kawali-Logo.png" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
                 <a href="/profile" style="color: #000; text-decoration: none;" 
@@ -59,7 +59,7 @@
     @if (auth()->user()->role == 'admin' || auth()->user()->role == 'guru' || auth()->user()->role == 'petugas')
         <div class="user-panel mt-3 pb-3 mb-3 d-flex border-bottom">
             <div class="image">
-                <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+                <img src="https://1.bp.blogspot.com/-fhQrt5qoZVQ/Vk7JRkLvD4I/AAAAAAAAF-k/ePg_jf3sDwI/s1600/Smk-Negeri-1-Kawali-Logo.png" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
                 <a href="/profile" style="color: #000; text-decoration: none;" 

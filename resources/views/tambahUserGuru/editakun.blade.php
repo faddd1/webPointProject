@@ -54,6 +54,6 @@
                 <label class="form-check-label" for="role">Guru</label>
             </div>
     
-        <button type="submit" class="btn btn-primary btn-block mt-3">Save</button>
+        <button type="submit" class="btn btn-primary btn-block mt-3">Perbarui</button>
     </form>
 </div>

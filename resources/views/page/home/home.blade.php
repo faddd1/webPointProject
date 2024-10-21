@@ -74,36 +74,37 @@
                 </li>
             @endif --}}
 
-            @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'  || auth()->user()->role == 'siswa'  || auth()->user()->role == 'petugas'))
-                          <li class="nav-item dropdown">
-                              <!-- Menampilkan nama pengguna dan dropdown untuk opsi tambahan -->
-                              <a href="#" class="nav-link dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                  {{ Auth::user()->name }}
-                              </a>
-                              <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                                  <li>
-                                      <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
-                                  </li>
-                                  <li>
-                                      <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
-                                  </li>
-                                  <li>  
-                                    <a class="dropdown-item" href=" 
-                                        @if(auth()->user()->role == 'admin')
-                                            /dashboard/admin
-                                        @elseif(auth()->user()->role == 'guru')
-                                            /dashboard/guru
-                                        @elseif(auth()->user()->role == 'petugas')
-                                            /dashboard/petugas
-                                        @elseif(auth()->user()->role == 'siswa')
-                                            /dashboard/siswa
-                                        @endif" class="active">
-                                       
-                                        Dashboard
-                                    </a>
-                                </li>
-                              </ul>
-                          </li>
+                     @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'  || auth()->user()->role == 'siswa'  || auth()->user()->role == 'petugas'))
+                     <li class="nav-item dropdown">
+                        <!-- Menampilkan nama pengguna dan dropdown untuk opsi tambahan -->
+                        <a href="#" class="nav-link dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ Auth::user()->name }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                            <li>
+                                <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
+                            </li>
+                            <li>  
+                                <a class="dropdown-item" href="
+                                    @if(auth()->user()->role == 'admin')
+                                        /dashboard/admin
+                                    @elseif(auth()->user()->role == 'guru')
+                                        /dashboard/guru
+                                    @elseif(auth()->user()->role == 'petugas')
+                                        /dashboard/petugas
+                                    @elseif(auth()->user()->role == 'siswa')
+                                        /dashboard/siswa
+                                    @endif">
+                                    Dashboard
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+            
                     @endif 
 
 
@@ -491,6 +492,10 @@
     <script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
     <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+
 
 </body>
 

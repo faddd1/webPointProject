@@ -15,4 +15,5 @@ class Hukuman extends Model
         'pointAwal',
         'pointAkhir'
     ];
+
 }

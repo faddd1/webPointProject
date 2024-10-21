@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Sanksi;
 use App\Http\Controllers\ListSiswa;
 use App\Http\Controllers\Notifikasi;
 use Illuminate\Support\Facades\Route;
@@ -8,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SesiController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PasalController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\StudentController;
@@ -110,7 +112,9 @@ Route::middleware(['auth', 'userAkses:admin,guru'])->group(function () {
   Route::get('/export-list-pdf', [StudentController::class, 'listPdf'])->name('list.pdf');
   
     //searchhukuman
-  Route::get('/hukuman/search/hukumansiswa', [ListSiswa::class, 'searchHukuman'])->name('hukumansiswa.search');
+    Route::get('/hukuman/search', [ListSiswa::class, 'search'])->name('hukuman.search');
+  Route::get('/hukuman',[ListSiswa::class, 'index'])->name('hukuman');
+
 
 
 });
@@ -175,11 +179,11 @@ Route::middleware(['auth', 'userAkses:admin'])->group(function () {
     Route::put('kategori/{id}', [KategoriController::class, 'update'])->name('kategori.update');
     Route::post('/kategoripelanggaran/store', [KategoriController::class, 'store'])->name('kategori.store');
     Route::get('/kategoripelanggaran/search', [KategoriController::class, 'search'])->name('kategori.search');
-    Route::post('/kategoripelanggaran/tambah/pasal', [KategoriController::class, 'createPasal'])->name('kategori.createPasal');
-    Route::get('/kategoripelanggaran/pasal', [KategoriController::class, 'createPasall'])->name('kategori.pasal');
-    Route::get('/kategoripelanggaran/pasal/edit/{id}', [KategoriController::class, 'editPasal'])->name('kategori.editPasal');
-    Route::put('/kategoripelanggaran/pasal/update/{id}', [KategoriController::class, 'updatePasal'])->name('kategori.updatePasal');
-    Route::delete('/kategoripelanggaran/pasal/destroy/{id}', [KategoriController::class, 'destroyPasal'])->name('kategori.destroyPasal');
+    Route::post('/kategoripelanggaran/tambah/pasal', [PasalController::class, 'createPasal'])->name('kategori.createPasal');
+    Route::get('/kategoripelanggaran/pasal', [PasalController::class, 'createPasall'])->name('kategori.pasal');
+    Route::get('/kategoripelanggaran/pasal/edit/{id}', [PasalController::class, 'editPasal'])->name('kategori.editPasal');
+    Route::put('/kategoripelanggaran/pasal/update/{id}', [PasalController::class, 'updatePasal'])->name('kategori.updatePasal');
+    Route::delete('/kategoripelanggaran/pasal/destroy/{id}', [PasalController::class, 'destroyPasal'])->name('kategori.destroyPasal');
     // Petugas Management Routes
     Route::get('/datapetugas/tambah', [PetugasController::class, 'tambah'])->name('petugas.create');
     Route::post('/datapetugas/submit', [PetugasController::class, 'submit'])->name('petugas.submit');
@@ -188,13 +192,15 @@ Route::middleware(['auth', 'userAkses:admin'])->group(function () {
     Route::post('/datapetugas/delete{id}', [PetugasController::class, 'delete'])->name('petugas.delete');
     Route::get('/datapetugas/search', [PetugasController::class, 'search'])->name('petugas.search');
 
-    Route::get('/hukuman',[ListSiswa::class, 'index'])->name('hukuman');
     Route::post('/hukuman/store',[ListSiswa::class, 'store'])->name('hukuman.store');
     Route::get('/hukuman/create',[ListSiswa::class, 'create'])->name('hukuman.create');
     Route::get('/hukuman/edit{id}',[ListSiswa::class, 'edit'])->name('hukuman.edit');
     Route::put('/hukuman/update/{id}',[ListSiswa::class, 'update'])->name('hukuman.update');
     Route::delete('/hukuman/{id}', [ListSiswa::class, 'destroy'])->name('hukuman.destroy');
-    Route::get('/hukuman/search', [ListSiswa::class, 'search'])->name('hukuman.search');
+
+    Route::get('/hukuman/sanksi', [Sanksi::class, 'sanksi'])->name('sanksi');
+
+   
 
 });
 

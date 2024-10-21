@@ -30,14 +30,28 @@
 </style>
 
 <div class="form-container">
-    <form action="{{ route('kategori.createPasal') }}" method="POST" id="formKategori">
+    <form  id="formPasal" action="{{ route('kategori.createPasal') }}" method="POST">
         @csrf
         <div class="form-group">
             <label>Nama Pasal</label>
             <input type="text" class="form-control" name="level" placeholder="Nama Pasal" required>
         </div>
-        <button type="submit" class="btn btn-block btn-primary-custom" id="submitButton">Tambah</button>
+
+        <div class="form-group">
+            <label>Deskripsi</label>
+            <input type="text" class="form-control" name="deskripsi" placeholder="Deskripsi" required>
+        </div>
+        
+        <button type="submit" class="btn btn-block btn-primary-custom" id="submitButton" id="submitButton" onclick="test(event, 'formPasal')">Tambah</button>
     </form>
 </div>
+
+<script>
+    function test(event, formId){
+        event.target.setAttribute('disabled','disabled');
+        const a =  document.querySelector(`#${formId}`);
+        a.submit();
+    } 
+  </script>
 
 

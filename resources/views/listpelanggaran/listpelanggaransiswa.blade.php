@@ -74,19 +74,28 @@
         </div>
     </div>
    
-            @if ($hukuman)
-                <div class="card text-center shadow">
-                    <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"><i class="fa-solid fa-arrow-right"></i></a>
-                    <div class="card-body">
-                        <h2 class="card-title">Poin Anda Sudah Mencapai: <strong>{{ Auth::user()->siswa->point }}</strong></h2>
-                        <p class="card-text text-warning">Anda Terkena Sanksi: <strong>{{ $hukuman->nama_hukuman }}</strong></p>
+                @if ($hukuman && $hukuman->count())
+                    <div class="card text-center shadow">
+                        <div class="card-body">
+                            <h2 class="card-title">Poin Anda Sudah Mencapai: <strong>{{ Auth::user()->siswa->point }}</strong></h2>
+                            @foreach ($hukuman as $item)
+                                <p class="card-text text-warning">Anda Terkena Sanksi: <strong>{{ $item->nama_hukuman }}</strong></p>
+                            @endforeach
+                        </div>
+                        <div class="card-footer text-muted">
+                            Harap perhatikan peraturan yang berlaku.
+                        </div>
                     </div>
-                    <div class="card-footer text-muted">
-                        Harap perhatikan peraturan yang berlaku.
+                @else
+                <div class="card">
+                    <div class="card-body">
+                        <p style="text-align: center; vertical-align: middle;" class="fs-23 card-footer text-muted">Tidak Ada Hukuman Untuk Anda.</p>
                     </div>
                 </div>
-            @endif
+                    
+                @endif
 
+    
     <div class="card">
         <div class="card-body">
             <h3 class="text-md py-2">Pelanggaran Yang Pernah Kamu Lakukan : <strong>{{ $totalPelanggaran }}</strong></h3>

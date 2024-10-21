@@ -44,6 +44,8 @@
               width: 85px;
           @elseif($slot == 'Tambah Akun')
               width: 165px;
+          @elseif($slot == 'Sanksi Siswa')
+              width: 165px;
           @endif
       }
   </style>
@@ -55,7 +57,7 @@
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+          <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li> 
           <li class="breadcrumb-item active mr-2">{{ $slot }}</li>
         </ol>
       </div>

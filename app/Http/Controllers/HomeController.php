@@ -13,19 +13,17 @@ class HomeController extends Controller
     }
     public function send(Request $request)
     {
-        // Validasi form
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email',
             'message' => 'required|string',
         ]);
         
-        // Kirim email
         $data = [
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'subject' => $request->input('subject'),
-            'user_message' => $request->input('message'), // Ganti nama variabel message
+            'user_message' => $request->input('message'),
         ];
         
         Mail::send('send.ctc', $data, function($mail) use ($data) {

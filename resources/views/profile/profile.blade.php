@@ -6,7 +6,7 @@
                 <!-- Profile Card -->
                 <div class="col-md-4 mb-4">
                     <div class="card shadow-sm">
-                        <img src="dist/img/user2-160x160.jpg" class="card-img-top rounded-circle mx-auto mt-3" alt="Profile Picture" style="width: 150px; height: 150px; object-fit: cover; border: 5px solid #f8f9fa;">
+                        <img src="https://1.bp.blogspot.com/-fhQrt5qoZVQ/Vk7JRkLvD4I/AAAAAAAAF-k/ePg_jf3sDwI/s1600/Smk-Negeri-1-Kawali-Logo.png" class="card-img-top rounded-circle mx-auto mt-3" alt="Profile Picture" style="width: 150px; height: 150px; object-fit: cover; border: 5px solid #f8f9fa;">
                         <div class="card-body text-center">
                             <h3 class="card-title font-weight-bold">{{ Auth::user()->name}}</h3>
                         </div>

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sanksi;
 use App\Models\Hukuman;
 use App\Models\Laporan;
+use App\Models\Student;
 use App\Models\Penebusan;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ListSiswa extends Controller
@@ -26,13 +29,13 @@ class ListSiswa extends Controller
      
         $siswa = auth()->user()->siswa;
         $point = $siswa ? $siswa->point : null;
-    
+       
         
         $hukuman = null;
         if ($point !== null) {
-            $hukuman = Hukuman::where('pointAwal', '<=', $point)
-                ->where('pointAkhir', '>=', $point)
-                ->first();
+            $hukuman = Hukuman::where('pointAwal', '>=', $point)
+                ->where('pointAkhir', '<=', $point)
+                ->get();
         }
     
         return view('listpelanggaran.listpelanggaransiswa', compact('laporans', 'prestasi', 'totalPelanggaran', 'totalPrestasi', 'hukuman'), [
@@ -106,14 +109,6 @@ class ListSiswa extends Controller
         return redirect()->route('hukuman')->with('success', 'Data hukuman berhasil dihapus!');
     }
 
-    public function searchHukuman(Request $request)
-    {
-        $query = $request->get('query');
-        $punismen = Hukuman::where('nama_hukuman', 'LIKE', "%{$query}%")->get();
-    
-        return response()->json($punismen);
-    }
-
    
     public function search(Request $request)
     {
@@ -125,4 +120,7 @@ class ListSiswa extends Controller
         
         return view('hukuman.index', compact('punismen'), ['title' => ' Pencarian Hukuman']);
     }
+
+   
+    
 }

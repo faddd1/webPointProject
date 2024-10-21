@@ -104,6 +104,7 @@
                   <thead>
                     <tr style="background-color: #4D869C; color:#ffff;">
                       <td style="text-align: center; vertical-align: middle;" class="py-2">No</td>
+                      <td style="text-align: center; vertical-align: middle;" class="py-2">Kode</td>
                       <td style="text-align: center; vertical-align: middle;">Nama Pelanggaran</td>
                       <td style="text-align: center; vertical-align: middle;">Point</td>
                       <td style="text-align: center; vertical-align: middle;">Pasal</td>
@@ -122,7 +123,8 @@
                         @foreach ($kategoris as $no => $kategori)
                             <tr>
                                 <td style="text-align: center; vertical-align: middle;">{{$no+1}}</td>
-                                <td style="text-align: center; vertical-align: middle;">{{$kategori->pelanggaran}}</td>
+                                <td style="text-align: center; vertical-align: middle;">{{$kategori->kode}}</td>
+                                <td style=" vertical-align: middle; max-width: 200px;">{{$kategori->pelanggaran}}</td>
                                 <td style="text-align: center; vertical-align: middle;">{{$kategori->point}}</td>
                                 <td style="text-align: center; vertical-align: middle;">{{$kategori->pasal->level  ?? 'Tidak Ada Pasal'}}</td>
                                 @if (auth()->check() && auth()->user()->role == 'admin')
@@ -174,7 +176,10 @@
               </div>
             </div>
           </div>
-          <div class="card">
+        </div>
+      </div>
+    </div>
+    <div class="card">
             <div class="card-header">
              
               <div class="card-tools">
@@ -193,7 +198,10 @@
                       <tr style="background-color: #4D869C; color:#ffff;">
                         <td style="text-align: center; vertical-align: middle;">No</td>
                         <td style="text-align: center; vertical-align: middle;">Pasal</td>
-                        <td style="text-align: center; vertical-align: middle;">Action</td>
+                        <td style="text-align: center; vertical-align: middle;">Deskripsi</td>
+                        @if (auth()->check() && auth()->user()->role == 'admin')
+                          <td style="text-align: center; vertical-align: middle;">Action</td>
+                        @endif
                       </tr>
                 </thead>
                 <tbody>
@@ -201,20 +209,23 @@
                     <tr>
                       <td style="text-align: center; vertical-align: middle;">{{ $no + 1 }}</td>
                       <td style="text-align: center; vertical-align: middle;">{{ $item->level }}</td>
-                      <td style="text-align: center; vertical-align: middle;">
-                        <div class="action-buttons text-center align-middle">
-                          <button class="btn btn-sm btn-primary editPasal" data-id="{{ $item->id }}">
-                              <i class="fa-solid fa-pen-to-square"></i>
-                          </button>
-                          <form action="{{ route('kategori.destroyPasal', $item->id )}}" class="d-inline col-mb-2 deletePasal" method="POST">
-                              @csrf
-                              @method('DELETE')
-                              <button type="submit" class="btn btn-sm btn-danger">
-                                  <i class="fa-solid fa-trash"></i>
-                              </button>
-                          </form>
-                      </div>
-                      </td>
+                      <td style="text-align: center; vertical-align: middle;">{{ $item->deskripsi }}</td>
+                      @if (auth()->check() && auth()->user()->role == 'admin')
+                        <td style="text-align: center; vertical-align: middle;">
+                          <div class="action-buttons text-center align-middle">
+                            <button class="btn btn-sm btn-primary editPasal" data-id="{{ $item->id }}">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+                            <form action="{{ route('kategori.destroyPasal', $item->id )}}" class="d-inline col-mb-2 deletePasal" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
+                          </div>
+                        </td>
+                       @endif
                     </tr>
                     </tr>
                   @endforeach
@@ -226,10 +237,9 @@
               
             </div>
           </div>
-        </div>
-      </div>
-    </div>
   </div>
+
+  
 
   <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="dataModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -356,6 +366,12 @@
     });
   </script>
 
-  
+<script>
+  function test(event, formId){
+      event.target.setAttribute('disabled','disabled');
+      const a =  document.querySelector(`#${formId}`);
+      a.submit();
+  } 
+</script>
   
 </x-layout>

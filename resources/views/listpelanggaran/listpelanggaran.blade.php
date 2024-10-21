@@ -176,21 +176,6 @@
         window.location.href = "{{ url('/listpelanggaran') }}";
       }
     });
-        document.addEventListener('DOMContentLoaded', function () {
-            document.querySelectorAll('.showBtn').forEach(button => {
-                button.addEventListener('click', function () {
-                    const studentlistId = this.getAttribute('data-id');
-                    fetch(`/listpelanggaran/show/${studentlistId}`)
-                        .then(response => response.text())
-                        .then(html => {
-                            document.getElementById('modalBody').innerHTML = html;
-                            document.getElementById('dataModalLabel').innerText = 'Detail List Pelanggaran Siswa';
-                            new bootstrap.Modal(document.getElementById('dataModal')).show();
-                        })
-                        .catch(error => console.error('Error loading data:', error));
-                });
-            });
-        });
 </script>
 
 <script>

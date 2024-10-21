@@ -75,7 +75,7 @@
                                                     <td class="text-center align-middle">{{ $no + 1 }}</td>
                                                     <td class="text-center align-middle">{{ $report->pelapor->name ?? 'tidak diketahui' }}</td>
                                                     <td class="text-center align-middle">{{ $report->nama }}</td>
-                                                    <td class="text-center align-middle">{{ $report->pelanggaran }}</td>
+                                                    <td>{{ $report->pelanggaran }}</td>
                                                     <td class="text-center align-middle">{{ $report->point }}</td>
                                                     <td class="text-center align-middle text-muted text-sm">{{ $report->tanggal }},{{ $report->created_at->diffForHumans() }}</span></td>
                                                     <td class="text-center align-middle">
@@ -164,7 +164,7 @@
                     event.preventDefault();
                     Swal.fire({
                         title: 'Terima Laporan?',
-                        text: "Apakah Kamu yakin ingin menrima laporan ini?",
+                        text: "Apakah Kamu yakin ingin menerima laporan ini?",
                         icon: 'warning',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',

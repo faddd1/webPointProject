@@ -28,7 +28,7 @@
         box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
 </style>
-<div class="form-container"><form action="{{ route('Poin.store') }}" method="POST">
+<div class="form-container"><form id="form-prestasi" action="{{ route('Poin.store') }}" method="POST" >
     @csrf
     <div class="form-group">
         <label>Nama Prestasi</label>
@@ -41,13 +41,10 @@
 
     <div class="form-group">
         <label>Tingkat</label>
-        <select class="form-control" name="Tingkat" required>
-            <option value="">Pilih Level</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option> 
-        </select>
+        <div class="form-group">
+            <input type="text" class="form-control" name="Tingkat" placeholder="Tingkat yang Diberikan" required>
+        </div>
     </div>
-    <button type="submit" class="btn btn-block btn-primary-custom">Tambah</button>
+    <button type="button" class="btn btn-block btn-primary-custom" onclick="test(event, 'form-prestasi')">Tambah</button>
 </form>
 </div>

@@ -28,7 +28,7 @@ class PoinPenebusanController extends Controller
             'Tingkat'  => $request->Tingkat,
         ]);
 
-        return redirect()->back()->with('success', 'Data berhasil ditambahkan!');
+        return redirect()->back()->with('success', 'Data Prestasi berhasil ditambahkan!');
     }
 
     public function create (){
@@ -57,14 +57,14 @@ class PoinPenebusanController extends Controller
             'Tingkat'  => $request->Tingkat,
         ]);
 
-        return redirect()->back()->with('success', 'Data berhasil diubah!');
+        return redirect()->back()->with('success', 'Data Prestasi berhasil diubah!');
     }
 
     public function destroy($id)
     {
         $prestasi = PoinPenebusan::find($id); 
         $prestasi->delete(); 
-        return redirect()->back()->with('success', 'Data berhasil dihapus!');
+        return redirect()->back()->with('success', 'Data Prestasi berhasil dihapus!');
     }
 
 

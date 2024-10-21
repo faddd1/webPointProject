@@ -16,11 +16,11 @@
                   <div class="card">
                       <div class="card-header">
                           <div class="card-tools">
-                              {{-- @if (auth()->user()->role == 'admin') --}}
+                              @if (auth()->user()->role == 'admin')
                                   <button class="btn btn-sm" style="background-color:#245c70; color:#ffff; margin-top: 5px; margin-right: 10px;" id="tambahHukuman">
                                       <i class="fa-solid fa-circle-plus"></i> <span class="d-none d-sm-inline">Tambah</span>
                                   </button>
-                              {{-- @endif --}}
+                               @endif 
                           </div>
                           <form action="{{ route('hukuman.search') }}" class="form-inline" method="GET">
                               <div class="card-item d-flex">
@@ -90,17 +90,18 @@
                                           <td style="text-align: center; vertical-align: middle;" class="py-2">No</td>
                                           <td style="text-align: center; vertical-align: middle;">Nama Hukuman</td>
                                           <td style="text-align: center; vertical-align: middle;">Poin</td>
-                                          {{-- @if (auth()->check() && auth()->user()->role == 'admin') --}}
+                                          @if (auth()->check() && auth()->user()->role == 'admin')
                                               <td style="text-align: center; vertical-align: middle;">Aksi</td>
-                                          {{-- @endif --}}
+                                          @endif
                                       </tr>
                                   </thead>
                                   <tbody>
                                       @foreach ($punismen as $no => $item)
                                           <tr>
                                               <td style="text-align: center; vertical-align: middle;">{{$no+1}}</td>
-                                              <td style="text-align: center; vertical-align: middle;">{{$item->nama_hukuman}}</td>
+                                              <td style="vertical-align: middle; max-width: 150px;">{{$item->nama_hukuman}}</td>
                                               <td style="text-align: center; vertical-align: middle;">({{$item->pointAwal}}) Sampai ({{ $item->pointAkhir }})</td>
+                                              @if (auth()->check() && auth()->user()->role == 'admin')
                                               <td style="text-align: center; vertical-align: middle;">
                                                 <div class="action-buttons text-center align-middle">
                                                     <button class="btn btn-sm btn-primary editBtn" data-id="{{ $item->id }}">
@@ -115,6 +116,7 @@
                                                     </form>
                                                 </div>
                                             </td>
+                                            @endif
                                           </tr>
                                       @endforeach
                                   </tbody>
@@ -222,4 +224,12 @@
          });
       </script>
   </div>
+
+  <script>
+    function test(event, formId){
+        event.target.setAttribute('disabled','disabled');
+        const a =  document.querySelector(`#${formId}`);
+        a.submit();
+    } 
+</script>
 </x-layout>
