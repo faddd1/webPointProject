@@ -110,14 +110,23 @@ class KategoriController extends Controller
         $pasal = Pasal::get();
         $searchTerm = $request->input('search');
         
-      
         $kategoris = Kategori::where('pelanggaran', 'LIKE', "%{$searchTerm}%")
-                    ->orWhere('kode', 'LIKE', "%{$searchTerm}%")
-                    ->orWhere('point', 'LIKE', "%{$searchTerm}%")
-                    ->orWhere('level', 'LIKE', "%{$searchTerm}%")
-                    ->paginate(4);
+                        ->orWhere('point', 'LIKE', "%{$searchTerm}%")
+                        ->orWhereHas('pasal', function($query) use ($searchTerm) {
+                            $query->where('level', 'LIKE', "%{$searchTerm}%");
+                        })
+                        ->paginate(5)
+                        ->appends(['search' => $searchTerm]); 
+    
         
-        return view('kategori.kategoripelanggaran', compact('kategoris', 'pasal'), ['title' => 'Kategori Pelanggaran']);
+        $pasal = Pasal::where('level', 'LIKE', "%{$searchTerm}%")
+                        ->paginate(5)
+                        ->appends(['search' => $searchTerm]); 
+        
+        return view('kategori.kategoripelanggaran', compact('kategoris', 'pasal', 'searchTerm'), [
+            'title' => 'Search Kategori Pelanggaran'
+        ]);
     }
+    
 
 }

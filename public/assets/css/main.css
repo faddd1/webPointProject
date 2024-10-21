@@ -276,7 +276,7 @@ h6 {
     display: block;
     position: absolute;
     visibility: hidden;
-    left: -85px;
+    left: -10px;
     top: 100%;
     opacity: 0;
     transition: 0.3s;
@@ -286,7 +286,7 @@ h6 {
   }
 
   .navmenu .dropdown ul li {
-    min-width: 200px;
+    min-width: 70px;
   }
 
   .navmenu .dropdown ul a {

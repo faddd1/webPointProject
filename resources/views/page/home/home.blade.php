@@ -56,56 +56,36 @@
                     <li><a href="#team">Tim</a></li>
                 @endif
                 <li><a href="#contact">Kontak</a></li>
-                {{-- @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'  || auth()->user()->role == 'siswa'  || auth()->user()->role == 'petugas'))
-                <li>  
-                    <a href=" 
-                        @if(auth()->user()->role == 'admin')
-                            /dashboard/admin
-                        @elseif(auth()->user()->role == 'guru')
-                            /dashboard/guru
-                        @elseif(auth()->user()->role == 'petugas')
-                            /dashboard/petugas
-                        @elseif(auth()->user()->role == 'siswa')
-                            /dashboard/siswa
-                        @endif" class="active">
-                       
-                        Dashboard
-                    </a>
-                </li>
-            @endif --}}
-
-                     @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'  || auth()->user()->role == 'siswa'  || auth()->user()->role == 'petugas'))
-                     <li class="nav-item dropdown">
+                @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'  || auth()->user()->role == 'siswa'  || auth()->user()->role == 'petugas'))
+                    <li class="nav-item dropdown">
                         <!-- Menampilkan nama pengguna dan dropdown untuk opsi tambahan -->
-                        <a href="#" class="nav-link dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {{ Auth::user()->name }}
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                            <li>
-                                <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
-                            </li>
-                            <li>  
-                                <a class="dropdown-item" href="
-                                    @if(auth()->user()->role == 'admin')
-                                        /dashboard/admin
-                                    @elseif(auth()->user()->role == 'guru')
-                                        /dashboard/guru
-                                    @elseif(auth()->user()->role == 'petugas')
-                                        /dashboard/petugas
-                                    @elseif(auth()->user()->role == 'siswa')
-                                        /dashboard/siswa
-                                    @endif">
-                                    Dashboard
-                                </a>
-                            </li>
-                        </ul>
+                            <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
+                                </li>
+                                <li>  
+                                    <a class="dropdown-item" href=" 
+                                        @if(auth()->user()->role == 'admin')
+                                            /dashboard/admin
+                                        @elseif(auth()->user()->role == 'guru')
+                                            /dashboard/guru
+                                        @elseif(auth()->user()->role == 'petugas')
+                                            /dashboard/petugas
+                                        @elseif(auth()->user()->role == 'siswa')
+                                            /dashboard/siswa
+                                        @endif" class="active">
+                                            Dashboard
+                                    </a>
+                                </li>
+                            </ul>
                     </li>
-                    
-            
-                    @endif 
+                @endif 
 
 
                     @guest
@@ -485,6 +465,8 @@
    
     <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
     <div id="preloader"></div>
+    <script src="{{ asset('https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js') }}"></script>
+    <script src="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
     <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
@@ -492,10 +474,6 @@
     <script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
     <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
-
 
 </body>
 

@@ -240,4 +240,11 @@
 
 
 @include('tambahUserSiswa.confiruserjs')
+<script>
+        document.getElementById('search-input').addEventListener('input', function() {
+            if (this.value === '') {
+                window.location.href = "{{ url('/tambahSiswa') }}";
+            }
+            });
+</script>
 </x-layout>

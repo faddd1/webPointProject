@@ -106,10 +106,12 @@ class PetugasController extends Controller
                     ->orWhere('kelas', 'LIKE', "%{$searchTerm}%")
                     ->orWhere('jurusan', 'LIKE', "%{$searchTerm}%")
                     ->orWhere('namao', 'LIKE', "%{$searchTerm}%")
-                    ->paginate();
+                    ->paginate(5)
+                    ->appends(['search' => $searchTerm]); 
+
                     
         return view('petugas.petug', compact('petugas'), [
-            'title'=>'Data Petugas'
+            'title'=>'Search Data Petugas'
 
         ]);
     }

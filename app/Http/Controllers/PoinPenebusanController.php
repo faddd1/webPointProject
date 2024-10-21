@@ -76,8 +76,10 @@ class PoinPenebusanController extends Controller
         $prestasi = PoinPenebusan::where('nama_prestasi', 'LIKE', "%{$searchTerm}%")
                     ->orWhere('point', 'LIKE', "%{$searchTerm}%")
                     ->orWhere('tingkat', 'LIKE', "%{$searchTerm}%")
-                    ->paginate(4);
+                    ->paginate(4)
+                    ->appends(['search' => $searchTerm]); 
+
         
-        return view('poinPenebusan.index', compact('prestasi'), ['title' => 'Poin Restorasi']);
+        return view('poinPenebusan.index', compact('prestasi'), ['title' => 'Search Kategori Prestasi']);
     }
 }

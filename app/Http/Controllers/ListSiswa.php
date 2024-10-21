@@ -116,9 +116,10 @@ class ListSiswa extends Controller
         
       
         $punismen = Hukuman::where('nama_hukuman', 'LIKE', "%{$searchTerm}%")
-                    ->paginate(4);
+                    ->paginate(4)
+                    ->appends(['search' => $searchTerm]); 
         
-        return view('hukuman.index', compact('punismen'), ['title' => ' Pencarian Hukuman']);
+        return view('hukuman.index', compact('punismen'), ['title' => ' Search Hukuman']);
     }
 
    

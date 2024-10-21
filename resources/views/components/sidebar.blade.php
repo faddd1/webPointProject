@@ -106,7 +106,7 @@
                 </li>
   
                 @if(auth()->check() && in_array($role, ['admin', 'guru', 'petugas']))
-                    <li class="nav-item has-treeview {{ request()->is('listpelanggaran', 'kategoripelanggaran','hukuman', 'tatatertib') ? 'menu-open' : '' }}">
+                    <li class="nav-item has-treeview {{ request()->is('listpelanggaran', 'kategoripelanggaran','hukuman', 'tatatertib','kategoripelanggaran/search/kategori', 'kategoripelanggaran/search', 'hukuman/search') ? 'menu-open' : '' }}">
                         <a href="#" class="nav-link">
                           <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16"><path fill="currentColor" d="M8 1.5a.5.5 0 0 1 .5-.5A6.5 6.5 0 0 1 15 7.5a.5.5 0 0 1-.5.5h-6a.5.5 0 0 1-.5-.5zM7 3.522a.5.5 0 0 0-.545-.498a6 6 0 1 0 6.52 6.52a.5.5 0 0 0-.497-.544H7z" style="color: #000; text-decoration: none;" onmouseover="this.style.color='#96B6C5'" onmouseout="this.style.color='#000'"/></svg>
                 
@@ -123,14 +123,14 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="/kategoripelanggaran" class="nav-link {{ request()->is('kategoripelanggaran') ? 'active' : '' }}">
+                                <a href="/kategoripelanggaran" class="nav-link {{ request()->is('kategoripelanggaran', 'kategoripelanggaran/search/kategori', 'kategoripelanggaran/search') ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon" style="color: #000; text-decoration: none;" onmouseover="this.style.color='#96B6C5'" onmouseout="this.style.color='#000'"></i>
                                     <p style="color: #000; text-decoration: none;" onmouseover="this.style.color='#000'" onmouseout="this.style.color='#000'">Kategori Pelanggaran</p>
                                 </a>
                             </li>
                             @if(auth()->check() && in_array($role, ['admin', 'guru']))
                                 <li class="nav-item">
-                                    <a href="/hukuman" class="nav-link {{ request()->is('hukuman') ? 'active' : '' }}" >
+                                    <a href="/hukuman" class="nav-link {{ request()->is('hukuman', 'hukuman/search') ? 'active' : '' }}" >
                                         <i class="far fa-circle nav-icon" style="color: #000; text-decoration: none;" onmouseover="this.style.color='#96B6C5'" onmouseout="this.style.color='#000'"></i>
                                         <p style="color: #000; text-decoration: none;" onmouseover="this.style.color='#000'" onmouseout="this.style.color='#000'">Kategori Hukuman</p>
                                     </a>
@@ -151,7 +151,7 @@
                 @endif
               
                     @if(auth()->check() && in_array($role, ['admin', 'guru',]))
-                        <li class="nav-item has-treeview {{ request()->is('listprestasi', 'PoinPenebusan') ? 'menu-open' : '' }}">
+                        <li class="nav-item has-treeview {{ request()->is('listprestasi', 'PoinPenebusan', 'listprestasi/search') ? 'menu-open' : '' }}">
                             <a href="#" class="nav-link">
                                 <i class="fa-solid fa-medal" style="color: #000; text-decoration: none; font-size: 17px; margin-right: 2px;"></i>
                                 <p style="color: #000; text-decoration: none;" onmouseover="this.style.color='#000'" onmouseout="this.style.color='#000'">
@@ -167,7 +167,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/PoinPenebusan" class="nav-link {{ request()->is('PoinPenebusan') ? 'active' : '' }}" >
+                                    <a href="/PoinPenebusan" class="nav-link {{ request()->is('PoinPenebusan', 'listprestasi/search') ? 'active' : '' }}" >
                                         <i class="far fa-circle nav-icon" style="color: #000; text-decoration: none;" onmouseover="this.style.color='#96B6C5'" onmouseout="this.style.color='#000'"></i>
                                         <p style="color: #000; text-decoration: none;" onmouseover="this.style.color='#000'" onmouseout="this.style.color='#000'">Kategori Prestasi</p>
                                     </a>
@@ -186,7 +186,7 @@
                 @endif
   
                 @if(auth()->check() && in_array($role, ['admin', 'guru']))
-                    <li class="nav-item has-treeview {{ request()->is('datasiswa', 'teacher', 'datapetugas') ? 'menu-open' : '' }}">
+                    <li class="nav-item has-treeview {{ request()->is('datasiswa', 'teacher', 'datapetugas','teacher/search', 'datapetugas/search', 'datasiswa/search','student/searchSiswa') ? 'menu-open' : '' }}">
                       <a href="#" class="nav-link">
                           <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24"><path fill="currentColor" d="M16 17v2H2v-2s0-4 7-4s7 4 7 4m-3.5-9.5A3.5 3.5 0 1 0 9 11a3.5 3.5 0 0 0 3.5-3.5m3.44 5.5A5.32 5.32 0 0 1 18 17v2h4v-2s0-3.63-6.06-4M15 4a3.4 3.4 0 0 0-1.93.59a5 5 0 0 1 0 5.82A3.4 3.4 0 0 0 15 11a3.5 3.5 0 0 0 0-7" style="color: #000; text-decoration: none;" onmouseover="this.style.color='#96B6C5'" onmouseout="this.style.color='#000'"/></svg>
                             <p style="color: #000; text-decoration: none;" onmouseover="this.style.color='#000'" onmouseout="this.style.color='#000'">
@@ -196,7 +196,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{ url('/datasiswa') }}" class="nav-link {{ request()->is('datasiswa') ? 'active' : '' }}">
+                                <a href="{{ url('/datasiswa') }}" class="nav-link {{ request()->is('datasiswa', 'datasiswa/search', 'student/searchSiswa') ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon" style="color: #000; text-decoration: none;" onmouseover="this.style.color='#96B6C5'" onmouseout="this.style.color='#000'"></i>
                                     <p style="color: #000; text-decoration: none;" onmouseover="this.style.color='#000'" onmouseout="this.style.color='#000'">Data Siswa</p>
                                 </a>
@@ -204,7 +204,7 @@
                         </ul>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{ url('/teacher') }}" class="nav-link {{ request()->is('teacher') ? 'active' : '' }}">
+                                <a href="{{ url('/teacher') }}" class="nav-link {{ request()->is('teacher','teacher/search') ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon" style="color: #000; text-decoration: none;" onmouseover="this.style.color='#96B6C5'" onmouseout="this.style.color='#000'"></i>
                                     <p style="color: #000; text-decoration: none;" onmouseover="this.style.color='#000'" onmouseout="this.style.color='#000'">Data Guru</p>
                                 </a>
@@ -212,7 +212,7 @@
                         </ul>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{ url('datapetugas') }}" class="nav-link {{ request()->is('datapetugas') ? 'active' : '' }}">
+                                <a href="{{ url('datapetugas') }}" class="nav-link {{ request()->is('datapetugas', 'datapetugas/search') ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon" style="color: #000; text-decoration: none;" onmouseover="this.style.color='#96B6C5'" onmouseout="this.style.color='#000'"></i>
                                     <p style="color: #000; text-decoration: none;" onmouseover="this.style.color='#000'" onmouseout="this.style.color='#000'">Data Petugas</p>
                                 </a>
@@ -295,7 +295,7 @@
                     </li>
                 @endif
                     @if(auth()->check() && in_array($role, ['admin']))
-                        <li class="nav-item has-treeview {{ request()->is('tambahSiswa', 'tambahGuru', 'tambahPetugas', 'tambah') ? 'menu-open' : '' }}">
+                        <li class="nav-item has-treeview {{ request()->is('tambahSiswa', 'tambahGuru', 'tambahPetugas', 'tambah','tambahAdmin/search', 'tambahPetugas/search', 'tambahSiswa/search', 'tambahGuru/search') ? 'menu-open' : '' }}">
                             <a href="#" class="nav-link">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M15 14c-2.67 0-8 1.33-8 4v2h16v-2c0-2.67-5.33-4-8-4m-9-4V7H4v3H1v2h3v3h2v-3h3v-2m6 2a4 4 0 0 0 4-4a4 4 0 0 0-4-4a4 4 0 0 0-4 4a4 4 0 0 0 4 4" style="color: #000; text-decoration: none;"/></svg>
                                 <p style="color: #000; text-decoration: none;" onmouseover="this.style.color='#000'" onmouseout="this.style.color='#000'">
@@ -305,7 +305,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ url('/tambahSiswa') }}" class="nav-link  {{ request()->is('tambahSiswa') ? 'active' : '' }}">
+                                    <a href="{{ url('/tambahSiswa') }}" class="nav-link  {{ request()->is('tambahSiswa','tambahSiswa/search') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon" style="color: #000; text-decoration: none;" onmouseover="this.style.color='#96B6C5'" onmouseout="this.style.color='#000'"></i>
                                         <p style="color: #000; text-decoration: none;" onmouseover="this.style.color='#000'" onmouseout="this.style.color='#000'">Akun Siswa</p>
                                     </a>
@@ -313,7 +313,7 @@
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ url('/tambahGuru') }}" class="nav-link  {{ request()->is('tambahGuru') ? 'active' : '' }}">
+                                    <a href="{{ url('/tambahGuru') }}" class="nav-link  {{ request()->is('tambahGuru','tambahGuru/search') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon" style="color: #000; text-decoration: none;" onmouseover="this.style.color='#96B6C5'" onmouseout="this.style.color='#000'"></i>
                                         <p style="color: #000; text-decoration: none;" onmouseover="this.style.color='#000'" onmouseout="this.style.color='#000'">Akun Guru</p>
                                     </a>
@@ -321,7 +321,7 @@
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ url('/tambahPetugas') }}" class="nav-link  {{ request()->is('tambahPetugas') ? 'active' : '' }}">
+                                    <a href="{{ url('/tambahPetugas') }}" class="nav-link  {{ request()->is('tambahPetugas','tambahPetugas/search') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon" style="color: #000; text-decoration: none;" onmouseover="this.style.color='#96B6C5'" onmouseout="this.style.color='#000'"></i>
                                         <p style="color: #000; text-decoration: none;" onmouseover="this.style.color='#000'" onmouseout="this.style.color='#000'">Akun Petugas</p>
                                     </a>
@@ -330,7 +330,7 @@
 
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ url('/tambah') }}" class="nav-link  {{ request()->is('tambah') ? 'active' : '' }}">
+                                    <a href="{{ url('/tambah') }}" class="nav-link  {{ request()->is('tambah','tambahAdmin/search') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon" style="color: #000; text-decoration: none;" onmouseover="this.style.color='#96B6C5'" onmouseout="this.style.color='#000'"></i>
                                         <p style="color: #000; text-decoration: none;" onmouseover="this.style.color='#000'" onmouseout="this.style.color='#000'">Akun Admin</p>
                                     </a>

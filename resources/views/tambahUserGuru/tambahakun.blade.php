@@ -239,6 +239,12 @@
     </div>
 
 
-
+<script>
+    document.getElementById('search-input').addEventListener('input', function() {
+            if (this.value === '') {
+                window.location.href = "{{ url('/tambahGuru') }}";
+            }
+            });
+</script>
 @include('tambahUserGuru.confiruserjs')
 </x-layout>

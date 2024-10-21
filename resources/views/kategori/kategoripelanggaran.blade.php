@@ -35,7 +35,7 @@
               <form action="/kategoripelanggaran/search" class="form-inline" method="GET">
                 <div class="card-item d-flex">
                     <div class="input-group">
-                        <input type="search" class="form-control" name="search" placeholder="Cari" value="{{ request()->input('search') }}" id="search-input">
+                        <input type="search" class="form-control" name="search" placeholder="Cari" value="{{ request()->input('search') }}"  id="search-input">
                         <div class="input-group-append">
                             <button type="submit" class="btn" style="background-color: #266278; color: #fff;">
                                 <i class="fa-solid fa-magnifying-glass"></i> <!-- Search icon -->
