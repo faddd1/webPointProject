@@ -46,7 +46,7 @@
                         <i class="fas fa-user"></i> Cari Siswa
                     </button>
                     <button class="btn btn-outline-light" onclick="showSearchAlert('penebusan')">
-                        <i class="fas fa-search"></i> Cari Penebusan
+                        <i class="fas fa-search"></i> Cari Prestasi
                     </button>
                 </div>
             </div>

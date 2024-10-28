@@ -36,7 +36,10 @@
             <label>Nama Pasal</label>
             <input type="text" class="form-control" name="level" placeholder="Nama Pasal" required>
         </div>
-
+        <div class="form-group">
+            <label>Jenis Pasal</label>
+            <input type="text" class="form-control" name="jenis" placeholder="Jenis Pasal" required>
+        </div>
         <div class="form-group">
             <label>Deskripsi</label>
             <input type="text" class="form-control" name="deskripsi" placeholder="Deskripsi" required>

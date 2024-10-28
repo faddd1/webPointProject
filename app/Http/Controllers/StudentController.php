@@ -36,7 +36,7 @@ class StudentController extends Controller
         $pelanggaranPerHari = Laporan::select(DB::raw('DATE(created_at) as tanggal'), DB::raw('COUNT(*) as total'))
         ->where('status', 'Diterima')
         ->groupBy(DB::raw('DATE(created_at)'))
-        ->paginate(8);
+        ->paginate(10);
 
 
         
@@ -212,7 +212,7 @@ public function destroy(Student $studentItem, $id)
         $jurusan = $request->query('jurusan');
         $kelas = $request->query('kelas');
 
-        $siswa = Siswa::where('nama', 'like', "%{$query}%")
+        $siswa = Student::where('nama', 'like', "%{$query}%")
             ->when($jurusan, function ($q) use ($jurusan) {
                 return $q->where('jurusan', $jurusan);
             })

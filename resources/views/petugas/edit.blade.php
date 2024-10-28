@@ -91,5 +91,5 @@
           <option value="PKS" {{ $petugas->namao == 'PKS' ? 'selected' : '' }}>PKS</option>
         </select>
     </div>
-    <button type="submit" class="btn btn-primary-custom btn-block">Perbarui</button>
+    <button type="submit" class="btn btn-primary-custom btn-block">Simpan</button>
 </form>

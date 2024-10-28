@@ -80,14 +80,14 @@
                                 <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                                     <thead>
                                         <tr style="background-color: #4D869C; color:#ffff;">
-                                            <th class="text-center align-middle">No</th>
-                                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Pelapor</th>
-                                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama</th>
-                                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Pelanggaran</th>
-                                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Jumlah Point</th>
-                                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Tanggal</th>
-                                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Bukti</th>
-                                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Status</th>
+                                            <td class="text-center align-middle">No</td>
+                                            <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Pelapor</td>
+                                            <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama</td>
+                                            <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Pelanggaran</td>
+                                            <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Jumlah Point</td>
+                                            <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Tanggal</td>
+                                            <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Bukti</td>
+                                            <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Status</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -140,8 +140,7 @@
                                         @endif
                                     </tbody>                                
                                 </table>
-                            </div>
-                        
+                            </div>   
                         </div>
                         <style>
                             .pagination .page-link {
@@ -173,9 +172,9 @@
                                     <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                                         <thead>
                                             <tr style="background-color: #4D869C; color:#ffff;">
-                                                <th class="text-center align-middle">No</th>
-                                                <th class="text-center align-middle">Tanggal</th>
-                                                <th class="text-center align-middle">Jumlah</th>
+                                                <td class="text-center align-middle">No</td>
+                                                <td class="text-center align-middle">Tanggal</td>
+                                                <td class="text-center align-middle">Jumlah</td>
                                             </tr>
                                         </thead>
                                         <tbody>

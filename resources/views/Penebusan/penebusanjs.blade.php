@@ -1,4 +1,5 @@
 <style>
+
     .table-responsive {
         display: block;
         width: 100%;
@@ -31,9 +32,12 @@
     }
 
     
+    
     #confirm-selection-btn {
         width: 100%;
         margin-top: 10px;
+        background-color: #266278;
+        color: white; 
     }
 
    
@@ -44,8 +48,12 @@
         border: none;
     }
 
+    .btn-custom-grey{
+    background-color: !important; /* Warna abu-abu */
+    color: white !important;
+    border: none;
+    }
 </style>
-
 <script>
     function showSearchAlert(type) {
         let placeholderText = '';
@@ -55,7 +63,7 @@
             placeholderText = 'Nama Siswa';
             searchUrl = '{{ route("siswa.search") }}';
         } else if (type === 'penebusan') {
-            placeholderText = 'Jenis Penebusan';
+            placeholderText = 'Jenis Prestasi';
             searchUrl = '{{ route("penebusan.search") }}';
         }
 
@@ -64,7 +72,11 @@
             html: generateSearchHtml(type),
             showCancelButton: true,
             confirmButtonText: 'Cari',
-            showLoaderOnConfirm: false, 
+            showLoaderOnConfirm: false,
+            customClass: {
+            confirmButton: 'btn-custom',
+            cancelButton: 'btn-custom-p'
+        },
             preConfirm: () => {
                 const searchValue = document.getElementById('search-input').value;
                 const jurusan = document.getElementById('jurusan-select') ? document.getElementById('jurusan-select').value : '';
@@ -106,7 +118,7 @@
         }).then((result) => {
             if (result.isConfirmed && result.value.htmlContent) {
                 Swal.fire({
-                    title: `Pilih ${type === 'siswa' ? 'Siswa' : 'Penebusan'}`,
+                    title: `Pilih ${type === 'siswa' ? 'Siswa' : 'Prestasi'}`,
                     html: result.value.htmlContent, 
                             showConfirmButton: false,
                             width: '50%', 
@@ -146,7 +158,7 @@
     function generateSearchHtml(type) {
         let html = `
             <div class="form-group">
-                <input id="search-input" type="text" class="form-control" placeholder="Masukkan ${type === 'siswa' ? 'Nama Siswa' : 'Jenis Penebusan'}">
+                <input id="search-input" type="text" class="form-control" placeholder="Masukkan ${type === 'siswa' ? 'Nama Siswa' : 'Jenis Prestasi'}">
             </div>
         `;
 
@@ -227,7 +239,7 @@
                         <thead class="table-light">
                             <tr>
                                 <th><i class="fas fa-check-square"></i></th>
-                                <th>Penebusan</th>
+                                <th>Prestasi</th>
                                 <th>Poin</th>
                                 <th>Level</th>                                        
                             </tr>
@@ -251,7 +263,7 @@
                     </tbody>
                 </table>
             </div>
-            <button id="confirm-selection-btn" class="btn btn-primary mt-3">
+            <button id="confirm-selection-btn" class="btn btn-custom mt-3">
                 <i class="fas fa-check"></i> Konfirmasi Pilihan
             </button>
         `;

@@ -35,15 +35,22 @@
         <input type="text" class="form-control" name="nama_Prestasi" placeholder="Nama Prestasi" required>
     </div>
     <div class="form-group">
-        <label>Point yang Diberikan</label>
+        <label>Poin yang Diberikan</label>
         <input type="text" class="form-control" name="point" placeholder="Point yang Diberikan" required>
     </div>
 
     <div class="form-group">
         <label>Tingkat</label>
-        <div class="form-group">
-            <input type="text" class="form-control" name="Tingkat" placeholder="Tingkat yang Diberikan" required>
-        </div>
+        <select class="form-control" name="Tingkat" required>
+            <option value="">Pilih Tingkat</option>
+            <option value="Kelas">Kelas</option>
+            <option value="Sekolah">Sekolah</option>
+            <option value="Sekolah">Kecamatan</option>
+            <option value="Kabupaten">Kabupaten</option> 
+            <option value="Wilayah">Wilayah</option> 
+            <option value="Provinsi">Provinsi</option> 
+            <option value="Nasional">Nasional</option> 
+        </select>
     </div>
     <button type="button" class="btn btn-block btn-primary-custom" onclick="test(event, 'form-prestasi')">Tambah</button>
 </form>

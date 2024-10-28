@@ -34,6 +34,8 @@
     #confirm-selection-btn {
         width: 100%;
         margin-top: 10px;
+        background-color: #266278;
+        color: white; 
     }
 
    

@@ -20,7 +20,7 @@ class PenebusanController extends Controller
 
         return view('penebusan.penebusan', [
             'penebusan' => $penebusan,
-            'title' => 'Restorasi'
+            'title' => 'Pemulihan Point'
         ]);
     }
 
@@ -59,10 +59,10 @@ class PenebusanController extends Controller
             $penebusan->status = 'pending';
             $penebusan->save();
     
-            return redirect()->back()->with('success', 'Penebusan berhasil disimpan, menunggu verifikasi.');
+            return redirect()->back()->with('success', 'Pemulihan point berhasil disimpan, menunggu verifikasi.');
         } catch (\Exception $e) {
-            Log::error('Gagal menyimpan penebusan: ' . $e->getMessage());
-            return redirect()->back()->with('error', 'Terjadi kesalahan saat menyimpan penebusan.');
+            Log::error('Gagal menyimpan Pemulihan point: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat menyimpan Pemulihan point .');
         }
     }
     
@@ -81,7 +81,7 @@ class PenebusanController extends Controller
             ->orderBy('created_at', 'desc') 
             ->get();
     
-        return view('penebusan.review', compact('penebusan'), ['title' => 'Review Restorasi']);
+        return view('penebusan.review', compact('penebusan'), ['title' => 'Review Pemulihan']);
     }
     
     public function terimapenebusan($id)
@@ -89,7 +89,7 @@ class PenebusanController extends Controller
         $penebusan = Penebusan::find($id);
 
         if (!$penebusan) {
-            return redirect()->route('penebusan.review')->with('error', 'Penebusan tidak ditemukan.');
+            return redirect()->route('penebusan.review')->with('error', 'Pemulihan point tidak ditemukan.');
         }
 
     
@@ -106,7 +106,7 @@ class PenebusanController extends Controller
             $siswa->save();
         }
 
-        return redirect()->route('penebusan.review')->with('success', 'Penebusan berhasil disetujui.');
+        return redirect()->route('penebusan.review')->with('success', 'Pemulihan point berhasil disetujui.');
     }
 
     public function tolakpenebusan($id)
@@ -114,13 +114,13 @@ class PenebusanController extends Controller
         $penebusan = Penebusan::find($id);
 
         if (!$penebusan) {
-            return redirect()->route('penebusan.review')->with('error', 'Penebusan tidak ditemukan.');
+            return redirect()->route('penebusan.review')->with('error', 'Pemulihan point tidak ditemukan.');
         }
 
         $penebusan->status = 'penebusan Tidak Valid';
         $penebusan->save();
 
-        return redirect()->route('penebusan.review')->with('success', 'Penebusan telah ditolak dan dimasukkan ke daftar pelanggaran.');
+        return redirect()->route('penebusan.review')->with('success', 'Pemulihan point telah ditolak dan dimasukkan ke daftar pelanggaran.');
     }
 
     

@@ -17,7 +17,7 @@
                
                 document.getElementById('modalBody').innerHTML = html;
                 
-                document.getElementById('dataModalLabel').innerText = 'Tambah Akun Admin';
+                document.getElementById('dataModalLabel').innerText = 'Tambah Akun Petugas';
                
                 const dataModal = new bootstrap.Modal(document.getElementById('dataModal'));
                 dataModal.show();
@@ -31,7 +31,7 @@
                     .then(response => response.text())
                     .then(html => {
                         document.getElementById('modalBody').innerHTML = html;
-                        document.getElementById('dataModalLabel').innerText = 'Edit Akun Admin';
+                        document.getElementById('dataModalLabel').innerText = 'Edit Akun Petugas';
                         const dataModal = new bootstrap.Modal(document.getElementById('dataModal'));
                         dataModal.show();
                     })

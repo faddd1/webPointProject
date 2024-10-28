@@ -19,7 +19,7 @@
               <div class="card-tools">
                 @if (auth()->user()->role == 'admin')
                   <button class="btn btn-sm" style="background-color:#245c70; color:#ffff; margin-top: 5px; margin-right: 10px;" id="tambahDataBtnn">
-                     <i class="fa-solid fa-circle-plus"></i> <span class="d-none d-sm-inline">Add</span>
+                     <i class="fa-solid fa-circle-plus"></i> <span class="d-none d-sm-inline">Tambah</span>
                   </button>
                 @endif
               </div>
@@ -95,12 +95,12 @@
                   <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                     <thead>
                       <tr style="background-color: #4D869C; color:#ffff;">
-                        <th style="text-align: center; vertical-align: middle; white-space: nowrap;">No</th>
-                        <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Prestasi</th>
-                        <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Poin</th>
-                        <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Tingkat</th>
+                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">No</td>
+                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Prestasi</td>
+                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Poin</td>
+                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Tingkat</td>
                         @if (auth()->check() && auth()->user()->role == 'admin')
-                          <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Action</th>
+                          <td style="text-align: center; vertical-align: middle;">Aksi</td>
                         @endif
                       </tr>
                     </thead>

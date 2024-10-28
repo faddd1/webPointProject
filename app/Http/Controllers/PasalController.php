@@ -20,11 +20,13 @@ class PasalController extends Controller
         
         $request->validate([
             'level' => 'required',
+            'jenis' => 'required',
             'deskripsi' => 'required'
         ]);
 
         Pasal::create([
             'level' => $request->level,
+            'jenis' => $request->jenis,
             'deskripsi' => $request->deskripsi
         ]);
 
@@ -42,11 +44,13 @@ class PasalController extends Controller
     public function updatePasal(Request $request,$id){
         $request->validate([
             'level' => 'required',
+            'jenis' => 'required',
             'deskripsi' => 'required'
         ]);
         $pasal = Pasal::find($id);
         $pasal->update([
             'level' => $request->level,
+            'jenis' => $request->jenis,
             'deskripsi' => $request->deskripsi
         ]);
 

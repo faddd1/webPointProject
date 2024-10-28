@@ -107,7 +107,7 @@
                             <div class="card-tools">
                                 @if (auth()->user()->role == 'admin')
                                 <button class="btn btn-sm" style="margin-top: 1px; background-color:#245c70; color:#ffff; margin-right: 10px;" id="tambahDataBtn">
-                                    <i class="fa-solid fa-circle-plus"></i> <span class="d-none d-sm-inline">Add</span>
+                                    <i class="fa-solid fa-circle-plus"></i> <span class="d-none d-sm-inline">Tambah</span>
                                 </button>
                                 @endif
                             </div>
@@ -132,15 +132,15 @@
                               <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px;  border-radius: 5px 5px 0 0; overflow: hidden;">
                                   <thead>
                                       <tr style="background-color: #4D869C; color:#ffff;">
-                                          <th style="text-align: center; vertical-align: middle;" class="py-2">No</th>
-                                          <th style="text-align: center; vertical-align: middle; white-space: nowrap;">NIS</th>
-                                          <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama</th>
-                                          <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Kelas</th>
-                                          <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Jenis Kelamin</th>
-                                          <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Jurusan</th>
-                                          <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Organisasi</th>
+                                          <td style="text-align: center; vertical-align: middle;" class="py-2">No</td>
+                                          <td style="text-align: center; vertical-align: middle; white-space: nowrap;">NIS</td>
+                                          <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama</td>
+                                          <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Kelas</td>
+                                          <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Jenis Kelamin</td>
+                                          <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Jurusan</td>
+                                          <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Organisasi</td>
                                           @if (auth()->user()->role == 'admin')
-                                          <th style="text-align: center; vertical-align: middle;">Action</th>
+                                            <td style="text-align: center; vertical-align: middle;">Aksi</td>
                                           @endif
                                       </tr>
                                   </thead>

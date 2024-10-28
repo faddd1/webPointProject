@@ -159,7 +159,7 @@
                             @if (auth()->user()->role == 'admin')
                                 <div class="card-tools">
                                     <button id="tambahDataBtn" class="btn btn-sm" style="margin-top: 10px; background-color:#245c70; color:#ffff;">
-                                        <i class="fa-solid fa-circle-plus"></i> <span class="d-none d-sm-inline">Add</span>
+                                        <i class="fa-solid fa-circle-plus"></i> <span class="d-none d-sm-inline">Tambah</span>
                                     </button>
                                 </div>
                             @endif
@@ -211,20 +211,19 @@
                                 </div>
                             </form>
                         </div>
-                        
                             <div class="card-body">
 
                                 <div class="table-responsive">
                                     <table class="table table-hover table-bordered table-sm" style="background-color: #fff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;" id="studentTable">
                                         <thead>
                                             <tr style="background-color: #4D869C; color: #fff;">
-                                                <th style="text-align: center; vertical-align: middle;" class="py-2">No</th>
-                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">NIS</th>
-                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Siswa</th>
-                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Kelas</th>
-                                                <th class="col-2" style="text-align: center; vertical-align: middle; white-space: nowrap;">Jurusan</th>
-                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Jenis Kelamin</th>
-                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Action</th>
+                                                <td style="text-align: center; vertical-align: middle;" class="py-2">No</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">NIS</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Siswa</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Kelas</td>
+                                                <td class="col-2" style="text-align: center; vertical-align: middle; white-space: nowrap;">Jurusan</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Jenis Kelamin</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Action</td>
                                             </tr>
                                         </thead>
                                         <tbody>

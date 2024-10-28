@@ -62,11 +62,11 @@
             @elseif($slot == 'Tambah Akun')
                 width: 182px;
 
-            @elseif($slot == 'Restorasi')
-                width: 120px;
+            @elseif($slot == 'Pemulihan Point')
+                width: 215px;
 
-            @elseif($slot == 'Review Restorasi')
-                width: 220px;
+            @elseif($slot == 'Review Pemulihan')
+                width: 238px;
 
             @elseif($slot == 'List Prestasi Siswa')
                 width: 235px;
@@ -95,7 +95,6 @@
             @endif
         }
     </style>
-
   <div class="container-fluid">
     <div class="row mb-1">
       <div class="col-sm-6">

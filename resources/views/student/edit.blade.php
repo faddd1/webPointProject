@@ -91,6 +91,7 @@
             <option value="SK 2" {{ $studentItem->jurusan == 'SK 2' ? 'selected' : '' }}>SK 2</option>
         </select>
     </div>
-    <button type="submit" class="btn btn-block btn-primary-custom">Perbarui</button>
+
+    <button type="submit" class="btn btn-block btn-primary-custom">Simpan</button>
 </form>
 </div>

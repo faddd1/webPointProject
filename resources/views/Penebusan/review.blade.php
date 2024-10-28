@@ -69,21 +69,21 @@
 
                         <div class="card-body">
                             @if($penebusan->isEmpty())
-                                <p class="text-center">Tidak ada penebusan yang menunggu verifikasi.</p>
+                                <p class="text-center">Tidak ada pemulihan yang menunggu verifikasi.</p>
                             @else
                                 <div class="table-responsive">
 
                                     <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                                         <thead>
                                             <tr style="background-color: #4D869C; color:#ffff;">
-                                                <th class="text-center align-middle">No</th>
-                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Pelapor</th>
-                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama</th>
-                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Prestasi</th>
-                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Jumlah Point</th>
-                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Tanggal</th>
-                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Bukti</th>
-                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Status</th>
+                                                <td class="text-center align-middle">No</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Pelapor</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Prestasi</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Jumlah Point</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Tanggal</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Bukti</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -181,8 +181,8 @@
                 form.addEventListener('submit', function(event) {
                     event.preventDefault();
                     Swal.fire({
-                        title: 'Terima Penebusan?',
-                        text: "Apakah Kamu yakin ingin menrima penebusan ini?",
+                        title: 'Terima Pemulihan point?',
+                        text: "Apakah Kamu yakin ingin menerima pemulihan point ini?",
                         icon: 'warning',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
@@ -201,8 +201,8 @@
         form.addEventListener('submit', function(event) {
             event.preventDefault(); 
             Swal.fire({
-                title: 'Tolak Penebusan?',
-                text: "Apakah kamu yakin ingin menolak penebusan ini?",
+                title: 'Tolak Pemulihan point?',
+                text: "Apakah kamu yakin ingin menolak pemulihan point ini?",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',

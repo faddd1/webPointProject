@@ -54,8 +54,6 @@
                 <label class="form-check-label" for="role">Admin</label>
             </div>
         </div>
-    
-    
-        <button type="submit" class="btn btn-primary btn-block mt-3">Perbarui</button>
+        <button type="submit" class="btn btn-primary btn-block mt-3">Simpan</button>
     </form>
 </div>

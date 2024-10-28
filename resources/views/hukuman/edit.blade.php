@@ -47,8 +47,7 @@
             <label>Poin Akhir</label>
             <input type="text" class="form-control form-control-custom" value="{{ $punismen->pointAkhir }}" name="pointAkhir" placeholder="Poin Akhir" required>
         </div>
-
-        <button type="submit" class="btn btn-block btn-primary-custom">Perbarui</button>
+        <button type="submit" class="btn btn-block btn-primary-custom">Simpan</button>
     </form>
 </div>
 

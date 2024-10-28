@@ -27,10 +27,11 @@
         border-radius: 10px;
         box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
+    
 </style>
 
 <div class="form-container">
-    <form id="formKategori" action="{{ route('kategori.store') }}" method="POST" >
+    <form action="{{ route('kategori.store') }}" method="POST" id="formKategori" style="">
         @csrf
         <div class="form-group">
             <label>Nama Pelanggaran</label>

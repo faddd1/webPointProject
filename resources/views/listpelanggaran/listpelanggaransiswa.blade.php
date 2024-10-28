@@ -92,13 +92,7 @@
                         <p style="text-align: center; vertical-align: middle;" class="fs-23 card-footer text-muted">Tidak Ada Hukuman Untuk Anda.</p>
                     </div>
                 </div>
-<<<<<<< HEAD
-                    
                 @endif
-
-    
-=======
-            @endif
     
 
             <style>
@@ -116,7 +110,6 @@
                         }
                     }
             </style>
->>>>>>> b5366eab050cc3b00258628b81b833af3e032295
     <div class="card">
         <div class="card-body">
             <h3 class="text-md py-2">Pelanggaran Yang Pernah Kamu Lakukan : <strong>{{ $totalPelanggaran }}</strong></h3>
@@ -124,12 +117,12 @@
                 <table class="table table-sm table-bordered" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                     <thead>
                         <tr style="background-color: #4D869C; color:#ffff;">
-                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">No</th>
-                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Pelapor</th>
-                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Pelanggaran</th>
-                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Jumlah Point</th>
-                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Bukti</th>
-                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Tanggal</th>
+                            <td style="text-align: center; vertical-align: middle; white-space: nowrap;">No</td>
+                            <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Pelapor</td>
+                            <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Pelanggaran</td>
+                            <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Jumlah Point</td>
+                            <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Bukti</td>
+                            <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Tanggal</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -204,12 +197,12 @@
                     <table class="table table-sm table-bordered" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                         <thead>
                             <tr style="background-color: #4D869C; color:#ffff;">
-                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">No</th>
-                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Pelapor</th>
-                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Prestasi</th>
-                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Jumlah Point</th>
-                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Bukti</th>
-                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Tanggal</th>
+                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">No</td>
+                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Pelapor</td>
+                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Prestasi</td>
+                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Jumlah Point</td>
+                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Bukti</td>
+                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Tanggal</td>
                             </tr>
                         </thead>
                         <tbody>

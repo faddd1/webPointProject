@@ -261,7 +261,7 @@
                               </tr>
                               <tr>
                                   <td>
-                                      <h6 class="text-sm mb-0 text-capitalize font-weight-bold" style="color: #4D869C;">Point</h6>
+                                      <h6 class="text-sm mb-0 text-capitalize font-weight-bold" style="color: #4D869C;">Poin</h6>
                                   </td>
                                   <td style="text-align: center;">:</td>
                                   <td>

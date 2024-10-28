@@ -33,15 +33,15 @@
         @csrf
         <div class="form-group mb-4">
             <label for="name" class="form-label">Nama :</label>
-            <input type="text" id="name" name="name" class="form-control">
+            <input type="text" id="name" name="name" placeholder="Nama" class="form-control">
         </div>
         <div class="form-group mb-4">
-            <label for="nis" class="form-label">Nip :</label>
-            <input type="text" id="nis" name="nis" class="form-control">
+            <label for="nis" class="form-label">NIP :</label>
+            <input type="text" id="nis" name="nis" placeholder="NIP" class="form-control">
         </div>
         <div class="form-group mb-4">
             <label for="password" class="form-label">Password :</label>
-            <input type="password" id="password" name="password" class="form-control">
+            <input type="password" id="password" name="password" placeholder="Password" class="form-control">
         </div>
         <div class="form-group mb-4">
             <label class="form-label d-block">Status</label>
@@ -50,7 +50,7 @@
                 <label class="form-check-label" for="role">Guru</label>
             </div>
         <div class="py-3">
-            <button type="submit" class="btn btn-primary-custom btn-block">Save</button>
+            <button type="submit" class="btn btn-primary-custom btn-block">Simpan</button>
         </div>
     </form>
 </div>

@@ -26,9 +26,9 @@
                     @endif
 
                     <style>
-                        .btn-primary:hover, .btn-danger:hover, .btn-success:hover {
-                            transform: translateY(-5px);
-                            transition: transform 0.3s ease;
+                        .diterima:hover, .btn-danger:hover, .btn-success:hover {
+                            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+                            transform: scale(1.05);
                         }
 
                         .action-buttons {
@@ -49,23 +49,7 @@
                             {{-- <h3>Laporan Menunggu Review</h3> --}}
                             <h4 class="text-md mt-2">Tanggal <span class="text-bold">{{ \Carbon\Carbon::now()->format('j F Y') }}</span></h4>
                         </div>
-                        <style>
-                                
-                            .bukti-image {
-                                width: 50px;     
-                                height: 50px;   
-                                object-fit: cover; 
-                                aspect-ratio: 1/1; 
-                                border-radius: 0.25rem; 
-                            }
 
-                            @media (max-width: 576px) {
-                                .bukti-image {
-                                    width: 40px;  
-                                    height: 40px; 
-                                }
-                            }
-                        </style>
                         <div class="card-body">
                             @if($reports->isEmpty())
                                 <p class="text-center">Tidak ada laporan yang menunggu verifikasi.</p>
@@ -74,40 +58,30 @@
                                 <div class="table-responsive">
                                     <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                                         <thead>
-                                            <tr style="background-color: #4D869C; color:#ffff;">
-                                                <th class="text-center align-middle" class="py-2">No</th>
-                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Pelapor</th>
-                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama</th>
-                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Pelanggaran</th>
-                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Jumlah Point</th>
-                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Tanggal</th>
-                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Bukti</th>
-                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Status</th>
+                                            <tr style="background-color: #4F709C; color:#ffff;">
+                                                <td class="text-center align-middle" class="py-2">No</td>
+                                                <td class="text-center align-middle">Nama Pelapor</td>
+                                                <td class="text-center align-middle">Nama</td>
+                                                <td class="text-center align-middle">Nama Pelanggaran</td>
+                                                <td class="text-center align-middle">Jumlah Point</td>
+                                                <td class="text-center align-middle">Tanggal</td>
+                                                <td class="text-center align-middle">Bukti</td>
+                                                <td class="text-center align-middle">Status</td>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach($reports as $no => $report)
                                                 <tr>
                                                     <td class="text-center align-middle">{{ $no + 1 }}</td>
-<<<<<<< HEAD
                                                     <td class="text-center align-middle">{{ $report->pelapor->name ?? 'tidak diketahui' }}</td>
                                                     <td class="text-center align-middle">{{ $report->nama }}</td>
-                                                    <td>{{ $report->pelanggaran }}</td>
+                                                    <td class="text-center align-middle">{{ $report->pelanggaran }}</td>
                                                     <td class="text-center align-middle">{{ $report->point }}</td>
                                                     <td class="text-center align-middle text-muted text-sm">{{ $report->tanggal }},{{ $report->created_at->diffForHumans() }}</span></td>
-=======
-                                                    <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $report->pelapor->name ?? 'tidak diketahui' }}</td>
-                                                    <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $report->nama }}</td>
-                                                    <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $report->pelanggaran }}</td>
-                                                    <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $report->point }}</td>
-                                                    <td class="text-muted text-sm" style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $report->tanggal }},{{ $report->created_at->diffForHumans() }}</span></td>
->>>>>>> b5366eab050cc3b00258628b81b833af3e032295
                                                     <td class="text-center align-middle">
                                                         @if ($report->bukti)
                                                             <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal-{{ $report->id }}">
-                                                                <div style="width: 50px; height: 50px; overflow: hidden; display: inline-block;">
-                                                                    <img src="{{ asset('uploads/' . $report->bukti) }}" alt="Bukti {{ $report->nama }}" class="img-thumbnail bukti-image" style="width: 100%; height: auto; cursor: pointer;">
-                                                                </div>
+                                                                <img src="{{ asset('uploads/' . $report->bukti) }}" alt="Bukti {{ $report->nama }}" class="img-thumbnail" style="width: 50px; height: 50px; cursor: pointer;">
                                                             </a>
 
                                                            
@@ -122,22 +96,20 @@
                                                             </div>
                                                         @endif
                                                     </td>
-                                                    <td class="text-center align-middle  white-space: nowrap;">
-                                                        <div class="action-buttons">
-                                                            <form action="{{ route('laporan.approve', $report->id) }}" method="POST" class="approve-form" style="display: inline;">
-                                                                @csrf
-                                                                @method('PUT')
-                                                                <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-check"></i></button>
-                                                            </form>
+                                                    <td class="text-center align-middle">
+                                                        <form action="{{ route('laporan.approve', $report->id) }}" method="POST" class="approve-form" style="display: inline;">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <button type="submit" class="btn btn-sm diterima" style="background-color: #213555; color: #fff;"><i class="fas fa-check"></i></button>
+                                                        </form>
 
-                                                            <form action="{{ route('laporan.notApprove', $report->id) }}" method="POST" class="reject-form" style="display: inline;">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-circle-minus"></i></button>
-                                                            </form>
+                                                        <form action="{{ route('laporan.notApprove', $report->id) }}" method="POST" class="reject-form" style="display: inline;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-circle-minus"></i></button>
+                                                        </form>
 
-                                                            <button class="btn btn-success btn-sm showBtn" data-id="{{ $report->id }}"><i class="fa-solid fa-eye"></i></button>
-                                                        </div>
+                                                        <button class="btn btn-success btn-sm showBtn" data-id="{{ $report->id }}"><i class="fa-solid fa-eye"></i></button>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -176,7 +148,7 @@
         document.querySelectorAll('.showBtn').forEach(button => {
                 button.addEventListener('click', function () {
                     const reportId = this.getAttribute('data-id');
-                    fetch(`/laporan/show/${reportId}`) 
+                    fetch(/laporan/show/${reportId}) 
                         .then(response => response.text())
                         .then(html => {
                             document.getElementById('modalBody').innerHTML = html; 
@@ -192,7 +164,7 @@
                     event.preventDefault();
                     Swal.fire({
                         title: 'Terima Laporan?',
-                        text: "Apakah Kamu yakin ingin menerima laporan ini?",
+                        text: "Apakah Kamu yakin ingin menrima laporan ini?",
                         icon: 'warning',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',

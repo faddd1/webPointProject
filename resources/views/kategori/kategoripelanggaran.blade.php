@@ -28,7 +28,7 @@
               <div class="card-tools">
                 @if (auth()->user()->role == 'admin')
                   <button class="btn btn-sm" style="background-color:#245c70; color:#ffff; margin-top: 5px; margin-right: 10px;" id="tambahDataBtn">
-                     <i class="fa-solid fa-circle-plus"></i> <span class="d-none d-sm-inline">Add</span>
+                     <i class="fa-solid fa-circle-plus"></i> <span class="d-none d-sm-inline">Tambah</span>
                   </button>
                 @endif
               </div>
@@ -103,20 +103,13 @@
                 <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                   <thead>
                     <tr style="background-color: #4D869C; color:#ffff;">
-<<<<<<< HEAD
                       <td style="text-align: center; vertical-align: middle;" class="py-2">No</td>
                       <td style="text-align: center; vertical-align: middle;" class="py-2">Kode</td>
                       <td style="text-align: center; vertical-align: middle;">Nama Pelanggaran</td>
-                      <td style="text-align: center; vertical-align: middle;">Point</td>
                       <td style="text-align: center; vertical-align: middle;">Pasal</td>
-=======
-                      <th style="text-align: center; vertical-align: middle;" class="py-2">No</th>
-                      <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Pelanggaran</th>
-                      <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Point</th>
-                      <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Pasal</th>
->>>>>>> b5366eab050cc3b00258628b81b833af3e032295
+                      <td style="text-align: center; vertical-align: middle;">Poin</td>
                       @if (auth()->check() && auth()->user()->role == 'admin')
-                        <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Action</th>
+                        <td style="text-align: center; vertical-align: middle;">Aksi</td>
                       @endif
                     </tr>
                   </thead>
@@ -130,16 +123,10 @@
                         @foreach ($kategoris as $no => $kategori)
                             <tr>
                                 <td style="text-align: center; vertical-align: middle;">{{$no+1}}</td>
-<<<<<<< HEAD
                                 <td style="text-align: center; vertical-align: middle;">{{$kategori->kode}}</td>
                                 <td style=" vertical-align: middle; max-width: 200px;">{{$kategori->pelanggaran}}</td>
-                                <td style="text-align: center; vertical-align: middle;">{{$kategori->point}}</td>
                                 <td style="text-align: center; vertical-align: middle;">{{$kategori->pasal->level  ?? 'Tidak Ada Pasal'}}</td>
-=======
-                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{$kategori->pelanggaran}}</td>
-                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{$kategori->point}}</td>
-                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{$kategori->pasal->level  ?? 'Tidak Ada Pasal'}}</td>
->>>>>>> b5366eab050cc3b00258628b81b833af3e032295
+                                <td style="text-align: center; vertical-align: middle;">{{$kategori->point}}</td>
                                 @if (auth()->check() && auth()->user()->role == 'admin')
                                 <td style="text-align: center; vertical-align: middle; white-space: nowrap;">
                                   <div class="action-buttons text-center align-middle">
@@ -199,36 +186,31 @@
               <div class="card-tools">
                 @if (auth()->user()->role == 'admin')
                   <button class="btn btn-sm" style="background-color:#245c70; color:#ffff; margin-top: 5px; margin-right: 10px;" id="tambahPasal">
-                     <i class="fa-solid fa-circle-plus"></i> <span class="d-none d-sm-inline">Add</span>
+                     <i class="fa-solid fa-circle-plus"></i> <span class="d-none d-sm-inline">Tambah</span>
                   </button>
                 @endif
               </div>
-              <h5>Tambahkan Pasal</h5>
+              <h5>Pasal</h5>
             </div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                   <thead>
                       <tr style="background-color: #4D869C; color:#ffff;">
-<<<<<<< HEAD
-                        <td style="text-align: center; vertical-align: middle;">No</td>
-                        <td style="text-align: center; vertical-align: middle;">Pasal</td>
-                        <td style="text-align: center; vertical-align: middle;">Deskripsi</td>
+                        <td style="text-align: center; vertical-align: middle; ">No</td>
+                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Jenis</td>
+                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Pasal</td>
+                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Deskripsi</td>
                         @if (auth()->check() && auth()->user()->role == 'admin')
-                          <td style="text-align: center; vertical-align: middle;">Action</td>
+                          <td style="text-align: center; vertical-align: middle;">Aksi</td>
                         @endif
-=======
-                        <th style="text-align: center; vertical-align: middle; ">No</th>
-                        <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Pasal</th>
-                        <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Action</th>
->>>>>>> b5366eab050cc3b00258628b81b833af3e032295
                       </tr>
                 </thead>
                 <tbody>
                   @foreach ($pasal as $no => $item)
                     <tr>
                       <td style="text-align: center; vertical-align: middle;">{{ $no + 1 }}</td>
-<<<<<<< HEAD
+                      <td style="text-align: center; vertical-align: middle;">{{ $item->jenis }}</td>
                       <td style="text-align: center; vertical-align: middle;">{{ $item->level }}</td>
                       <td style="text-align: center; vertical-align: middle;">{{ $item->deskripsi }}</td>
                       @if (auth()->check() && auth()->user()->role == 'admin')
@@ -247,24 +229,6 @@
                           </div>
                         </td>
                        @endif
-=======
-                      <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $item->level }}</td>
-                      <td style="text-align: center; vertical-align: middle; white-space: nowrap;">
-                        <div class="action-buttons text-center align-middle">
-                          <button class="btn btn-sm btn-primary editPasal" data-id="{{ $item->id }}">
-                              <i class="fa-solid fa-pen-to-square"></i>
-                          </button>
-                          <form action="{{ route('kategori.destroyPasal', $item->id )}}" class="d-inline col-mb-2 deletePasal" method="POST">
-                              @csrf
-                              @method('DELETE')
-                              <button type="submit" class="btn btn-sm btn-danger">
-                                  <i class="fa-solid fa-trash"></i>
-                              </button>
-                          </form>
-                      </div>
-                      </td>
->>>>>>> b5366eab050cc3b00258628b81b833af3e032295
-                    </tr>
                     </tr>
                   @endforeach
                  

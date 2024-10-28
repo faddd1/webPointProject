@@ -38,7 +38,7 @@
                           <div class="card-tools">
                               @if (auth()->user()->role == 'admin')
                               <button class="btn btn-sm" style="margin-top: 1px; background-color:#245c70; color:#ffff; margin-right: 10px;" id="tambahDataBtn">
-                                <i class="fa-solid fa-circle-plus"></i> <span class="d-none d-sm-inline">Add</span>
+                                <i class="fa-solid fa-circle-plus"></i> <span class="d-none d-sm-inline">Tambah</span>
                               </button>
                               @endif
                           </div>
@@ -128,13 +128,13 @@
                             <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                                 <thead>
                                     <tr style="background-color: #4D869C; color:#ffff;">
-                                        <th style="text-align: center; vertical-align: middle;" class="py-2">No</th>
-                                        <th style="text-align: center; vertical-align: middle; white-space: nowrap;">NIP</th>
-                                        <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Guru</th>
-                                        <th class="col-2" style="text-align: center; vertical-align: middle; white-space: nowrap;">Jabatan</th>
-                                        <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Jenis Kelamin</th>
+                                        <td style="text-align: center; vertical-align: middle;" class="py-2">No</td>
+                                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">NIP</td>
+                                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Guru</td>
+                                        <td class="col-2" style="text-align: center; vertical-align: middle; white-space: nowrap;">Jabatan</td>
+                                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Jenis Kelamin</td>
                                         @if (auth()->user()->role == 'admin')
-                                        <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Action</th>
+                                        <td style="text-align: center; vertical-align: middle;">Aksi</td>
                                         @endif
                                     </tr>
                                 </thead>
@@ -207,7 +207,6 @@
           </div>
       </div>
   </div>
-
     <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="dataModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -216,7 +215,6 @@
                     <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-arrow-right"></i></a>
                 </div>
                 <div class="modal-body" id="modalBody">
-                
                 </div>
             </div>
         </div>

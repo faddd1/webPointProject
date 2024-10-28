@@ -37,12 +37,15 @@
             <label>Nama Pasal</label>
             <input type="text" class="form-control" name="level" value="{{ $pasal->level }}" placeholder="Nama Pasal" required>
         </div>
-
+        <div class="form-group">
+            <label>Jenis Pasal</label>
+            <input type="text" class="form-control" name="jenis" value="{{ $pasal->jenis }}" placeholder="Jenis Pasal" required>
+        </div>
         <div class="form-group">
             <label>Deskripsi</label>
             <input type="text" class="form-control" name="deskripsi" value="{{ $pasal->deskripsi }}" placeholder="Deskripsi" required>
         </div>
-        <button type="submit" class="btn btn-block btn-primary-custom" id="submitButton">Perbarui</button>
+        <button type="submit" class="btn btn-block btn-primary-custom" id="submitButton">Simpan</button>
     </form>
 </div>
 

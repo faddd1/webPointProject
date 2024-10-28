@@ -45,9 +45,9 @@ class KategoriController extends Controller
     
         Kategori::create([
             'pelanggaran' => $request->pelanggaran,
-            'point' => $request->point,
             'level' => $request->level,
-            'kode' => $newKode
+            'kode' => $newKode,
+            'point' => $request->point,
         ]);
     
         return redirect()->back()->with('success', 'Data berhasil ditambahkan dengan kode unik: ' . $newKode);
@@ -78,9 +78,9 @@ class KategoriController extends Controller
     
         $kategoris->update([
             'pelanggaran' => $request->pelanggaran,
-            'point' => $request->point,
             'level' => $request->level,
-            'kode' => $newKode
+            'kode' => $newKode,
+            'point' => $request->point,
         ]);
     
         return redirect('/kategoripelanggaran')->with('success', 'Data berhasil diubah dengan kode unik baru: ' . $newKode);
@@ -114,10 +114,63 @@ class KategoriController extends Controller
         $kategoris = Kategori::where('pelanggaran', 'LIKE', "%{$searchTerm}%")
                     ->orWhere('kode', 'LIKE', "%{$searchTerm}%")
                     ->orWhere('point', 'LIKE', "%{$searchTerm}%")
-                    ->orWhere('level', 'LIKE', "%{$searchTerm}%")
                     ->paginate(4);
         
         return view('kategori.kategoripelanggaran', compact('kategoris', 'pasal'), ['title' => 'Kategori Pelanggaran']);
     }
 
+    public function createPasall(){
+
+        $pasal = Pasal::all();
+        return view('kategori.pasal.createPasal', [
+            'pasal' => $pasal,
+            'title' => 'Tambah Pasal'
+        ]);
+    }
+
+    public function createPasal(Request $request){
+        
+        $request->validate([
+            'level' => 'required',
+            'jenis' => 'required',
+        ]);
+
+        Pasal::create([
+            'level' => $request->level,
+            'jenis' =>$request->jenis,
+        ]);
+
+        return redirect('/kategoripelanggaran')->with('success', 'Data berhasil ditambahakan!');
+    }
+
+    public function editPasal($id){
+
+        $pasal = Pasal::findOrfail($id);
+        return view('kategori.pasal.editPasal',[
+            'pasal' => $pasal
+        ]);
+    }
+
+    public function updatePasal(Request $request,$id){
+        $request->validate([
+            'level' => 'required',
+            'jenis' => 'required',
+        ]);
+        $pasal = Pasal::find($id);
+        $pasal->update([
+            'level' => $request->level,
+            'jenis' => $request->jenis,
+        ]);
+
+        return redirect('/kategoripelanggaran')->with('success', 'Data berhasil diubah!');
+        
+    }
+
+    public function destroyPasal($id){
+
+        $pasal = Pasal::findOrfail($id);
+        $pasal -> delete();
+
+        return redirect('/kategoripelanggaran')->with('success', 'Data berhasil dihapus!');
+    }
 }

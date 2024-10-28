@@ -39,7 +39,7 @@
             <input type="text" class="form-control" value="{{ $kategoris->pelanggaran }}" name="pelanggaran" placeholder="Nama Pelanggaran" required>
         </div>
         <div class="form-group">
-            <label> Point yang Diberikan</label>
+            <label> Poin yang Diberikan</label>
             <input type="text" class="form-control" value="{{ $kategoris->point }}" name="point" placeholder="Point yang Diberikan" required>
         </div>
         <div class="form-group">
@@ -53,7 +53,6 @@
                 @endforeach
             </select>
         </div>
-        
-        <button type="submit" class="btn btn-block btn-primary-custom">Perbarui</button>
+        <button type="submit" class="btn btn-block btn-primary-custom">Simpan</button>
     </form>
 </div>

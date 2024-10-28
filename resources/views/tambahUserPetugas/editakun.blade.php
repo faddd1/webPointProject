@@ -38,7 +38,7 @@
         </div>
     
         <div class="form-group">
-            <label>Nis</label>
+            <label>NIS</label>
             <input type="text"  name="nis" value="{{ $data->nis }}" class="form-control">
         </div>
     
@@ -54,7 +54,6 @@
                 <label class="form-check-label" for="role">Petugas</label>
             </div>
         </div>
-    
-        <button type="submit" class="btn btn-primary btn-block mt-3">Perbarui</button>
+        <button type="submit" class="btn btn-primary btn-block mt-3">Simpan</button>
     </form>
 </div>

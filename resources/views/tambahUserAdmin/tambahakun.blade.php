@@ -102,7 +102,7 @@
                             </div>
                         </form>
                         <button class="btn btn-sm" style="background-color: #245c70; color: #fff;" id="tambahDataBtn">
-                            <i class="fa-solid fa-user-plus"></i><span class="d-none d-sm-inline"> Add</span>
+                            <i class="fa-solid fa-user-plus"></i>
                         </button>
                     </div>
                     

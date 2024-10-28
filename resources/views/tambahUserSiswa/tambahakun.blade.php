@@ -101,7 +101,7 @@
                             </div>
                         </form>
                         <button class="btn btn-sm" style="background-color: #245c70; color: #fff;" id="tambahDataBtn">
-                            <i class="fa-solid fa-user-plus"></i><span class="d-none d-sm-inline"> Add</span>
+                            <i class="fa-solid fa-user-plus"></i>
                         </button>
                     </div>
                     
@@ -114,12 +114,12 @@
                             <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                                 <thead>
                                     <tr style="background-color: #4D869C; color:#ffff;">
-                                        <th style="text-align: center; vertical-align: middle;" class="py-2">No</th>
-                                        <th style="text-align: center; vertical-align: middle;">Nama</th>
-                                        <th style="text-align: center; vertical-align: middle;">Nis</th>
-                                        <th style="text-align: center; vertical-align: middle;">Password</th>
-                                        <th style="text-align: center; vertical-align: middle;">Role</th>
-                                        <th style="text-align: center; vertical-align: middle;">Action</th>
+                                        <td style="text-align: center; vertical-align: middle;" class="py-2">No</td>
+                                        <td style="text-align: center; vertical-align: middle;">Nama</td>
+                                        <td style="text-align: center; vertical-align: middle;">NIS</td>
+                                        <td style="text-align: center; vertical-align: middle;">Password</td>
+                                        <td style="text-align: center; vertical-align: middle;">Role</td>
+                                        <td style="text-align: center; vertical-align: middle;">Aksi</td>
                                     </tr>
                                 </thead>
                                 <tbody id="user-table-body">

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('deskripsi');
             $table->string('level');
+            $table->string('jenis');
             $table->timestamps();
         });
     }
