@@ -1,4 +1,10 @@
 <nav class="main-header navbar navbar-expand" style="background-color: #ffff;">
+    <style>
+        .dropdown-item:hover {
+            background-color: #4d869cb3 !important; 
+            color: white !important; 
+        }
+    </style>
 
 
  
@@ -61,11 +67,14 @@
   <li class="nav-item dropdown" >
     <a class="nav-link" data-toggle="dropdown" href="#" role="button" style="color: black; text-decoration: none;"  onmouseover="this.style.color='#4D869C'" onmouseout="this.style.color='#000'">
         <i class="fa-solid fa-user" ></i>  {{ Auth::user()->name ?? 'Tidak diketahui' }}
-    </a>
+    </a>    
     <div class="dropdown-menu dropdown-menu-right">
-        <a href="/profile" class="dropdown-item"style="color: black; text-decoration: none;"  onmouseover="this.style.color='#4D869C'" onmouseout="this.style.color='#000'">Profile</a>
-        <a href="/logout" class="dropdown-item" id="logoutButton" style="color: #000; text-decoration: none;" onmouseover="this.style.color='#4D869C'" onmouseout="this.style.color='#000'">Logout</a>
+        <a href="/profile" class="dropdown-item" style="color: black; text-decoration: none;" 
+           onmouseover="this.style.color='white'" onmouseout="this.style.color='#000'">Profil</a>
+        <a href="/logout" class="dropdown-item" id="logoutButton" style="color: black; text-decoration: none;" 
+           onmouseover="this.style.color='white'" onmouseout="this.style.color='#000'">Keluar</a>
     </div>
+    
   </li>
   </ul>
   <script>

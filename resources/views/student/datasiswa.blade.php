@@ -37,19 +37,19 @@
                      @endif
 
                      <style>
-                        .btn-primary:hover, .btn-danger:hover, .btn-success:hover {
-                            transform: translateY(-5px);
-                            transition: transform 0.3s ease;
+                        .edit:hover, .hapus:hover, .show:hover {
+                            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+                            transform: scale(1.05);
                         }
 
-                        .btn-danger:hover {
-                            transform: translateY(-5px);
-                            transition: transform 0.5s ease;
+                        .hapus:hover {
+                            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+                            transform: scale(1.05);
                         }
 
-                        .btn-success:hover {
-                            transform: translateY(-5px);
-                            transition: transform 0.3s ease;
+                        .show:hover {
+                            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+                            transform: scale(1.05);
                         }
                         
 
@@ -158,7 +158,7 @@
                         <div class="card-header">
                             @if (auth()->user()->role == 'admin')
                                 <div class="card-tools">
-                                    <button id="tambahDataBtn" class="btn btn-sm" style="margin-top: 10px; background-color:#245c70; color:#ffff;">
+                                    <button id="tambahDataBtn" class="btn btn-sm" style="margin-top: 10px; background-color:#e8c742; color:#ffff;">
                                         <i class="fa-solid fa-circle-plus"></i> <span class="d-none d-sm-inline">Tambah</span>
                                     </button>
                                 </div>
@@ -205,9 +205,9 @@
                                     </select>
                                     </div>
                             
-                                    <button type="submit" class="btn mb-2 mr-2" style="background-color: #266278; color: #ffff;">Cari</button>
+                                    <button type="submit" class="btn mb-2 mr-2" style="background-color: #213555; color: #ffff;"><i class="fa-solid fa-magnifying-glass"></i></button>
                                     
-                                    <a href="{{ route('student.searchSiswa') }}" class="btn btn-danger mb-2">Clear</a>
+                                    <a href="{{ route('student.searchSiswa') }}" class="btn mb-2" style="background-color: #213555; color: #fff;"><i class="fa-solid fa-xmark"></i></a>
                                 </div>
                             </form>
                         </div>
@@ -216,14 +216,14 @@
                                 <div class="table-responsive">
                                     <table class="table table-hover table-bordered table-sm" style="background-color: #fff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;" id="studentTable">
                                         <thead>
-                                            <tr style="background-color: #4D869C; color: #fff;">
-                                                <td style="text-align: center; vertical-align: middle;" class="py-2">No</td>
-                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">NIS</td>
-                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Siswa</td>
-                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Kelas</td>
-                                                <td class="col-2" style="text-align: center; vertical-align: middle; white-space: nowrap;">Jurusan</td>
-                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Jenis Kelamin</td>
-                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Action</td>
+                                            <tr style="background-color: #4F709C; color: #fff;">
+                                                <th style="text-align: center; vertical-align: middle;" class="py-2">No</th>
+                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">NIS</th>
+                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Siswa</th>
+                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Kelas</th>
+                                                <th class="col-2" style="text-align: center; vertical-align: middle; white-space: nowrap;">Jurusan</th>
+                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Jenis Kelamin</th>
+                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -245,19 +245,19 @@
                                                     <td style="text-align: center; vertical-align: middle; white-space: nowrap;">
                                                         <div class="action-buttons">
                                                             @if(auth()->user()->role == 'admin')
-                                                                <button class="btn btn-primary btn-sm editBtn" data-id="{{ $student->id }}">
+                                                                <button class="btn btn-sm editBtn edit" style="background-color: #213555; color: #fff;" data-id="{{ $student->id }}">
                                                                     <i class="fa-solid fa-pen-to-square"></i>
                                                                 </button>
                                 
                                                                 <form action="{{ route('datasiswa.destroy', $student->id) }}" class="d-inline deleteForm" method="POST">
                                                                     @csrf
                                                                     @method('DELETE')
-                                                                    <button type="submit" class="btn btn-danger btn-sm">
+                                                                    <button type="submit" class="btn btn-danger btn-sm hapus">
                                                                         <i class="fa-solid fa-trash"></i>
                                                                     </button>
                                                                 </form>
                                                             @endif
-                                                            <button class="btn btn-sm btn-success showBtn" data-id="{{ $student->id }}">
+                                                            <button class="btn btn-sm btn-success showBtn show" data-id="{{ $student->id }}">
                                                                 <i class="fa-solid fa-eye"></i>
                                                             </button>
                                                         </div>
@@ -325,19 +325,19 @@
     </div>
 
     <script>
-        document.querySelectorAll('.showBtn').forEach(button => {
-            button.addEventListener('click', function () {
-                const studentId = this.getAttribute('data-id');
-                fetch(`/datasiswa/show/${studentId}`)
-                    .then(response => response.text())
-                    .then(html => {
-                        document.getElementById('modalBody').innerHTML = html;
-                        document.getElementById('dataModalLabel').innerText = 'Detail Data Siswa';
-                        new bootstrap.Modal(document.getElementById('dataModal')).show();
-                    })
-                    .catch(error => console.error('Error loading data:', error));
-            });
-        });
+        // document.querySelectorAll('.showBtn').forEach(button => {
+        //     button.addEventListener('click', function () {
+        //         const studentId = this.getAttribute('data-id');
+        //         fetch(`/datasiswa/show/${studentId}`)
+        //             .then(response => response.text())
+        //             .then(html => {
+        //                 document.getElementById('modalBody').innerHTML = html;
+        //                 document.getElementById('dataModalLabel').innerText = 'Detail Data Siswa';
+        //                 new bootstrap.Modal(document.getElementById('dataModal')).show();
+        //             })
+        //             .catch(error => console.error('Error loading data:', error));
+        //     });
+        // });
     </script>
     @if (session('success'))
         <script>
@@ -383,19 +383,73 @@
 
 
         <script>
+
             document.querySelectorAll('.showBtn').forEach(button => {
                 button.addEventListener('click', function () {
                     const studentId = this.getAttribute('data-id');
-                    fetch(`/datasiswa/show/${studentId}`)
-                        .then(response => response.text())
-                        .then(html => {
-                            document.getElementById('modalBody').innerHTML = html;
-                            document.getElementById('dataModalLabel').innerText = 'Detail Data Siswa';
-                            new bootstrap.Modal(document.getElementById('dataModal')).show();
-                        })
-                        .catch(error => console.error('Error loading data:', error));
+                    console.log("Opening modal for student ID:", studentId); // Debugging log
+                    loadStudentData(studentId); // Load initial data when the modal is opened
                 });
             });
+
+            function loadStudentData(studentId, pelanggaranPage = 1, prestasiPage = 1) {
+                fetch(`/datasiswa/show/${studentId}?pelanggaran_page=${pelanggaranPage}&prestasi_page=${prestasiPage}`)
+                    .then(response => response.text())
+                    .then(html => {
+                        console.log("Loaded student data for modal."); // Debugging log
+                        const modal = document.getElementById('dataModal');
+                        const modalBody = document.getElementById('modalBody');
+                        
+                        // If the modal is already open, hide it before updating the content
+                        const bootstrapModal = bootstrap.Modal.getInstance(modal);
+                        if (bootstrapModal) {
+                            bootstrapModal.hide();
+                        }
+                        
+                        modalBody.innerHTML = html;
+                        document.getElementById('dataModalLabel').innerText = 'Detail Data Siswa';
+                        new bootstrap.Modal(modal).show();
+
+                        // Attach event listeners to the pagination links
+                        attachPelanggaranPagination(studentId, prestasiPage);
+                        attachPrestasiPagination(studentId, pelanggaranPage);
+                    })
+                    .catch(error => console.error('Error loading data:', error));
+            }
+
+
+            function attachPelanggaranPagination(studentId, prestasiPage) {
+                const pelanggaranContainer = document.querySelector('#pelanggaran-content');
+                pelanggaranContainer.addEventListener('click', function (e) {
+                    if (e.target.matches('.pagination a')) {
+                        e.preventDefault(); // Prevent default link behavior
+                        const url = new URL(e.target.href);
+                        const pelanggaranPage = url.searchParams.get('pelanggaran_page');
+                        console.log("Pelanggaran pagination clicked. Loading page:", pelanggaranPage); // Debugging log
+                        loadStudentData(studentId, pelanggaranPage, prestasiPage); // Load data for the selected pelanggaran page
+                    }
+                });
+            }
+
+            function attachPrestasiPagination(studentId, pelanggaranPage) {
+                const prestasiContainer = document.querySelector('#penebusan-content');
+                prestasiContainer.addEventListener('click', function (e) {
+                    if (e.target.matches('.pagination a')) {
+                        e.preventDefault(); // Prevent default link behavior
+                        const url = new URL(e.target.href);
+                        const prestasiPage = url.searchParams.get('prestasi_page');
+                        console.log("Prestasi pagination clicked. Loading page:", prestasiPage); // Debugging log
+                        loadStudentData(studentId, pelanggaranPage, prestasiPage); // Load data for the selected prestasi page
+                    }
+                });
+            }
+
+
+
+
+
+
+
         </script>
 
         <script>

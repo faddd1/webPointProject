@@ -37,8 +37,13 @@
                       <div class="card-header">
                           <div class="card-tools">
                               @if (auth()->user()->role == 'admin')
+<<<<<<< Updated upstream
                               <button class="btn btn-sm" style="margin-top: 1px; background-color:#245c70; color:#ffff; margin-right: 10px;" id="tambahDataBtn">
                                 <i class="fa-solid fa-circle-plus"></i> <span class="d-none d-sm-inline">Tambah</span>
+=======
+                              <button class="btn btn-sm" style="margin-top: 1px; background-color:#e8c742; color:#ffff; margin-right: 10px;" id="tambahDataBtn">
+                                <i class="fa-solid fa-circle-plus"></i> <span class="d-none d-sm-inline">Add</span>
+>>>>>>> Stashed changes
                               </button>
                               @endif
                           </div>
@@ -47,7 +52,7 @@
                                     <div class="input-group">
                                         <input type="search" class="form-control" name="search" placeholder="Cari" value="{{ request()->input('search') }}" id="search-input">
                                         <div class="input-group-append">
-                                            <button type="submit" class="btn" style="background-color: #266278; color: #fff;">
+                                            <button type="submit" class="btn" style="background-color: #213555; color: #fff;">
                                                 <i class="fa-solid fa-magnifying-glass"></i>
                                             </button>
                                         </div>
@@ -99,14 +104,14 @@
                                 background: linear-gradient(45deg, #4dacff, #3ecf69);
                             }
 
-                            .btn-primary:hover {
-                                transform: translateY(-5px);
-                                transition: transform 0.5s ease;
+                            .edit:hover {
+                                transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+                                transform: scale(1.05);
                             }
 
                             .btn-danger:hover {
-                                transform: translateY(-5px);
-                                transition: transform 0.5s ease;
+                                transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+                                transform: scale(1.05);
                             }
 
                             .action-buttons {
@@ -127,14 +132,14 @@
                         <div class="table-responsive">
                             <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                                 <thead>
-                                    <tr style="background-color: #4D869C; color:#ffff;">
-                                        <td style="text-align: center; vertical-align: middle;" class="py-2">No</td>
-                                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">NIP</td>
-                                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Guru</td>
-                                        <td class="col-2" style="text-align: center; vertical-align: middle; white-space: nowrap;">Jabatan</td>
-                                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Jenis Kelamin</td>
+                                    <tr style="background-color: #4F709C; color:#ffff;">
+                                        <th style="text-align: center; vertical-align: middle;" class="py-2">No</th>
+                                        <th style="text-align: center; vertical-align: middle;">NIP</th>
+                                        <th style="text-align: center; vertical-align: middle;">Nama Guru</th>
+                                        <th style="text-align: center; vertical-align: middle;">Jabatan</th>
+                                        <th style="text-align: center; vertical-align: middle;">Jenis Kelamin</th>
                                         @if (auth()->user()->role == 'admin')
-                                        <td style="text-align: center; vertical-align: middle;">Aksi</td>
+                                        <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Aksi</th>
                                         @endif
                                     </tr>
                                 </thead>
@@ -156,7 +161,7 @@
                                         @if (auth()->user()->role == 'admin')
                                         <td style="text-align: center; vertical-align: middle; white-space: nowrap;">
                                             <div class="action-buttons">
-                                            <button class="btn btn-primary editBtn btn-sm" data-id="{{ $teachers->id }}">
+                                            <button class="btn editBtn btn-sm edit" style="background-color: #213555; color: #fff;" data-id="{{ $teachers->id }}">
                                                 <i class="fa-solid fa-pen-to-square"></i>
                                             </button>
                                             <form action="{{ route('destroy.guru', $teachers->id) }}" method="POST" class="d-inline deleteForm">

@@ -14,15 +14,35 @@
                 </div>
                 <!-- Profile Info Card -->
                 <div class="col-md-8">
-                    <div class="card shadow-sm">
-                        <div class="card-header text-white"  style="background-color: #4D869C; ">
-                            <h3 class="card-title p-1">Informasi Profil</h3>
+                    <div class="card">
+                        <div class="card-header" style="background-color: #4F709C; color: #fff;">
+                            <h3 class="card-title p-1" >Informasi Profil</h3>
                         </div>
-                        <div class="card-body bg-light">
+                        <style>
+                            .col-auto {
+                                padding-left: 0;
+                                padding-right: 5px; 
+                            }
+                        </style>
+                        <div class="card-body">
                             <ul class="list-group list-group-flush">
                                 @if(auth()->check() && (auth()->user()->role == 'admin'))
-                                    <li class="list-group-item"><strong>Nis:</strong> {{ Auth::user()->nis }}</li>
-                                    <li class="list-group-item"><strong>Nama:</strong> {{ Auth::user()->name ?? 'tidak diketahui' }}</li>
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <div class="row">
+                                            <div class="col-2"><strong>Nis</strong></div>
+                                            <div class="col-auto">:</div>
+                                            <div class="col">{{ Auth::user()->nis }}</div>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="row">
+                                            <div class="col-2"><strong>Nama</strong></div>
+                                            <div class="col-auto">:</div>
+                                            <div class="col">{{ Auth::user()->name ?? 'tidak diketahui' }}</div>
+                                        </div>
+                                    </li>
+                                </ul>
                                 @endif
 
                                 @if(auth()->check() && (auth()->user()->role == 'petugas'))

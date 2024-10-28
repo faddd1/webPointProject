@@ -93,7 +93,6 @@ class LaporanController extends Controller
             $siswa->save();
         }
         
-
         return redirect()->route('laporan.review')->with('success', 'Laporan berhasil disetujui.');
     }
 
@@ -104,7 +103,7 @@ class LaporanController extends Controller
         if (!$report) {
             return redirect()->route('laporan.review')->with('error', 'Laporan tidak ditemukan.');
         }
-    
+
         if ($report->bukti) {
             $filePath = public_path('uploads/' . $report->bukti);
             if (file_exists($filePath)) {
@@ -116,6 +115,7 @@ class LaporanController extends Controller
         $report->save();
     
         return redirect()->route('laporan.review')->with('success', 'Laporan telah ditolak dan foto bukti telah dihapus.');
+    
     }
     
 

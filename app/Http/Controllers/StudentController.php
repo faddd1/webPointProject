@@ -120,11 +120,15 @@ class StudentController extends Controller
 
     public function showsiswa($id)
     {
-       
-        $studentlist = Student::with('pelanggaran' ,'penebusan')->findOrFail($id);  
-
-        return view('student.showsiswa', compact('studentlist'));
-        
+        $studentlist = Student::findOrFail($id);
+    
+        $pelanggaranPage = request()->get('pelanggaran_page', 1);
+        $penebusanPage = request()->get('penebusan_page', 1);
+    
+        $pelanggaran = $studentlist->pelanggaran()->orderBy(column: 'tanggal', direction: 'desc')->paginate(5, ['*'], 'pelanggaran_page', $pelanggaranPage);
+        $penebusan = $studentlist->penebusan()->orderBy('tanggal', 'desc')->paginate(5, ['*'], 'penebusan_page', $penebusanPage);
+    
+        return view('student.showsiswa', data: compact('studentlist', 'pelanggaran', 'penebusan'));
     }
 
     public function edit(Student $studentItem, $id)
@@ -236,34 +240,6 @@ public function destroy(Student $studentItem, $id)
     return redirect()->back()->with('success', 'Pelanggaran berhasil dihapus!');
     }
 
-
-    // public function exportPdf(Request $request)
-    // {
-       
-    //     $jurusan = $request->input('jurusan');
-            
-    //     // Check if 'Semua Jurusan' is selected
-    //     if ($jurusan == 'all') {
-    //         // Fetch all students if 'Semua Jurusan' is selected
-    //         $studentItem = Student::all();
-    //     } else {
-    //         // Filter data berdasarkan jurusan yang dipilih
-    //         $studentItem = Student::where('jurusan', $jurusan)->get();
-    //     }
-        
-    //     // Check if there are no students for the specified jurusan or all
-    //     if ($studentItem->isEmpty()) {
-    //         return redirect()->back()->with('error', 'Data jurusan tidak ditemukan.'); // Redirect back with error message
-    //     }
-    
-    //     // Generate PDF with the filtered or all student data
-    //     $pdf = PDF::loadView('pdf.dataSiswa', compact('studentItem', 'jurusan'));
-    
-    //     // Use 'semua' in the filename if 'Semua Jurusan' is selected
-    //     return $pdf->download('data_siswa_jurusan_' . ($jurusan == 'all' ? 'semua' : $jurusan) . '.pdf');
-    // }
-
-
     public function exportPdf(Request $request)
     {
         $jurusan = $request->input('jurusan');
@@ -306,7 +282,7 @@ public function destroy(Student $studentItem, $id)
         $endDate = $request->input('end_date');
     
         // Adjust the end date to include the entire day
-        $adjustedEndDate = \Carbon\Carbon::parse($endDate)->endOfDay();
+        $adjustedEndDate = Carbon::parse($endDate)->endOfDay();
     
         // Fetch the data based on the date range and exclude 'Menunggu Verifikasi' status
         $studentItem = Laporan::with('siswa', 'pelanggaranDetail')
@@ -362,30 +338,4 @@ public function destroy(Student $studentItem, $id)
         // Generate Excel file based on the filtered data or all data
         return Excel::download(new StudentExport($jurusan, $kelas), 'data_siswa_jurusan_' . ($jurusan == 'all' ? 'semua' : $jurusan) . '_kelas_' . ($kelas == 'all' ? 'semua' : $kelas) . '.xlsx');
     }
-
-
-    // public function exportExcel(Request $request){
-    //     $jurusan = $request->input('jurusan');
-
-    //     // Check if 'Semua Jurusan' is selected
-    //     if ($jurusan == 'all') {
-    //         // Fetch all students if 'all' is selected
-    //         $data = Student::all();
-    //     } else {
-    //         // Filter data based on selected jurusan
-    //         $data = Student::where('jurusan', $jurusan)->get();
-    //     }
-
-    //     // If no data is found, redirect with an error message
-    //     if ($data->isEmpty()) {
-    //         return redirect()->back()->with('error', 'Tidak ada data untuk jurusan yang dipilih.');
-    //     }
-
-    //     // Generate Excel file based on the filtered data or all data
-    //     return Excel::download(new StudentExport($jurusan), 'data_siswa_jurusan_' . ($jurusan == 'all' ? 'semua' : $jurusan) . '.xlsx');
-    // }
-
-   
-
-    
 }

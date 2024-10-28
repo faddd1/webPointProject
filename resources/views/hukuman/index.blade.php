@@ -1,5 +1,6 @@
 <x-layout>
   <x-slot:title>{{ $title }}</x-slot:title>
+  <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
   <div class="container">
       <div class="container-fluid">
           <div class="row justify-content-center">
@@ -17,7 +18,7 @@
                       <div class="card-header">
                           <div class="card-tools">
                               @if (auth()->user()->role == 'admin')
-                                  <button class="btn btn-sm" style="background-color:#245c70; color:#ffff; margin-top: 5px; margin-right: 10px;" id="tambahHukuman">
+                                  <button class="btn btn-sm" style="background-color:#e8c742; color:#ffff; margin-top: 5px; margin-right: 10px;" id="tambahHukuman">
                                       <i class="fa-solid fa-circle-plus"></i> <span class="d-none d-sm-inline">Tambah</span>
                                   </button>
                                @endif 
@@ -27,7 +28,7 @@
                                   <div class="input-group">
                                       <input type="search" class="form-control" name="search" placeholder="Cari" value="{{ request()->input('search') }}" id="search-input">
                                       <div class="input-group-append">
-                                          <button type="submit" class="btn" style="background-color: #266278; color: #fff;">
+                                          <button type="submit" class="btn" style="background-color: #213555; color: #fff;">
                                               <i class="fa-solid fa-magnifying-glass"></i> <!-- Ikon pencarian -->
                                           </button>
                                       </div>
@@ -75,7 +76,7 @@
                                   }
                               }
 
-                              .btn-danger:hover, .btn-primary:hover {
+                              .btn-danger:hover, .edit:hover {
                                   transition: transform 0.5s ease;
                                   transform: translateY(-5px);
                               }
@@ -86,10 +87,10 @@
                           <div class="table-responsive">
                               <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                                   <thead>
-                                      <tr style="background-color: #4D869C; color:#ffff;">
-                                          <td style="text-align: center; vertical-align: middle;" class="py-2">No</td>
-                                          <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Hukuman</td>
-                                          <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Poin</td>
+                                      <tr style="background-color: #4F709C; color:#ffff;">
+                                          <th style="text-align: center; vertical-align: middle;" class="py-2">No</th>
+                                          <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Hukuman</th>
+                                          <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Poin</th>
                                           {{-- @if (auth()->check() && auth()->user()->role == 'admin') --}}
                                               <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Aksi</td>
                                           {{-- @endif --}}
@@ -103,7 +104,7 @@
                                               <td style="text-align: center; vertical-align: middle; white-space: nowrap;">({{$item->pointAwal}}) Sampai ({{ $item->pointAkhir }})</td>
                                               <td style="text-align: center; vertical-align: middle; white-space: nowrap;">
                                                 <div class="action-buttons text-center align-middle">
-                                                    <button class="btn btn-sm btn-primary editBtn" data-id="{{ $item->id }}">
+                                                    <button class="btn btn-sm editBtn edit" style="background-color: #213555; color: #fff;" data-id="{{ $item->id }}">
                                                         <i class="fa-solid fa-pen-to-square"></i>
                                                     </button>
                                                     <form action="{{ route('hukuman.destroy', $item->id )}}" class="d-inline col-mb-2 deleteForm" method="POST">
@@ -126,21 +127,21 @@
                                 <div class="ml-auto">
                                     <style>
                                         .pagination .page-link {
-                                            color: #245c70; /* Warna teks */
+                                            color: #4F709C; /* Warna teks */
                                             background-color: #f8f9fa; /* Warna latar */
                                             border-color: #dee2e6; /* Warna border */
                                         }
 
                                         .pagination .page-link:hover {
-                                            color: #245c70; 
+                                            color: #4F709C; 
                                             background-color: #e9ecef; 
                                             border-color: #dee2e6;
                                         }
 
                                         .pagination .active .page-link {
                                             color: white;
-                                            background-color: #245c70;
-                                            border-color: #245c70;
+                                            background-color: #4F709C;
+                                            border-color: #4F709C;
                                         }
                                     </style>
                                     {{ $punismen->links('pagination::bootstrap-4') }}
@@ -149,6 +150,7 @@
                         </div>
                   </div>
               </div>
+            </div>
           </div>
       </div>
       

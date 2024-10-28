@@ -28,7 +28,7 @@
                     <div class="input-group">
                         <input type="search" class="form-control" name="search" placeholder="Cari" value="{{ request()->input('search') }}" id="search-input">
                         <div class="input-group-append">
-                            <button type="submit" class="btn" style="background-color: #266278; color: #fff;">
+                            <button type="submit" class="btn" style="background-color: #213555; color: #fff;">
                                 <i class="fa-solid fa-magnifying-glass"></i> <!-- Search icon -->
                             </button>
                         </div>
@@ -80,13 +80,13 @@
               }
 
               .btn-danger:hover {
-                transition: transform 0.3s ease;
-                transform: translateY(-5px);
+                transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+                transform: scale(1.05);
               }
 
-              .btn-primary:hover {
-                transition: transform 0.3s ease;
-                transform: translateY(-5px);
+              .edit:hover {
+                transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+                transform: scale(1.05);
               }
         </style>
         
@@ -94,13 +94,13 @@
                 <div class="table-responsive">
                   <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                     <thead>
-                      <tr style="background-color: #4D869C; color:#ffff;">
-                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">No</td>
-                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Prestasi</td>
-                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Poin</td>
-                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Tingkat</td>
+                      <tr style="background-color: #4F709C; color:#ffff;">
+                        <th style="text-align: center; vertical-align: middle; white-space: nowrap;">No</th>
+                        <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Prestasi</th>
+                        <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Poin</th>
+                        <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Tingkat</th>
                         @if (auth()->check() && auth()->user()->role == 'admin')
-                          <td style="text-align: center; vertical-align: middle;">Aksi</td>
+                          <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Aksi</th>
                         @endif
                       </tr>
                     </thead>
@@ -117,8 +117,8 @@
                           <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{$prestasis->point}}</td>
                           <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{$prestasis->Tingkat}}</td>
                           @if (auth()->check() && auth()->user()->role == 'admin')
-                            <td style="text-align: center; vertical-align: middle; white-space: nowrap;">
-                              <button class="btn btn-sm btn-primary editBtnn" data-id="{{ $prestasis->id }}">
+                            <td style="text-align: center; vertical-align: middle;">
+                              <button class="btn btn-sm editBtnn edit" style="background-color: #213555; color: #fff;" data-id="{{ $prestasis->id }}">
                                 <i class="fa-solid fa-pen-to-square"></i>
                               </button>
                               <form action="{{ route('Poin.destroy', $prestasis->id )}}" class="d-inline col-mb-2 deleteForm" method="POST">

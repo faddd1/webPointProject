@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sanksi;
 use App\Models\Hukuman;
+use App\Models\Kategori;
 use App\Models\Laporan;
 use App\Models\Student;
 use App\Models\Penebusan;
@@ -12,7 +13,7 @@ use Illuminate\Http\Request;
 
 class ListSiswa extends Controller
 {
-    public function listsiswa() {
+    public function listsiswa() { 
         $totalPelanggaran = Laporan::where('nis', auth()->user()->nis)->count('pelanggaran');
         $totalPrestasi = Penebusan::where('nis', auth()->user()->nis)->count('nama_Prestasi');
     
@@ -43,12 +44,13 @@ class ListSiswa extends Controller
         ]);
     }
     
+    
 
     public function index() {
         $punismen = Hukuman::paginate(10);
         return view('hukuman.index', [
             'punismen' => $punismen,
-            'title' => "Hukuman Siswa"
+            'title' => "Kategori Sanksi"
         ]);
     }
     
@@ -68,7 +70,7 @@ class ListSiswa extends Controller
             'pointAkhir' => $pointAkhir,
         ]);
 
-        return redirect()->back()->with('success', 'Data hukuman berhasil ditambahkan!');
+        return redirect()->back()->with('success', 'Sanksi berhasil ditambahkan!');
     }
 
     public function create(){
@@ -99,17 +101,16 @@ class ListSiswa extends Controller
             'pointAkhir' => $pointAkhir,
         ]);
 
-        return redirect()->back()->with('success', 'Data hukuman berhasil diubah!');
+        return redirect()->back()->with('success', 'Sanksi berhasil diubah!');
     }
 
     public function destroy(Hukuman $punismen, $id)
     {
         $punismen = Hukuman::findOrFail($id);
         $punismen->delete();
-        return redirect()->route('hukuman')->with('success', 'Data hukuman berhasil dihapus!');
+        return redirect()->route('hukuman')->with('success', 'Sanksi berhasil dihapus!');
     }
-
-   
+    
     public function search(Request $request)
     {
         $searchTerm = $request->input('search');
@@ -118,7 +119,7 @@ class ListSiswa extends Controller
         $punismen = Hukuman::where('nama_hukuman', 'LIKE', "%{$searchTerm}%")
                     ->paginate(4);
         
-        return view('hukuman.index', compact('punismen'), ['title' => ' Pencarian Hukuman']);
+        return view('hukuman.index', compact('punismen'), ['title' => ' Pencarian Sanksi']);
     }
 
    

@@ -15,14 +15,14 @@
                         <div class="col-12 col-md-4 mb-3 mb-md-0">
                             <label for="start_date" class="form-label">Tanggal Awal</label>
                             <div class="input-group">
-                                <span class="input-group-text" style="color: #266278; "><i class="fas fa-calendar-day"></i></span>
+                                <span class="input-group-text" style="color: #213555; "><i class="fas fa-calendar-day"></i></span>
                                 <input type="date" id="start_date" name="start_date" class="form-control" required placeholder="Pilih tanggal awal">
                             </div>
                         </div>
                         <div class="col-12 col-md-4 mb-3 mb-md-0">
                             <label for="end_date" class="form-label">Tanggal Akhir</label>
                             <div class="input-group">
-                                <span class="input-group-text" style="color: #266278; "><i class="fas fa-calendar-day"></i></span>
+                                <span class="input-group-text" style="color: #213555; "><i class="fas fa-calendar-day"></i></span>
                                 <input type="date" id="end_date" name="end_date" class="form-control" required placeholder="Pilih tanggal akhir">
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                                     <div class="input-group" style="width: 100%;  max-width: 200px;">
                                         <input type="search" class="form-control" style="border-radius: 0.25rem 0 0 0.25rem; flex: 1; height: 30px; font-size: 0.875rem; " name="search" placeholder="Cari" value="{{ request()->input('search') }}" id="search-input">
                                         <div class="input-group-append">
-                                            <button type="submit" class="btn" style="border-radius: 0 0.25rem 0.25rem 0; background-color: #266278; color: #fff; height: 30px; padding: 0 10px; ">
+                                            <button type="submit" class="btn" style="background-color: #213555; color: #fff;">
                                                 <i class="fa-solid fa-magnifying-glass"></i> <!-- Search icon -->
                                             </button>
                                         </div>
@@ -75,19 +75,40 @@
                                         height: 40px; 
                                     }
                                 }
+
+                                .status-badge {
+                                    display: inline-block;
+                                    width: 120px;
+                                    padding: 5px 0; 
+                                    text-align: center;
+                                    font-size: 12px; 
+                                    border-radius: 4px;
+                                }
+
+                                .status-badge:hover {
+                                    transform: scale(1.05);
+                                    background: linear-gradient(45deg, #4dacff, #3ecf69);
+                                    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+                                }
+
+                                /* .btn-danger:hover {
+                                    transform: scale(1.05);
+                                    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+                                    align-content: center; 
+                                }*/
                             </style>
                             <div class="table-responsive table-scrollable" style="overflow-x: auto;">
                                 <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                                     <thead>
-                                        <tr style="background-color: #4D869C; color:#ffff;">
-                                            <td class="text-center align-middle">No</td>
-                                            <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Pelapor</td>
-                                            <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama</td>
-                                            <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Pelanggaran</td>
-                                            <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Jumlah Point</td>
-                                            <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Tanggal</td>
-                                            <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Bukti</td>
-                                            <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Status</td>
+                                        <tr style="background-color: #4F709C; color:#ffff;">
+                                            <th class="text-center align-middle">No</th>
+                                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Pelapor</th>
+                                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama</th>
+                                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Pelanggaran</th>
+                                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Jumlah Point</th>
+                                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Tanggal</th>
+                                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Bukti</th>
+                                            <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -132,7 +153,7 @@
                                                     @elseif ($student->status == 'Laporan Tidak Valid')
                                                         <span class="badge status-badge" style="background: rgb(255, 80, 80); color:#000;">Laporan Ditolak</span>
                                                     @else
-                                                        <span class="badge status-badge" style="background: #fffb07; color:#000;">Menunggu Verifikasi</span>
+                                                        <span class="badge status-badge" style="background: #fde37d; color:#000;">Menunggu Verifikasi</span>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -190,7 +211,6 @@
                                 </div> 
                             @endif
                         </div>
-                        
                     </div>
                 </div>
             </div>

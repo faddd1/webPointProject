@@ -25,7 +25,7 @@
   --default-color1: #040677; /* Color for headings, subheadings and title throughout the website */
   --default-color2 : #87CEEB; /* Color for headings, subheadings and title throughout the website */
   --default-color3 : #008080; /* Color for headings, subheadings and title throughout the website */
-  --default-color4 : #4D869C; /* Color for headings, subheadings and title throughout the website */
+  --default-color4 : #4F709C  ; /* Color for headings, subheadings and title throughout the website */
   --accent-color1 : #040677;
   --accent-color2 : #ffe600;
   --accent-color: #87CEEB; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
@@ -197,6 +197,7 @@ h6 {
 /* Desktop Navigation */
 @media (min-width: 1200px) {
   .navmenu {
+    font-family: "Nunito" sans-serif;
     padding: 0;
   }
 
@@ -351,7 +352,7 @@ h6 {
   .formlogin .custom-btn {
     background: #104e67;
     color: #fff;
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    /* transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; */
     width: 100%;
   }
   
@@ -359,7 +360,7 @@ h6 {
   .formlogin .custom-btn:hover {
       background: #082632;
       color: #fff;
-      transform: translateY(-5px);
+      /* transform: translateY(-5px); */
   }
 }
 
@@ -1854,6 +1855,222 @@ section,
 .contact .php-email-form button[type=submit]:hover {
   background: color-mix(in srgb, var(--accent-color), transparent 25%);
 }
+
+/* hukuman create */
+
+#dataModalLabel {
+  font-family: 'Nunito', sans-serif;
+  color: #000;
+  font-weight: 600;
+}
+
+.btn-primary-custom {
+  background-color: #4F709C;
+  color: #fff;
+}
+
+.btn-primary-custom:hover {
+  color: #fff;
+}
+
+.form-group label {
+  font-weight: bold;
+  color: #4F709C;
+}
+
+
+/* hukuman edit */
+
+.form-control-custom {
+  border-radius: 0.25rem 0.25rem;
+  padding: 10px;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+  transition: border-color 0.3s ease-in-out;
+}
+
+.form-control-custom:focus {
+  border-color: #4D869C;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+}
+
+.form-group label {
+  font-weight: bold;
+  color: #4F709C;
+}
+
+.form-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+}
+
+.btn-primary-custom {
+  background-color: #4F709C;
+  color: #fff;
+}
+
+.btn-primary-custom:hover {
+  color: #fff;
+}
+
+/* hukuman index */
+
+.pagination .page-link {
+  color: #4F709C;
+  background-color: #f8f9fa; 
+  border-color: #dee2e6; 
+}
+
+.pagination .page-link:hover {
+  color: #4F709C;
+  background-color: #e9ecef;
+  border-color: #dee2e6;
+}
+
+.pagination .active .page-link {
+  color: white;
+  background-color: #4F709C;
+  border-color: #4F709C;
+}
+
+.table-bordered {
+  border: 1px solid #dee2e6; 
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f5f5f5; 
+}
+
+.input-group {
+  width: 100%;
+  max-width: 200px; }
+
+.input-group .form-control {
+  border-radius: 0.10rem 0 0 0.10rem;
+  flex: 1;
+  height: 30px;
+  font-size: 0.875rem;
+}
+
+.input-group .btn {
+  border-radius: 0 0.10rem 0.10rem 0;
+  color: #fff; 
+  height: 30px;
+  padding: 0 10px;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.btn-danger:hover {
+  transition: transform 0.5s ease;
+  transform: scale(1.05);
+}
+
+.edit:hover {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  transform: scale(1.05);
+}
+
+@media (max-width: 576px) {
+  .input-group {
+      flex-direction: row;
+      max-width: 180px;
+      color: red; 
+      background-color: rgba(255, 0, 0, 0.1); /* Adds a light red background */
+  }
+
+  .action-buttons {
+      flex-direction: row;
+  }
+}
+
+
+/* home */
+
+/* font main */
+#hero h1, #hero p, span,
+.navmenu, .navmenu ul li a,
+body, nav,
+.about h3 {
+    font-family: 'Nunito', sans-serif;
+}
+
+#hero h1 span {
+    color: #4F709C;
+    font-style: italic;
+}
+
+.index-page .hero-bg {
+    width: 100%;
+    height: auto;
+}
+
+.teksHiro h1 {
+    font-size: 2.5em;
+    line-height: 1.2;
+    color: #333;
+}
+
+.teksHiro p {
+    font-size: 1.125em;
+    color: #555;
+}
+
+
+.info-item {
+    background-color: #ffffff !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    transition: box-shadow 0.3s;
+}
+
+/* login button */
+.btn-login {
+    height: 39px;
+    width: 77px;
+    padding: 8px 20px;
+    background-color: #4F709C;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.875em;
+}
+
+.btn-login:hover {
+    background-color: #3e5a7b;
+}
+
+/* navbar */
+.navmenu .dropdown-menu {
+    background-color: #fff;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.navmenu .dropdown-menu a.dropdown-item {
+    color: #333;
+    padding: 10px 20px;
+}
+
+.navmenu .dropdown-menu a.dropdown-item:hover {
+    background-color: #4F709C;
+    color: white;
+}
+
+.mobile-nav-toggle {
+    font-size: 1.5em;
+    color: #333;
+}
+
+.hiroImg img {
+    max-width: 100%;
+    margin-top: 20px;
+}
+
 
 /*--------------------------------------------------------------
 # Starter Section Section

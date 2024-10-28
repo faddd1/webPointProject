@@ -30,9 +30,9 @@
 
                   
                     <style>
-                        .btn-primary:hover, .btn-danger:hover, .btn-success:hover {
-                            transform: translateY(-5px);
-                            transition: transform 0.3s ease;
+                        .diterima:hover, .btn-danger:hover, .btn-success:hover {
+                            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+                            transform: scale(1.05);
                         }
 
                         .action-buttons {
@@ -59,6 +59,17 @@
                                 height: 40px; 
                             }
                         }
+
+                        .edit {
+                            background-color: #213555;
+                            color: #fff;
+                        }
+
+                        .edit:hover {
+                            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+                            transform: scale(1.05);
+                            color: #fff;
+                        }
                     </style>
 
                   
@@ -72,18 +83,17 @@
                                 <p class="text-center">Tidak ada pemulihan yang menunggu verifikasi.</p>
                             @else
                                 <div class="table-responsive">
-
                                     <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                                         <thead>
-                                            <tr style="background-color: #4D869C; color:#ffff;">
-                                                <td class="text-center align-middle">No</td>
-                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Pelapor</td>
-                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama</td>
-                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Prestasi</td>
-                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Jumlah Point</td>
-                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Tanggal</td>
-                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Bukti</td>
-                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Status</th>
+                                            <tr style="background-color: #4F709C; color:#ffff;">
+                                                <th class="text-center align-middle">No</th>
+                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Pelapor</th>
+                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama</th>
+                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Prestasi</th>
+                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Jumlah Point</th>
+                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Tanggal</th>
+                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Bukti</th>
+                                                <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -119,7 +129,7 @@
                                                             <form action="{{ route('penebusan.approve', $penebusan->id) }}" method="POST" class="terima" style="display: inline;">
                                                                 @csrf
                                                                 @method('PUT')
-                                                                <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-check"></i></button>
+                                                                <button type="submit" class="btn btn-sm edit"><i class="fas fa-check"></i></button>
                                                             </form>
     
                                                             <form action="{{ route('penebusan.notApprove', $penebusan->id) }}" class="tolak"method="POST" style="display: inline;">
@@ -187,7 +197,7 @@
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
-                        confirmButtonText: 'Ya !Terima',
+                        confirmButtonText: 'Ya, Terima!',
                         cancelButtonText: 'Batal'
                     }).then((result) => {
                         if (result.isConfirmed) {

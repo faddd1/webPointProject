@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('table_pasal', function (Blueprint $table) {
             $table->id();
             $table->string('deskripsi');
+            // $table->string('jenis');
             $table->string('level');
             $table->string('jenis');
             $table->timestamps();

@@ -40,7 +40,7 @@
             </script>
         @endif
         <div class="card shadow-lg border-0">
-            <div class="card-header text-white d-flex justify-content-between align-items-center" style="background-color: #4D869C;">
+            <div class="card-header text-white d-flex justify-content-between align-items-center" style="background-color: #4F709C;">
                 <div>
                     <button class="btn btn-outline-light me-2" onclick="showSearchAlert('siswa')">
                         <i class="fas fa-user"></i> Cari Siswa
@@ -94,7 +94,7 @@
                         <label for="tanggal" class="form-label">Tanggal :</label>
                         <input type="date" id="tanggal-input" name="tanggal" class="form-control">
                     </div>
-                    <button type="submit" class="btn w-100 laporForm" style="background-color: #4D869C;" id="submitButton">
+                    <button type="submit" class="btn w-100 laporForm" style="background-color: #4F709C;" id="submitButton">
                         <i class="fas fa-paper-plane" style="color: #fff;"></i> <span style="color: #fff;">Selesai</span>
                     </button>
                 </form>

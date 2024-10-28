@@ -42,12 +42,7 @@
                     </script>
                  @endif
                 <style>
-                    .btn-danger:hover {
-                        transition: transform 0.5s ease;
-                        transform: translateY(-5px);
-                    }
-
-                    .btn-primary:hover {
+                    .btn-danger:hover, .edit:hover {
                         transition: transform 0.5s ease;
                         transform: translateY(-5px);
                     }
@@ -94,14 +89,15 @@
                                 <div class="input-group">
                                     <input type="search" class="form-control" name="search" placeholder="Cari" value="{{ request()->input('search') }}" id="search-input">
                                     <div class="input-group-append">
-                                        <button type="submit" class="btn" style="background-color: #266278; color: #fff;">
+                                        <button type="submit" class="btn" style="background-color: #213555; color: #fff;">
                                             <i class="fa-solid fa-magnifying-glass"></i> <!-- Search icon -->
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         </form>
-                        <button class="btn btn-sm" style="background-color: #245c70; color: #fff;" id="tambahDataBtn">
+
+                        <button class="btn btn-sm" style="background-color: #e8c742; color: #fff;" id="tambahDataBtn">
                             <i class="fa-solid fa-user-plus"></i>
                         </button>
                     </div>
@@ -114,7 +110,7 @@
                         <div class="table-responsive">
                             <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                                 <thead>
-                                    <tr style="background-color: #4D869C; color:#ffff;">
+                                    <tr style="background-color: #4F709C; color:#ffff;">
                                         <td style="text-align: center; vertical-align: middle;" class="py-2">No</td>
                                         <td style="text-align: center; vertical-align: middle;">Nama</td>
                                         <td style="text-align: center; vertical-align: middle;">NIP</td>
@@ -143,7 +139,7 @@
                                         <td style="text-align: center; vertical-align: middle;">{{ $datas->role }}</td>
                                         <td style="text-align: center; vertical-align: middle;">
                                             <div class="action-buttons">
-                                            <button data-id="{{ $datas->id }}" class="btn btn-sm btn-primary editBtn"><i class="fa-solid fa-pen-to-square "></i></button>
+                                            <button data-id="{{ $datas->id }}" class="btn btn-sm editBtn edit" style="background-color: #213555; color: #fff;"><i class="fa-solid fa-pen-to-square "></i></button>
                                             <form action="{{ route('tambahGuru.destroy', $datas->id )}}" class="d-inline col-mb-2 deleteForm">
                                                 @csrf
                                                 @method('DELETE')

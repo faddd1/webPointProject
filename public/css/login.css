@@ -7,14 +7,18 @@
     text-decoration: none;
 }
 
+body, h1, h2, h3, h4, h5, h6, label, input, select, button {
+    font-family: 'Nunito', sans-serif;
+  }
+
 .poppins-regular {
-    font-family: "Poppins", sans-serif;
+    font-family: "Nunito", sans-serif;
     font-weight: 400;
     font-style: normal;
 }
 
 body {
-    font-family: "Poppins" sans-serif;
+    font-family: "Nunito" sans-serif;
     background-color: #f2f2f2;
     display: flex;
     justify-content: center;

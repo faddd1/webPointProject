@@ -107,7 +107,7 @@ class UserController extends Controller
     
         return view('profile.profile', [
             'data' => $data,
-            'title' => 'Profile'
+            'title' => 'Profil'
         ]);
     }
     

@@ -197,11 +197,8 @@ Route::middleware(['auth', 'userAkses:admin'])->group(function () {
     Route::get('/hukuman/edit{id}',[ListSiswa::class, 'edit'])->name('hukuman.edit');
     Route::put('/hukuman/update/{id}',[ListSiswa::class, 'update'])->name('hukuman.update');
     Route::delete('/hukuman/{id}', [ListSiswa::class, 'destroy'])->name('hukuman.destroy');
-
     Route::get('/hukuman/sanksi', [Sanksi::class, 'sanksi'])->name('sanksi');
-
-   
-
+    Route::get('/hukuman/search', [ListSiswa::class, 'search'])->name('hukuman.search');
 });
 
 Route::middleware(['auth', 'userAkses:siswa'])->group(function () {

@@ -16,4 +16,10 @@ class Hukuman extends Model
         'pointAkhir'
     ];
 
+    public function laporan()
+    {
+        return $this->hasMany(Laporan::class, 'hukuman_id', 'id');
+    }
+
+
 }

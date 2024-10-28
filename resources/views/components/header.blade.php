@@ -1,5 +1,5 @@
 <div class="content-header">
-    <style>
+    {{-- <style>
         .garis {
             height: 3px;
             @if($slot == 'Beranda')
@@ -94,6 +94,7 @@
 
             @endif
         }
+        --}}
     </style>
   <div class="container-fluid">
     <div class="row mb-1">

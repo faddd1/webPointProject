@@ -37,7 +37,7 @@
                     <div class="input-group">
                         <input type="search" class="form-control" name="search" placeholder="Cari" value="{{ request()->input('search') }}"  id="search-input">
                         <div class="input-group-append">
-                            <button type="submit" class="btn" style="background-color: #266278; color: #fff;">
+                            <button type="submit" class="btn" style="background-color: #213555; color: #fff;">
                                 <i class="fa-solid fa-magnifying-glass"></i> <!-- Search icon -->
                             </button>
                         </div>
@@ -91,9 +91,16 @@
                     transform: translateY(-5px);
                   }
 
-                  .btn-primary:hover {
+                  .edit:hover {
                     transition: transform 0.5s ease;
                     transform: translateY(-5px);
+                    background-color: #213555;
+                    color: #fff;
+                  }
+
+                  .edit {
+                    background-color: #213555;
+                    color: #fff;
                   }
             </style>
           
@@ -102,7 +109,7 @@
               <div class="table-responsive">
                 <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                   <thead>
-                    <tr style="background-color: #4D869C; color:#ffff;">
+                    <tr style="background-color: #4F709C; color:#ffff;">
                       <td style="text-align: center; vertical-align: middle;" class="py-2">No</td>
                       <td style="text-align: center; vertical-align: middle;" class="py-2">Kode</td>
                       <td style="text-align: center; vertical-align: middle;">Nama Pelanggaran</td>
@@ -130,7 +137,7 @@
                                 @if (auth()->check() && auth()->user()->role == 'admin')
                                 <td style="text-align: center; vertical-align: middle; white-space: nowrap;">
                                   <div class="action-buttons text-center align-middle">
-                                      <button class="btn btn-sm btn-primary editBtn" data-id="{{ $kategori->id }}">
+                                      <button class="btn btn-sm editBtn edit" data-id="{{ $kategori->id }}">
                                           <i class="fa-solid fa-pen-to-square"></i>
                                       </button>
                                       <form action="{{ route('kategori.destroy', $kategori->id )}}" class="d-inline col-mb-2 deleteForm" method="POST">
@@ -180,12 +187,12 @@
         </div>
       </div>
     </div>
-    <div class="card">
+          <div class="card" style="width: 98%; max-width: 1000px; margin: auto;">
             <div class="card-header">
              
               <div class="card-tools">
                 @if (auth()->user()->role == 'admin')
-                  <button class="btn btn-sm" style="background-color:#245c70; color:#ffff; margin-top: 5px; margin-right: 10px;" id="tambahPasal">
+                  <button class="btn btn-sm" style="background-color:#e8c742; color:#ffff; margin-top: 5px; margin-right: 10px;" id="tambahPasal">
                      <i class="fa-solid fa-circle-plus"></i> <span class="d-none d-sm-inline">Tambah</span>
                   </button>
                 @endif
@@ -196,13 +203,14 @@
               <div class="table-responsive">
                 <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                   <thead>
-                      <tr style="background-color: #4D869C; color:#ffff;">
+                      <tr style="background-color: #4F709C; color:#ffff;">
                         <td style="text-align: center; vertical-align: middle; ">No</td>
                         <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Jenis</td>
                         <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Pasal</td>
                         <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Deskripsi</td>
                         @if (auth()->check() && auth()->user()->role == 'admin')
                           <td style="text-align: center; vertical-align: middle;">Aksi</td>
+
                         @endif
                       </tr>
                 </thead>
@@ -216,7 +224,7 @@
                       @if (auth()->check() && auth()->user()->role == 'admin')
                         <td style="text-align: center; vertical-align: middle;">
                           <div class="action-buttons text-center align-middle">
-                            <button class="btn btn-sm btn-primary editPasal" data-id="{{ $item->id }}">
+                            <button class="btn btn-sm editPasal edit"  data-id="{{ $item->id }}">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </button>
                             <form action="{{ route('kategori.destroyPasal', $item->id )}}" class="d-inline col-mb-2 deletePasal" method="POST">

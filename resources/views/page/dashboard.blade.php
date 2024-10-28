@@ -45,7 +45,7 @@
           </div>
       
           <div class="col-lg-3 col-md-6 col-6 mb-3">
-            <div class="small-box" onclick="window.location.href='/teacher';" style="background: #f9df6e; color:#fff;">
+            <div class="small-box" onclick="window.location.href='/teacher';" style="background: #fde37d; color:#fff;">
               <div class="inner">
                 <div class="content">
                   <h3>{{ $totalGuru }}</h3>
@@ -96,7 +96,7 @@
       
       <style>
           .small-box:hover {
-            transform: translateY(-5px);
+            transform: scale(1.05);
             background: linear-gradient(45deg, #4dacff, #3ecf69);
           }
         @media (max-width: 400px) {
@@ -165,7 +165,7 @@
             display: none;
           }
         }
-      
+
         .small-box {
           background: #4dacff;
           border-radius: 12px;
@@ -173,15 +173,6 @@
           position: relative;
           transition: all 0.3s ease;
           cursor: pointer;
-        }
-
-        .card-siswa:hover {
-            transform: translateY(-5px);
-            transition: transform 0.3s ease;
-        }
-        
-        .card-body h6 {
-            font-size: 11px !important;
         }
       </style>
       
@@ -194,8 +185,8 @@
         <div class="row">
           <div class="col-xl-12 col-sm-12 mt-n5">
             <div class="card shadow-sm" style="background-color: #fff; border-radius: 10px;">
-              <div class="card-header text-white text-center" style="background-color: #4D869C;" >
-                <h5 class="card-title mb-0">Total Pelanggaran Hari Ini</h5>
+              <div class="card-header text-white text-center" style="background-color: #4F709C;" >
+                <h5 class="card-title mb-0 font-weight-bold">Total Pelanggaran Hari Ini</h5>
               </div>
               <div class="card-body p-3 text-center">
                 <h2 class="font-weight-bold mb-0">{{ $totalPelanggaranHariIni }}</h2>
@@ -208,7 +199,7 @@
       
       <h4>Top Siswa</h4>
       <div class="row">
-        @if ($topStudents->isEmpty())
+        @if ($topStudents->isEmpty() || $topStudents->count() == 0)
         <div class="card-body p-2">
           <div class="card col-xl-12 col-sm-12" style="padding: 20px; display: flex; justify-content: center; align-items: center; height: 100px;">
             <span style="align-items: center; align-content:center;">Tidak ada data yang ditemukan.</span>
@@ -232,7 +223,7 @@
                               </tr>
                               <tr>
                                   <td style="width: 40%;">
-                                      <h6 class="text-sm mb-0 text-capitalize font-weight-bold" style="color: #4D869C; font-size: 12px;">Nis</h6>
+                                      <h6 class="text-sm mb-0 text-capitalize font-weight-bold" style="color: #4F709C; font-size: 12px;">Nis</h6>
                                   </td>
                                   <td style="width: 10%; text-align: center;">:</td>
                                   <td>
@@ -243,7 +234,7 @@
                               </tr>
                               <tr>
                                   <td>
-                                      <h6 class="text-sm mb-0 text-capitalize font-weight-bold" style="color: #4D869C;">Kelas</h6>
+                                      <h6 class="text-sm mb-0 text-capitalize font-weight-bold" style="color: #4F709C;">Kelas</h6>
                                   </td>
                                   <td style="text-align: center;">:</td>
                                   <td>
@@ -252,7 +243,7 @@
                               </tr>
                               <tr>
                                   <td>
-                                      <h6 class="text-sm mb-0 text-capitalize font-weight-bold" style="color: #4D869C;">Jurusan</h6>
+                                      <h6 class="text-sm mb-0 text-capitalize font-weight-bold" style="color: #4F709C;">Jurusan</h6>
                                   </td>
                                   <td style="text-align: center;">:</td>
                                   <td>
@@ -261,7 +252,7 @@
                               </tr>
                               <tr>
                                   <td>
-                                      <h6 class="text-sm mb-0 text-capitalize font-weight-bold" style="color: #4D869C;">Poin</h6>
+                                      <h6 class="text-sm mb-0 text-capitalize font-weight-bold" style="color: #4F709C;">Poin</h6>
                                   </td>
                                   <td style="text-align: center;">:</td>
                                   <td>
@@ -283,7 +274,7 @@
         <h4>Top Pelanggaran</h4>
         <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
           <thead>
-            <tr style="background-color: #4D869C; color:#ffff; font-size: 15px;">
+            <tr style="background-color: #4F709C; color:#ffff; font-size: 15px;">
               <th style="text-align: center; vertical-align: middle;" class="py-2">Rank</th>
               <th style="text-align: center; vertical-align: middle;">Jenis Pelanggaran</th>
               <th style="text-align: center; vertical-align: middle;">Jumlah Pelanggaran</th> 

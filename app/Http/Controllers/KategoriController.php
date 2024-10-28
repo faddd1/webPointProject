@@ -94,7 +94,8 @@ class KategoriController extends Controller
     }
 
     
-    public function searchkategori(Request $request)
+    
+    public function searchkategori(Request $request) //seacrh kategori
     {
         $query = $request->get('query');
         $pelanggaran = Kategori::where('pelanggaran', 'LIKE', "%{$query}%")
@@ -105,7 +106,7 @@ class KategoriController extends Controller
     }
 
    
-    public function search(Request $request)
+    public function search(Request $request) //search kategori pelanggaran
     {
         $pasal = Pasal::get();
         $searchTerm = $request->input('search');
@@ -138,6 +139,7 @@ class KategoriController extends Controller
         Pasal::create([
             'level' => $request->level,
             'jenis' =>$request->jenis,
+
         ]);
 
         return redirect('/kategoripelanggaran')->with('success', 'Data berhasil ditambahakan!');

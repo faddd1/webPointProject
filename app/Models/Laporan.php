@@ -38,4 +38,9 @@ class Laporan extends Model
     {
         return $this->belongsTo(Pasal::class, 'level', 'id');
     }
+
+    public function hukuman()
+    {
+        return $this->belongsTo(Hukuman::class, 'hukuman_id', 'id');
+    }
 }

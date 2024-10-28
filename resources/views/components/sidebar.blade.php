@@ -11,18 +11,18 @@
             margin-bottom: 5px;
         }
         .nav-sidebar .nav-item .nav-link.active {
-            background-color: #4D869C; 
+            background-color: #fde37d; 
             border-radius: 5px; 
-            box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); 
+            /* box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);  */
             color: #000 !important;
         }
         
         .nav-sidebar .nav-item .nav-link:hover,
         .nav-sidebar .nav-item .nav-link.active {
-            background-color: #4d869c9b;
-            border-radius: 0 20px 20px 0;
+            background-color: #fde37dde;
+            border-radius: 5px 50px 50px 5px;
             transition: background-color 0.3s ease;
-            box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+            /* box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); */
         }
         
         .nav-sidebar .nav-item .nav-link p,
@@ -128,7 +128,7 @@
                                 <li class="nav-item">
                                     <a href="/hukuman" class="nav-link {{ request()->is('hukuman', 'hukuman/search') ? 'active' : '' }}" >
                                         <i class="far fa-circle nav-icon" style="color: #000; text-decoration: none;" onmouseover="this.style.color='#96B6C5'" onmouseout="this.style.color='#000'"></i>
-                                        <p style="color: #000; text-decoration: none;" onmouseover="this.style.color='#000'" onmouseout="this.style.color='#000'">Kategori Hukuman</p>
+                                        <p style="color: #000; text-decoration: none;" onmouseover="this.style.color='#000'" onmouseout="this.style.color='#000'">Kategori Sanksi</p>
                                     </a>
                                 </li>
                             @endif --}}
@@ -382,7 +382,7 @@
     <footer class="sidebar-footer text-center mt-2" style="padding: 10px; background-color: #fff;">
         {{-- <p style="font-size: 12px; color: #7f8c8d;">&copy; 2024 Your Website. All rights reserved.</p> --}}
         <strong  style="font-size: 12px;"> &copy; 2024 - 2025 
-            <a href="http://smkn1kawali.sch.id" style="color: #4D869C;" class="testi">SMKN 1 KAWALI</a>.
+            <a href="http://smkn1kawali.sch.id" style="color: #4F709C;" class="testi">SMKN 1 KAWALI</a>.
         </strong>
     </footer>
   </div>

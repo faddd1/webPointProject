@@ -60,24 +60,24 @@
                                         <thead>
                                             <tr style="background-color: #4F709C; color:#ffff;">
                                                 <td class="text-center align-middle" class="py-2">No</td>
-                                                <td class="text-center align-middle">Nama Pelapor</td>
-                                                <td class="text-center align-middle">Nama</td>
-                                                <td class="text-center align-middle">Nama Pelanggaran</td>
-                                                <td class="text-center align-middle">Jumlah Point</td>
-                                                <td class="text-center align-middle">Tanggal</td>
-                                                <td class="text-center align-middle">Bukti</td>
-                                                <td class="text-center align-middle">Status</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Pelapor</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama</td>
+                                                <td style="text-alzign: center; vertical-align: middle; white-space: nowrap;">Nama Pelanggaran</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Jumlah Point</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Tanggal</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Bukti</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Status</td>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach($reports as $no => $report)
                                                 <tr>
                                                     <td class="text-center align-middle">{{ $no + 1 }}</td>
-                                                    <td class="text-center align-middle">{{ $report->pelapor->name ?? 'tidak diketahui' }}</td>
-                                                    <td class="text-center align-middle">{{ $report->nama }}</td>
-                                                    <td class="text-center align-middle">{{ $report->pelanggaran }}</td>
-                                                    <td class="text-center align-middle">{{ $report->point }}</td>
-                                                    <td class="text-center align-middle text-muted text-sm">{{ $report->tanggal }},{{ $report->created_at->diffForHumans() }}</span></td>
+                                                    <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $report->pelapor->name ?? 'tidak diketahui' }}</td>
+                                                    <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $report->nama }}</td>
+                                                    <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $report->pelanggaran }}</td>
+                                                    <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $report->point }}</td>
+                                                    <td class="text-muted text-sm" style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $report->tanggal }},{{ $report->created_at->diffForHumans() }}</span></td>
                                                     <td class="text-center align-middle">
                                                         @if ($report->bukti)
                                                             <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal-{{ $report->id }}">
@@ -169,7 +169,7 @@
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
-                        confirmButtonText: 'Ya !Terima',
+                        confirmButtonText: 'Ya, Terima!',
                         cancelButtonText: 'Batal'
                     }).then((result) => {
                         if (result.isConfirmed) {

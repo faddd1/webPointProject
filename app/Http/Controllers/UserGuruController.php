@@ -18,7 +18,6 @@ class UserGuruController extends Controller
         return view('tambahUserGuru.tambahakun', [
             'data' => $data,
             'title' => 'Akun Guru',
-
             'selectedRole' => $role 
         ]);
     }
