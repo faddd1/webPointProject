@@ -37,21 +37,7 @@
                      @endif
 
                      <style>
-                        .edit:hover, .hapus:hover, .show:hover {
-                            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-                            transform: scale(1.05);
-                        }
-
-                        .hapus:hover {
-                            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-                            transform: scale(1.05);
-                        }
-
-                        .show:hover {
-                            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-                            transform: scale(1.05);
-                        }
-                        
+                       
 
                         .action-buttons {
                             display: flex;
@@ -286,6 +272,10 @@
                                         color: white; /* Warna teks saat aktif */
                                         background-color:  #4F709C; /* Warna abu-abu saat aktif */
                                         border-color:  #4F709C;
+                                    }
+                                    .poin{
+                                        font-size: 12px; 
+                                        padding: 6px 10px; 
                                     }                                            
                                 </style>
                                 <div class="card-footer mt-3" style="background: #fff;">
@@ -293,7 +283,7 @@
                                         <form action="{{ route('hapus.point') }}" class="d-inline deletePoint" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-xs">
+                                            <button type="submit" class="btn btn-danger poin">
                                                 Hapus Semua Point <i class="fa-solid fa-star"></i>
                                             </button>
                                         </form>
@@ -324,21 +314,22 @@
         </div>
     </div>
 
-    <script>
-        // document.querySelectorAll('.showBtn').forEach(button => {
-        //     button.addEventListener('click', function () {
-        //         const studentId = this.getAttribute('data-id');
-        //         fetch(`/datasiswa/show/${studentId}`)
-        //             .then(response => response.text())
-        //             .then(html => {
-        //                 document.getElementById('modalBody').innerHTML = html;
-        //                 document.getElementById('dataModalLabel').innerText = 'Detail Data Siswa';
-        //                 new bootstrap.Modal(document.getElementById('dataModal')).show();
-        //             })
-        //             .catch(error => console.error('Error loading data:', error));
-        //     });
-        // });
-    </script>
+    {{-- <script>
+        document.querySelectorAll('.showBtn').forEach(button => {
+                button.addEventListener('click', function () {
+                const studentId = this.getAttribute('data-id');
+                    fetch(`/datasiswa/show/${studentId}`)
+                    .then(response => response.text())
+                    .then(html => {
+                        document.getElementById('modalBody').innerHTML = html;
+                        document.getElementById('dataModalLabel').innerText = 'Detail Data Siswa';
+                        new bootstrap.Modal(document.getElementById('dataModal')).show();
+                    })
+                    .catch(error => console.error('Error loading data:', error));
+            });
+        });
+    </script> --}}
+    
     @if (session('success'))
         <script>
             document.addEventListener("DOMContentLoaded", function() {

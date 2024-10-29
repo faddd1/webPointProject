@@ -10,7 +10,17 @@
             max-height: 82vh; 
             overflow-y: auto; 
         }
-
+        body {
+            font-family: 'Nunito', sans-serif;
+            font-size: 14px;
+        }
+        .content-wrapper, .main-footer, .navbar, .sidebar {
+            padding: 10px;
+        }
+        .poin{
+            font-size: 12px; 
+            padding: 6px 10px; 
+        }
         .pagination .page-item.active .page-link {
             background-color: #4F709C; 
             border: none;
@@ -21,6 +31,9 @@
         .pagination .page-item:not(.active) .page-link:hover {
             background-color: #4f709ca5; 
             color: white; 
+        }
+        .card-header{
+            background: #fff;
         }
     </style>
 </head>

@@ -54,10 +54,8 @@
                 <label class="form-check-label" for="role">Admin</label>
             </div>
         </div>
-<<<<<<< Updated upstream
-        <button type="submit" class="btn btn-primary btn-block mt-3">Simpan</button>
-=======
-        <button type="submit" class="btn btn-primary-custom btn-block mt-3">Save</button>
->>>>>>> Stashed changes
+
+        <button type="submit" class="btn btn-primary-custom btn-block mt-3">Simpan</button>
+
     </form>
 </div>

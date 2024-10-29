@@ -39,7 +39,8 @@ class KategoriController extends Controller
             'level' => 'required|string|max:200',
             'kode' => 'nullable|string|max:10',
         ]);
-    
+        $point = -abs($request->input('point'));
+        
         $count = Kategori::count();
         $newKode = 'KAT' . str_pad($count + 1, 4, '0', STR_PAD_LEFT);
     
@@ -47,7 +48,7 @@ class KategoriController extends Controller
             'pelanggaran' => $request->pelanggaran,
             'level' => $request->level,
             'kode' => $newKode,
-            'point' => $request->point,
+            'point' => $point,
         ]);
     
         return redirect()->back()->with('success', 'Data berhasil ditambahkan dengan kode unik: ' . $newKode);
