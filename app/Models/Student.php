@@ -47,13 +47,15 @@ class Student extends Model
     }
 
     public function petugas() {
-        return $this->hasOne(Petugas::class, 'nis', 'nis');
+        return  $this->hasOne(Petugas::class, 'nis', 'nis');
     }
 
-    public function hukuman () {
-        return $this->hasOne(Hukuman::class, 'nama_hukuman');
-    }
 
+    public function hukuman()
+    {
+        return $this->hasMany(Hukuman::class, 'id', 'id');
+    }
+    
 }
 
     

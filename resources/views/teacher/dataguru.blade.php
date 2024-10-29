@@ -37,13 +37,8 @@
                       <div class="card-header">
                           <div class="card-tools">
                               @if (auth()->user()->role == 'admin')
-<<<<<<< Updated upstream
-                              <button class="btn btn-sm" style="margin-top: 1px; background-color:#245c70; color:#ffff; margin-right: 10px;" id="tambahDataBtn">
-                                <i class="fa-solid fa-circle-plus"></i> <span class="d-none d-sm-inline">Tambah</span>
-=======
                               <button class="btn btn-sm" style="margin-top: 1px; background-color:#e8c742; color:#ffff; margin-right: 10px;" id="tambahDataBtn">
-                                <i class="fa-solid fa-circle-plus"></i> <span class="d-none d-sm-inline">Add</span>
->>>>>>> Stashed changes
+                                <i class="fa-solid fa-circle-plus"></i> <span class="d-none d-sm-inline">Tambah</span>
                               </button>
                               @endif
                           </div>
@@ -133,11 +128,11 @@
                             <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                                 <thead>
                                     <tr style="background-color: #4F709C; color:#ffff;">
-                                        <th style="text-align: center; vertical-align: middle;" class="py-2">No</th>
-                                        <th style="text-align: center; vertical-align: middle;">NIP</th>
-                                        <th style="text-align: center; vertical-align: middle;">Nama Guru</th>
-                                        <th style="text-align: center; vertical-align: middle;">Jabatan</th>
-                                        <th style="text-align: center; vertical-align: middle;">Jenis Kelamin</th>
+                                        <th style="text-align: center; vertical-align: middle; white-space: nowrap;" class="py-2">No</th>
+                                        <th style="text-align: center; vertical-align: middle; white-space: nowrap;">NIP</th>
+                                        <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Guru</th>
+                                        <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Jabatan</th>
+                                        <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Jenis Kelamin</th>
                                         @if (auth()->user()->role == 'admin')
                                         <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Aksi</th>
                                         @endif
@@ -186,21 +181,21 @@
                             <div class="ml-auto">
                                 <style>
                                     .pagination .page-link {
-                                        color: #245c70; /* Warna abu-abu */
+                                        color:  #4F709C; /* Warna abu-abu */
                                         background-color: #f8f9fa; /* Warna latar belakang */
                                         border-color: #dee2e6; /* Warna border */
                                     }
                         
                                     .pagination .page-link:hover {
-                                        color:#245c70; /* Warna abu-abu yang lebih gelap saat hover */
+                                        color: #4F709C; /* Warna abu-abu yang lebih gelap saat hover */
                                         background-color: #e9ecef; /* Latar belakang sedikit lebih gelap */
                                         border-color: #dee2e6;
                                     }
                         
                                     .pagination .active .page-link {
                                         color: white; /* Warna teks saat aktif */
-                                        background-color: #245c70; /* Warna abu-abu saat aktif */
-                                        border-color: #245c70;
+                                        background-color:  #4F709C; /* Warna abu-abu saat aktif */
+                                        border-color:  #4F709C;
                                     }
                                 </style>
                                 {{ $teacher->links('pagination::bootstrap-4') }}

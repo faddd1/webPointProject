@@ -88,34 +88,38 @@
                               <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                                   <thead>
                                       <tr style="background-color: #4F709C; color:#ffff;">
-                                          <th style="text-align: center; vertical-align: middle;" class="py-2">No</th>
-                                          <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Hukuman</th>
-                                          <th style="text-align: center; vertical-align: middle; white-space: nowrap;">Poin</th>
-                                          {{-- @if (auth()->check() && auth()->user()->role == 'admin') --}}
-                                              <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Aksi</td>
-                                          {{-- @endif --}}
+
+                                          <th style="text-align: center; vertical-align: middle;  white-space: nowrap;" class="py-2">No</th>
+                                          <th style="text-align: center; vertical-align: middle;  white-space: nowrap;">Nama Hukuman</th>
+                                          <th style="text-align: center; vertical-align: middle;  white-space: nowrap;">Poin</th>
+                                          @if (auth()->check() && auth()->user()->role == 'admin')
+                                              <th style="text-align: center; vertical-align: middle;  white-space: nowrap;">Aksi</th>
+                                          @endif
                                       </tr>
                                   </thead>
                                   <tbody>
                                       @foreach ($punismen as $no => $item)
                                           <tr>
-                                              <td style="text-align: center; vertical-align: middle;">{{$no+1}}</td>
-                                              <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{$item->nama_hukuman}}</td>
-                                              <td style="text-align: center; vertical-align: middle; white-space: nowrap;">({{$item->pointAwal}}) Sampai ({{ $item->pointAkhir }})</td>
-                                              <td style="text-align: center; vertical-align: middle; white-space: nowrap;">
-                                                <div class="action-buttons text-center align-middle">
-                                                    <button class="btn btn-sm editBtn edit" style="background-color: #213555; color: #fff;" data-id="{{ $item->id }}">
-                                                        <i class="fa-solid fa-pen-to-square"></i>
-                                                    </button>
-                                                    <form action="{{ route('hukuman.destroy', $item->id )}}" class="d-inline col-mb-2 deleteForm" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-sm btn-danger">
-                                                            <i class="fa-solid fa-trash"></i>
+                                              <td style="text-align: center; vertical-align: middle;  white-space: nowrap;">{{$no+1}}</td>
+
+                                              <td style="text-align: center; vertical-align: middle; max-width: 150px;  white-space: nowrap;">{{$item->nama_hukuman}}</td>
+                                              <td style="text-align: center; vertical-align: middle;  white-space: nowrap;">({{$item->pointAwal}}) Sampai ({{ $item->pointAkhir }})</td>
+                                              @if (auth()->check() && auth()->user()->role == 'admin')
+                                                <td style="text-align: center; vertical-align: middle;">
+                                                    <div class="action-buttons text-center align-middle">
+                                                        <button class="btn btn-sm editBtn edit" style="background-color: #213555; color: #fff;" data-id="{{ $item->id }}">
+                                                            <i class="fa-solid fa-pen-to-square"></i>
                                                         </button>
-                                                    </form>
-                                                </div>
-                                            </td>
+                                                        <form action="{{ route('hukuman.destroy', $item->id )}}" class="d-inline col-mb-2 deleteForm" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-sm btn-danger">
+                                                                <i class="fa-solid fa-trash"></i>
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </td>
+                                            @endif
                                           </tr>
                                       @endforeach
                                   </tbody>
@@ -127,13 +131,13 @@
                                 <div class="ml-auto">
                                     <style>
                                         .pagination .page-link {
-                                            color: #4F709C; /* Warna teks */
+                                            color:#4F709C; /* Warna teks */
                                             background-color: #f8f9fa; /* Warna latar */
                                             border-color: #dee2e6; /* Warna border */
                                         }
 
                                         .pagination .page-link:hover {
-                                            color: #4F709C; 
+                                            color: #4F709C;
                                             background-color: #e9ecef; 
                                             border-color: #dee2e6;
                                         }

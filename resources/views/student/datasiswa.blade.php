@@ -95,7 +95,7 @@
                             <div class="d-flex align-items-center">
                                 <div>
                                     <h5 id="bulan" style="font-weight: 700;"></h5>
-                                    <p style="font-style: italic; margin-bottom: 0;">Data semua siswa yang ada di SMKN 1 KAWALI</p>
+                                    <p style="margin-bottom: 0;">Data semua siswa yang ada di <span style="font-style: italic;">SMKN 1 KAWALI</span></p>
                                 </div>
                                
                             </div>
@@ -271,21 +271,21 @@
                             </div>
                                 <style>
                                     .pagination .page-link {
-                                        color: #245c70; /* Warna abu-abu */
+                                        color:  #4F709C; /* Warna abu-abu */
                                         background-color: #f8f9fa; /* Warna latar belakang */
                                         border-color: #dee2e6; /* Warna border */
                                     }
                             
                                     .pagination .page-link:hover {
-                                        color:#245c70; /* Warna abu-abu yang lebih gelap saat hover */
+                                        color: #4F709C; /* Warna abu-abu yang lebih gelap saat hover */
                                         background-color: #e9ecef; /* Latar belakang sedikit lebih gelap */
                                         border-color: #dee2e6;
                                     }
                                 
                                     .pagination .active .page-link {
                                         color: white; /* Warna teks saat aktif */
-                                        background-color: #245c70; /* Warna abu-abu saat aktif */
-                                        border-color: #245c70;
+                                        background-color:  #4F709C; /* Warna abu-abu saat aktif */
+                                        border-color:  #4F709C;
                                     }                                            
                                 </style>
                                 <div class="card-footer mt-3" style="background: #fff;">

@@ -31,7 +31,7 @@ class Laporan extends Model
 
     public function pelapor()
     {
-        return $this->belongsTo(User::class, 'pelapor_id');
+        return $this->belongsTo(User::class, 'pelapor_id', 'id');
     }
 
     public function pasal()

@@ -27,7 +27,7 @@
             <div class="card-header">
               <div class="card-tools">
                 @if (auth()->user()->role == 'admin')
-                  <button class="btn btn-sm" style="background-color:#245c70; color:#ffff; margin-top: 5px; margin-right: 10px;" id="tambahDataBtn">
+                  <button class="btn btn-sm" style="background-color:#e8c742; color:#ffff; margin-top: 5px; margin-right: 10px;" id="tambahDataBtn">
                      <i class="fa-solid fa-circle-plus"></i> <span class="d-none d-sm-inline">Tambah</span>
                   </button>
                 @endif
@@ -110,13 +110,13 @@
                 <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                   <thead>
                     <tr style="background-color: #4F709C; color:#ffff;">
-                      <td style="text-align: center; vertical-align: middle;" class="py-2">No</td>
-                      <td style="text-align: center; vertical-align: middle;" class="py-2">Kode</td>
-                      <td style="text-align: center; vertical-align: middle;">Nama Pelanggaran</td>
-                      <td style="text-align: center; vertical-align: middle;">Pasal</td>
-                      <td style="text-align: center; vertical-align: middle;">Poin</td>
+                      <td style="text-align: center; vertical-align: middle; white-space: nowrap;" class="py-2">No</td>
+                      <td style="text-align: center; vertical-align: middle; white-space: nowrap;" class="py-2">Kode</td>
+                      <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Pelanggaran</td>
+                      <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Pasal</td>
+                      <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Poin</td>
                       @if (auth()->check() && auth()->user()->role == 'admin')
-                        <td style="text-align: center; vertical-align: middle;">Aksi</td>
+                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Aksi</td>
                       @endif
                     </tr>
                   </thead>
@@ -129,11 +129,11 @@
                     @else
                         @foreach ($kategoris as $no => $kategori)
                             <tr>
-                                <td style="text-align: center; vertical-align: middle;">{{$no+1}}</td>
-                                <td style="text-align: center; vertical-align: middle;">{{$kategori->kode}}</td>
-                                <td style=" vertical-align: middle; max-width: 200px;">{{$kategori->pelanggaran}}</td>
-                                <td style="text-align: center; vertical-align: middle;">{{$kategori->pasal->level  ?? 'Tidak Ada Pasal'}}</td>
-                                <td style="text-align: center; vertical-align: middle;">{{$kategori->point}}</td>
+                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{$no+1}}</td>
+                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{$kategori->kode}}</td>
+                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{$kategori->pelanggaran}}</td>
+                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{$kategori->pasal->level  ?? 'Tidak Ada Pasal'}}</td>
+                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{$kategori->point}}</td>
                                 @if (auth()->check() && auth()->user()->role == 'admin')
                                 <td style="text-align: center; vertical-align: middle; white-space: nowrap;">
                                   <div class="action-buttons text-center align-middle">
@@ -162,21 +162,21 @@
                   <div class="ml-auto">
                       <style>
                           .pagination .page-link {
-                              color: #245c70; /* Warna abu-abu */
+                              color: #4F709C; /* Warna abu-abu */
                               background-color: #f8f9fa; /* Warna latar belakang */
                               border-color: #dee2e6; /* Warna border */
                           }
               
                           .pagination .page-link:hover {
-                              color:#245c70; /* Warna abu-abu yang lebih gelap saat hover */
+                              color:#4F709C; /* Warna abu-abu yang lebih gelap saat hover */
                               background-color: #e9ecef; /* Latar belakang sedikit lebih gelap */
                               border-color: #dee2e6;
                           }
               
                           .pagination .active .page-link {
                               color: white; /* Warna teks saat aktif */
-                              background-color: #245c70; /* Warna abu-abu saat aktif */
-                              border-color: #245c70;
+                              background-color:#4F709C; /* Warna abu-abu saat aktif */
+                              border-color: #4F709C;
                           }
                       </style>
                       {{ $kategoris->links('pagination::bootstrap-4') }}
@@ -204,7 +204,7 @@
                 <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                   <thead>
                       <tr style="background-color: #4F709C; color:#ffff;">
-                        <td style="text-align: center; vertical-align: middle; ">No</td>
+                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">No</td>
                         <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Jenis</td>
                         <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Pasal</td>
                         <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Deskripsi</td>
@@ -217,12 +217,12 @@
                 <tbody>
                   @foreach ($pasal as $no => $item)
                     <tr>
-                      <td style="text-align: center; vertical-align: middle;">{{ $no + 1 }}</td>
-                      <td style="text-align: center; vertical-align: middle;">{{ $item->jenis }}</td>
-                      <td style="text-align: center; vertical-align: middle;">{{ $item->level }}</td>
-                      <td style="text-align: center; vertical-align: middle;">{{ $item->deskripsi }}</td>
+                      <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $no + 1 }}</td>
+                      <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $item->jenis }}</td>
+                      <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $item->level }}</td>
+                      <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $item->deskripsi }}</td>
                       @if (auth()->check() && auth()->user()->role == 'admin')
-                        <td style="text-align: center; vertical-align: middle;">
+                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">
                           <div class="action-buttons text-center align-middle">
                             <button class="btn btn-sm editPasal edit"  data-id="{{ $item->id }}">
                                 <i class="fa-solid fa-pen-to-square"></i>

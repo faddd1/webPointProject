@@ -48,7 +48,7 @@
                 width: 223px;
 
             @elseif($slot == 'Search Data Siswa')
-                width: 230px;
+                width: 238px;
 
             @elseif($slot == 'Search Data Petugas')
                 width: 195px;
@@ -84,6 +84,9 @@
                 width: 180px;
 
             @elseif($slot == 'Akun Admin')
+                width: 165px;
+
+            @elseif($slot == 'Sanksi Siswa')
                 width: 165px;
 
             @elseif($slot == 'Profile')

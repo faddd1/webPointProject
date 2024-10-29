@@ -38,7 +38,6 @@ class StudentController extends Controller
         ->groupBy(DB::raw('DATE(created_at)'))
         ->paginate(10);
 
-
         
         return view('listpelanggaran.listpelanggaran', compact('pelanggaranPerHari',),[
             'title' => 'List Pelanggaran Siswa',
@@ -211,22 +210,28 @@ public function destroy(Student $studentItem, $id)
 
 
 
+     
      public function searchSiswa(Request $request) {
-        $query = $request->query('query');
+        $siswa = $request->query('nama');
         $jurusan = $request->query('jurusan');
         $kelas = $request->query('kelas');
 
-        $siswa = Student::where('nama', 'like', "%{$query}%")
+        $studentItem = Student::where('nama', 'like', "%{$siswa}%")
             ->when($jurusan, function ($q) use ($jurusan) {
                 return $q->where('jurusan', $jurusan);
             })
             ->when($kelas, function ($q) use ($kelas) {
                 return $q->where('kelas', $kelas);
             })
-            ->get();
+            ->paginate(4);
 
-        return response()->json($siswa);
-    }
+         return view('student.datasiswa', [
+             'title' => 'Search Data Siswa',
+             'studentItem' => $studentItem
+         ]);
+     }
+
+    
 
      public function listDestroy($id)
     {

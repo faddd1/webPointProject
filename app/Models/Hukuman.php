@@ -13,13 +13,12 @@ class Hukuman extends Model
     protected $fillable= [
         'nama_hukuman',
         'pointAwal',
-        'pointAkhir'
+        'pointAkhir',
     ];
 
-    public function laporan()
+    public function student()
     {
-        return $this->hasMany(Laporan::class, 'hukuman_id', 'id');
+        return $this->belongsTo(Student::class, 'student_id');
     }
-
-
+    
 }

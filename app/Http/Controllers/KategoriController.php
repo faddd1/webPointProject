@@ -104,13 +104,12 @@ class KategoriController extends Controller
     
         return response()->json($pelanggaran);
     }
-
    
     public function search(Request $request) //search kategori pelanggaran
+
     {
-        $pasal = Pasal::get();
+        $pasal = Pasal::all();
         $searchTerm = $request->input('search');
-        
       
         $kategoris = Kategori::where('pelanggaran', 'LIKE', "%{$searchTerm}%")
                     ->orWhere('kode', 'LIKE', "%{$searchTerm}%")

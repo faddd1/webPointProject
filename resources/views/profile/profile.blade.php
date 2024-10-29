@@ -30,7 +30,7 @@
                                 <ul class="list-group">
                                     <li class="list-group-item">
                                         <div class="row">
-                                            <div class="col-2"><strong>Nis</strong></div>
+                                            <div class="col-2"><strong>Admin Id</strong></div>
                                             <div class="col-auto">:</div>
                                             <div class="col">{{ Auth::user()->nis }}</div>
                                         </div>

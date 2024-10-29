@@ -48,7 +48,7 @@
                                     <div class="input-group" style="width: 100%;  max-width: 200px;">
                                         <input type="search" class="form-control" style="border-radius: 0.25rem 0 0 0.25rem; flex: 1; height: 30px; font-size: 0.875rem; " name="search" placeholder="Cari" value="{{ request()->input('search') }}" id="search-input">
                                         <div class="input-group-append">
-                                            <button type="submit" class="btn" style="background-color: #213555; color: #fff;">
+                                            <button type="submit" class="btn-sm btn" style="background-color: #213555; color: #fff;">
                                                 <i class="fa-solid fa-magnifying-glass"></i> <!-- Search icon -->
                                             </button>
                                         </div>
@@ -119,7 +119,7 @@
                                         @else
                                         @foreach($students as $no => $student)
                                             <tr>
-                                                <td class="text-center align-middle">{{ $no + 1 }}</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $no + 1 }}</td>
                                                 <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $student->pelapor->name ?? 'tidak diketahui' }}</td>
                                                 <td style="text-align: center; vertical-align: middle; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ $student->nama }}</td>
                                                 <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $student->pelanggaran }}</td>
@@ -165,21 +165,21 @@
                         </div>
                         <style>
                             .pagination .page-link {
-                                color: #245c70; /* Warna abu-abu */
+                                color:  #4F709C; /* Warna abu-abu */
                                 background-color: #f8f9fa; /* Warna latar belakang */
                                 border-color: #dee2e6; /* Warna border */
                             }
                     
                             .pagination .page-link:hover {
-                                color:#245c70; /* Warna abu-abu yang lebih gelap saat hover */
+                                color: #4F709C;/* Warna abu-abu yang lebih gelap saat hover */
                                 background-color: #e9ecef; /* Latar belakang sedikit lebih gelap */
                                 border-color: #dee2e6;
                             }
                         
                             .pagination .active .page-link {
                                 color: white; /* Warna teks saat aktif */
-                                background-color: #245c70; /* Warna abu-abu saat aktif */
-                                border-color: #245c70;
+                                background-color: #4F709C; /* Warna abu-abu saat aktif */
+                                border-color:  #4F709C;
                             }                                            
                         </style>
                         <div class="card-footer mt-3" style="background: #fff;">
@@ -192,18 +192,18 @@
                                 <div class="table-responsive mt-3">
                                     <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                                         <thead>
-                                            <tr style="background-color: #4D869C; color:#ffff;">
-                                                <td class="text-center align-middle">No</td>
-                                                <td class="text-center align-middle">Tanggal</td>
-                                                <td class="text-center align-middle">Jumlah</td>
+                                            <tr style="background-color: #4F709C;  color:#ffff;">
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">No</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Tanggal</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Jumlah</td>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($pelanggaranPerHari as $no=>$item)
                                                 <tr>
-                                                    <td class="text-center align-middle">{{ $no+1 }}</td>
-                                                    <td class="text-center align-middle">{{ \Carbon\Carbon::parse($item->tanggal)->format('j F Y') }}</td>
-                                                    <td class="text-center align-middle">{{ $item->total }}</td>
+                                                    <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $no+1 }}</td>
+                                                    <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ \Carbon\Carbon::parse($item->tanggal)->format('j F Y') }}</td>
+                                                    <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $item->total }}</td>
                                                 </tr>
                                             @endforeach 
                                         </tbody>

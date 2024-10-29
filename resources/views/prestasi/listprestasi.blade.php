@@ -160,21 +160,21 @@
                                 <div class="ml-auto">
                                     <style>
                                         .pagination .page-link {
-                                            color: #245c70; /* Warna abu-abu */
+                                            color:  #4F709C; /* Warna abu-abu */
                                             background-color: #f8f9fa; /* Warna latar belakang */
                                             border-color: #dee2e6; /* Warna border */
                                         }
                                 
                                         .pagination .page-link:hover {
-                                            color:#245c70; /* Warna abu-abu yang lebih gelap saat hover */
+                                            color: #4F709C; /* Warna abu-abu yang lebih gelap saat hover */
                                             background-color: #e9ecef; /* Latar belakang sedikit lebih gelap */
                                             border-color: #dee2e6;
                                         }
                                     
                                         .pagination .active .page-link {
                                             color: white; /* Warna teks saat aktif */
-                                            background-color: #245c70; /* Warna abu-abu saat aktif */
-                                            border-color: #245c70;
+                                            background-color:  #4F709C; /* Warna abu-abu saat aktif */
+                                            border-color:  #4F709C;
                                         }                                            
                                     </style>
                                     {{ $prestasis->links('pagination::bootstrap-4') }}
