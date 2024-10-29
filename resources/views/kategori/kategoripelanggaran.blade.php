@@ -131,7 +131,7 @@
                             <tr>
                                 <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{$no+1}}</td>
                                 <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{$kategori->kode}}</td>
-                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{$kategori->pelanggaran}}</td>
+                                <td style="vertical-align: middle; width:300px;">{{$kategori->pelanggaran}}</td>
                                 <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{$kategori->pasal->level  ?? 'Tidak Ada Pasal'}}</td>
                                 <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{$kategori->point}}</td>
                                 @if (auth()->check() && auth()->user()->role == 'admin')
@@ -207,7 +207,7 @@
                         <td style="text-align: center; vertical-align: middle; white-space: nowrap;">No</td>
                         <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Jenis</td>
                         <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Pasal</td>
-                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Deskripsi</td>
+                        <td style="vertical-align: middle;">Deskripsi</td>
                         @if (auth()->check() && auth()->user()->role == 'admin')
                           <td style="text-align: center; vertical-align: middle;">Aksi</td>
 

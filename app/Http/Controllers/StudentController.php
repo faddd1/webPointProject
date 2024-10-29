@@ -216,6 +216,7 @@ public function destroy(Student $studentItem, $id)
         $jurusan = $request->query('jurusan');
         $kelas = $request->query('kelas');
 
+
         $studentItem = Student::where('nama', 'like', "%{$siswa}%")
             ->when($jurusan, function ($q) use ($jurusan) {
                 return $q->where('jurusan', $jurusan);

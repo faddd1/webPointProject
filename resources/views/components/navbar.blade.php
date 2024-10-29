@@ -57,8 +57,6 @@
         @else
           <span class="dropdown-item text-center text-muted">Tidak ada notifikasi</span>
         @endif
-        
-        <a href="#" class="dropdown-item dropdown-footer text-primary">Lihat Semua Notifikasi</a>
     </div>
   </li>
   

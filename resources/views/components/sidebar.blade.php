@@ -212,6 +212,7 @@
 
                 @if(auth()->check() && in_array($role, ['admin', 'guru']))
                     <li class="nav-item has-treeview {{ request()->is('hukuman', 'hukuman/search') ? 'menu-open' : '' }}">
+
                         <a href="#" class="nav-link">
                             <i class="fa-solid fa-gavel" style="color: #000; text-decoration: none; font-size: 17px; margin-right: 2px;"></i>
                             <p style="color: #000; text-decoration: none;" onmouseover="this.style.color='#000'" onmouseout="this.style.color='#000'">

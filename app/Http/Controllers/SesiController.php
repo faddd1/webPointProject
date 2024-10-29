@@ -17,9 +17,9 @@ class SesiController extends Controller
             'password' => 'required',
             'role' => 'required',
         ],[
-            'nis.required' => 'NIS Wajib di Isi',
+            'nis.required' => 'NIS/NIP Wajib di Isi',
             'password.required' => 'Password Wajib di Isi',
-            'role.required' => 'Role Wajib di Isi',
+            'role.required' => 'Status Wajib di Isi',
         ]);
     
         $infoLogin = [
@@ -45,7 +45,7 @@ class SesiController extends Controller
                     return redirect()->back()->withErrors('Role tidak ditemukan.');
             }
         } else {
-            return redirect()->back()->with('error', 'NIS/NIP, Password, atau Role yang Anda masukkan salah.');
+            return redirect()->back()->with('error', 'NIS/NIP, Password, atau Status yang Anda masukkan salah.');
         }
     }
     

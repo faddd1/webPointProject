@@ -38,13 +38,15 @@ class LaporanController extends Controller
             'bukti.required' => 'Bukti Wajib di isi'
         ]);
 
+
+        $point = -abs($request->input('point'));
         try {
            
             $report = new Laporan();
             $report->nis = $request->nis;
             $report->nama = $request->nama;
             $report->pelanggaran = $request->pelanggaran;
-            $report->point = $request->point;
+            $report->point = $point;
             $report->tanggal = $request->tanggal;
             $report->pelapor_id = Auth::id();
 

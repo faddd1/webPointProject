@@ -314,22 +314,6 @@
         </div>
     </div>
 
-    {{-- <script>
-        document.querySelectorAll('.showBtn').forEach(button => {
-                button.addEventListener('click', function () {
-                const studentId = this.getAttribute('data-id');
-                    fetch(`/datasiswa/show/${studentId}`)
-                    .then(response => response.text())
-                    .then(html => {
-                        document.getElementById('modalBody').innerHTML = html;
-                        document.getElementById('dataModalLabel').innerText = 'Detail Data Siswa';
-                        new bootstrap.Modal(document.getElementById('dataModal')).show();
-                    })
-                    .catch(error => console.error('Error loading data:', error));
-            });
-        });
-    </script> --}}
-    
     @if (session('success'))
         <script>
             document.addEventListener("DOMContentLoaded", function() {
@@ -370,7 +354,7 @@
             document.getElementById("bulan").textContent = `${currentMonth} ${currentYear}`;
         </script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<!-- Include AlertifyJS CSS and JS -->
+
 
 
         <script>
@@ -443,34 +427,69 @@
 
         </script>
 
-        <script>
-            function confirmDownload(action) {
-            const jurusan = document.getElementById('jurusan').value;
-        
-            
-            Swal.fire({
-                title: 'Konfirmasi Unduh',
-                text: 'Apakah Anda yakin ingin mengunduh data ini?',
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Ya, unduh!',
-                cancelButtonText: 'Batal'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                document.getElementById('download-form').action = action;
-                const input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = 'jurusan';
-                input.value = jurusan;
-                document.getElementById('download-form').appendChild(input);
+<script>
+    document.querySelectorAll('.showBtn').forEach(button => {
+        button.addEventListener('click', function () {
+            const studentId = this.getAttribute('data-id');
+            console.log("Opening modal for student ID:", studentId); // Debugging log
+            loadStudentData(studentId); // Load initial data when the modal is opened
+        });
+    });
+
+    function loadStudentData(studentId, pelanggaranPage = 1, prestasiPage = 1) {
+        fetch(`/datasiswa/show/${studentId}?pelanggaran_page=${pelanggaranPage}&prestasi_page=${prestasiPage}`)
+            .then(response => response.text())
+            .then(html => {
+                console.log("Loaded student data for modal."); // Debugging log
+                const modal = document.getElementById('dataModal');
+                const modalBody = document.getElementById('modalBody');
                 
-                document.getElementById('download-form').submit();
+                // Check if the modal instance exists and is currently shown
+                const bootstrapModal = bootstrap.Modal.getInstance(modal);
+                if (bootstrapModal && bootstrapModal._isShown) {
+                    bootstrapModal.hide();
                 }
-            });
-            }
-        </script>
+
+                modalBody.innerHTML = html;
+                document.getElementById('dataModalLabel').innerText = 'Detail Data Siswa';
+                new bootstrap.Modal(modal).show();
+
+                // Attach event listeners to the pagination links
+                attachPaginationListeners(studentId);
+            })
+            .catch(error => console.error('Error loading data:', error));
+    }
+
+    function attachPaginationListeners(studentId) {
+        const pelanggaranContainer = document.querySelector('#pelanggaran-content');
+        const prestasiContainer = document.querySelector('#penebusan-content');
+
+        if (pelanggaranContainer) {
+            pelanggaranContainer.addEventListener('click', function handlePelanggaranPagination(e) {
+                if (e.target.matches('.pagination a')) {
+                    e.preventDefault(); // Prevent default link behavior
+                    const url = new URL(e.target.href);
+                    const pelanggaranPage = url.searchParams.get('pelanggaran_page');
+                    console.log("Pelanggaran pagination clicked. Loading page:", pelanggaranPage); // Debugging log
+                    loadStudentData(studentId, pelanggaranPage, 1); // Load data for the selected pelanggaran page
+                }
+            }, { once: true }); // Ensures listener only attaches once
+        }
+
+        if (prestasiContainer) {
+            prestasiContainer.addEventListener('click', function handlePrestasiPagination(e) {
+                if (e.target.matches('.pagination a')) {
+                    e.preventDefault(); // Prevent default link behavior
+                    const url = new URL(e.target.href);
+                    const prestasiPage = url.searchParams.get('prestasi_page');
+                    console.log("Prestasi pagination clicked. Loading page:", prestasiPage); // Debugging log
+                    loadStudentData(studentId, 1, prestasiPage); // Load data for the selected prestasi page
+                }
+            }, { once: true }); // Ensures listener only attaches once
+        }
+    }
+</script>
+
 
 
 

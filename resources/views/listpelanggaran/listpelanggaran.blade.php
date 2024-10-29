@@ -122,14 +122,14 @@
                                                 <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $no + 1 }}</td>
                                                 <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $student->pelapor->name ?? 'tidak diketahui' }}</td>
                                                 <td style="text-align: center; vertical-align: middle; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ $student->nama }}</td>
-                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $student->pelanggaran }}</td>
+                                                <td style=" vertical-align: middle;">{{ $student->pelanggaran }}</td>
                                                 <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $student->point }}</td>
                                                 <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{  \Carbon\Carbon::parse($student->tanggal)->format('j F Y') }}</td>
                                                 <td class="col-2 text-center align-middle">
                                                     @if ($student->bukti)
                                                         <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal-{{ $student->id }}">
                                                             <div style="width: 50px; height: 50px; overflow: hidden; display: inline-block;">
-                                                                <img src="{{ asset('uploads/' . $student->bukti) }}" alt="Bukti {{ $student->nama }}" class="img-thumbnail bukti-image" style="width: 100%; height: auto; cursor: pointer;">
+                                                                <img src="{{ asset('uploads/' . $student->bukti ?? 'tidak ada bukti') }}" alt="Bukti {{ $student->nama }}" class="img-thumbnail bukti-image" style="width: 100%; height: auto; cursor: pointer;">
                                                             </div>
                                                         </a>
                                                 
