@@ -41,6 +41,18 @@ class TeacherController extends Controller
              'nis.unique' => 'Nip sudah digunakan, silakan pilih yang lain.',
 
         ]);
+        $name = $request->namaguru;
+        $nis = $request->nis;
+        $password = $request->nis;
+        
+        $user = User::create([
+            'name' => $name,
+            'nis' => $nis,
+            'password' => bcrypt($password),
+            'role' => 'guru',
+        ]);
+
+
        
         Teacher::create([
             'nis' => $request->nis,
@@ -50,9 +62,9 @@ class TeacherController extends Controller
 
         ]);
 
-       return redirect()->back()->with('success', 'Data Guru berhasil ditambahkan!');
-        
+        return redirect()->back()->with('success', 'Data Guru berhasil ditambahkan! : '. 'Nip:' . $nis . ', Password: ' . $password);
     }
+        
 
    
     public function show(Teacher $teacher)

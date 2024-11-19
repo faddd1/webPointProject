@@ -20,8 +20,14 @@ class Student extends Model
         'kelas',
         'jurusan',
         'jk',
-        'point'
+        'point',
+        'user_id'
     ];
+
+    public function akun()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function user() { 
         return $this->hasOne(User::class, 'nis', 'nis');

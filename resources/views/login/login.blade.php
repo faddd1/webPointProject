@@ -74,19 +74,6 @@
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
-                <div>
-                    <label for="role" class="form-label">Status :</label>
-                    <select name="role" class="form-control">
-                        <option value="">Pilih Status</option>
-                        <option value="admin">Admin</option>
-                        <option value="guru">Guru</option>
-                        <option value="petugas">Petugas</option>
-                        <option value="siswa">Siswa</option>
-                    </select>
-                    @error('role')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
                 <div class="d-grid gap-2 " style="margin-top: 1rem;">
                     <button class="btn mt-3" type="submit" style="background-color: #4F709C; color: #ffff;">Login</button>
                 </div>

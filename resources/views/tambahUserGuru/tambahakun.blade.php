@@ -96,10 +96,6 @@
                                 </div>
                             </div>
                         </form>
-
-                        <button class="btn btn-sm" style="background-color: #e8c742; color: #fff;" id="tambahDataBtn">
-                            <i class="fa-solid fa-user-plus"></i>
-                        </button>
                     </div>
                     
                     

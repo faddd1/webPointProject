@@ -103,7 +103,7 @@ class UserController extends Controller
 }
 
     public function profil() {
-        $data = User::with(['siswa', 'petugas', 'guru'])->where('nis', auth()->user()->nis)->first();
+        $data = User::with(['siswa', 'guru'])->where('nis', auth()->user()->nis)->first();
     
         return view('profile.profile', [
             'data' => $data,

@@ -15,17 +15,14 @@ class SesiController extends Controller
         $request->validate([
             'nis' => 'required',
             'password' => 'required',
-            'role' => 'required',
         ],[
             'nis.required' => 'NIS/NIP Wajib di Isi',
             'password.required' => 'Password Wajib di Isi',
-            'role.required' => 'Status Wajib di Isi',
         ]);
     
         $infoLogin = [
             'nis' => $request->nis,
             'password' => $request->password,
-            'role' => $request->role,
         ];
     
         if(Auth::attempt($infoLogin)){

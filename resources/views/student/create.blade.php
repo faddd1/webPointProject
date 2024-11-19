@@ -53,8 +53,8 @@
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="jk" id="jkLaki" value="Laki-laki" required>
                 <label class="form-check-label" for="jkLaki">Laki-laki</label>
-            </div>
-            <div class="form-check form-check-inline">
+        </div>
+        <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="jk" id="jkPerempuan" value="Perempuan" required>
                 <label class="form-check-label" for="jkPerempuan">Perempuan</label>
             </div>
@@ -80,6 +80,13 @@
               <option value="AK 2">AK 2</option>
               <option value="SK 1">SK 1</option>
               <option value="SK 2">SK 2</option>
+            </select>
+
+            <label for="jurusan" class="form-label mt-4">Pilih Status</label>
+            <select class="form-control"name="role" required>
+                <option>Pilih Status Siswa</option>
+                <option value="siswa">Siswa</option>
+                <option value="petugas">Petugas</option>
             </select>
         </div>
         <button type="submit" class="btn btn-block btn-primary-custom">Tambah</button>

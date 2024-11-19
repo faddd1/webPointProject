@@ -23,43 +23,6 @@ class UserSiswaController extends Controller
         ]);
     }
     
-
-    public function create(){
-        return view ('tambahUserSiswa.buatakun', [
-
-            'title' => 'Tambah Akun Siswa'
-        ]);
-    }
-
-    public function store(Request $request)
-{
-    $request->validate([
-        'name' => 'required',
-        'nis' => [
-            'required',
-            function ($attribute, $value, $fail) use ($request) {
-                if (User::where('nis', $value)->where('role', $request->role)->exists()) {
-                    $fail('NIS sudah digunakan, silakan pilih NIS yang lain.');
-                }
-            }
-        ],
-        'password' => 'required',
-        'role' => 'required',
-    ]);
-    
-
-    User::create([
-        'name' => $request->name,
-        'nis' => $request->nis,
-        'role' => $request->role,
-        'password' => Hash::make($request->password),
-        'plain_password' => $request->password,
-    ]);
-
-    return redirect()->back()->with('success', 'Akun Siswa berhasil di Tambahkan!');
-}
-
-
     public function edit(User $data, $id){
 
         $data = User::findOrFail($id);

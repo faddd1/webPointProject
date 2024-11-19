@@ -30,6 +30,16 @@ class User extends Authenticatable
         'is_logged_in'
     ];
 
+    public function students()
+    {
+        return $this->hasMany(Student::class);
+    }
+
+    public function teachers()
+    {
+        return $this->hasMany(Teacher::class);
+    }
+
     public function siswa()
     {
         return $this->belongsTo(Student::class, 'nis', 'nis');
@@ -45,11 +55,6 @@ class User extends Authenticatable
 
         return $this->hasMany(Penebusan::class, 'nis', 'nis',);
 
-    }
-
-    public function petugas() {
-
-        return $this->belongsTo(Petugas::class, 'nis', 'nis');
     }
 
     public function guru() {

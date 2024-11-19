@@ -44,7 +44,7 @@
     
         <div class="form-group">
             <label>Password</label>
-            <input type="text"  name="password" value="{{ $data->plain_password }}" class="form-control">
+            <input type="text"  name="password" placeholder="Isi dengan Password baru" class="form-control">
         </div>
     
         <div class="form-group mb-4">

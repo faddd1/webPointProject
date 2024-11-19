@@ -134,26 +134,20 @@ Route::middleware(['auth', 'userAkses:admin'])->group(function () {
     Route::get('tambahAdmin/search', [UserController::class, 'search'])->name('tambahAdmin.search');
     //Akun Petugas
     Route::get('/tambahPetugas', [UserPetugasController::class, 'index'])->name('tambahPetugas');
-    Route::get('tambahPetugas/user', [UserPetugasController::class, 'create']);
     Route::get('tambahPetugas/edit{id}', [UserPetugasController::class, 'edit'])->name('tambahPetugas.edit');
-    Route::post('tambahPetugas/store', [UserPetugasController::class, 'store'])->name('tambahPetugas.store');
     Route::put('tambahPetugas/update{id}', [UserPetugasController::class, 'update'])->name('tambahPetugas.update');
     Route::get('tambahPetugas/destroy{id}', [UserPetugasController::class, 'destroy'])->name('tambahPetugas.destroy');
     Route::get('tambahPetugas/search', [UserPetugasController::class, 'search'])->name('tambahPetugas.search');
     // Akun Siswa
     Route::get('/tambahSiswa', [UserSiswaController::class, 'index'])->name('tambahSiswa');
-    Route::get('tambahSiswa/user', [UserSiswaController::class, 'create']);
     Route::get('tambahSiswa/edit{id}', [UserSiswaController::class, 'edit'])->name('tambahSiswa.edit');
-    Route::post('tambahSiswa/store', [UserSiswaController::class, 'store'])->name('tambahSiswa.store');
     Route::put('tambahSiswa/update{id}', [UserSiswaController::class, 'update'])->name('tambahSiswa.update');
     Route::get('tambahSiswa/destroy{id}', [UserSiswaController::class, 'destroy'])->name('tambahSiswa.destroy');
     Route::get('tambahSiswa/search', [UserSiswaController::class, 'search'])->name('tambahSiswa.search');
 
 
     Route::get('/tambahGuru', [UserGuruController::class, 'index'])->name('tambahGuru');
-    Route::get('tambahGuru/user', [UserGuruController::class, 'create']);
     Route::get('tambahGuru/edit{id}', [UserGuruController::class, 'edit'])->name('tambahGuru.edit');
-    Route::post('tambahGuru/store', [UserGuruController::class, 'store'])->name('tambahGuru.store');
     Route::put('tambahGuru/update{id}', [UserGuruController::class, 'update'])->name('tambahGuru.update');
     Route::get('tambahGuru/destroy{id}', [UserGuruController::class, 'destroy'])->name('tambahGuru.destroy');
     Route::get('tambahGuru/search', [UserGuruController::class, 'search'])->name('tambahGuru.search');
@@ -205,13 +199,7 @@ Route::middleware(['auth', 'userAkses:admin'])->group(function () {
     Route::get('/hukuman/search', [ListSiswa::class, 'search'])->name('hukuman.search');
 });
 
-Route::middleware(['auth', 'userAkses:siswa'])->group(function () {
+Route::middleware(['auth', 'userAkses:siswa,petugas'])->group(function () {
     Route::get('/listpelanggaran/siswa',[ListSiswa::class, 'listsiswa'])->name('listsiswa');
     
-});
-
-Route::get('/informasi', function(){
-    return view ('informasi.informasi', [
-        'title' => 'informasi'
-    ]);
 });

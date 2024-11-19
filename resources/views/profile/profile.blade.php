@@ -46,11 +46,11 @@
                                 @endif
 
                                 @if(auth()->check() && (auth()->user()->role == 'petugas'))
-                                    <li class="list-group-item"><strong>Nama:</strong> {{ Auth::user()->nis ?? 'tidak diketahui' }}</li>
-                                    <li class="list-group-item"><strong>Kelas:</strong>  {{ Auth::user()->petugas->kelas ?? 'tidak diketahui' }}</li>
-                                    <li class="list-group-item"><strong>Jurusan:</strong> {{ Auth::user()->petugas->jurusan ?? 'tidak diketahui' }}</li>
-                                    <li class="list-group-item"><strong>Jenis Kelamin:</strong> {{ Auth::user()->petugas->jk ?? 'tidak diketahui' }}</li>
-                                    <li class="list-group-item"><strong>Nama Organisasi:</strong> {{ Auth::user()->petugas->namao ?? 'tidak diketahui' }}</li>
+                                <li class="list-group-item"><strong>Nis:</strong> {{ Auth::user()->siswa->nis ?? 'tidak diketahui' }}</li>
+                                    <li class="list-group-item"><strong>Nama:</strong> {{ Auth::user()->siswa->nama?? 'tidak diketahui' }}</li>
+                                    <li class="list-group-item"><strong>Kelas:</strong>  {{ Auth::user()->siswa->kelas ?? 'tidak diketahui' }}</li>
+                                    <li class="list-group-item"><strong>Jurusan:</strong> {{ Auth::user()->siswa->jurusan ?? 'tidak diketahui' }}</li>
+                                    <li class="list-group-item"><strong>Jenis Kelamin:</strong> {{ Auth::user()->siswa->jk ?? 'tidak diketahui' }}</li>
                                 @endif
                                 
                                 @if(auth()->check() && (auth()->user()->role == 'guru'))

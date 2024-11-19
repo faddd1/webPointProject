@@ -24,7 +24,7 @@ class AdminController extends Controller
 
         $totalSiswa = Student::count();
         $totalGuru = Teacher::count();
-        $totalPetugas = Petugas::count();
+        $totalPetugas = User::where('role', 'petugas')->count();
         $totalPelanggaran = Kategori::where('pelanggaran', '!=', null)->count();
         $totalUser = User::count();
         $topStudents = Student::orderBy('point', 'asc')->take(4)->get();
