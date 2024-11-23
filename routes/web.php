@@ -48,7 +48,7 @@ Route::group(['middleware' => ['auth', 'userAkses:admin,guru,petugas,siswa']], f
     Route::get('dashboard/siswa', [AdminController::class, 'siswa'])->middleware('userAkses:siswa')->name('dashboard.siswa');
 
     Route::get('/tatatertib',[TataTertibController::class, 'tampilanTata']);
-    //unduh data siswa
+    //unduh tata tertib siswa
     Route::get('/download/tata-tertib', function () {
         $filePath = public_path('assets/pdf/TataTertib.pdf');
         $fileName = 'TataTertib_2024.pdf';

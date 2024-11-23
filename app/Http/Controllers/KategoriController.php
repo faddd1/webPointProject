@@ -63,7 +63,7 @@ class KategoriController extends Controller
     }
 
   
-    public function update(Request $request, Kategori $kategori, $id)
+    public function update(Request $request, Kategori $kategori, $id) 
     {
         $request->validate([
             'pelanggaran' => 'required',

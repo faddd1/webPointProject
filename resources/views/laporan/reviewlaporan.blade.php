@@ -29,10 +29,21 @@
                             justify-content: center;
                             gap: 5px;
                         }
+                        .bukti-image {
+                            width: 50px;      
+                            height: 50px;     
+                            object-fit: cover; 
+                            aspect-ratio: 1/1; 
+                            border-radius: 0.25rem; 
+                        }
 
                         @media (max-width: 576px) {
                             .action-buttons {
                                 flex-direction: row;
+                            }
+                            .bukti-image {
+                                width: 40px; 
+                                height: 40px; 
                             }
                         }
                     </style>
@@ -50,30 +61,33 @@
                                     <table class="table table-hover table-bordered table-sm" style="background-color: #ffff; font-size: 13px; border-radius: 5px 5px 0 0; overflow: hidden;">
                                         <thead>
                                             <tr style="background-color: #4F709C; color:#ffff;">
-                                                <td class="text-center align-middle">No</td>
-                                                <td style="text-align: center; vertical-align: middle;">Nama Pelapor</td>
-                                                <td style="text-align: center; vertical-align: middle;">Nama</td>
-                                                <td style="text-align: center; vertical-align: middle;">Nama Pelanggaran</td>
-                                                <td style="text-align: center; vertical-align: middle;">Jumlah Point</td>
-                                                <td style="text-align: center; vertical-align: middle;">Tanggal</td>
-                                                <td style="text-align: center; vertical-align: middle;">Bukti</td>
-                                                <td style="text-align: center; vertical-align: middle;">Status</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">No</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Pelapor</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Nama Pelanggaran</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Jumlah Point</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Tanggal</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Bukti</td>
+                                                <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Status</td>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach($reports as $no => $report)
                                                 <tr>
                                                     <td class="text-center align-middle">{{ $no + 1 }}</td>
-                                                    <td style="text-align: center; vertical-align: middle;">{{ $report->pelapor->name ?? 'tidak diketahui' }}</td>
-                                                    <td style="text-align: center; vertical-align: middle;">{{ $report->nama }}</td>
-                                                    <td style="text-align: center; vertical-align: middle;">{{ $report->pelanggaran }}</td>
-                                                    <td style="text-align: center; vertical-align: middle;">{{ $report->point }}</td>
-                                                    <td class="text-muted text-sm" style="text-align: center; vertical-align: middle;">{{ $report->tanggal }}, {{ $report->created_at->diffForHumans() }}</td>
+                                                    <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $report->pelapor->name ?? 'tidak diketahui' }}</td>
+                                                    <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $report->nama }}</td>
+                                                    <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $report->pelanggaran }}</td>
+                                                    <td style="text-align: center; vertical-align: middle; white-space: nowrap;">{{ $report->point }}</td>
+                                                    <td class="text-muted text-sm" style="text-align: center; vertical-align: middle;  white-space: nowrap;">{{ $report->tanggal }}, {{ $report->created_at->diffForHumans() }}</td>
                                                     <td class="text-center align-middle">
                                                         @if ($report->bukti)
                                                             <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal-{{ $report->id }}">
-                                                                <img src="{{ asset('uploads/' . $report->bukti) }}" alt="Bukti {{ $report->nama }}" class="img-thumbnail" style="width: 50px; height: 50px; cursor: pointer;">
-                                                            </a>
+                                                                <div style="width: 50px; height: 50px; overflow: hidden; display: inline-block;">
+                                                                    <img src="{{ asset('uploads/' . $report->bukti) }}" alt="Bukti {{ $report->nama }}" class="img-thumbnail bukti-image" style="width: 100%; height: auto; cursor: pointer;">
+                                                                </div>
+                                                                </a>
+
                                                             <div class="modal fade" id="imageModal-{{ $report->id }}" tabindex="-1" aria-labelledby="imageModalLabel-{{ $report->id }}" aria-hidden="true">
                                                                 <div class="modal-dialog modal-dialog-centered">
                                                                     <div class="modal-content">
@@ -85,7 +99,7 @@
                                                             </div>
                                                         @endif
                                                     </td>
-                                                    <td class="text-center align-middle">
+                                                    <td style="text-align: center; vertical-align: middle; white-space: nowrap;">
                                                         <form action="{{ route('laporan.approve', $report->id) }}" method="POST" class="approve-form" style="display: inline;">
                                                             @csrf
                                                             @method('PUT')

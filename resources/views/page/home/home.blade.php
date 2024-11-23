@@ -20,6 +20,8 @@
     <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css') }}" rel="stylesheet">
+
 
     <!-- Main CSS File -->
     <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
@@ -39,7 +41,6 @@
         </a>
 
         <nav id="navmenu" class="navmenu">
-        
             <ul>
                 <li><a href="#hero" class="active">Beranda</a></li>
                 <li><a href="#about">Tentang</a></li>
@@ -77,8 +78,6 @@
                             </ul>
                     </li>
                 @endif 
-
-
                     @guest
                     <li class="nav-item">
                         <a class="btn text-white btn-login" style="padding: 8px 20px; background-color: #4F709C;" href="{{ route('login') }}">Login</a>

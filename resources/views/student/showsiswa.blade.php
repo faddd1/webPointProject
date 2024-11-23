@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <title>Detail Data Siswa - {{ $studentlist->nama }}</title>
     <style>
         .modal-body {
             max-height: 82vh; 
@@ -14,9 +7,7 @@
             font-family: 'Nunito', sans-serif;
             font-size: 14px;
         }
-        .content-wrapper, .main-footer, .navbar, .sidebar {
-            padding: 10px;
-        }
+        
         .poin{
             font-size: 12px; 
             padding: 6px 10px; 
@@ -154,7 +145,3 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>

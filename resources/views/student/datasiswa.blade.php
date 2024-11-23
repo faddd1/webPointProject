@@ -355,7 +355,32 @@
         </script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+        <script>
+            function confirmDownload(url) {
+                const jurusan = document.getElementById('jurusan').value;
+                const kelas = document.getElementById('kelas').value;
 
+                const fullUrl = `${url}?jurusan=${jurusan}&kelas=${kelas}`;
+
+                // SweetAlert2 untuk konfirmasi
+                Swal.fire({
+                    title: 'Konfirmasi Unduhan',
+                    text: "Apakah Anda yakin ingin mengunduh data?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, unduh!',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Jika dikonfirmasi, arahkan ke URL
+                        window.location.href = fullUrl;
+                    }
+                });
+            }
+
+        </script>
 
         <script>
 
