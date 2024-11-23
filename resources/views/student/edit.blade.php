@@ -90,6 +90,36 @@
             <option value="SK 1" {{ $studentItem->jurusan == 'SK 1' ? 'selected' : '' }}>SK 1</option>
             <option value="SK 2" {{ $studentItem->jurusan == 'SK 2' ? 'selected' : '' }}>SK 2</option>
         </select>
+
+        
+        <label for="role" class="form-label mt-4">Pilih Status</label>
+        <div>
+            <div class="form-check">
+                <input 
+                    type="radio" 
+                    id="roleSiswa" 
+                    name="role" 
+                    value="siswa" 
+                    class="form-check-input" 
+                    {{ $studentItem->role == 'siswa' ? 'checked' : '' }} 
+                    required
+                >
+                <label for="roleSiswa" class="form-check-label">Siswa</label>
+            </div>
+            <div class="form-check">
+                <input 
+                    type="radio" 
+                    id="rolePetugas" 
+                    name="role" 
+                    value="petugas" 
+                    class="form-check-input" 
+                    {{ $studentItem->role == 'petugas' ? 'checked' : '' }} 
+                    required
+                >
+                <label for="rolePetugas" class="form-check-label">Petugas</label>
+            </div>
+        </div>
+
     </div>
     <button type="submit" class="btn btn-block btn-primary-custom">Simpan</button>
 </form>

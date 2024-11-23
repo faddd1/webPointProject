@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use App\Exports\StudentExport;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 use PHPUnit\Framework\MockObject\Builder\Stub;
 
@@ -75,7 +76,6 @@ class StudentController extends Controller
     public function indexdata()
     {
 
-        // $studentItem = Student::paginate(3);
         $studentItem = Student::orderBy('created_at', 'desc')->paginate(5);
         return view('student.datasiswa', [
             'studentItem' => $studentItem,
@@ -91,30 +91,50 @@ class StudentController extends Controller
 
     public function store(Request $request)
     {
-       $request -> validate ([
-
-        'nis' => 'required|unique:students,nis,',
-        'nama' => 'required|string|max:50',
-        'kelas' => 'required|string|max:50',
-        'jurusan' => 'required|string|max:50',
-        'jk' => 'required|string|max:50',
-       ], [
-        'nis.unique' =>  'nis sudah digunakan, silakan pilih yang lain.',
-
-   ]);
-
-       Student::create([
-
-        'nis' => $request->nis,
-        'nama' => $request->nama,
-        'kelas' => $request->kelas,
-        'jurusan' => $request->jurusan,
-        'jk' => $request->jk,
-
-       ]);
-
-       return redirect()->back()->with('success', 'Data Siswa berhasil ditambahkan!');
+        $request->validate([
+            'nis' => 'required|unique:students,nis',
+            'nama' => 'required|string|max:50',
+            'kelas' => 'required|string|max:50',
+            'jurusan' => 'required|string|max:50',
+            'jk' => 'required|string|max:50',
+            'role' => 'required|in:siswa,petugas',
+        ], [
+            'nis.unique' => 'NIS sudah digunakan, silakan pilih yang lain.',
+        ]);
+    
+        $name = $request->nama;
+        $nis = $request->nis;
+        $password = $request->nis;
+        $role = $request->role;
+        
+        $user = User::create([
+            'name' => $name,
+            'nis' => $nis,
+            'password' => bcrypt($password),
+            'role' => $role,
+        ]);
+    
+      
+        Student::create([
+            'nis' => $request->nis,
+            'nama' => $request->nama,
+            'kelas' => $request->kelas,
+            'jurusan' => $request->jurusan,
+            'jk' => $request->jk,
+            'role' => $request->role,
+            'user_id' => $user->id,
+        ]);
+    
+      
+        return redirect()->back()->with('success', 'Data Siswa berhasil ditambahkan! Username: ' . $nis . ', Password: ' . $password);
     }
+    
+    // private function generatePassword($length = 8)
+    // {
+    //     return bin2hex(random_bytes($length / 2));
+    // }
+    
+    
 
 
     public function showsiswa($id)
@@ -140,31 +160,35 @@ class StudentController extends Controller
 
     public function update(Request $request, Student $studentItem, $id)
     {
-        $request -> validate ([
-        'nis' => 'required|unique:students,nis,' . $id,
-        'nama' => 'required|string|max:50',
-        'kelas' => 'required|string|max:50',
-        'jurusan' => 'required|string|max:50',
-        'jk' => 'required|string|max:50',
+        $request->validate([
+            'nis' => 'required|unique:students,nis,' . $id,
+            'nama' => 'required|string|max:50',
+            'kelas' => 'required|string|max:50',
+            'jurusan' => 'required|string|max:50',
+            'jk' => 'required|string|max:50',
+            'role' => 'required|in:siswa,petugas',
         ], [
-            'nis.unique' => 'Nis sudah digunakan, silakan pilih yang lain.',
-
-       ]);
-
+            'nis.unique' => 'NIS sudah digunakan, silakan pilih yang lain.',
+        ]);
+    
         $studentItem = Student::find($id);
-        $studentItem->update ([
-
+        $studentItem->update([
             'nis' => $request->nis,
             'nama' => $request->nama,
             'kelas' => $request->kelas,
             'jurusan' => $request->jurusan,
+            'role' => $request->role,
             'jk' => $request->jk,
-    
         ]);
-
-        return redirect()->route('datasiswa')->with('success', 'Data Siswa Berhasil diubah!');
+    
+        $user = User::where('nis', $request->nis)->first();
+        if ($user) {
+            $user->update(['role' => $request->role]);
+        }
+    
+        return redirect()->back()->with('success', 'Data Siswa Berhasil diubah!');
     }
-
+    
 
 public function destroy(Student $studentItem, $id)
 {

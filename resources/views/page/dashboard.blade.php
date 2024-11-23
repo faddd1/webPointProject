@@ -87,7 +87,7 @@
               <div class="icon">
                 <i class="fa-solid fa-users"></i>
               </div>
-              <a href="/datapetugas" class="small-box-footer d-none d-sm-block">Info lebih lanjut
+              <a href="/tambahPetugas" class="small-box-footer d-none d-sm-block">Info lebih lanjut
               <i class="fas fa-arrow-circle-right" style="color: #fff;"></i></a>
             </div>
           </div>

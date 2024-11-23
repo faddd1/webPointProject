@@ -14,8 +14,14 @@ class Teacher extends Model
         'nis',
         'namaguru',
         'jabatan',
+        'user_id',
         'jk'
     ];
+
+    public function akun()
+    {
+        return $this->belongsTo(User::class);
+    }
     public function pelanggaran()
     {
         return $this->hasMany(Laporan::class, 'nis', 'nis');

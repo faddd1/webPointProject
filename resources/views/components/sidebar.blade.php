@@ -165,7 +165,7 @@
                         </li>
                     @endif
 
-                @if(auth()->check() && $role == 'siswa')
+                    @if(auth()->check() && in_array($role, ['siswa', 'petugas',]))
                     <li class="nav-item has-treeview " >
                         <a href="{{ route('listsiswa') }}" class="nav-link {{ request()->is('listpelanggaran/siswa') ? 'active' : '' }}" >
                           <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24"><path fill="currentColor" d="M16 17v2H2v-2s0-4 7-4s7 4 7 4m-3.5-9.5A3.5 3.5 0 1 0 9 11a3.5 3.5 0 0 0 3.5-3.5m3.44 5.5A5.32 5.32 0 0 1 18 17v2h4v-2s0-3.63-6.06-4M15 4a3.4 3.4 0 0 0-1.93.59a5 5 0 0 1 0 5.82A3.4 3.4 0 0 0 15 11a3.5 3.5 0 0 0 0-7" style="color: #000; text-decoration: none;" onmouseover="this.style.color='#96B6C5'" onmouseout="this.style.color='#000'"/></svg>
@@ -196,14 +196,6 @@
                                 <a href="{{ url('/teacher') }}" class="nav-link {{ request()->is('teacher','teacher/search') ? 'active' : '' }}">
                                     <i class="far fa-circle nav-icon" style="color: #000; text-decoration: none;" onmouseover="this.style.color='#96B6C5'" onmouseout="this.style.color='#000'"></i>
                                     <p style="color: #000; text-decoration: none;" onmouseover="this.style.color='#000'" onmouseout="this.style.color='#000'">Data Guru</p>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{ url('datapetugas') }}" class="nav-link {{ request()->is('datapetugas', 'datapetugas/search') ? 'active' : '' }}">
-                                    <i class="far fa-circle nav-icon" style="color: #000; text-decoration: none;" onmouseover="this.style.color='#96B6C5'" onmouseout="this.style.color='#000'"></i>
-                                    <p style="color: #000; text-decoration: none;" onmouseover="this.style.color='#000'" onmouseout="this.style.color='#000'">Data Petugas</p>
                                 </a>
                             </li>
                         </ul>

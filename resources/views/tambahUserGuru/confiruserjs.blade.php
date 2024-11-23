@@ -7,23 +7,6 @@
                 window.location.href = "{{ url('/tambahGuru') }}";
             }
             });
-        document.getElementById('tambahDataBtn').addEventListener('click', function (event) {
-            event.preventDefault(); 
-            
-           
-            fetch('tambahGuru/user')
-            .then(response => response.text())
-            .then(html => {
-               
-                document.getElementById('modalBody').innerHTML = html;
-                
-                document.getElementById('dataModalLabel').innerText = 'Tambah Akun Guru';
-               
-                const dataModal = new bootstrap.Modal(document.getElementById('dataModal'));
-                dataModal.show();
-            })
-            .catch(error => console.error('Error loading create form:', error));
-        });
             document.querySelectorAll('.editBtn').forEach(button => {
                 button.addEventListener('click', function () {
                     const userId = this.getAttribute('data-id'); 
