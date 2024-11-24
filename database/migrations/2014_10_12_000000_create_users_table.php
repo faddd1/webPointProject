@@ -13,8 +13,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('nis');
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('nis')->unique();
             $table->enum('role', ['admin', 'petugas', 'guru', 'siswa'])->default('admin');
             $table->string('password');
             $table->rememberToken();

@@ -89,8 +89,15 @@ class StudentController extends Controller
         return view('student.create', ['title' => 'Tambah Data Siswa']);
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request){
+
+        if (User::where('nis', $request->nis)->exists()) {
+            return redirect()->back()->withErrors(['nis' => 'NIS sudah digunakan di akun siswa,silahkan tambahkan nis yang lain.']);
+        }
+    
+        if (Student::where('nis', $request->nis)->exists()) {
+            return redirect()->back()->withErrors(['nis' => 'NIS sudah digunakan di tabel siswa.']);
+        }
         $request->validate([
             'nis' => 'required|unique:students,nis',
             'nama' => 'required|string|max:50',

@@ -36,9 +36,8 @@ class PenebusanController extends Controller
         ]);
     
         try {
-            // Cek apakah siswa memiliki pelanggaran
             $siswa = Student::where('nis', $request->nis)->first();
-            $pelanggaran = $siswa->pelanggaran()->exists(); // Cek apakah siswa punya pelanggaran
+            $pelanggaran = $siswa->pelanggaran()->exists();
     
             $penebusan = new Penebusan();
             $penebusan->nis = $request->nis;

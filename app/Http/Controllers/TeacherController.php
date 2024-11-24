@@ -31,38 +31,40 @@ class TeacherController extends Controller
    
     public function store(Request $request)
     {
-        $request -> validate([
-            'nis' => 'required|unique:teachers,nis,',
+        if (User::where('nis', $request->nis)->exists()) {
+            return redirect()->back()->withErrors(['nis' => 'NIP sudah digunakan di akun guru,silahkan tambahkan nip yang lain.']);
+        }
+    
+        if (Teacher::where('nis', $request->nis)->exists()) {
+            return redirect()->back()->withErrors(['nis' => 'NIP sudah digunakan di tabel Guru.']);
+        }
+    
+        $request->validate([
+            'nis' => 'required',
             'namaguru' => 'required',
             'jabatan' => 'required',
-            'jk' => 'required'
-
-        ], [
-             'nis.unique' => 'Nip sudah digunakan, silakan pilih yang lain.',
-
+            'jk' => 'required',
         ]);
+    
         $name = $request->namaguru;
         $nis = $request->nis;
         $password = $request->nis;
-        
+    
         $user = User::create([
             'name' => $name,
             'nis' => $nis,
             'password' => bcrypt($password),
             'role' => 'guru',
         ]);
-
-
-       
+    
         Teacher::create([
-            'nis' => $request->nis,
-            'namaguru' => $request->namaguru,
+            'nis' => $nis,
+            'namaguru' => $name,
             'jabatan' => $request->jabatan,
-            'jk' => $request->jk
-
+            'jk' => $request->jk,
         ]);
-
-        return redirect()->back()->with('success', 'Data Guru berhasil ditambahkan! : '. 'Nip:' . $nis . ', Password: ' . $password);
+    
+        return redirect()->back()->with('success', 'Data Guru berhasil ditambahkan! NIP: ' . $nis . ', Password: ' . $password);
     }
         
 
