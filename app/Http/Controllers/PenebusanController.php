@@ -18,7 +18,7 @@ class PenebusanController extends Controller
     
         $penebusan = Penebusan::where('nis', Auth::user()->nis)->get();
 
-        return view('penebusan.penebusan', [
+        return view('Penebusan.penebusan', [
             'penebusan' => $penebusan,
             'title' => 'Pemulihan Point'
         ]);
@@ -80,7 +80,7 @@ class PenebusanController extends Controller
             ->orderBy('created_at', 'desc') 
             ->get();
     
-        return view('penebusan.review', compact('penebusan'), ['title' => 'Review Pemulihan']);
+        return view('Penebusan.review', compact('penebusan'), ['title' => 'Review Pemulihan']);
     }
     
     public function terimapenebusan($id)
@@ -119,13 +119,13 @@ class PenebusanController extends Controller
         $penebusan->status = 'penebusan Tidak Valid';
         $penebusan->save();
 
-        return redirect()->route('penebusan.review')->with('success', 'Pemulihan point telah ditolak dan dimasukkan ke daftar pelanggaran.');
+        return redirect()->route('Penebusan.review')->with('success', 'Pemulihan point telah ditolak dan dimasukkan ke daftar pelanggaran.');
     }
 
     
     public function show($id){
         $penebusan = Penebusan::with('siswa')->findOrFail($id);
 
-        return view ('penebusan.showpenebusan', compact('penebusan'));
+        return view ('Penebusan.showpenebusan', compact('penebusan'));
     }
 }

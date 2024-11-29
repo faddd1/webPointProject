@@ -52,10 +52,6 @@ class Student extends Model
         return $this->hasMany(Penebusan::class, 'nis', 'nis');
     }
 
-    public function petugas() {
-        return  $this->hasOne(Petugas::class, 'nis', 'nis');
-    }
-
 
     public function hukuman()
     {

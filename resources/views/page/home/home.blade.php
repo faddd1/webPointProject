@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Point Pelanggaran Siswa |</title>
+    <title>Point Pelanggaran Siswa </title>
     <link rel="icon" type="image/png" href="{{ asset('https://1.bp.blogspot.com/-fhQrt5qoZVQ/Vk7JRkLvD4I/AAAAAAAAF-k/ePg_jf3sDwI/s1600/Smk-Negeri-1-Kawali-Logo.png') }}">   
     <meta name="description" content="">
     <meta name="keywords" content="">
@@ -44,10 +44,23 @@
             <ul>
                 <li><a href="#hero" class="active">Beranda</a></li>
                 <li><a href="#about">Tentang</a></li>
-                @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'  || auth()->user()->role == 'siswa'  || auth()->user()->role == 'petugas'))
-                    <li><a href="#team">Tim</a></li>
-                @endif
                 <li><a href="#contact">Kontak</a></li>
+                @if (auth()->check())
+                    <li>  
+                        <a class="dropdown-item" href=" 
+                            @if(auth()->user()->role == 'admin')
+                                /dashboard/admin
+                            @elseif(auth()->user()->role == 'guru')
+                                /dashboard/guru
+                            @elseif(auth()->user()->role == 'petugas')
+                                /dashboard/petugas
+                            @elseif(auth()->user()->role == 'siswa')
+                                /dashboard/siswa
+                            @endif" class="active">
+                                Dashboard
+                        </a>
+                    </li>
+                @endif
                 @if (auth()->check() && (auth()->user()->role == 'admin' || auth()->user()->role == 'guru'  || auth()->user()->role == 'siswa'  || auth()->user()->role == 'petugas'))
                     <li class="nav-item dropdown">
                         <!-- Menampilkan nama pengguna dan dropdown untuk opsi tambahan -->
@@ -61,20 +74,7 @@
                                 <li>
                                     <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
                                 </li>
-                                <li>  
-                                    <a class="dropdown-item" href=" 
-                                        @if(auth()->user()->role == 'admin')
-                                            /dashboard/admin
-                                        @elseif(auth()->user()->role == 'guru')
-                                            /dashboard/guru
-                                        @elseif(auth()->user()->role == 'petugas')
-                                            /dashboard/petugas
-                                        @elseif(auth()->user()->role == 'siswa')
-                                            /dashboard/siswa
-                                        @endif" class="active">
-                                            Dashboard
-                                    </a>
-                                </li>
+                            
                             </ul>
                     </li>
                 @endif 

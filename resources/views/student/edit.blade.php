@@ -92,33 +92,12 @@
         </select>
 
         
-        <label for="role" class="form-label mt-4">Pilih Status</label>
-        <div>
-            <div class="form-check">
-                <input 
-                    type="radio" 
-                    id="roleSiswa" 
-                    name="role" 
-                    value="siswa" 
-                    class="form-check-input" 
-                    {{ $studentItem->role == 'siswa' ? 'checked' : '' }} 
-                    required
-                >
-                <label for="roleSiswa" class="form-check-label">Siswa</label>
-            </div>
-            <div class="form-check">
-                <input 
-                    type="radio" 
-                    id="rolePetugas" 
-                    name="role" 
-                    value="petugas" 
-                    class="form-check-input" 
-                    {{ $studentItem->role == 'petugas' ? 'checked' : '' }} 
-                    required
-                >
-                <label for="rolePetugas" class="form-check-label">Petugas</label>
-            </div>
-        </div>
+        <label for="jurusan" class="form-label mt-4">Pilih Status</label>
+        <select class="form-control"name="role" required>
+            <option>Pilih Status Siswa</option>
+            <option value="siswa" {{ $studentItem->role == 'siswa' ? 'selected' : '' }}>Siswa</option>
+            <option value="petugas"  {{ $studentItem->role == 'petugas' ? 'selected' : '' }}>Petugas</option>
+        </select>
 
     </div>
     <button type="submit" class="btn btn-block btn-primary-custom">Simpan</button>
