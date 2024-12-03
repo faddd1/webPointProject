@@ -23,34 +23,33 @@ class LaporanController extends Controller
 
     public function store(Request $request)
     {
-       
         $request->validate([
-            'nis' => 'required|exists:laporans,nis',
+            'nis' => 'required|exists:students,nis',
             'nama' => 'required',
             'pelanggaran' => 'required',
             'point' => 'required|integer',
             'tanggal' => 'required|date',
             'bukti' => 'nullable|file',
-        ],[
-            'nis.required' => 'Pastikan nama dan nis sudah terisi',
-            'pelanggaran.required' => 'Pastikan pelanggaran dan point sudah terisi',
-            'tanggal.required' => 'Tanggal Wajib di isi',
-            'bukti.required' => 'Bukti Wajib di isi'
+        ], [
+            'nis.required' => 'Pastikan nama dan NIS sudah terisi.',
+            'pelanggaran.required' => 'Pastikan pelanggaran dan point sudah terisi.',
+            'tanggal.required' => 'Tanggal wajib diisi.',
+            'bukti.required' => 'Bukti wajib diisi.'
         ]);
-
-
+  
         $point = -abs($request->input('point'));
-
+    
         $exists = Laporan::where('nis', $request->nis)
-        ->where('pelanggaran', $request->pelanggaran)
-        ->whereDate('created_at', now()->toDateString())
-        ->exists();
+            ->where('pelanggaran', $request->pelanggaran)
+            ->whereDate('tanggal', $request->tanggal)
+            ->exists();
+    
         if ($exists) {
-            return redirect()->back()->with(['error' => 'Pelanggaran ini sudah dilaporkan untuk siswa dengan NIS tersebut hari ini.']);
+            return redirect()->back()->with(['error' => 'Pelanggaran ini sudah dilaporkan untuk siswa dengan NIS tersebut pada tanggal ini.']);
         }
+    
         try {
-
-           
+            // Buat instance model laporan
             $report = new Laporan();
             $report->nis = $request->nis;
             $report->nama = $request->nama;
@@ -58,24 +57,25 @@ class LaporanController extends Controller
             $report->point = $point;
             $report->tanggal = $request->tanggal;
             $report->pelapor_id = Auth::id();
-
+    
             if ($request->hasFile('bukti')) {
                 $file = $request->file('bukti');
                 $filename = time() . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path('uploads'), $filename);
                 $report->bukti = $filename;
             }
-
+    
             $report->status = 'pending';
-            $report->save();
-
+            $report->save(); 
+    
             return redirect()->back()->with('success', 'Laporan berhasil disimpan, menunggu verifikasi.');
-
         } catch (\Exception $e) {
             Log::error('Gagal menyimpan laporan: ' . $e->getMessage());
+    
             return redirect()->back()->with('error', 'Terjadi kesalahan saat menyimpan laporan.');
         }
     }
+    
 
     public function showlaporan()
     {
