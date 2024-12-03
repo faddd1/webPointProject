@@ -207,7 +207,7 @@
                         <td style="text-align: center; vertical-align: middle; white-space: nowrap;">No</td>
                         <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Jenis</td>
                         <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Pasal</td>
-                        <td style="vertical-align: middle;">Deskripsi</td>
+                        <td style="text-align: center; vertical-align: middle; white-space: nowrap;">Deskripsi</td>
                         @if (auth()->check() && auth()->user()->role == 'admin')
                           <td style="text-align: center; vertical-align: middle;">Aksi</td>
 

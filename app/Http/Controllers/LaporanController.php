@@ -25,7 +25,7 @@ class LaporanController extends Controller
     {
        
         $request->validate([
-            'nis' => 'required',
+            'nis' => 'required|exists:laporans,nis',
             'nama' => 'required',
             'pelanggaran' => 'required',
             'point' => 'required|integer',
@@ -40,7 +40,16 @@ class LaporanController extends Controller
 
 
         $point = -abs($request->input('point'));
+
+        $exists = Laporan::where('nis', $request->nis)
+        ->where('pelanggaran', $request->pelanggaran)
+        ->whereDate('created_at', now()->toDateString())
+        ->exists();
+        if ($exists) {
+            return redirect()->back()->with(['error' => 'Pelanggaran ini sudah dilaporkan untuk siswa dengan NIS tersebut hari ini.']);
+        }
         try {
+
            
             $report = new Laporan();
             $report->nis = $request->nis;

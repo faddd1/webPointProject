@@ -167,24 +167,24 @@
                 <div class="form-group">
                     <label for="jurusan-select">Jurusan</label>
                     <select id="jurusan-select" class="form-control">
-                        <option value="">-- Semua Jurusan --</option>
-                        <option value="TKR 1">TKR 1</option>
-                        <option value="TKR 2">TKR 2</option>
-                        <option value="TKR 3">TKR 3</option>
-                        <option value="TKJ 1">TKJ 1</option>
-                        <option value="TKJ 2">TKJ 2</option>
-                        <option value="TKJ 3">TKJ 3</option>
-                        <option value="PPLG 1">PPLG 1</option>
-                        <option value="PPLG 2">PPLG 2</option>
-                        <option value="PPLG 3">PPLG 3</option>
-                        <option value="DPIB 1">DPIB 1</option>
-                        <option value="DPIB 2">DPIB 2</option>
-                        <option value="MP 1">MP 1</option>
-                        <option value="MP 2">MP 2</option>
-                        <option value="AK 1">AK 1</option>
-                        <option value="AK 2">AK 2</option>
-                        <option value="SK 1">SK 1</option>
-                        <option value="SK 2">SK 2</option>
+            <option value="">Pilih Jurusan</option>
+              <option value="TKR 1">TKR 1</option>
+              <option value="TKR 2">TKR 2</option>
+              <option value="TKR 3">TKR 3</option>
+              <option value="TKJ 1">TKJ 1</option>
+              <option value="TKJ 2">TKJ 2</option>
+              <option value="TKJ 3">TKJ 3</option>
+              <option value="PPLG 1">PPLG 1</option>
+              <option value="PPLG 2">PPLG 2</option>
+              <option value="PPLG 3">PPLG 3</option>
+              <option value="DPIB 1">DPIB 1</option>
+              <option value="DPIB 2">DPIB 2</option>
+              <option value="MPLB 1">MPLB 1</option>
+              <option value="MPLB 2">MPLB 2</option>
+              <option value="AK 1">AK 1</option>
+              <option value="AK 2">AK 2</option>
+              <option value="SK 1">SK 1</option>
+              <option value="SK 2">SK 2</option>
                     </select>
                 </div>
                 <div class="form-group">

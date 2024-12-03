@@ -71,6 +71,8 @@ class KategoriController extends Controller
             'level' => 'required|string|max:200',
             'kode' => 'nullable|string|max:10',
         ]);
+
+        $point = -abs($request->input('point'));
     
         $kategoris = Kategori::find($id);
     
@@ -81,7 +83,7 @@ class KategoriController extends Controller
             'pelanggaran' => $request->pelanggaran,
             'level' => $request->level,
             'kode' => $newKode,
-            'point' => $request->point,
+            'point' => $point,
         ]);
     
         return redirect('/kategoripelanggaran')->with('success', 'Data berhasil diubah dengan kode unik baru: ' . $newKode);
