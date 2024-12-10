@@ -20,25 +20,33 @@ class PenebusanController extends Controller
 
         return view('Penebusan.penebusan', [
             'penebusan' => $penebusan,
-            'title' => 'Pemulihan Point'
+            'title' => 'Pemulihan Poin'
         ]);
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'nis' => 'required',
+            'nis' => 'required|exists:students,nis',
             'nama' => 'required',
             'nama_Prestasi' => 'required',
             'point' => 'required|integer',
             'tanggal' => 'required|date',
             'bukti' => 'nullable|file',
         ]);
+
+        $exists = Penebusan::where('nis', $request->nis)
+        ->where('nama_Prestasi', $request->nama_Prestasi)
+        ->whereDate('created_at', now()->toDateString())
+        ->exists();
+        if ($exists) {
+            return redirect()->back()->with(['error' => 'Pelanggaran ini sudah dilaporkan untuk siswa dengan NIS tersebut hari ini.']);
+        }
+           // $siswa = Student::where('nis', $request->nis)->first();
+            // // $pelanggaran = $siswa->pelanggaran()->exists();
     
         try {
-            $siswa = Student::where('nis', $request->nis)->first();
-            $pelanggaran = $siswa->pelanggaran()->exists();
-    
+         
             $penebusan = new Penebusan();
             $penebusan->nis = $request->nis;
             $penebusan->nama = $request->nama;

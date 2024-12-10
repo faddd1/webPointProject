@@ -127,9 +127,7 @@ class ListSiswa extends Controller
         
         return view('hukuman.index', compact('punismen'), ['title' => ' Pencarian Sanksi']);
     }
-
-   
-   
+  
     public function sanksiPdf(Request $request)
     {
         // Validate request

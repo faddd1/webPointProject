@@ -62,7 +62,7 @@
             @elseif($slot == 'Tambah Akun')
                 width: 182px;
 
-            @elseif($slot == 'Pemulihan Point')
+            @elseif($slot == 'Pemulihan Poin')
                 width: 215px;
 
             @elseif($slot == 'Review Pemulihan')
