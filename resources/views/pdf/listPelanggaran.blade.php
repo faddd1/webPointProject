@@ -147,10 +147,10 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Nama Pelapor</th>
+                    <th>Nis</th>
                     <th>Nama</th>
                     <th>Nama Pelanggaran</th>
-                    <th>Jumlah Point</th>
+                    <th>Jumlah Poin</th>
                     <th>Tanggal</th>
                 </tr>
             </thead>
