@@ -73,8 +73,6 @@ Route::middleware(['auth', 'userAkses:admin,guru,petugas'])->group(function () {
     // Laporan Routes
     Route::post('/lapor', [LaporanController::class, 'store'])->name('lapor.store');
     Route::get('/laporan', [LaporanController::class, 'index']);
-    // Datapetugas Routes
-    Route::get('/datapetugas', [PetugasController::class, 'tampil'])->name('petugas.tampil');
     
     
   
@@ -182,20 +180,12 @@ Route::middleware(['auth', 'userAkses:admin'])->group(function () {
     Route::get('/kategoripelanggaran/pasal/edit/{id}', [PasalController::class, 'editPasal'])->name('kategori.editPasal');
     Route::put('/kategoripelanggaran/pasal/update/{id}', [PasalController::class, 'updatePasal'])->name('kategori.updatePasal');
     Route::delete('/kategoripelanggaran/pasal/destroy/{id}', [PasalController::class, 'destroyPasal'])->name('kategori.destroyPasal');
-    // Petugas Management Routes
-    Route::get('/datapetugas/tambah', [PetugasController::class, 'tambah'])->name('petugas.create');
-    Route::post('/datapetugas/submit', [PetugasController::class, 'submit'])->name('petugas.submit');
-    Route::get('/datapetugas/edit/{id}', [PetugasController::class, 'edit'])->name('petugas.edit');
-    Route::post('/datapetugas/update{id}', [PetugasController::class, 'update'])->name('petugas.update');
-    Route::post('/datapetugas/delete{id}', [PetugasController::class, 'delete'])->name('petugas.delete');
-    Route::get('/datapetugas/search', [PetugasController::class, 'search'])->name('petugas.search');
 
     Route::post('/hukuman/store',[ListSiswa::class, 'store'])->name('hukuman.store');
     Route::get('/hukuman/create',[ListSiswa::class, 'create'])->name('hukuman.create');
     Route::get('/hukuman/edit{id}',[ListSiswa::class, 'edit'])->name('hukuman.edit');
     Route::put('/hukuman/update/{id}',[ListSiswa::class, 'update'])->name('hukuman.update');
     Route::delete('/hukuman/{id}', [ListSiswa::class, 'destroy'])->name('hukuman.destroy');
-   
     Route::get('/hukuman/search', [ListSiswa::class, 'search'])->name('hukuman.search');
 });
 
